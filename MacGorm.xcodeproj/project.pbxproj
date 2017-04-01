@@ -1,0 +1,974 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		554D97F71E9031E800E79BFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D97F61E9031E800E79BFA /* AppDelegate.m */; };
+		554D97FA1E9031E800E79BFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D97F91E9031E800E79BFA /* main.m */; };
+		554D97FD1E9031E800E79BFA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D97FC1E9031E800E79BFA /* ViewController.m */; };
+		554D98001E9031E800E79BFA /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D97FF1E9031E800E79BFA /* Document.m */; };
+		554D98021E9031E800E79BFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 554D98011E9031E800E79BFA /* Assets.xcassets */; };
+		554D98051E9031E800E79BFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554D98031E9031E800E79BFA /* Main.storyboard */; };
+		554D980D1E90329E00E79BFA /* VersionProfiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 554D980C1E90329E00E79BFA /* VersionProfiles.plist */; };
+		554D98171E90350C00E79BFA /* GormCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98151E90350C00E79BFA /* GormCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D981A1E90350C00E79BFA /* GormCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D98131E90350C00E79BFA /* GormCore.framework */; };
+		554D981B1E90350C00E79BFA /* GormCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 554D98131E90350C00E79BFA /* GormCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		554D989D1E90353000E79BFA /* GormBoxEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98201E90352F00E79BFA /* GormBoxEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D989E1E90353000E79BFA /* GormBoxEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98211E90352F00E79BFA /* GormBoxEditor.m */; };
+		554D989F1E90353000E79BFA /* GormClassEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98221E90352F00E79BFA /* GormClassEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98A01E90353000E79BFA /* GormClassEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98231E90352F00E79BFA /* GormClassEditor.m */; };
+		554D98A11E90353000E79BFA /* GormClassInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98241E90352F00E79BFA /* GormClassInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98A21E90353000E79BFA /* GormClassInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98251E90352F00E79BFA /* GormClassInspector.m */; };
+		554D98A31E90353000E79BFA /* GormClassManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98261E90352F00E79BFA /* GormClassManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98A41E90353000E79BFA /* GormClassManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98271E90352F00E79BFA /* GormClassManager.m */; };
+		554D98A51E90353000E79BFA /* GormClassPanelController.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98281E90352F00E79BFA /* GormClassPanelController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98A61E90353000E79BFA /* GormClassPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98291E90352F00E79BFA /* GormClassPanelController.m */; };
+		554D98A71E90353000E79BFA /* GormConnectionInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D982A1E90352F00E79BFA /* GormConnectionInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98A81E90353000E79BFA /* GormConnectionInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D982B1E90352F00E79BFA /* GormConnectionInspector.m */; };
+		554D98A91E90353000E79BFA /* GormControlEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D982C1E90352F00E79BFA /* GormControlEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98AA1E90353000E79BFA /* GormControlEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D982D1E90352F00E79BFA /* GormControlEditor.m */; };
+		554D98AB1E90353000E79BFA /* GormCustomClassInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D982E1E90352F00E79BFA /* GormCustomClassInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98AC1E90353000E79BFA /* GormCustomClassInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D982F1E90352F00E79BFA /* GormCustomClassInspector.m */; };
+		554D98AD1E90353000E79BFA /* GormCustomView.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98301E90352F00E79BFA /* GormCustomView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98AE1E90353000E79BFA /* GormCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98311E90352F00E79BFA /* GormCustomView.m */; };
+		554D98AF1E90353000E79BFA /* GormDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98321E90352F00E79BFA /* GormDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98B01E90353000E79BFA /* GormDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98331E90352F00E79BFA /* GormDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98B11E90353000E79BFA /* GormDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98341E90352F00E79BFA /* GormDocument.m */; };
+		554D98B21E90353000E79BFA /* GormDocumentController.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98351E90352F00E79BFA /* GormDocumentController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98B31E90353000E79BFA /* GormDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98361E90352F00E79BFA /* GormDocumentController.m */; };
+		554D98B41E90353000E79BFA /* GormDocumentWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98371E90352F00E79BFA /* GormDocumentWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98B51E90353000E79BFA /* GormDocumentWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98381E90352F00E79BFA /* GormDocumentWindow.m */; };
+		554D98B61E90353000E79BFA /* GormFilePrefsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98391E90352F00E79BFA /* GormFilePrefsManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98B71E90353000E79BFA /* GormFilePrefsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D983A1E90352F00E79BFA /* GormFilePrefsManager.m */; };
+		554D98B81E90353000E79BFA /* GormFilesOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D983B1E90352F00E79BFA /* GormFilesOwner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98B91E90353000E79BFA /* GormFilesOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D983C1E90352F00E79BFA /* GormFilesOwner.m */; };
+		554D98BA1E90353000E79BFA /* GormFontViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D983D1E90352F00E79BFA /* GormFontViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98BB1E90353000E79BFA /* GormFontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D983E1E90352F00E79BFA /* GormFontViewController.m */; };
+		554D98BC1E90353000E79BFA /* GormFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D983F1E90352F00E79BFA /* GormFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98BD1E90353000E79BFA /* GormFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98401E90352F00E79BFA /* GormFunctions.m */; };
+		554D98BE1E90353000E79BFA /* GormGenericEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98411E90352F00E79BFA /* GormGenericEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98BF1E90353000E79BFA /* GormGenericEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98421E90352F00E79BFA /* GormGenericEditor.m */; };
+		554D98C01E90353000E79BFA /* GormHelpInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98431E90352F00E79BFA /* GormHelpInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98C11E90353000E79BFA /* GormHelpInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98441E90352F00E79BFA /* GormHelpInspector.m */; };
+		554D98C21E90353000E79BFA /* GormImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98451E90352F00E79BFA /* GormImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98C31E90353000E79BFA /* GormImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98461E90352F00E79BFA /* GormImage.m */; };
+		554D98C41E90353000E79BFA /* GormImageEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98471E90352F00E79BFA /* GormImageEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98C51E90353000E79BFA /* GormImageEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98481E90352F00E79BFA /* GormImageEditor.m */; };
+		554D98C61E90353000E79BFA /* GormImageInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98491E90352F00E79BFA /* GormImageInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98C71E90353000E79BFA /* GormImageInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D984A1E90352F00E79BFA /* GormImageInspector.m */; };
+		554D98C81E90353000E79BFA /* GormInspectorsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D984B1E90352F00E79BFA /* GormInspectorsManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98C91E90353000E79BFA /* GormInspectorsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D984C1E90352F00E79BFA /* GormInspectorsManager.m */; };
+		554D98CA1E90353000E79BFA /* GormInternalViewEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D984D1E90352F00E79BFA /* GormInternalViewEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98CB1E90353000E79BFA /* GormInternalViewEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D984E1E90352F00E79BFA /* GormInternalViewEditor.m */; };
+		554D98CC1E90353000E79BFA /* GormMatrixEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D984F1E90352F00E79BFA /* GormMatrixEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98CD1E90353000E79BFA /* GormMatrixEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98501E90352F00E79BFA /* GormMatrixEditor.m */; };
+		554D98CE1E90353000E79BFA /* GormNSPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98511E90352F00E79BFA /* GormNSPanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98CF1E90353000E79BFA /* GormNSPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98521E90352F00E79BFA /* GormNSPanel.m */; };
+		554D98D01E90353000E79BFA /* GormNSSplitViewInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98531E90352F00E79BFA /* GormNSSplitViewInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98D11E90353000E79BFA /* GormNSSplitViewInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98541E90352F00E79BFA /* GormNSSplitViewInspector.m */; };
+		554D98D21E90353000E79BFA /* GormNSWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98551E90352F00E79BFA /* GormNSWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98D31E90353000E79BFA /* GormNSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98561E90352F00E79BFA /* GormNSWindow.m */; };
+		554D98D41E90353000E79BFA /* GormObjectEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98571E90352F00E79BFA /* GormObjectEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98D51E90353000E79BFA /* GormObjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98581E90352F00E79BFA /* GormObjectEditor.m */; };
+		554D98D61E90353000E79BFA /* GormObjectInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98591E90352F00E79BFA /* GormObjectInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98D71E90353000E79BFA /* GormObjectInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D985A1E90352F00E79BFA /* GormObjectInspector.m */; };
+		554D98D81E90353000E79BFA /* GormOpenGLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D985B1E90352F00E79BFA /* GormOpenGLView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98D91E90353000E79BFA /* GormOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D985C1E90352F00E79BFA /* GormOpenGLView.m */; };
+		554D98DA1E90353000E79BFA /* GormOutlineView.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D985D1E90352F00E79BFA /* GormOutlineView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98DB1E90353000E79BFA /* GormOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D985E1E90352F00E79BFA /* GormOutlineView.m */; };
+		554D98DC1E90353000E79BFA /* GormPalettesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D985F1E90352F00E79BFA /* GormPalettesManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98DD1E90353000E79BFA /* GormPalettesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98601E90352F00E79BFA /* GormPalettesManager.m */; };
+		554D98DE1E90353000E79BFA /* GormPlacementInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98611E90352F00E79BFA /* GormPlacementInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98DF1E90353000E79BFA /* GormPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98621E90352F00E79BFA /* GormPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98E01E90353000E79BFA /* GormPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98631E90352F00E79BFA /* GormPlugin.m */; };
+		554D98E11E90353000E79BFA /* GormPluginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98641E90352F00E79BFA /* GormPluginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98E21E90353000E79BFA /* GormPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98651E90352F00E79BFA /* GormPluginManager.m */; };
+		554D98E31E90353000E79BFA /* GormPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98661E90352F00E79BFA /* GormPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		554D98E41E90353000E79BFA /* GormPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98671E90352F00E79BFA /* GormPrivate.m */; };
+		554D98E51E90353000E79BFA /* GormProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98681E90352F00E79BFA /* GormProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98E61E90353000E79BFA /* GormResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98691E90352F00E79BFA /* GormResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98E71E90353000E79BFA /* GormResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D986A1E90352F00E79BFA /* GormResource.m */; };
+		554D98E81E90353000E79BFA /* GormResourceEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D986B1E90352F00E79BFA /* GormResourceEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98E91E90353000E79BFA /* GormResourceEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D986C1E90352F00E79BFA /* GormResourceEditor.m */; };
+		554D98EA1E90353000E79BFA /* GormResourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D986D1E90352F00E79BFA /* GormResourceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98EB1E90353000E79BFA /* GormResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D986E1E90352F00E79BFA /* GormResourceManager.m */; };
+		554D98EC1E90353000E79BFA /* GormScrollViewAttributesInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D986F1E90352F00E79BFA /* GormScrollViewAttributesInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98ED1E90353000E79BFA /* GormScrollViewAttributesInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98701E90352F00E79BFA /* GormScrollViewAttributesInspector.m */; };
+		554D98EE1E90353000E79BFA /* GormScrollViewEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98711E90352F00E79BFA /* GormScrollViewEditor.m */; };
+		554D98EF1E90353000E79BFA /* GormServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98721E90352F00E79BFA /* GormServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98F01E90353000E79BFA /* GormSetNameController.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98731E90352F00E79BFA /* GormSetNameController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98F11E90353000E79BFA /* GormSetNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98741E90352F00E79BFA /* GormSetNameController.m */; };
+		554D98F21E90353000E79BFA /* GormSound.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98751E90352F00E79BFA /* GormSound.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98F31E90353000E79BFA /* GormSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98761E90352F00E79BFA /* GormSound.m */; };
+		554D98F41E90353000E79BFA /* GormSoundEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98771E90352F00E79BFA /* GormSoundEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98F51E90353000E79BFA /* GormSoundEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98781E90352F00E79BFA /* GormSoundEditor.m */; };
+		554D98F61E90353000E79BFA /* GormSoundInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98791E90352F00E79BFA /* GormSoundInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98F71E90353000E79BFA /* GormSoundInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D987A1E90352F00E79BFA /* GormSoundInspector.m */; };
+		554D98F81E90353000E79BFA /* GormSoundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D987B1E90352F00E79BFA /* GormSoundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98F91E90353000E79BFA /* GormSoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D987C1E90352F00E79BFA /* GormSoundView.m */; };
+		554D98FA1E90353000E79BFA /* GormSplitViewEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D987D1E90352F00E79BFA /* GormSplitViewEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98FB1E90353000E79BFA /* GormSplitViewEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D987E1E90352F00E79BFA /* GormSplitViewEditor.m */; };
+		554D98FC1E90353000E79BFA /* GormStandaloneViewEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D987F1E90352F00E79BFA /* GormStandaloneViewEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98FD1E90353000E79BFA /* GormStandaloneViewEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98801E90352F00E79BFA /* GormStandaloneViewEditor.m */; };
+		554D98FE1E90353000E79BFA /* GormViewEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98811E90352F00E79BFA /* GormViewEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D98FF1E90353000E79BFA /* GormViewEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98821E90352F00E79BFA /* GormViewEditor.m */; };
+		554D99001E90353000E79BFA /* GormViewKnobs.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98831E90352F00E79BFA /* GormViewKnobs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99011E90353000E79BFA /* GormViewKnobs.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98841E90352F00E79BFA /* GormViewKnobs.m */; };
+		554D99021E90353000E79BFA /* GormViewSizeInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98851E90352F00E79BFA /* GormViewSizeInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99031E90353000E79BFA /* GormViewSizeInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98861E90352F00E79BFA /* GormViewSizeInspector.m */; };
+		554D99041E90353000E79BFA /* GormViewWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98871E90352F00E79BFA /* GormViewWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99051E90353000E79BFA /* GormViewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98881E90352F00E79BFA /* GormViewWindow.m */; };
+		554D99061E90353000E79BFA /* GormViewWithContentViewEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98891E90352F00E79BFA /* GormViewWithContentViewEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99071E90353000E79BFA /* GormViewWithContentViewEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D988A1E90352F00E79BFA /* GormViewWithContentViewEditor.m */; };
+		554D99081E90353000E79BFA /* GormViewWithSubviewsEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D988B1E90352F00E79BFA /* GormViewWithSubviewsEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99091E90353000E79BFA /* GormViewWithSubviewsEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D988C1E90353000E79BFA /* GormViewWithSubviewsEditor.m */; };
+		554D990A1E90353000E79BFA /* GormWindowEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D988D1E90353000E79BFA /* GormWindowEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D990B1E90353000E79BFA /* GormWindowEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D988E1E90353000E79BFA /* GormWindowEditor.m */; };
+		554D990C1E90353000E79BFA /* GormWindowTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D988F1E90353000E79BFA /* GormWindowTemplate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D990D1E90353000E79BFA /* GormWindowTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98901E90353000E79BFA /* GormWindowTemplate.m */; };
+		554D990E1E90353000E79BFA /* GormWrapperBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98911E90353000E79BFA /* GormWrapperBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D990F1E90353000E79BFA /* GormWrapperBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98921E90353000E79BFA /* GormWrapperBuilder.m */; };
+		554D99101E90353000E79BFA /* GormWrapperLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98931E90353000E79BFA /* GormWrapperLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99111E90353000E79BFA /* GormWrapperLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98941E90353000E79BFA /* GormWrapperLoader.m */; };
+		554D99121E90353000E79BFA /* NSCell+GormAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98951E90353000E79BFA /* NSCell+GormAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99131E90353000E79BFA /* NSCell+GormAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98961E90353000E79BFA /* NSCell+GormAdditions.m */; };
+		554D99141E90353000E79BFA /* NSColorWell+GormExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98971E90353000E79BFA /* NSColorWell+GormExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99151E90353000E79BFA /* NSColorWell+GormExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98981E90353000E79BFA /* NSColorWell+GormExtensions.m */; };
+		554D99161E90353000E79BFA /* NSFontManager+GormExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98991E90353000E79BFA /* NSFontManager+GormExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99171E90353000E79BFA /* NSFontManager+GormExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D989A1E90353000E79BFA /* NSFontManager+GormExtensions.m */; };
+		554D99181E90353000E79BFA /* NSView+GormExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D989B1E90353000E79BFA /* NSView+GormExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99191E90353000E79BFA /* NSView+GormExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D989C1E90353000E79BFA /* NSView+GormExtensions.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		554D98181E90350C00E79BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D97EA1E9031E700E79BFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 554D98121E90350C00E79BFA;
+			remoteInfo = GormCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		554D981F1E90350C00E79BFA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				554D981B1E90350C00E79BFA /* GormCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		554D97F21E9031E700E79BFA /* MacGorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacGorm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		554D97F51E9031E800E79BFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		554D97F61E9031E800E79BFA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		554D97F91E9031E800E79BFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		554D97FB1E9031E800E79BFA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		554D97FC1E9031E800E79BFA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		554D97FE1E9031E800E79BFA /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
+		554D97FF1E9031E800E79BFA /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		554D98011E9031E800E79BFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		554D98041E9031E800E79BFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		554D98061E9031E800E79BFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		554D980C1E90329E00E79BFA /* VersionProfiles.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = VersionProfiles.plist; sourceTree = "<group>"; };
+		554D98131E90350C00E79BFA /* GormCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GormCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		554D98151E90350C00E79BFA /* GormCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GormCore.h; sourceTree = "<group>"; };
+		554D98161E90350C00E79BFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		554D98201E90352F00E79BFA /* GormBoxEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormBoxEditor.h; sourceTree = "<group>"; };
+		554D98211E90352F00E79BFA /* GormBoxEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormBoxEditor.m; sourceTree = "<group>"; };
+		554D98221E90352F00E79BFA /* GormClassEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormClassEditor.h; sourceTree = "<group>"; };
+		554D98231E90352F00E79BFA /* GormClassEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormClassEditor.m; sourceTree = "<group>"; };
+		554D98241E90352F00E79BFA /* GormClassInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormClassInspector.h; sourceTree = "<group>"; };
+		554D98251E90352F00E79BFA /* GormClassInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormClassInspector.m; sourceTree = "<group>"; };
+		554D98261E90352F00E79BFA /* GormClassManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormClassManager.h; sourceTree = "<group>"; };
+		554D98271E90352F00E79BFA /* GormClassManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormClassManager.m; sourceTree = "<group>"; };
+		554D98281E90352F00E79BFA /* GormClassPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormClassPanelController.h; sourceTree = "<group>"; };
+		554D98291E90352F00E79BFA /* GormClassPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormClassPanelController.m; sourceTree = "<group>"; };
+		554D982A1E90352F00E79BFA /* GormConnectionInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormConnectionInspector.h; sourceTree = "<group>"; };
+		554D982B1E90352F00E79BFA /* GormConnectionInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormConnectionInspector.m; sourceTree = "<group>"; };
+		554D982C1E90352F00E79BFA /* GormControlEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormControlEditor.h; sourceTree = "<group>"; };
+		554D982D1E90352F00E79BFA /* GormControlEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormControlEditor.m; sourceTree = "<group>"; };
+		554D982E1E90352F00E79BFA /* GormCustomClassInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormCustomClassInspector.h; sourceTree = "<group>"; };
+		554D982F1E90352F00E79BFA /* GormCustomClassInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormCustomClassInspector.m; sourceTree = "<group>"; };
+		554D98301E90352F00E79BFA /* GormCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormCustomView.h; sourceTree = "<group>"; };
+		554D98311E90352F00E79BFA /* GormCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormCustomView.m; sourceTree = "<group>"; };
+		554D98321E90352F00E79BFA /* GormDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormDefines.h; sourceTree = "<group>"; };
+		554D98331E90352F00E79BFA /* GormDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormDocument.h; sourceTree = "<group>"; };
+		554D98341E90352F00E79BFA /* GormDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormDocument.m; sourceTree = "<group>"; };
+		554D98351E90352F00E79BFA /* GormDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormDocumentController.h; sourceTree = "<group>"; };
+		554D98361E90352F00E79BFA /* GormDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormDocumentController.m; sourceTree = "<group>"; };
+		554D98371E90352F00E79BFA /* GormDocumentWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormDocumentWindow.h; sourceTree = "<group>"; };
+		554D98381E90352F00E79BFA /* GormDocumentWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormDocumentWindow.m; sourceTree = "<group>"; };
+		554D98391E90352F00E79BFA /* GormFilePrefsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormFilePrefsManager.h; sourceTree = "<group>"; };
+		554D983A1E90352F00E79BFA /* GormFilePrefsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormFilePrefsManager.m; sourceTree = "<group>"; };
+		554D983B1E90352F00E79BFA /* GormFilesOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormFilesOwner.h; sourceTree = "<group>"; };
+		554D983C1E90352F00E79BFA /* GormFilesOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormFilesOwner.m; sourceTree = "<group>"; };
+		554D983D1E90352F00E79BFA /* GormFontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormFontViewController.h; sourceTree = "<group>"; };
+		554D983E1E90352F00E79BFA /* GormFontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormFontViewController.m; sourceTree = "<group>"; };
+		554D983F1E90352F00E79BFA /* GormFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormFunctions.h; sourceTree = "<group>"; };
+		554D98401E90352F00E79BFA /* GormFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormFunctions.m; sourceTree = "<group>"; };
+		554D98411E90352F00E79BFA /* GormGenericEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormGenericEditor.h; sourceTree = "<group>"; };
+		554D98421E90352F00E79BFA /* GormGenericEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormGenericEditor.m; sourceTree = "<group>"; };
+		554D98431E90352F00E79BFA /* GormHelpInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormHelpInspector.h; sourceTree = "<group>"; };
+		554D98441E90352F00E79BFA /* GormHelpInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormHelpInspector.m; sourceTree = "<group>"; };
+		554D98451E90352F00E79BFA /* GormImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormImage.h; sourceTree = "<group>"; };
+		554D98461E90352F00E79BFA /* GormImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormImage.m; sourceTree = "<group>"; };
+		554D98471E90352F00E79BFA /* GormImageEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormImageEditor.h; sourceTree = "<group>"; };
+		554D98481E90352F00E79BFA /* GormImageEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormImageEditor.m; sourceTree = "<group>"; };
+		554D98491E90352F00E79BFA /* GormImageInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormImageInspector.h; sourceTree = "<group>"; };
+		554D984A1E90352F00E79BFA /* GormImageInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormImageInspector.m; sourceTree = "<group>"; };
+		554D984B1E90352F00E79BFA /* GormInspectorsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormInspectorsManager.h; sourceTree = "<group>"; };
+		554D984C1E90352F00E79BFA /* GormInspectorsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormInspectorsManager.m; sourceTree = "<group>"; };
+		554D984D1E90352F00E79BFA /* GormInternalViewEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormInternalViewEditor.h; sourceTree = "<group>"; };
+		554D984E1E90352F00E79BFA /* GormInternalViewEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormInternalViewEditor.m; sourceTree = "<group>"; };
+		554D984F1E90352F00E79BFA /* GormMatrixEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormMatrixEditor.h; sourceTree = "<group>"; };
+		554D98501E90352F00E79BFA /* GormMatrixEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormMatrixEditor.m; sourceTree = "<group>"; };
+		554D98511E90352F00E79BFA /* GormNSPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormNSPanel.h; sourceTree = "<group>"; };
+		554D98521E90352F00E79BFA /* GormNSPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormNSPanel.m; sourceTree = "<group>"; };
+		554D98531E90352F00E79BFA /* GormNSSplitViewInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormNSSplitViewInspector.h; sourceTree = "<group>"; };
+		554D98541E90352F00E79BFA /* GormNSSplitViewInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormNSSplitViewInspector.m; sourceTree = "<group>"; };
+		554D98551E90352F00E79BFA /* GormNSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormNSWindow.h; sourceTree = "<group>"; };
+		554D98561E90352F00E79BFA /* GormNSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormNSWindow.m; sourceTree = "<group>"; };
+		554D98571E90352F00E79BFA /* GormObjectEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormObjectEditor.h; sourceTree = "<group>"; };
+		554D98581E90352F00E79BFA /* GormObjectEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormObjectEditor.m; sourceTree = "<group>"; };
+		554D98591E90352F00E79BFA /* GormObjectInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormObjectInspector.h; sourceTree = "<group>"; };
+		554D985A1E90352F00E79BFA /* GormObjectInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormObjectInspector.m; sourceTree = "<group>"; };
+		554D985B1E90352F00E79BFA /* GormOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormOpenGLView.h; sourceTree = "<group>"; };
+		554D985C1E90352F00E79BFA /* GormOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormOpenGLView.m; sourceTree = "<group>"; };
+		554D985D1E90352F00E79BFA /* GormOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormOutlineView.h; sourceTree = "<group>"; };
+		554D985E1E90352F00E79BFA /* GormOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormOutlineView.m; sourceTree = "<group>"; };
+		554D985F1E90352F00E79BFA /* GormPalettesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormPalettesManager.h; sourceTree = "<group>"; };
+		554D98601E90352F00E79BFA /* GormPalettesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormPalettesManager.m; sourceTree = "<group>"; };
+		554D98611E90352F00E79BFA /* GormPlacementInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormPlacementInfo.h; sourceTree = "<group>"; };
+		554D98621E90352F00E79BFA /* GormPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormPlugin.h; sourceTree = "<group>"; };
+		554D98631E90352F00E79BFA /* GormPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormPlugin.m; sourceTree = "<group>"; };
+		554D98641E90352F00E79BFA /* GormPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormPluginManager.h; sourceTree = "<group>"; };
+		554D98651E90352F00E79BFA /* GormPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormPluginManager.m; sourceTree = "<group>"; };
+		554D98661E90352F00E79BFA /* GormPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormPrivate.h; sourceTree = "<group>"; };
+		554D98671E90352F00E79BFA /* GormPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormPrivate.m; sourceTree = "<group>"; };
+		554D98681E90352F00E79BFA /* GormProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormProtocol.h; sourceTree = "<group>"; };
+		554D98691E90352F00E79BFA /* GormResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormResource.h; sourceTree = "<group>"; };
+		554D986A1E90352F00E79BFA /* GormResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormResource.m; sourceTree = "<group>"; };
+		554D986B1E90352F00E79BFA /* GormResourceEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormResourceEditor.h; sourceTree = "<group>"; };
+		554D986C1E90352F00E79BFA /* GormResourceEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormResourceEditor.m; sourceTree = "<group>"; };
+		554D986D1E90352F00E79BFA /* GormResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormResourceManager.h; sourceTree = "<group>"; };
+		554D986E1E90352F00E79BFA /* GormResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormResourceManager.m; sourceTree = "<group>"; };
+		554D986F1E90352F00E79BFA /* GormScrollViewAttributesInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormScrollViewAttributesInspector.h; sourceTree = "<group>"; };
+		554D98701E90352F00E79BFA /* GormScrollViewAttributesInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormScrollViewAttributesInspector.m; sourceTree = "<group>"; };
+		554D98711E90352F00E79BFA /* GormScrollViewEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormScrollViewEditor.m; sourceTree = "<group>"; };
+		554D98721E90352F00E79BFA /* GormServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormServer.h; sourceTree = "<group>"; };
+		554D98731E90352F00E79BFA /* GormSetNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormSetNameController.h; sourceTree = "<group>"; };
+		554D98741E90352F00E79BFA /* GormSetNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormSetNameController.m; sourceTree = "<group>"; };
+		554D98751E90352F00E79BFA /* GormSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormSound.h; sourceTree = "<group>"; };
+		554D98761E90352F00E79BFA /* GormSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormSound.m; sourceTree = "<group>"; };
+		554D98771E90352F00E79BFA /* GormSoundEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormSoundEditor.h; sourceTree = "<group>"; };
+		554D98781E90352F00E79BFA /* GormSoundEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormSoundEditor.m; sourceTree = "<group>"; };
+		554D98791E90352F00E79BFA /* GormSoundInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormSoundInspector.h; sourceTree = "<group>"; };
+		554D987A1E90352F00E79BFA /* GormSoundInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormSoundInspector.m; sourceTree = "<group>"; };
+		554D987B1E90352F00E79BFA /* GormSoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormSoundView.h; sourceTree = "<group>"; };
+		554D987C1E90352F00E79BFA /* GormSoundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormSoundView.m; sourceTree = "<group>"; };
+		554D987D1E90352F00E79BFA /* GormSplitViewEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormSplitViewEditor.h; sourceTree = "<group>"; };
+		554D987E1E90352F00E79BFA /* GormSplitViewEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormSplitViewEditor.m; sourceTree = "<group>"; };
+		554D987F1E90352F00E79BFA /* GormStandaloneViewEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormStandaloneViewEditor.h; sourceTree = "<group>"; };
+		554D98801E90352F00E79BFA /* GormStandaloneViewEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormStandaloneViewEditor.m; sourceTree = "<group>"; };
+		554D98811E90352F00E79BFA /* GormViewEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormViewEditor.h; sourceTree = "<group>"; };
+		554D98821E90352F00E79BFA /* GormViewEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormViewEditor.m; sourceTree = "<group>"; };
+		554D98831E90352F00E79BFA /* GormViewKnobs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormViewKnobs.h; sourceTree = "<group>"; };
+		554D98841E90352F00E79BFA /* GormViewKnobs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormViewKnobs.m; sourceTree = "<group>"; };
+		554D98851E90352F00E79BFA /* GormViewSizeInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormViewSizeInspector.h; sourceTree = "<group>"; };
+		554D98861E90352F00E79BFA /* GormViewSizeInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormViewSizeInspector.m; sourceTree = "<group>"; };
+		554D98871E90352F00E79BFA /* GormViewWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormViewWindow.h; sourceTree = "<group>"; };
+		554D98881E90352F00E79BFA /* GormViewWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormViewWindow.m; sourceTree = "<group>"; };
+		554D98891E90352F00E79BFA /* GormViewWithContentViewEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormViewWithContentViewEditor.h; sourceTree = "<group>"; };
+		554D988A1E90352F00E79BFA /* GormViewWithContentViewEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormViewWithContentViewEditor.m; sourceTree = "<group>"; };
+		554D988B1E90352F00E79BFA /* GormViewWithSubviewsEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormViewWithSubviewsEditor.h; sourceTree = "<group>"; };
+		554D988C1E90353000E79BFA /* GormViewWithSubviewsEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormViewWithSubviewsEditor.m; sourceTree = "<group>"; };
+		554D988D1E90353000E79BFA /* GormWindowEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormWindowEditor.h; sourceTree = "<group>"; };
+		554D988E1E90353000E79BFA /* GormWindowEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormWindowEditor.m; sourceTree = "<group>"; };
+		554D988F1E90353000E79BFA /* GormWindowTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormWindowTemplate.h; sourceTree = "<group>"; };
+		554D98901E90353000E79BFA /* GormWindowTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormWindowTemplate.m; sourceTree = "<group>"; };
+		554D98911E90353000E79BFA /* GormWrapperBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormWrapperBuilder.h; sourceTree = "<group>"; };
+		554D98921E90353000E79BFA /* GormWrapperBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormWrapperBuilder.m; sourceTree = "<group>"; };
+		554D98931E90353000E79BFA /* GormWrapperLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormWrapperLoader.h; sourceTree = "<group>"; };
+		554D98941E90353000E79BFA /* GormWrapperLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormWrapperLoader.m; sourceTree = "<group>"; };
+		554D98951E90353000E79BFA /* NSCell+GormAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCell+GormAdditions.h"; sourceTree = "<group>"; };
+		554D98961E90353000E79BFA /* NSCell+GormAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCell+GormAdditions.m"; sourceTree = "<group>"; };
+		554D98971E90353000E79BFA /* NSColorWell+GormExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColorWell+GormExtensions.h"; sourceTree = "<group>"; };
+		554D98981E90353000E79BFA /* NSColorWell+GormExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColorWell+GormExtensions.m"; sourceTree = "<group>"; };
+		554D98991E90353000E79BFA /* NSFontManager+GormExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFontManager+GormExtensions.h"; sourceTree = "<group>"; };
+		554D989A1E90353000E79BFA /* NSFontManager+GormExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFontManager+GormExtensions.m"; sourceTree = "<group>"; };
+		554D989B1E90353000E79BFA /* NSView+GormExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+GormExtensions.h"; sourceTree = "<group>"; };
+		554D989C1E90353000E79BFA /* NSView+GormExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+GormExtensions.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		554D97EF1E9031E700E79BFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D981A1E90350C00E79BFA /* GormCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		554D980F1E90350C00E79BFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		554D97E91E9031E700E79BFA = {
+			isa = PBXGroup;
+			children = (
+				554D97F41E9031E700E79BFA /* MacGorm */,
+				554D98141E90350C00E79BFA /* GormCore */,
+				554D97F31E9031E700E79BFA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		554D97F31E9031E700E79BFA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				554D97F21E9031E700E79BFA /* MacGorm.app */,
+				554D98131E90350C00E79BFA /* GormCore.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		554D97F41E9031E700E79BFA /* MacGorm */ = {
+			isa = PBXGroup;
+			children = (
+				554D97F51E9031E800E79BFA /* AppDelegate.h */,
+				554D97F61E9031E800E79BFA /* AppDelegate.m */,
+				554D97FB1E9031E800E79BFA /* ViewController.h */,
+				554D97FC1E9031E800E79BFA /* ViewController.m */,
+				554D97FE1E9031E800E79BFA /* Document.h */,
+				554D97FF1E9031E800E79BFA /* Document.m */,
+				554D98011E9031E800E79BFA /* Assets.xcassets */,
+				554D98031E9031E800E79BFA /* Main.storyboard */,
+				554D98061E9031E800E79BFA /* Info.plist */,
+				554D97F81E9031E800E79BFA /* Supporting Files */,
+			);
+			path = MacGorm;
+			sourceTree = "<group>";
+		};
+		554D97F81E9031E800E79BFA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				554D980C1E90329E00E79BFA /* VersionProfiles.plist */,
+				554D97F91E9031E800E79BFA /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		554D98141E90350C00E79BFA /* GormCore */ = {
+			isa = PBXGroup;
+			children = (
+				554D98201E90352F00E79BFA /* GormBoxEditor.h */,
+				554D98211E90352F00E79BFA /* GormBoxEditor.m */,
+				554D98221E90352F00E79BFA /* GormClassEditor.h */,
+				554D98231E90352F00E79BFA /* GormClassEditor.m */,
+				554D98241E90352F00E79BFA /* GormClassInspector.h */,
+				554D98251E90352F00E79BFA /* GormClassInspector.m */,
+				554D98261E90352F00E79BFA /* GormClassManager.h */,
+				554D98271E90352F00E79BFA /* GormClassManager.m */,
+				554D98281E90352F00E79BFA /* GormClassPanelController.h */,
+				554D98291E90352F00E79BFA /* GormClassPanelController.m */,
+				554D982A1E90352F00E79BFA /* GormConnectionInspector.h */,
+				554D982B1E90352F00E79BFA /* GormConnectionInspector.m */,
+				554D982C1E90352F00E79BFA /* GormControlEditor.h */,
+				554D982D1E90352F00E79BFA /* GormControlEditor.m */,
+				554D982E1E90352F00E79BFA /* GormCustomClassInspector.h */,
+				554D982F1E90352F00E79BFA /* GormCustomClassInspector.m */,
+				554D98301E90352F00E79BFA /* GormCustomView.h */,
+				554D98311E90352F00E79BFA /* GormCustomView.m */,
+				554D98321E90352F00E79BFA /* GormDefines.h */,
+				554D98331E90352F00E79BFA /* GormDocument.h */,
+				554D98341E90352F00E79BFA /* GormDocument.m */,
+				554D98351E90352F00E79BFA /* GormDocumentController.h */,
+				554D98361E90352F00E79BFA /* GormDocumentController.m */,
+				554D98371E90352F00E79BFA /* GormDocumentWindow.h */,
+				554D98381E90352F00E79BFA /* GormDocumentWindow.m */,
+				554D98391E90352F00E79BFA /* GormFilePrefsManager.h */,
+				554D983A1E90352F00E79BFA /* GormFilePrefsManager.m */,
+				554D983B1E90352F00E79BFA /* GormFilesOwner.h */,
+				554D983C1E90352F00E79BFA /* GormFilesOwner.m */,
+				554D983D1E90352F00E79BFA /* GormFontViewController.h */,
+				554D983E1E90352F00E79BFA /* GormFontViewController.m */,
+				554D983F1E90352F00E79BFA /* GormFunctions.h */,
+				554D98401E90352F00E79BFA /* GormFunctions.m */,
+				554D98411E90352F00E79BFA /* GormGenericEditor.h */,
+				554D98421E90352F00E79BFA /* GormGenericEditor.m */,
+				554D98431E90352F00E79BFA /* GormHelpInspector.h */,
+				554D98441E90352F00E79BFA /* GormHelpInspector.m */,
+				554D98451E90352F00E79BFA /* GormImage.h */,
+				554D98461E90352F00E79BFA /* GormImage.m */,
+				554D98471E90352F00E79BFA /* GormImageEditor.h */,
+				554D98481E90352F00E79BFA /* GormImageEditor.m */,
+				554D98491E90352F00E79BFA /* GormImageInspector.h */,
+				554D984A1E90352F00E79BFA /* GormImageInspector.m */,
+				554D984B1E90352F00E79BFA /* GormInspectorsManager.h */,
+				554D984C1E90352F00E79BFA /* GormInspectorsManager.m */,
+				554D984D1E90352F00E79BFA /* GormInternalViewEditor.h */,
+				554D984E1E90352F00E79BFA /* GormInternalViewEditor.m */,
+				554D984F1E90352F00E79BFA /* GormMatrixEditor.h */,
+				554D98501E90352F00E79BFA /* GormMatrixEditor.m */,
+				554D98511E90352F00E79BFA /* GormNSPanel.h */,
+				554D98521E90352F00E79BFA /* GormNSPanel.m */,
+				554D98531E90352F00E79BFA /* GormNSSplitViewInspector.h */,
+				554D98541E90352F00E79BFA /* GormNSSplitViewInspector.m */,
+				554D98551E90352F00E79BFA /* GormNSWindow.h */,
+				554D98561E90352F00E79BFA /* GormNSWindow.m */,
+				554D98571E90352F00E79BFA /* GormObjectEditor.h */,
+				554D98581E90352F00E79BFA /* GormObjectEditor.m */,
+				554D98591E90352F00E79BFA /* GormObjectInspector.h */,
+				554D985A1E90352F00E79BFA /* GormObjectInspector.m */,
+				554D985B1E90352F00E79BFA /* GormOpenGLView.h */,
+				554D985C1E90352F00E79BFA /* GormOpenGLView.m */,
+				554D985D1E90352F00E79BFA /* GormOutlineView.h */,
+				554D985E1E90352F00E79BFA /* GormOutlineView.m */,
+				554D985F1E90352F00E79BFA /* GormPalettesManager.h */,
+				554D98601E90352F00E79BFA /* GormPalettesManager.m */,
+				554D98611E90352F00E79BFA /* GormPlacementInfo.h */,
+				554D98621E90352F00E79BFA /* GormPlugin.h */,
+				554D98631E90352F00E79BFA /* GormPlugin.m */,
+				554D98641E90352F00E79BFA /* GormPluginManager.h */,
+				554D98651E90352F00E79BFA /* GormPluginManager.m */,
+				554D98661E90352F00E79BFA /* GormPrivate.h */,
+				554D98671E90352F00E79BFA /* GormPrivate.m */,
+				554D98681E90352F00E79BFA /* GormProtocol.h */,
+				554D98691E90352F00E79BFA /* GormResource.h */,
+				554D986A1E90352F00E79BFA /* GormResource.m */,
+				554D986B1E90352F00E79BFA /* GormResourceEditor.h */,
+				554D986C1E90352F00E79BFA /* GormResourceEditor.m */,
+				554D986D1E90352F00E79BFA /* GormResourceManager.h */,
+				554D986E1E90352F00E79BFA /* GormResourceManager.m */,
+				554D986F1E90352F00E79BFA /* GormScrollViewAttributesInspector.h */,
+				554D98701E90352F00E79BFA /* GormScrollViewAttributesInspector.m */,
+				554D98711E90352F00E79BFA /* GormScrollViewEditor.m */,
+				554D98721E90352F00E79BFA /* GormServer.h */,
+				554D98731E90352F00E79BFA /* GormSetNameController.h */,
+				554D98741E90352F00E79BFA /* GormSetNameController.m */,
+				554D98751E90352F00E79BFA /* GormSound.h */,
+				554D98761E90352F00E79BFA /* GormSound.m */,
+				554D98771E90352F00E79BFA /* GormSoundEditor.h */,
+				554D98781E90352F00E79BFA /* GormSoundEditor.m */,
+				554D98791E90352F00E79BFA /* GormSoundInspector.h */,
+				554D987A1E90352F00E79BFA /* GormSoundInspector.m */,
+				554D987B1E90352F00E79BFA /* GormSoundView.h */,
+				554D987C1E90352F00E79BFA /* GormSoundView.m */,
+				554D987D1E90352F00E79BFA /* GormSplitViewEditor.h */,
+				554D987E1E90352F00E79BFA /* GormSplitViewEditor.m */,
+				554D987F1E90352F00E79BFA /* GormStandaloneViewEditor.h */,
+				554D98801E90352F00E79BFA /* GormStandaloneViewEditor.m */,
+				554D98811E90352F00E79BFA /* GormViewEditor.h */,
+				554D98821E90352F00E79BFA /* GormViewEditor.m */,
+				554D98831E90352F00E79BFA /* GormViewKnobs.h */,
+				554D98841E90352F00E79BFA /* GormViewKnobs.m */,
+				554D98851E90352F00E79BFA /* GormViewSizeInspector.h */,
+				554D98861E90352F00E79BFA /* GormViewSizeInspector.m */,
+				554D98871E90352F00E79BFA /* GormViewWindow.h */,
+				554D98881E90352F00E79BFA /* GormViewWindow.m */,
+				554D98891E90352F00E79BFA /* GormViewWithContentViewEditor.h */,
+				554D988A1E90352F00E79BFA /* GormViewWithContentViewEditor.m */,
+				554D988B1E90352F00E79BFA /* GormViewWithSubviewsEditor.h */,
+				554D988C1E90353000E79BFA /* GormViewWithSubviewsEditor.m */,
+				554D988D1E90353000E79BFA /* GormWindowEditor.h */,
+				554D988E1E90353000E79BFA /* GormWindowEditor.m */,
+				554D988F1E90353000E79BFA /* GormWindowTemplate.h */,
+				554D98901E90353000E79BFA /* GormWindowTemplate.m */,
+				554D98911E90353000E79BFA /* GormWrapperBuilder.h */,
+				554D98921E90353000E79BFA /* GormWrapperBuilder.m */,
+				554D98931E90353000E79BFA /* GormWrapperLoader.h */,
+				554D98941E90353000E79BFA /* GormWrapperLoader.m */,
+				554D98951E90353000E79BFA /* NSCell+GormAdditions.h */,
+				554D98961E90353000E79BFA /* NSCell+GormAdditions.m */,
+				554D98971E90353000E79BFA /* NSColorWell+GormExtensions.h */,
+				554D98981E90353000E79BFA /* NSColorWell+GormExtensions.m */,
+				554D98991E90353000E79BFA /* NSFontManager+GormExtensions.h */,
+				554D989A1E90353000E79BFA /* NSFontManager+GormExtensions.m */,
+				554D989B1E90353000E79BFA /* NSView+GormExtensions.h */,
+				554D989C1E90353000E79BFA /* NSView+GormExtensions.m */,
+				554D98151E90350C00E79BFA /* GormCore.h */,
+				554D98161E90350C00E79BFA /* Info.plist */,
+			);
+			path = GormCore;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		554D98101E90350C00E79BFA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D99081E90353000E79BFA /* GormViewWithSubviewsEditor.h in Headers */,
+				554D98D01E90353000E79BFA /* GormNSSplitViewInspector.h in Headers */,
+				554D98FC1E90353000E79BFA /* GormStandaloneViewEditor.h in Headers */,
+				554D98B01E90353000E79BFA /* GormDocument.h in Headers */,
+				554D98E11E90353000E79BFA /* GormPluginManager.h in Headers */,
+				554D98E31E90353000E79BFA /* GormPrivate.h in Headers */,
+				554D98DF1E90353000E79BFA /* GormPlugin.h in Headers */,
+				554D99061E90353000E79BFA /* GormViewWithContentViewEditor.h in Headers */,
+				554D99121E90353000E79BFA /* NSCell+GormAdditions.h in Headers */,
+				554D98F21E90353000E79BFA /* GormSound.h in Headers */,
+				554D98FA1E90353000E79BFA /* GormSplitViewEditor.h in Headers */,
+				554D98E81E90353000E79BFA /* GormResourceEditor.h in Headers */,
+				554D99101E90353000E79BFA /* GormWrapperLoader.h in Headers */,
+				554D98D61E90353000E79BFA /* GormObjectInspector.h in Headers */,
+				554D98B61E90353000E79BFA /* GormFilePrefsManager.h in Headers */,
+				554D990C1E90353000E79BFA /* GormWindowTemplate.h in Headers */,
+				554D98A11E90353000E79BFA /* GormClassInspector.h in Headers */,
+				554D98C61E90353000E79BFA /* GormImageInspector.h in Headers */,
+				554D98EF1E90353000E79BFA /* GormServer.h in Headers */,
+				554D98E61E90353000E79BFA /* GormResource.h in Headers */,
+				554D98E51E90353000E79BFA /* GormProtocol.h in Headers */,
+				554D98B41E90353000E79BFA /* GormDocumentWindow.h in Headers */,
+				554D98F61E90353000E79BFA /* GormSoundInspector.h in Headers */,
+				554D99161E90353000E79BFA /* NSFontManager+GormExtensions.h in Headers */,
+				554D98F01E90353000E79BFA /* GormSetNameController.h in Headers */,
+				554D98CC1E90353000E79BFA /* GormMatrixEditor.h in Headers */,
+				554D990E1E90353000E79BFA /* GormWrapperBuilder.h in Headers */,
+				554D98BE1E90353000E79BFA /* GormGenericEditor.h in Headers */,
+				554D98FE1E90353000E79BFA /* GormViewEditor.h in Headers */,
+				554D98AD1E90353000E79BFA /* GormCustomView.h in Headers */,
+				554D98C81E90353000E79BFA /* GormInspectorsManager.h in Headers */,
+				554D989D1E90353000E79BFA /* GormBoxEditor.h in Headers */,
+				554D98DE1E90353000E79BFA /* GormPlacementInfo.h in Headers */,
+				554D99021E90353000E79BFA /* GormViewSizeInspector.h in Headers */,
+				554D98A51E90353000E79BFA /* GormClassPanelController.h in Headers */,
+				554D98A71E90353000E79BFA /* GormConnectionInspector.h in Headers */,
+				554D99001E90353000E79BFA /* GormViewKnobs.h in Headers */,
+				554D99181E90353000E79BFA /* NSView+GormExtensions.h in Headers */,
+				554D98B81E90353000E79BFA /* GormFilesOwner.h in Headers */,
+				554D98AF1E90353000E79BFA /* GormDefines.h in Headers */,
+				554D98F41E90353000E79BFA /* GormSoundEditor.h in Headers */,
+				554D98AB1E90353000E79BFA /* GormCustomClassInspector.h in Headers */,
+				554D98DA1E90353000E79BFA /* GormOutlineView.h in Headers */,
+				554D98DC1E90353000E79BFA /* GormPalettesManager.h in Headers */,
+				554D98A31E90353000E79BFA /* GormClassManager.h in Headers */,
+				554D98C41E90353000E79BFA /* GormImageEditor.h in Headers */,
+				554D98C21E90353000E79BFA /* GormImage.h in Headers */,
+				554D98B21E90353000E79BFA /* GormDocumentController.h in Headers */,
+				554D99141E90353000E79BFA /* NSColorWell+GormExtensions.h in Headers */,
+				554D98A91E90353000E79BFA /* GormControlEditor.h in Headers */,
+				554D99041E90353000E79BFA /* GormViewWindow.h in Headers */,
+				554D98CA1E90353000E79BFA /* GormInternalViewEditor.h in Headers */,
+				554D98BA1E90353000E79BFA /* GormFontViewController.h in Headers */,
+				554D98D21E90353000E79BFA /* GormNSWindow.h in Headers */,
+				554D98CE1E90353000E79BFA /* GormNSPanel.h in Headers */,
+				554D98D81E90353000E79BFA /* GormOpenGLView.h in Headers */,
+				554D98EA1E90353000E79BFA /* GormResourceManager.h in Headers */,
+				554D989F1E90353000E79BFA /* GormClassEditor.h in Headers */,
+				554D98F81E90353000E79BFA /* GormSoundView.h in Headers */,
+				554D98C01E90353000E79BFA /* GormHelpInspector.h in Headers */,
+				554D990A1E90353000E79BFA /* GormWindowEditor.h in Headers */,
+				554D98BC1E90353000E79BFA /* GormFunctions.h in Headers */,
+				554D98EC1E90353000E79BFA /* GormScrollViewAttributesInspector.h in Headers */,
+				554D98D41E90353000E79BFA /* GormObjectEditor.h in Headers */,
+				554D98171E90350C00E79BFA /* GormCore.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		554D97F11E9031E700E79BFA /* MacGorm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 554D98091E9031E800E79BFA /* Build configuration list for PBXNativeTarget "MacGorm" */;
+			buildPhases = (
+				554D97EE1E9031E700E79BFA /* Sources */,
+				554D97EF1E9031E700E79BFA /* Frameworks */,
+				554D97F01E9031E700E79BFA /* Resources */,
+				554D981F1E90350C00E79BFA /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				554D98191E90350C00E79BFA /* PBXTargetDependency */,
+			);
+			name = MacGorm;
+			productName = MacGorm;
+			productReference = 554D97F21E9031E700E79BFA /* MacGorm.app */;
+			productType = "com.apple.product-type.application";
+		};
+		554D98121E90350C00E79BFA /* GormCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 554D981C1E90350C00E79BFA /* Build configuration list for PBXNativeTarget "GormCore" */;
+			buildPhases = (
+				554D980E1E90350C00E79BFA /* Sources */,
+				554D980F1E90350C00E79BFA /* Frameworks */,
+				554D98101E90350C00E79BFA /* Headers */,
+				554D98111E90350C00E79BFA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GormCore;
+			productName = GormCore;
+			productReference = 554D98131E90350C00E79BFA /* GormCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		554D97EA1E9031E700E79BFA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "C.W. Betts";
+				TargetAttributes = {
+					554D97F11E9031E700E79BFA = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+					};
+					554D98121E90350C00E79BFA = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 554D97ED1E9031E700E79BFA /* Build configuration list for PBXProject "MacGorm" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 554D97E91E9031E700E79BFA;
+			productRefGroup = 554D97F31E9031E700E79BFA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				554D97F11E9031E700E79BFA /* MacGorm */,
+				554D98121E90350C00E79BFA /* GormCore */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		554D97F01E9031E700E79BFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D98021E9031E800E79BFA /* Assets.xcassets in Resources */,
+				554D980D1E90329E00E79BFA /* VersionProfiles.plist in Resources */,
+				554D98051E9031E800E79BFA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		554D98111E90350C00E79BFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		554D97EE1E9031E700E79BFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D98001E9031E800E79BFA /* Document.m in Sources */,
+				554D97FD1E9031E800E79BFA /* ViewController.m in Sources */,
+				554D97FA1E9031E800E79BFA /* main.m in Sources */,
+				554D97F71E9031E800E79BFA /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		554D980E1E90350C00E79BFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D98CF1E90353000E79BFA /* GormNSPanel.m in Sources */,
+				554D98A01E90353000E79BFA /* GormClassEditor.m in Sources */,
+				554D98FF1E90353000E79BFA /* GormViewEditor.m in Sources */,
+				554D98DD1E90353000E79BFA /* GormPalettesManager.m in Sources */,
+				554D99171E90353000E79BFA /* NSFontManager+GormExtensions.m in Sources */,
+				554D99051E90353000E79BFA /* GormViewWindow.m in Sources */,
+				554D98E91E90353000E79BFA /* GormResourceEditor.m in Sources */,
+				554D98F91E90353000E79BFA /* GormSoundView.m in Sources */,
+				554D98A21E90353000E79BFA /* GormClassInspector.m in Sources */,
+				554D98AC1E90353000E79BFA /* GormCustomClassInspector.m in Sources */,
+				554D98C51E90353000E79BFA /* GormImageEditor.m in Sources */,
+				554D98F11E90353000E79BFA /* GormSetNameController.m in Sources */,
+				554D98C91E90353000E79BFA /* GormInspectorsManager.m in Sources */,
+				554D99191E90353000E79BFA /* NSView+GormExtensions.m in Sources */,
+				554D98B11E90353000E79BFA /* GormDocument.m in Sources */,
+				554D98F31E90353000E79BFA /* GormSound.m in Sources */,
+				554D98B71E90353000E79BFA /* GormFilePrefsManager.m in Sources */,
+				554D99111E90353000E79BFA /* GormWrapperLoader.m in Sources */,
+				554D989E1E90353000E79BFA /* GormBoxEditor.m in Sources */,
+				554D98E71E90353000E79BFA /* GormResource.m in Sources */,
+				554D98E41E90353000E79BFA /* GormPrivate.m in Sources */,
+				554D98B31E90353000E79BFA /* GormDocumentController.m in Sources */,
+				554D98A61E90353000E79BFA /* GormClassPanelController.m in Sources */,
+				554D98EE1E90353000E79BFA /* GormScrollViewEditor.m in Sources */,
+				554D98BD1E90353000E79BFA /* GormFunctions.m in Sources */,
+				554D98D31E90353000E79BFA /* GormNSWindow.m in Sources */,
+				554D99091E90353000E79BFA /* GormViewWithSubviewsEditor.m in Sources */,
+				554D98CB1E90353000E79BFA /* GormInternalViewEditor.m in Sources */,
+				554D98C11E90353000E79BFA /* GormHelpInspector.m in Sources */,
+				554D99131E90353000E79BFA /* NSCell+GormAdditions.m in Sources */,
+				554D98D71E90353000E79BFA /* GormObjectInspector.m in Sources */,
+				554D990D1E90353000E79BFA /* GormWindowTemplate.m in Sources */,
+				554D98BF1E90353000E79BFA /* GormGenericEditor.m in Sources */,
+				554D98F71E90353000E79BFA /* GormSoundInspector.m in Sources */,
+				554D98E01E90353000E79BFA /* GormPlugin.m in Sources */,
+				554D99151E90353000E79BFA /* NSColorWell+GormExtensions.m in Sources */,
+				554D99031E90353000E79BFA /* GormViewSizeInspector.m in Sources */,
+				554D98B51E90353000E79BFA /* GormDocumentWindow.m in Sources */,
+				554D98ED1E90353000E79BFA /* GormScrollViewAttributesInspector.m in Sources */,
+				554D98D91E90353000E79BFA /* GormOpenGLView.m in Sources */,
+				554D98F51E90353000E79BFA /* GormSoundEditor.m in Sources */,
+				554D990F1E90353000E79BFA /* GormWrapperBuilder.m in Sources */,
+				554D98C31E90353000E79BFA /* GormImage.m in Sources */,
+				554D98AA1E90353000E79BFA /* GormControlEditor.m in Sources */,
+				554D98DB1E90353000E79BFA /* GormOutlineView.m in Sources */,
+				554D98C71E90353000E79BFA /* GormImageInspector.m in Sources */,
+				554D990B1E90353000E79BFA /* GormWindowEditor.m in Sources */,
+				554D98E21E90353000E79BFA /* GormPluginManager.m in Sources */,
+				554D99071E90353000E79BFA /* GormViewWithContentViewEditor.m in Sources */,
+				554D98D51E90353000E79BFA /* GormObjectEditor.m in Sources */,
+				554D98FD1E90353000E79BFA /* GormStandaloneViewEditor.m in Sources */,
+				554D98AE1E90353000E79BFA /* GormCustomView.m in Sources */,
+				554D98BB1E90353000E79BFA /* GormFontViewController.m in Sources */,
+				554D99011E90353000E79BFA /* GormViewKnobs.m in Sources */,
+				554D98A81E90353000E79BFA /* GormConnectionInspector.m in Sources */,
+				554D98B91E90353000E79BFA /* GormFilesOwner.m in Sources */,
+				554D98EB1E90353000E79BFA /* GormResourceManager.m in Sources */,
+				554D98D11E90353000E79BFA /* GormNSSplitViewInspector.m in Sources */,
+				554D98CD1E90353000E79BFA /* GormMatrixEditor.m in Sources */,
+				554D98A41E90353000E79BFA /* GormClassManager.m in Sources */,
+				554D98FB1E90353000E79BFA /* GormSplitViewEditor.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		554D98191E90350C00E79BFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 554D98121E90350C00E79BFA /* GormCore */;
+			targetProxy = 554D98181E90350C00E79BFA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		554D98031E9031E800E79BFA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				554D98041E9031E800E79BFA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		554D98071E9031E800E79BFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		554D98081E9031E800E79BFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		554D980A1E9031E800E79BFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MacGorm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.maddthesane.MacGorm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		554D980B1E9031E800E79BFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MacGorm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.maddthesane.MacGorm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		554D981D1E90350C00E79BFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = GormCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.GormCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		554D981E1E90350C00E79BFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = GormCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.GormCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		554D97ED1E9031E700E79BFA /* Build configuration list for PBXProject "MacGorm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				554D98071E9031E800E79BFA /* Debug */,
+				554D98081E9031E800E79BFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		554D98091E9031E800E79BFA /* Build configuration list for PBXNativeTarget "MacGorm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				554D980A1E9031E800E79BFA /* Debug */,
+				554D980B1E9031E800E79BFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		554D981C1E90350C00E79BFA /* Build configuration list for PBXNativeTarget "GormCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				554D981D1E90350C00E79BFA /* Debug */,
+				554D981E1E90350C00E79BFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 554D97EA1E9031E700E79BFA /* Project object */;
+}

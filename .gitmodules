@@ -1,0 +1,3 @@
+[submodule "Vendor/GNUstep-base"]
+	path = Vendor/GNUstep-base
+	url = https://github.com/MaddTheSane/base.git
