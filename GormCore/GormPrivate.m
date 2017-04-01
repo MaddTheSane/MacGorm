@@ -28,6 +28,7 @@
 #include "GormSetNameController.h"
 #include "GNUstepGUI/GSNibLoading.h"
 #include "GNUstepBase/GSObjCRuntime.h"
+#include <GNUstepBase/GNUstep.h>
 
 // for templates...
 #include <AppKit/NSControl.h>

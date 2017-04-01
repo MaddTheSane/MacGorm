@@ -29,7 +29,7 @@
 #include <AppKit/AppKit.h>
 #include <Foundation/Foundation.h>
 #include <GNUstepGUI/GSNibContainer.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 
 @class GormClassManager, GormClassEditor, GormObjectProxy, GormFilesOwner, 
   GormFilePrefsManager, GormDocumentWindow;

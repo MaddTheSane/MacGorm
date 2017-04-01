@@ -43,6 +43,7 @@
 #include <AppKit/NSNibLoading.h>
 #include <AppKit/NSScreen.h>
 #include <GNUstepGUI/GSGormLoading.h>
+#include <GNUStepBase/GNUstep.h>
 #include "NSView+GormExtensions.h"
 #include "GormSound.h"
 #include "GormImage.h"

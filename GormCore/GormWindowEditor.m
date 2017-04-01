@@ -24,8 +24,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <InterfaceBuilder/IBViewAdditions.h>
-#include <InterfaceBuilder/IBObjectAdditions.h>
+#include <GormLib/IBViewAdditions.h>
+#include <GormLib/IBObjectAdditions.h>
+#include <GNUstepBase/GNUstep.h>
 
 #include "GormPrivate.h"
 #include "GormViewWithContentViewEditor.h"

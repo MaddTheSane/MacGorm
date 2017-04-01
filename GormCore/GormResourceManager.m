@@ -27,7 +27,7 @@
 #include <AppKit/NSSound.h>
 #include <AppKit/NSImage.h>
 #include <AppKit/NSPasteboard.h>
-#include <InterfaceBuilder/IBPalette.h>
+#include <GormLib/IBPalette.h>
 
 #include "GormSound.h"
 #include "GormImage.h"

@@ -33,6 +33,7 @@
 #include <GormCore/GormPrivate.h>
 #include <GormCore/GormSound.h>
 #include <GormCore/GormImage.h>
+#include <GNUstepBase/GNUstep.h>
 
 static NSMutableDictionary *_wrapperBuilderMap = nil;
 static GormWrapperBuilderFactory *_sharedWrapperBuilderFactory = nil;

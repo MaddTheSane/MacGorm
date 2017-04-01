@@ -24,10 +24,11 @@
  */
 
 #include <AppKit/AppKit.h>
-#include <InterfaceBuilder/IBObjectAdditions.h>
+#include <GormLib/IBObjectAdditions.h>
 #include "GormPrivate.h"
 #include "GormBoxEditor.h"
 #include "GormViewKnobs.h"
+#include <GNUstepBase/GNUstep.h>
 
 @implementation NSScrollView (IBObjectAdditions)
 - (NSString *) inspectorClassName

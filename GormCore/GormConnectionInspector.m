@@ -25,7 +25,8 @@
  */
 
 #include <AppKit/NSNibConnector.h>
-#include <InterfaceBuilder/IBInspector.h>
+#include <GormLib/IBInspector.h>
+#include <GNUstepBase/GNUstep.h>
 
 #include "GormPrivate.h"
 #include "GormConnectionInspector.h"

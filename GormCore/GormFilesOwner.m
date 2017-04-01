@@ -26,6 +26,7 @@
 #include <AppKit/NSNibConnector.h>
 #include "GormPrivate.h"
 #include "GormCustomView.h"
+#include <GNUstepBase/GNUstep.h>
 
 // @class GormCustomView;
 

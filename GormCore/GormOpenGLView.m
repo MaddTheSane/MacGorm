@@ -25,7 +25,8 @@
 
 #include <GormCore/GormOpenGLView.h>
 #include <Foundation/NSTimer.h>
-#include <AppKit/PSOperators.h>
+#include <AppKit/NSColor.h>
+//#include <AppKit/PSOperators.h>
 // #include <AppKit/NSOpenGL.h>
 // #include <GL/gl.h>
 

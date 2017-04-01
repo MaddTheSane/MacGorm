@@ -27,7 +27,7 @@
 #define INCLUDED_GormInspectorsManager_h
 
 #include <Foundation/NSObject.h>
-#include <InterfaceBuilder/IBInspectorManager.h>
+#include <GormLib/IBInspectorManager.h>
 #include <Foundation/NSGeometry.h>
 
 @class NSPanel;

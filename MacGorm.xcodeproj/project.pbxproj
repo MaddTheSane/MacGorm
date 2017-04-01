@@ -142,6 +142,45 @@
 		554D99171E90353000E79BFA /* NSFontManager+GormExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D989A1E90353000E79BFA /* NSFontManager+GormExtensions.m */; };
 		554D99181E90353000E79BFA /* NSView+GormExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D989B1E90353000E79BFA /* NSView+GormExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		554D99191E90353000E79BFA /* NSView+GormExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D989C1E90353000E79BFA /* NSView+GormExtensions.m */; };
+		554D994E1E903C1000E79BFA /* GormLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D994C1E903C1000E79BFA /* GormLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99511E903C1000E79BFA /* GormLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D994A1E903C1000E79BFA /* GormLib.framework */; };
+		554D99521E903C1000E79BFA /* GormLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 554D994A1E903C1000E79BFA /* GormLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		554D997A1E903C7100E79BFA /* COPYING.LIB in Resources */ = {isa = PBXBuildFile; fileRef = 554D99561E903C7100E79BFA /* COPYING.LIB */; };
+		554D997B1E903C7100E79BFA /* IBApplicationAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99571E903C7100E79BFA /* IBApplicationAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D997C1E903C7100E79BFA /* IBApplicationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D99581E903C7100E79BFA /* IBApplicationAdditions.m */; };
+		554D997D1E903C7100E79BFA /* IBCellAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99591E903C7100E79BFA /* IBCellAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D997E1E903C7100E79BFA /* IBCellProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D995A1E903C7100E79BFA /* IBCellProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D997F1E903C7100E79BFA /* IBConnectors.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D995B1E903C7100E79BFA /* IBConnectors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99801E903C7100E79BFA /* IBConnectors.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D995C1E903C7100E79BFA /* IBConnectors.m */; };
+		554D99811E903C7100E79BFA /* IBDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D995D1E903C7100E79BFA /* IBDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99821E903C7100E79BFA /* IBDocuments.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D995E1E903C7100E79BFA /* IBDocuments.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99831E903C7100E79BFA /* IBDocuments.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D995F1E903C7100E79BFA /* IBDocuments.m */; };
+		554D99841E903C7100E79BFA /* IBEditors.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99601E903C7100E79BFA /* IBEditors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99851E903C7100E79BFA /* IBEditors.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D99611E903C7100E79BFA /* IBEditors.m */; };
+		554D99861E903C7100E79BFA /* IBInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99621E903C7100E79BFA /* IBInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99871E903C7100E79BFA /* IBInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D99631E903C7100E79BFA /* IBInspector.m */; };
+		554D99881E903C7100E79BFA /* IBInspectorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99641E903C7100E79BFA /* IBInspectorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99891E903C7100E79BFA /* IBInspectorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D99651E903C7100E79BFA /* IBInspectorManager.m */; };
+		554D998A1E903C7100E79BFA /* IBInspectorMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99661E903C7100E79BFA /* IBInspectorMode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D998B1E903C7100E79BFA /* IBInspectorMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D99671E903C7100E79BFA /* IBInspectorMode.m */; };
+		554D998C1E903C7100E79BFA /* IBObjectAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99681E903C7100E79BFA /* IBObjectAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D998D1E903C7100E79BFA /* IBObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D99691E903C7100E79BFA /* IBObjectAdditions.m */; };
+		554D998E1E903C7100E79BFA /* IBObjectProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D996A1E903C7100E79BFA /* IBObjectProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D998F1E903C7100E79BFA /* IBPalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D996B1E903C7100E79BFA /* IBPalette.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99901E903C7100E79BFA /* IBPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D996C1E903C7100E79BFA /* IBPalette.m */; };
+		554D99911E903C7100E79BFA /* IBPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D996D1E903C7100E79BFA /* IBPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99921E903C7100E79BFA /* IBPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D996E1E903C7100E79BFA /* IBPlugin.m */; };
+		554D99931E903C7100E79BFA /* IBProjectFiles.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D996F1E903C7100E79BFA /* IBProjectFiles.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99941E903C7100E79BFA /* IBProjects.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99701E903C7100E79BFA /* IBProjects.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99951E903C7100E79BFA /* IBResourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99711E903C7100E79BFA /* IBResourceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99961E903C7100E79BFA /* IBResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D99721E903C7100E79BFA /* IBResourceManager.m */; };
+		554D99971E903C7100E79BFA /* IBSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99731E903C7100E79BFA /* IBSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99981E903C7100E79BFA /* IBViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99741E903C7100E79BFA /* IBViewAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D99991E903C7100E79BFA /* IBViewProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99751E903C7100E79BFA /* IBViewProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D999A1E903C7100E79BFA /* IBViewResourceDragging.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99761E903C7100E79BFA /* IBViewResourceDragging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D999B1E903C7100E79BFA /* InterfaceBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99771E903C7100E79BFA /* InterfaceBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D999C1E903C7100E79BFA /* README in Resources */ = {isa = PBXBuildFile; fileRef = 554D99781E903C7100E79BFA /* README */; };
+		554D999D1E903C7100E79BFA /* Version in Resources */ = {isa = PBXBuildFile; fileRef = 554D99791E903C7100E79BFA /* Version */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +190,62 @@
 			proxyType = 1;
 			remoteGlobalIDString = 554D98121E90350C00E79BFA;
 			remoteInfo = GormCore;
+		};
+		554D99211E90372F00E79BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D991B1E90372F00E79BFA /* gnustep.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 559A068D120493A7004BBA32;
+			remoteInfo = gnustep;
+		};
+		554D99231E90372F00E79BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D991B1E90372F00E79BFA /* gnustep.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 559A06A7120493A7004BBA32;
+			remoteInfo = autogsdoc;
+		};
+		554D99251E90372F00E79BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D991B1E90372F00E79BFA /* gnustep.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 559A06B6120493A8004BBA32;
+			remoteInfo = HTMLLinker;
+		};
+		554D99271E90373B00E79BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D991B1E90372F00E79BFA /* gnustep.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 559A064C120493A7004BBA32;
+			remoteInfo = gnustep;
+		};
+		554D99431E903B8400E79BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D993F1E903B8400E79BFA /* GNUstepGUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 554D99341E903B5200E79BFA;
+			remoteInfo = GNUstepGUI;
+		};
+		554D994F1E903C1000E79BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D97EA1E9031E700E79BFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 554D99491E903C1000E79BFA;
+			remoteInfo = GormLib;
+		};
+		554D9A031E903F3A00E79BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D993F1E903B8400E79BFA /* GNUstepGUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 554D99331E903B5200E79BFA;
+			remoteInfo = GNUstepGUI;
+		};
+		554D9A051E90404700E79BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D97EA1E9031E700E79BFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 554D99491E903C1000E79BFA;
+			remoteInfo = GormLib;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -162,6 +257,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				554D981B1E90350C00E79BFA /* GormCore.framework in Embed Frameworks */,
+				554D99521E903C1000E79BFA /* GormLib.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +405,47 @@
 		554D989A1E90353000E79BFA /* NSFontManager+GormExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFontManager+GormExtensions.m"; sourceTree = "<group>"; };
 		554D989B1E90353000E79BFA /* NSView+GormExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+GormExtensions.h"; sourceTree = "<group>"; };
 		554D989C1E90353000E79BFA /* NSView+GormExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+GormExtensions.m"; sourceTree = "<group>"; };
+		554D991B1E90372F00E79BFA /* gnustep.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gnustep.xcodeproj; path = "GNUstep-base/macosx/gnustep.xcodeproj"; sourceTree = "<group>"; };
+		554D993F1E903B8400E79BFA /* GNUstepGUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GNUstepGUI.xcodeproj; path = "GNUstep-GUI/macosx/GNUstepGUI.xcodeproj"; sourceTree = "<group>"; };
+		554D994A1E903C1000E79BFA /* GormLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GormLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		554D994C1E903C1000E79BFA /* GormLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GormLib.h; sourceTree = "<group>"; };
+		554D994D1E903C1000E79BFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		554D99561E903C7100E79BFA /* COPYING.LIB */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.LIB; sourceTree = "<group>"; };
+		554D99571E903C7100E79BFA /* IBApplicationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBApplicationAdditions.h; sourceTree = "<group>"; };
+		554D99581E903C7100E79BFA /* IBApplicationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBApplicationAdditions.m; sourceTree = "<group>"; };
+		554D99591E903C7100E79BFA /* IBCellAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBCellAdditions.h; sourceTree = "<group>"; };
+		554D995A1E903C7100E79BFA /* IBCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBCellProtocol.h; sourceTree = "<group>"; };
+		554D995B1E903C7100E79BFA /* IBConnectors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBConnectors.h; sourceTree = "<group>"; };
+		554D995C1E903C7100E79BFA /* IBConnectors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBConnectors.m; sourceTree = "<group>"; };
+		554D995D1E903C7100E79BFA /* IBDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBDefines.h; sourceTree = "<group>"; };
+		554D995E1E903C7100E79BFA /* IBDocuments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBDocuments.h; sourceTree = "<group>"; };
+		554D995F1E903C7100E79BFA /* IBDocuments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBDocuments.m; sourceTree = "<group>"; };
+		554D99601E903C7100E79BFA /* IBEditors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBEditors.h; sourceTree = "<group>"; };
+		554D99611E903C7100E79BFA /* IBEditors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBEditors.m; sourceTree = "<group>"; };
+		554D99621E903C7100E79BFA /* IBInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBInspector.h; sourceTree = "<group>"; };
+		554D99631E903C7100E79BFA /* IBInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBInspector.m; sourceTree = "<group>"; };
+		554D99641E903C7100E79BFA /* IBInspectorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBInspectorManager.h; sourceTree = "<group>"; };
+		554D99651E903C7100E79BFA /* IBInspectorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBInspectorManager.m; sourceTree = "<group>"; };
+		554D99661E903C7100E79BFA /* IBInspectorMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBInspectorMode.h; sourceTree = "<group>"; };
+		554D99671E903C7100E79BFA /* IBInspectorMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBInspectorMode.m; sourceTree = "<group>"; };
+		554D99681E903C7100E79BFA /* IBObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBObjectAdditions.h; sourceTree = "<group>"; };
+		554D99691E903C7100E79BFA /* IBObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBObjectAdditions.m; sourceTree = "<group>"; };
+		554D996A1E903C7100E79BFA /* IBObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBObjectProtocol.h; sourceTree = "<group>"; };
+		554D996B1E903C7100E79BFA /* IBPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBPalette.h; sourceTree = "<group>"; };
+		554D996C1E903C7100E79BFA /* IBPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPalette.m; sourceTree = "<group>"; };
+		554D996D1E903C7100E79BFA /* IBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBPlugin.h; sourceTree = "<group>"; };
+		554D996E1E903C7100E79BFA /* IBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPlugin.m; sourceTree = "<group>"; };
+		554D996F1E903C7100E79BFA /* IBProjectFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBProjectFiles.h; sourceTree = "<group>"; };
+		554D99701E903C7100E79BFA /* IBProjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBProjects.h; sourceTree = "<group>"; };
+		554D99711E903C7100E79BFA /* IBResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBResourceManager.h; sourceTree = "<group>"; };
+		554D99721E903C7100E79BFA /* IBResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBResourceManager.m; sourceTree = "<group>"; };
+		554D99731E903C7100E79BFA /* IBSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBSystem.h; sourceTree = "<group>"; };
+		554D99741E903C7100E79BFA /* IBViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBViewAdditions.h; sourceTree = "<group>"; };
+		554D99751E903C7100E79BFA /* IBViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBViewProtocol.h; sourceTree = "<group>"; };
+		554D99761E903C7100E79BFA /* IBViewResourceDragging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBViewResourceDragging.h; sourceTree = "<group>"; };
+		554D99771E903C7100E79BFA /* InterfaceBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterfaceBuilder.h; sourceTree = "<group>"; };
+		554D99781E903C7100E79BFA /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		554D99791E903C7100E79BFA /* Version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Version; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,10 +454,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				554D981A1E90350C00E79BFA /* GormCore.framework in Frameworks */,
+				554D99511E903C1000E79BFA /* GormLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		554D980F1E90350C00E79BFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		554D99461E903C1000E79BFA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -333,8 +478,10 @@
 		554D97E91E9031E700E79BFA = {
 			isa = PBXGroup;
 			children = (
+				554D991A1E90371300E79BFA /* Third-party */,
 				554D97F41E9031E700E79BFA /* MacGorm */,
 				554D98141E90350C00E79BFA /* GormCore */,
+				554D994B1E903C1000E79BFA /* GormLib */,
 				554D97F31E9031E700E79BFA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -344,6 +491,7 @@
 			children = (
 				554D97F21E9031E700E79BFA /* MacGorm.app */,
 				554D98131E90350C00E79BFA /* GormCore.framework */,
+				554D994A1E903C1000E79BFA /* GormLib.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -508,6 +656,79 @@
 			path = GormCore;
 			sourceTree = "<group>";
 		};
+		554D991A1E90371300E79BFA /* Third-party */ = {
+			isa = PBXGroup;
+			children = (
+				554D993F1E903B8400E79BFA /* GNUstepGUI.xcodeproj */,
+				554D991B1E90372F00E79BFA /* gnustep.xcodeproj */,
+			);
+			name = "Third-party";
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		554D991C1E90372F00E79BFA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				554D99221E90372F00E79BFA /* GNUstepBase.framework */,
+				554D99241E90372F00E79BFA /* autogsdoc */,
+				554D99261E90372F00E79BFA /* HTMLLinker */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		554D99401E903B8400E79BFA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				554D99441E903B8400E79BFA /* GNUstepGUI.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		554D994B1E903C1000E79BFA /* GormLib */ = {
+			isa = PBXGroup;
+			children = (
+				554D99561E903C7100E79BFA /* COPYING.LIB */,
+				554D99571E903C7100E79BFA /* IBApplicationAdditions.h */,
+				554D99581E903C7100E79BFA /* IBApplicationAdditions.m */,
+				554D99591E903C7100E79BFA /* IBCellAdditions.h */,
+				554D995A1E903C7100E79BFA /* IBCellProtocol.h */,
+				554D995B1E903C7100E79BFA /* IBConnectors.h */,
+				554D995C1E903C7100E79BFA /* IBConnectors.m */,
+				554D995D1E903C7100E79BFA /* IBDefines.h */,
+				554D995E1E903C7100E79BFA /* IBDocuments.h */,
+				554D995F1E903C7100E79BFA /* IBDocuments.m */,
+				554D99601E903C7100E79BFA /* IBEditors.h */,
+				554D99611E903C7100E79BFA /* IBEditors.m */,
+				554D99621E903C7100E79BFA /* IBInspector.h */,
+				554D99631E903C7100E79BFA /* IBInspector.m */,
+				554D99641E903C7100E79BFA /* IBInspectorManager.h */,
+				554D99651E903C7100E79BFA /* IBInspectorManager.m */,
+				554D99661E903C7100E79BFA /* IBInspectorMode.h */,
+				554D99671E903C7100E79BFA /* IBInspectorMode.m */,
+				554D99681E903C7100E79BFA /* IBObjectAdditions.h */,
+				554D99691E903C7100E79BFA /* IBObjectAdditions.m */,
+				554D996A1E903C7100E79BFA /* IBObjectProtocol.h */,
+				554D996B1E903C7100E79BFA /* IBPalette.h */,
+				554D996C1E903C7100E79BFA /* IBPalette.m */,
+				554D996D1E903C7100E79BFA /* IBPlugin.h */,
+				554D996E1E903C7100E79BFA /* IBPlugin.m */,
+				554D996F1E903C7100E79BFA /* IBProjectFiles.h */,
+				554D99701E903C7100E79BFA /* IBProjects.h */,
+				554D99711E903C7100E79BFA /* IBResourceManager.h */,
+				554D99721E903C7100E79BFA /* IBResourceManager.m */,
+				554D99731E903C7100E79BFA /* IBSystem.h */,
+				554D99741E903C7100E79BFA /* IBViewAdditions.h */,
+				554D99751E903C7100E79BFA /* IBViewProtocol.h */,
+				554D99761E903C7100E79BFA /* IBViewResourceDragging.h */,
+				554D99771E903C7100E79BFA /* InterfaceBuilder.h */,
+				554D99781E903C7100E79BFA /* README */,
+				554D99791E903C7100E79BFA /* Version */,
+				554D994C1E903C1000E79BFA /* GormLib.h */,
+				554D994D1E903C1000E79BFA /* Info.plist */,
+			);
+			path = GormLib;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -583,6 +804,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		554D99471E903C1000E79BFA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D99811E903C7100E79BFA /* IBDefines.h in Headers */,
+				554D99881E903C7100E79BFA /* IBInspectorManager.h in Headers */,
+				554D998C1E903C7100E79BFA /* IBObjectAdditions.h in Headers */,
+				554D99991E903C7100E79BFA /* IBViewProtocol.h in Headers */,
+				554D99951E903C7100E79BFA /* IBResourceManager.h in Headers */,
+				554D999A1E903C7100E79BFA /* IBViewResourceDragging.h in Headers */,
+				554D99821E903C7100E79BFA /* IBDocuments.h in Headers */,
+				554D999B1E903C7100E79BFA /* InterfaceBuilder.h in Headers */,
+				554D998E1E903C7100E79BFA /* IBObjectProtocol.h in Headers */,
+				554D997F1E903C7100E79BFA /* IBConnectors.h in Headers */,
+				554D997D1E903C7100E79BFA /* IBCellAdditions.h in Headers */,
+				554D998F1E903C7100E79BFA /* IBPalette.h in Headers */,
+				554D99861E903C7100E79BFA /* IBInspector.h in Headers */,
+				554D99941E903C7100E79BFA /* IBProjects.h in Headers */,
+				554D997B1E903C7100E79BFA /* IBApplicationAdditions.h in Headers */,
+				554D99911E903C7100E79BFA /* IBPlugin.h in Headers */,
+				554D99931E903C7100E79BFA /* IBProjectFiles.h in Headers */,
+				554D99971E903C7100E79BFA /* IBSystem.h in Headers */,
+				554D994E1E903C1000E79BFA /* GormLib.h in Headers */,
+				554D99981E903C7100E79BFA /* IBViewAdditions.h in Headers */,
+				554D99841E903C7100E79BFA /* IBEditors.h in Headers */,
+				554D998A1E903C7100E79BFA /* IBInspectorMode.h in Headers */,
+				554D997E1E903C7100E79BFA /* IBCellProtocol.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -599,6 +850,7 @@
 			);
 			dependencies = (
 				554D98191E90350C00E79BFA /* PBXTargetDependency */,
+				554D99501E903C1000E79BFA /* PBXTargetDependency */,
 			);
 			name = MacGorm;
 			productName = MacGorm;
@@ -617,10 +869,31 @@
 			buildRules = (
 			);
 			dependencies = (
+				554D9A061E90404700E79BFA /* PBXTargetDependency */,
+				554D9A041E903F3A00E79BFA /* PBXTargetDependency */,
+				554D99281E90373B00E79BFA /* PBXTargetDependency */,
 			);
 			name = GormCore;
 			productName = GormCore;
 			productReference = 554D98131E90350C00E79BFA /* GormCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		554D99491E903C1000E79BFA /* GormLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 554D99531E903C1000E79BFA /* Build configuration list for PBXNativeTarget "GormLib" */;
+			buildPhases = (
+				554D99451E903C1000E79BFA /* Sources */,
+				554D99461E903C1000E79BFA /* Frameworks */,
+				554D99471E903C1000E79BFA /* Headers */,
+				554D99481E903C1000E79BFA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GormLib;
+			productName = GormLib;
+			productReference = 554D994A1E903C1000E79BFA /* GormLib.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -640,6 +913,10 @@
 						CreatedOnToolsVersion = 8.3;
 						ProvisioningStyle = Automatic;
 					};
+					554D99491E903C1000E79BFA = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 554D97ED1E9031E700E79BFA /* Build configuration list for PBXProject "MacGorm" */;
@@ -653,13 +930,55 @@
 			mainGroup = 554D97E91E9031E700E79BFA;
 			productRefGroup = 554D97F31E9031E700E79BFA /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 554D991C1E90372F00E79BFA /* Products */;
+					ProjectRef = 554D991B1E90372F00E79BFA /* gnustep.xcodeproj */;
+				},
+				{
+					ProductGroup = 554D99401E903B8400E79BFA /* Products */;
+					ProjectRef = 554D993F1E903B8400E79BFA /* GNUstepGUI.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				554D97F11E9031E700E79BFA /* MacGorm */,
 				554D98121E90350C00E79BFA /* GormCore */,
+				554D99491E903C1000E79BFA /* GormLib */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		554D99221E90372F00E79BFA /* GNUstepBase.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GNUstepBase.framework;
+			remoteRef = 554D99211E90372F00E79BFA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		554D99241E90372F00E79BFA /* autogsdoc */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = autogsdoc;
+			remoteRef = 554D99231E90372F00E79BFA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		554D99261E90372F00E79BFA /* HTMLLinker */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = HTMLLinker;
+			remoteRef = 554D99251E90372F00E79BFA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		554D99441E903B8400E79BFA /* GNUstepGUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GNUstepGUI.framework;
+			remoteRef = 554D99431E903B8400E79BFA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		554D97F01E9031E700E79BFA /* Resources */ = {
@@ -676,6 +995,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		554D99481E903C1000E79BFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D999D1E903C7100E79BFA /* Version in Resources */,
+				554D999C1E903C7100E79BFA /* README in Resources */,
+				554D997A1E903C7100E79BFA /* COPYING.LIB in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,6 +1090,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		554D99451E903C1000E79BFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D998B1E903C7100E79BFA /* IBInspectorMode.m in Sources */,
+				554D99871E903C7100E79BFA /* IBInspector.m in Sources */,
+				554D99801E903C7100E79BFA /* IBConnectors.m in Sources */,
+				554D997C1E903C7100E79BFA /* IBApplicationAdditions.m in Sources */,
+				554D99831E903C7100E79BFA /* IBDocuments.m in Sources */,
+				554D99961E903C7100E79BFA /* IBResourceManager.m in Sources */,
+				554D99921E903C7100E79BFA /* IBPlugin.m in Sources */,
+				554D99891E903C7100E79BFA /* IBInspectorManager.m in Sources */,
+				554D99851E903C7100E79BFA /* IBEditors.m in Sources */,
+				554D99901E903C7100E79BFA /* IBPalette.m in Sources */,
+				554D998D1E903C7100E79BFA /* IBObjectAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -768,6 +1115,26 @@
 			isa = PBXTargetDependency;
 			target = 554D98121E90350C00E79BFA /* GormCore */;
 			targetProxy = 554D98181E90350C00E79BFA /* PBXContainerItemProxy */;
+		};
+		554D99281E90373B00E79BFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = gnustep;
+			targetProxy = 554D99271E90373B00E79BFA /* PBXContainerItemProxy */;
+		};
+		554D99501E903C1000E79BFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 554D99491E903C1000E79BFA /* GormLib */;
+			targetProxy = 554D994F1E903C1000E79BFA /* PBXContainerItemProxy */;
+		};
+		554D9A041E903F3A00E79BFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GNUstepGUI;
+			targetProxy = 554D9A031E903F3A00E79BFA /* PBXContainerItemProxy */;
+		};
+		554D9A061E90404700E79BFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 554D99491E903C1000E79BFA /* GormLib */;
+			targetProxy = 554D9A051E90404700E79BFA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -899,6 +1266,7 @@
 		554D981D1E90350C00E79BFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -906,7 +1274,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NeXT_RUNTIME=1",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = GormCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -921,6 +1294,35 @@
 		554D981E1E90350C00E79BFA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NeXT_RUNTIME=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GormCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.GormCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		554D99541E903C1000E79BFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -929,10 +1331,41 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = GormCore/Info.plist;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NeXT_RUNTIME=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GormLib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.GormCore;
+				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.GormLib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		554D99551E903C1000E79BFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NeXT_RUNTIME=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GormLib/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.GormLib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -965,6 +1398,14 @@
 			buildConfigurations = (
 				554D981D1E90350C00E79BFA /* Debug */,
 				554D981E1E90350C00E79BFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		554D99531E903C1000E79BFA /* Build configuration list for PBXNativeTarget "GormLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				554D99541E903C1000E79BFA /* Debug */,
+				554D99551E903C1000E79BFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

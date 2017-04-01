@@ -31,6 +31,7 @@
 /* All Rights reserved */
 
 #include <AppKit/AppKit.h>
+#include <GNUStepBase/GNUstep.h>
 #include <GNUstepGUI/GSGormLoading.h>
 #include "GormFilePrefsManager.h"
 #include "GormFunctions.h"
@@ -38,7 +39,7 @@
 #include <Foundation/NSFileManager.h>
 #include <Foundation/NSArchiver.h>
 #include <GNUstepBase/GSObjCRuntime.h>
-#include <InterfaceBuilder/IBApplicationAdditions.h>
+#include <GormLib/IBApplicationAdditions.h>
 
 NSString *formatVersion(NSInteger version)
 {

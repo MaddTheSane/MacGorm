@@ -23,6 +23,10 @@
  */
 
 #include "GormObjectInspector.h"
+#include <objc/runtime.h>
+#include <GNUstepBase/GNUstep.h>
+
+#define _(__x) __x
 
 @implementation GormObjectInspector
 
@@ -117,7 +121,7 @@ selectCellWithString: (NSString*)title
       NSString	*type = [types objectForKey: name];
       
       [super ok: sender];
-      if (type == typeChar)
+      if (type == typeSChar)
 	{
 	  char	v = [value intValue];
 	  void	(*imp)(id,SEL,char);
@@ -287,7 +291,7 @@ selectCellWithString: (NSString*)title
 			    type = typeId;
 			    break;
 			  case _C_CHR:
-			    type = typeChar;
+			    type = typeSChar;
 			    break;
 			  case _C_UCHR:
 			    type = typeUChar;
@@ -346,7 +350,7 @@ selectCellWithString: (NSString*)title
       NSString	*type = [types objectForKey: name];
 
       [label setTitle: type];
-      if (type == typeChar)
+      if (type == typeSChar)
 	{
 	  char	v;
 	  char	(*imp)();

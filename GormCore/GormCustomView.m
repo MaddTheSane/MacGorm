@@ -25,6 +25,7 @@
 #include <GormCore/GormCustomView.h>
 #include <GormCore/GormPrivate.h>
 #include <GormCore/GormOpenGLView.h>
+#include <GNUstepBase/GNUstep.h>
 
 #include <AppKit/NSColor.h>
 #include <AppKit/NSGraphics.h>

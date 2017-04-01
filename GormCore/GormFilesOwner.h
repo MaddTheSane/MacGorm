@@ -27,7 +27,7 @@
 #define INCLUDED_GormFilesOwner_h
 
 #include <Foundation/NSObject.h>
-#include <InterfaceBuilder/IBInspector.h>
+#include <GormLib/IBInspector.h>
 
 @class NSMutableArray, NSBrowser, NSString;
 

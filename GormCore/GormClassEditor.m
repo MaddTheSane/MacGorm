@@ -25,6 +25,7 @@
 
 #include <Foundation/Foundation.h>
 #include <AppKit/AppKit.h>
+#import <GNUstepBase/GNUstep.h>
 #include "GormClassEditor.h"
 #include "GormClassManager.h"
 #include "GormFunctions.h"
@@ -32,6 +33,7 @@
 #include "GormProtocol.h"
 #include "GormPrivate.h"
 
+#define _(x) x
 NSString *GormClassPboardType = @"GormClassPboardType";
 NSString *GormSwitchViewPreferencesNotification = @"GormSwitchViewPreferencesNotification";
 NSImage *outlineImage = nil;

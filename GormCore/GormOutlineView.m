@@ -38,6 +38,8 @@
 #include <AppKit/NSTextFieldCell.h>
 #include <AppKit/NSWindow.h>
 #include <AppKit/NSImage.h>
+#include <AppKit/NSColor.h>
+#include <GNUstepBase/GNUstep.h>
 
 static NSNotificationCenter *nc = nil;
 static const NSInteger current_version = 1;

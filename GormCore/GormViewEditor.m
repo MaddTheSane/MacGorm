@@ -24,7 +24,8 @@
 
 #include <AppKit/AppKit.h>
 #include <Foundation/NSUserDefaults.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GNUStepBase/GNUstep.h>
+#include <GormLib/InterfaceBuilder.h>
 
 #include "GormGenericEditor.h"
 #include "GormViewEditor.h"
@@ -939,8 +940,8 @@ static BOOL currently_displaying = NO;
   {
     BOOL empty = YES;
     float bestPosition = 0;
-    NSMutableArray *leftBests;
-    NSMutableArray *rightBests;
+    NSMutableArray<GormPlacementHint*> *leftBests;
+    NSMutableArray<GormPlacementHint*> *rightBests;
     minimum = (halfSpacing + 1);
     count = [gpi->leftHints count];
 
@@ -987,7 +988,7 @@ static BOOL currently_displaying = NO;
     count = [leftBests count];
     if (count >= 1)
       {
-	float position;
+	CGFloat position;
 	leftEmpty = NO;
 	position = [[leftBests objectAtIndex: 0] position];
 	
@@ -1025,9 +1026,9 @@ static BOOL currently_displaying = NO;
 
   {
     BOOL empty = YES;
-    float bestPosition = 0;
-    NSMutableArray *bottomBests;
-    NSMutableArray *topBests;
+    CGFloat bestPosition = 0;
+    NSMutableArray<GormPlacementHint*> *bottomBests;
+    NSMutableArray<GormPlacementHint*> *topBests;
     minimum = (halfSpacing + 1);
     count = [gpi->bottomHints count];
 
@@ -1578,7 +1579,7 @@ static BOOL done_editing;
   NSRect                 frame;
   NSNotificationCenter  *nc = [NSNotificationCenter defaultCenter];
   NSDate		*future = [NSDate distantFuture];
-  NSEvent *e;
+  NSEvent *e = nil;
       
   editField = view;
   frame = [editField frame];

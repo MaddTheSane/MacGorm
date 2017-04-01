@@ -25,6 +25,7 @@
 #include <Foundation/NSData.h>
 #include <Foundation/NSObject.h>
 #include <Foundation/NSString.h>
+#include <GNUstepBase/GNUstep.h>
 #include "GormResource.h"
 
 // resource proxy object...

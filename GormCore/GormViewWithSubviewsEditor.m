@@ -27,6 +27,7 @@
 #include <GormCore/GormViewWithSubviewsEditor.h>
 #include <GormCore/GormFontViewController.h>
 #include <GormCore/GormViewKnobs.h>
+#include <GNUstepBase/GNUstep.h>
 
 @class GormEditorToParent;
 

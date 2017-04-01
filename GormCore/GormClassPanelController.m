@@ -27,6 +27,7 @@
 #include <AppKit/AppKit.h>
 #include "GormClassPanelController.h"
 #include "GormPrivate.h"
+#include <GNUstepBase/GNUstep.h>
 
 @implementation GormClassPanelController
 

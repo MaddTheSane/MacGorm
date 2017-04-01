@@ -29,6 +29,7 @@
 #include <AppKit/NSImage.h>
 #include <AppKit/NSSound.h>
 #include <GNUstepBase/GSObjCRuntime.h>
+#include <GNUstepBase/GNUstep.h>
 #include "GormFunctions.h"
 #include "GormPluginManager.h"
 

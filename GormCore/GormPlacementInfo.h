@@ -25,9 +25,10 @@
 #define	INCLUDED_GormPlacementInfo_h
 
 #include <Foundation/NSObject.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 
 @class NSView, NSMutableArray;
+@class GormPlacementHint;
 
 @interface GormPlacementInfo : NSObject
 {
@@ -36,10 +37,10 @@
   NSRect oldRect;
   BOOL firstPass;
   BOOL hintInitialized;
-  NSMutableArray *leftHints;
-  NSMutableArray *rightHints;
-  NSMutableArray *topHints;
-  NSMutableArray *bottomHints;
+  NSMutableArray<GormPlacementHint*> *leftHints;
+  NSMutableArray<GormPlacementHint*> *rightHints;
+  NSMutableArray<GormPlacementHint*> *topHints;
+  NSMutableArray<GormPlacementHint*> *bottomHints;
   NSRect lastLeftRect;
   NSRect lastRightRect;
   NSRect lastTopRect;

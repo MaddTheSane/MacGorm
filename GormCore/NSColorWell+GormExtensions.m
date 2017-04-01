@@ -24,9 +24,13 @@
 
 #include <AppKit/NSView.h>
 #include <AppKit/NSColorPanel.h>
+#include <GNUstepBase/GNUstep.h>
 #include "NSColorWell+GormExtensions.h"
 
 @implementation NSColorWell (GormExtensions)
+#ifdef __APPLE__
+#define _the_color _color
+#endif
 
 /**
  * Changes the color without sending the action associated with it.

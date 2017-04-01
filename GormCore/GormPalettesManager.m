@@ -30,7 +30,9 @@
 #include <AppKit/NSSound.h>
 #include <GNUstepBase/GSObjCRuntime.h>
 #include "GormFunctions.h"
+#include <GNUStepBase/GNUstep.h>
 
+#define _(x) x
 #define BUILTIN_PALETTES @"BuiltinPalettes"
 #define USER_PALETTES    @"UserPalettes"
 

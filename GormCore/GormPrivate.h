@@ -26,9 +26,9 @@
 #ifndef INCLUDED_GormPrivate_h
 #define INCLUDED_GormPrivate_h
 
-#include <InterfaceBuilder/IBApplicationAdditions.h>
-#include <InterfaceBuilder/IBInspector.h>
-#include <InterfaceBuilder/IBViewAdditions.h>
+#include <GormLib/IBApplicationAdditions.h>
+#include <GormLib/IBInspector.h>
+#include <GormLib/IBViewAdditions.h>
 #include <GormCore/GormFilesOwner.h>
 #include <GormCore/GormDocument.h>
 #include <GormCore/GormInspectorsManager.h>

@@ -23,6 +23,7 @@
  */
 
 #include <AppKit/NSImage.h>
+#import <GNUstepBase/GNUstep.h>
 #include "GormDocument.h"
 #include "GormPrivate.h"
 #include "GormResourceEditor.h"
@@ -30,6 +31,7 @@
 #include "GormPalettesManager.h"
 #include "GormResource.h"
 
+#define _(x) x
 @implementation	GormResourceEditor
 
 - (BOOL) acceptsTypeFromArray: (NSArray*)types

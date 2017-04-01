@@ -28,6 +28,7 @@
 
 #include <AppKit/AppKit.h>
 #include "GormSoundView.h"
+#include <GNUstepBase/GNUstep.h>
 //#include <AppKit/PSOperators.h>
 
 // add a data method to the NSSound class...

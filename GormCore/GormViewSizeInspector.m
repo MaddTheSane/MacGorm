@@ -26,7 +26,8 @@
 #include "GormViewKnobs.h"
 #include "GormViewSizeInspector.h"
 #include "GormViewWindow.h"
-#include <InterfaceBuilder/IBApplicationAdditions.h>
+#include <GormLib/IBApplicationAdditions.h>
+#include <GNUstepBase/GNUstep.h>
 
 @implementation GormViewSizeInspector
 

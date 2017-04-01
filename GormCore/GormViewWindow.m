@@ -28,7 +28,7 @@
 #include <AppKit/NSColor.h>
 #include <Foundation/NSNotification.h>
 #include <Foundation/NSException.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 #include "GormFunctions.h"
 
 @interface GormViewWindowDelegate : NSObject

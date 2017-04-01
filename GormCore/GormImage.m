@@ -23,7 +23,7 @@
  */
 
 #include <AppKit/NSImage.h>
-#include <InterfaceBuilder/IBObjectAdditions.h>
+#include <GormLib/IBObjectAdditions.h>
 #include "GormImage.h"
 
 // implementation of category on NSImage.

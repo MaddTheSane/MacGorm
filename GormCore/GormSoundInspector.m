@@ -27,6 +27,7 @@
 /* All Rights reserved */
 
 #include <AppKit/AppKit.h>
+#include <GNUstepBase/GNUstep.h>
 #include "GormSoundInspector.h"
 #include "GormPrivate.h"
 #include "GormClassManager.h"

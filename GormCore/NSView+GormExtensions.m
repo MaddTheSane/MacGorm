@@ -27,7 +27,8 @@
 #include <Foundation/NSDebug.h>
 
 #include "NSView+GormExtensions.h"
-#include <InterfaceBuilder/IBViewResourceDragging.h>
+#include <GormLib/IBViewResourceDragging.h>
+#include <GNUstepBase/GNUstep.h>
 
 @implementation NSView (GormExtensions)
 /**
@@ -72,11 +73,11 @@
 - (void) moveViewToFront: (NSView *)sv
 {
   NSDebugLog(@"move to front %@", sv);
-  if([_sub_views containsObject: sv])
+  if([_subviews containsObject: sv])
     {
       RETAIN(sv); // make sure it doesn't deallocate the view.
-      [_sub_views removeObject: sv];
-      [_sub_views addObject: sv]; // add it to the end.
+      [_subviews removeObject: sv];
+      [_subviews addObject: sv]; // add it to the end.
       RELEASE(sv);
     }
 }
@@ -88,18 +89,18 @@
 - (void) moveViewToBack: (NSView *)sv
 {
   NSDebugLog(@"move to back %@", sv);
-  if([_sub_views containsObject: sv])
+  if([_subviews containsObject: sv])
     {
       RETAIN(sv); // make sure it doesn't deallocate the view.
-      [_sub_views removeObject: sv];
-      if([_sub_views count] > 0)
+      [_subviews removeObject: sv];
+      if([_subviews count] > 0)
 	{
-	  [_sub_views insertObject: sv 
+	  [_subviews insertObject: sv 
 		      atIndex: 0]; // add it to the end.
 	}
       else
 	{
-	  [_sub_views addObject: sv];
+	  [_subviews addObject: sv];
 	}
       RELEASE(sv);
     }

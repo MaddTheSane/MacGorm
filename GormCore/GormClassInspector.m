@@ -33,7 +33,8 @@
 #include "GormFunctions.h"
 #include "GormPrivate.h"
 #include "GormProtocol.h"
-#include <InterfaceBuilder/IBApplicationAdditions.h>
+#include <GormLib/IBApplicationAdditions.h>
+#include <GNUstepBase/GNUstep.h>
 
 NSNotificationCenter *nc = nil;
 

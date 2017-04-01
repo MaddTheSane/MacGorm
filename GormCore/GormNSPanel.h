@@ -29,7 +29,7 @@
 
 @interface GormNSPanel : NSPanel
 {
-  unsigned _gormStyleMask;
+  NSWindowStyleMask _gormStyleMask;
   BOOL     _gormReleasedWhenClosed;
   NSUInteger autoPositionMask;
 }

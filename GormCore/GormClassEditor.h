@@ -25,7 +25,7 @@
 #ifndef INCLUDED_GormClassEditor_h
 #define INCLUDED_GormClassEditor_h
 
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 #include <AppKit/NSBox.h>
 #include <GormCore/GormOutlineView.h>
 

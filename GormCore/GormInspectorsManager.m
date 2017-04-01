@@ -24,15 +24,17 @@
 
 #include <AppKit/NSNibConnector.h>
 #include <Foundation/NSException.h>
-#include <InterfaceBuilder/IBInspector.h>
-#include <InterfaceBuilder/IBInspectorMode.h>
-#include <InterfaceBuilder/IBObjectAdditions.h>
-#include <InterfaceBuilder/IBInspectorManager.h>
-#include <InterfaceBuilder/IBDocuments.h>
+#include <GormLib/IBInspector.h>
+#include <GormLib/IBInspectorMode.h>
+#include <GormLib/IBObjectAdditions.h>
+#include <GormLib/IBInspectorManager.h>
+#include <GormLib/IBDocuments.h>
 #include "GormPrivate.h"
 #include "GormImage.h"
 #include "GormSound.h"
+#include <GNUstepBase/GNUstep.h>
 
+#define _(__x) __x
 
 #define NUM_DEFAULT_INSPECTORS 5
 
@@ -272,7 +274,7 @@
 {
   NSNotificationCenter	*nc = [NSNotificationCenter defaultCenter];
   NSArray	*selection = [[(id<IB>)NSApp selectionOwner] selection];
-  unsigned	count = [selection count];
+  NSUInteger	count = [selection count];
   id		obj = [selection lastObject];
   id<IBDocuments> document = [(id<IB>)NSApp activeDocument];
   NSView	*newView = nil;

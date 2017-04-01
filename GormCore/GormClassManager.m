@@ -28,8 +28,8 @@
 #include "GormDocument.h"
 #include "GormFilesOwner.h"
 #include "GormPalettesManager.h"
-#include <InterfaceBuilder/IBEditors.h>
-#include <InterfaceBuilder/IBPalette.h>
+#include <GormLib/IBEditors.h>
+#include <GormLib/IBPalette.h>
 #include <Foundation/NSValue.h>
 #include <Foundation/NSException.h>
 

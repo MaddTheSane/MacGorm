@@ -23,7 +23,7 @@
 */
 
 #include <AppKit/AppKit.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 #include <GNUstepGUI/GSGormLoading.h>
 #include "GormNSPanel.h"
 
@@ -64,7 +64,7 @@ static NSUInteger defaultStyleMask = NSTitledWindowMask | NSClosableWindowMask
 }
 
 - (id) initWithContentRect: (NSRect)contentRect
-		 styleMask: (NSUInteger)aStyle
+		 styleMask: (NSWindowStyleMask)aStyle
 		   backing: (NSBackingStoreType)bufferingType
 		     defer: (BOOL)flag
 {

@@ -24,7 +24,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <InterfaceBuilder/IBObjectAdditions.h>
+#include <GormLib/IBObjectAdditions.h>
+#include <GNUstepBase/GNUstep.h>
 #include "GormPrivate.h"
 #include "GormObjectEditor.h"
 #include "GormFunctions.h"
@@ -248,7 +249,7 @@ static NSMapTable	*docMap = 0;
     {
       NSPoint	loc = [sender draggingLocation];
       NSInteger	r, c;
-      int	pos;
+      NSInteger	pos;
       id	obj = nil;
 
       loc = [self convertPoint: loc fromView: nil];
