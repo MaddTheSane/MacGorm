@@ -29,8 +29,8 @@
 
 
 // the default style mask we start with.
-static NSUInteger defaultStyleMask = NSTitledWindowMask | NSClosableWindowMask
-		  | NSResizableWindowMask | NSMiniaturizableWindowMask;
+static const NSWindowStyleMask defaultStyleMask = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable
+		  | NSWindowStyleMaskResizable | NSWindowStyleMaskMiniaturizable;
 
 @implementation GormNSPanel
 - (void)encodeWithCoder: (NSCoder*) aCoder

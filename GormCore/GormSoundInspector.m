@@ -36,6 +36,11 @@
 #include "GormSoundView.h"
 #include "GormSound.h"
 
+#undef _
+#define _(x) x
+
+extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
+
 @implementation GormSoundInspector
 + (void) initialize
 {
@@ -101,7 +106,7 @@
 - (void) pause: (id)sender
 {
   NSDebugLog(@"Pause");
-  [object pause];
+  [(NSSound*)object pause];
 }
 
 - (void) record: (id)sender

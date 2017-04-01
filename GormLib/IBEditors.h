@@ -32,6 +32,7 @@
 @class NSString;
 @class NSArray;
 @class NSWindow;
+@protocol IBDocuments;
 
 /*
  * Notification for editing and inspecting the objects etc.
@@ -99,7 +100,7 @@ IB_EXTERN NSString *IBClassNameChangedNotification;
 /**
  * Initializes the editor with object for the specified document.
  */
-- (id) initWithObject: (id)anObject inDocument: (id/*<IBDocuments>*/)aDocument;
+- (id) initWithObject: (id)anObject inDocument: (id<IBDocuments>)aDocument;
 
 /**
  * Close an editor - this destroys the editor.  In this method the editor
@@ -129,7 +130,7 @@ IB_EXTERN NSString *IBClassNameChangedNotification;
 /**
  * This method returns the document that owns the object that the editor edits.
  */
-- (id /*<IBDocuments>*/) document;
+- (id<IBDocuments>) document;
 
 /**
  * This method returns the object that the editor is editing.

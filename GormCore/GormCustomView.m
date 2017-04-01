@@ -62,7 +62,7 @@
       [self setBackgroundColor: [NSColor darkGrayColor]];
       [self setTextColor: [NSColor whiteColor]];
       [self setDrawsBackground: YES];
-      [self setAlignment: NSCenterTextAlignment];
+      [self setAlignment: NSTextAlignmentCenter];
       [self setFont: [NSFont boldSystemFontOfSize: 0]];
       [self setEditable: NO];
       [self setSelectable: NO];
@@ -156,6 +156,7 @@
     }
   else
     {
+      unsigned int _autoresizingMask = self.autoresizingMask;
       [aCoder encodeObject: [self stringValue]];
       [aCoder encodeRect: _frame];
       [aCoder encodeValueOfObjCType: @encode(unsigned int) 
@@ -174,7 +175,7 @@
       if(subviews != nil && [subviews count] > 0)
 	{
 	  Class cls = [self bestPossibleSuperClass];
-	  id replacementView = [[cls alloc] initWithFrame: [customView frame]];
+	  __kindof NSView *replacementView = [[cls alloc] initWithFrame: [customView frame]];
 	  NSEnumerator *en = [[customView subviews] objectEnumerator];
 	  id v = nil;
 
@@ -189,7 +190,7 @@
       else
 	{
 	  [self initWithFrame: [customView frame]];
-	  _autoresizingMask = [customView autoresizingMask];
+	  self.autoresizingMask = [customView autoresizingMask];
 	}
 
       // get the classname...
@@ -213,8 +214,10 @@
 	  string = [aCoder decodeObject];
 	  _frame = [aCoder decodeRect];
 	  [self initWithFrame: _frame];
+      unsigned int _autoresizingMask;
 	  [aCoder decodeValueOfObjCType: @encode(unsigned int) 
 		  at: &_autoresizingMask];
+      self.autoresizingMask = _autoresizingMask;
 	  [self setClassName: string];
 	  return self;
 	}
@@ -303,7 +306,7 @@
   
   if ([obj respondsToSelector: @selector(setAutoresizingMask:)])
     {
-      [obj setAutoresizingMask: mask];
+      [(NSView*)obj setAutoresizingMask: mask];
     }
   
   /*

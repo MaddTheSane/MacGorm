@@ -40,6 +40,10 @@
 #include <Foundation/NSArchiver.h>
 #include <GNUstepBase/GSObjCRuntime.h>
 #include <GormLib/IBApplicationAdditions.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
+
+#undef _
+#define _(x) x
 
 NSString *formatVersion(NSInteger version)
 {

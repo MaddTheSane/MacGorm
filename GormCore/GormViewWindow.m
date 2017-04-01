@@ -29,9 +29,10 @@
 #include <Foundation/NSNotification.h>
 #include <Foundation/NSException.h>
 #include <GormLib/InterfaceBuilder.h>
+#include <GNUstepBase/GNUstep.h>
 #include "GormFunctions.h"
 
-@interface GormViewWindowDelegate : NSObject
+@interface GormViewWindowDelegate : NSObject <NSWindowDelegate>
 {
   NSView *_view;
 }

@@ -1,56 +1,43 @@
-/* GormFilesOwner.h
+/* OCHeaderParser.h
  *
  * Copyright (C) 1999 Free Software Foundation, Inc.
  *
- * Author:	Richard Frith-Macdonald <richard@brainstrom.co.uk>
  * Author:	Gregory John Casamento <greg_casamento@yahoo.com>
- * Date:	1999, 2004
- * 
+ * Date:	1999, 2002
+ *
  * This file is part of GNUstep.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef INCLUDED_GormFilesOwner_h
-#define INCLUDED_GormFilesOwner_h
-
 #include <Foundation/NSObject.h>
-#include <GormLib/IBInspector.h>
-#import <AppKit/NSBrowser.h>
+
+#ifndef INCLUDED_OCHeaderParser_h
+#define INCLUDED_OCHeaderParser_h
 
 @class NSMutableArray, NSString;
 
-/*
- * Each document has a GormFilesOwner object that is used as a placeholder
- * for the owner of the document.
- */
-@interface	GormFilesOwner : NSObject
+@interface OCHeaderParser : NSObject
 {
-  NSString	*className;
+  NSMutableArray *classes;
+  NSString *fileData;
 }
-- (NSString*) className;
-- (void) setClassName: (NSString*)aName;
-@end
 
-@interface GormFilesOwnerInspector : IBInspector <NSBrowserDelegate>
-{
-  NSBrowser	        *browser;
-  NSMutableArray	*classes;
-  BOOL		        hasConnections;
-}
-- (void) takeClassFrom: (id)sender;
+- (id) initWithContentsOfFile: (NSString *)file;
+- (NSMutableArray *)classes;
+- (BOOL) parse;
 @end
 
 #endif

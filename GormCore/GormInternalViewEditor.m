@@ -31,6 +31,11 @@
 #include "GormViewKnobs.h"
 #include "GormDefines.h"
 
+#undef _
+#define _(x) x
+
+extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
+
 @class GormEditorToParent;
 
 static NSImage *verticalImage;

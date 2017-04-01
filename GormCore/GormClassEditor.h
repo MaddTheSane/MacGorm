@@ -34,7 +34,7 @@
 extern NSString *GormClassPboardType;
 extern NSString *GormSwitchViewPreferencesNotification;
 
-@interface GormClassEditor : NSView <IBEditors, IBSelectionOwners>
+@interface GormClassEditor : NSView <IBEditors, IBSelectionOwners, NSOutlineViewDelegate, NSOutlineViewDataSource, NSBrowserDelegate>
 {
   GormDocument          *document;
   GormClassManager      *classManager;

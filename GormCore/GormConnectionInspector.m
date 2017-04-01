@@ -27,6 +27,10 @@
 #include <AppKit/NSNibConnector.h>
 #include <GormLib/IBInspector.h>
 #include <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GNUstepGUI/GSNibLoading.h>
+#import <AppKit/NSNibOutletConnector.h>
+#import <AppKit/NSNibControlConnector.h>
 
 #include "GormPrivate.h"
 #include "GormConnectionInspector.h"
@@ -138,10 +142,10 @@
 
 - (void) _internalCall: (NSBrowser*)sender
 {
-  unsigned	numConnectors = [connectors count];
-  unsigned	index;
+  NSUInteger	numConnectors = [connectors count];
+  NSUInteger	index;
   NSBrowserCell	*cell = [sender selectedCell];
-  NSString	*title = [cell stringValue];
+  NSString      *title = [cell stringValue];
   NSInteger		col = [sender selectedColumn];
 
   if (sender == newBrowser)

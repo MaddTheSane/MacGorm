@@ -25,7 +25,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/NSFileWrapper.h>
+#include <Foundation/NSFileWrapper.h>
 #include <Foundation/NSString.h>
 #include <Foundation/NSDictionary.h>
 #include <GormCore/GormWrapperBuilder.h>
@@ -34,6 +34,7 @@
 #include <GormCore/GormSound.h>
 #include <GormCore/GormImage.h>
 #include <GNUstepBase/GNUstep.h>
+#include <GNUstepBase/GSObjCRuntime.h>
 
 static NSMutableDictionary *_wrapperBuilderMap = nil;
 static GormWrapperBuilderFactory *_sharedWrapperBuilderFactory = nil;

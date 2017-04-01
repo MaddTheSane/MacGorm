@@ -43,7 +43,9 @@
 #include <AppKit/NSNibLoading.h>
 #include <AppKit/NSScreen.h>
 #include <GNUstepGUI/GSGormLoading.h>
+#include <GNUstepGUI/GSNibLoading.h>
 #include <GNUStepBase/GNUstep.h>
+#include <GNUstepBase/GSObjCRuntime.h>
 #include "NSView+GormExtensions.h"
 #include "GormSound.h"
 #include "GormImage.h"
@@ -56,6 +58,10 @@
 #include "GormWrapperLoader.h"
 #include "GormDocumentWindow.h"
 #include "GormDocumentController.h"
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <AppKit/NSNibOutletConnector.h>
+#import <AppKit/NSNibControlConnector.h>
+
 
 @interface GormDisplayCell : NSButtonCell
 @end

@@ -32,12 +32,17 @@
 #include <GormLib/IBPalette.h>
 #include <Foundation/NSValue.h>
 #include <Foundation/NSException.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GNUstepBase/GSObjCRuntime.h>
+#import <GNUstepBase/GNUstep.h>
 
 #include <GormObjCHeaderParser/OCHeaderParser.h>
 #include <GormObjCHeaderParser/OCClass.h>
 #include <GormObjCHeaderParser/OCMethod.h>
 #include <GormObjCHeaderParser/OCIVar.h>
 
+#undef _
+#define _(x) x
 /**
  * Just a few definitions to start things out.  To increase efficiency,
  * so that Gorm doesn't need to constantly derive the method list for

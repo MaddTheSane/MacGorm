@@ -26,6 +26,7 @@
 #include <Foundation/Foundation.h>
 #include <AppKit/AppKit.h>
 #import <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 #include "GormClassEditor.h"
 #include "GormClassManager.h"
 #include "GormFunctions.h"
@@ -33,7 +34,9 @@
 #include "GormProtocol.h"
 #include "GormPrivate.h"
 
+#undef _
 #define _(x) x
+
 NSString *GormClassPboardType = @"GormClassPboardType";
 NSString *GormSwitchViewPreferencesNotification = @"GormSwitchViewPreferencesNotification";
 NSImage *outlineImage = nil;
@@ -315,7 +318,7 @@ NSImage *browserImage = nil;
       NSArray	 *classes, *subclasses;
       NSMutableArray *subClassesArray = [NSMutableArray array];
       NSEnumerator	 *en;
-      int		 row = 0;
+      NSInteger		 row = 0;
       NSInteger            col = 0;
       
       if ( ( className != nil )  
@@ -457,7 +460,7 @@ NSImage *browserImage = nil;
 
 - (void) editClass
 {
-  int	row = [outlineView selectedRow];
+  NSInteger	row = [outlineView selectedRow];
 
   if (row >= 0)
     {
@@ -469,14 +472,13 @@ NSImage *browserImage = nil;
 //--- IBSelectionOwners protocol ---
 - (NSUInteger) selectionCount
 {
-  return ([outlineView selectedRow] == -1)?0:1;
+  return ([outlineView selectedRow] == -1) ? 0 : 1;
 }
 
 - (NSArray*) selection
 {
   // when asked for a selection, it returns a class proxy
-  if (selectedClass != nil) 
-    {
+  if (selectedClass != nil)  {
       NSArray		*array;
       GormClassProxy	*classProxy;
       NSString          *sc = [NSString stringWithString: selectedClass];
@@ -485,9 +487,7 @@ NSImage *browserImage = nil;
       array = [NSArray arrayWithObject: classProxy];
       RELEASE(classProxy);
       return array;
-    } 
-  else
-    {
+    }  else {
       return [NSArray array];
     }
 }
@@ -609,7 +609,7 @@ NSImage *browserImage = nil;
 		  [self reloadData];
 		  [nc postNotificationName: GormDidModifyClassNotification
 		      object: classManager];
-		  ASSIGN(selectedClass, nil); // don't keep the class we're pointing to.
+		  DESTROY(selectedClass); // don't keep the class we're pointing to.
 		}
 	    }
 	}
@@ -942,11 +942,12 @@ NSImage *browserImage = nil;
 {
   NSArray	*fileTypes = [NSArray arrayWithObjects: @"h", @"H", nil];
   NSOpenPanel	*oPanel = [NSOpenPanel openPanel];
-  int		result;
+  NSInteger		result;
 
   [oPanel setAllowsMultipleSelection: NO];
   [oPanel setCanChooseFiles: YES];
   [oPanel setCanChooseDirectories: NO];
+  oPanel.allowedFileTypes = fileTypes;
   result = [oPanel runModalForDirectory: nil
 				   file: nil
 				  types: fileTypes];
@@ -993,10 +994,9 @@ NSImage *browserImage = nil;
   int			result;
 
   sp = [NSSavePanel savePanel];
-  [sp setRequiredFileType: @"m"];
+  sp.allowedFileTypes = @[@"m"];
   [sp setTitle: _(@"Save source file as...")];
-  if ([document fileName] == nil)
-    {
+  if ([document fileName] == nil) {
       result = [sp runModalForDirectory: NSHomeDirectory() 
 		   file: [className stringByAppendingPathExtension: @"m"]];
     }
@@ -1009,7 +1009,7 @@ NSImage *browserImage = nil;
 
   if (result == NSOKButton)
     {
-      NSString *sourceName = [sp filename];
+      NSString *sourceName = [[sp URL] path];
       NSString *headerName;
 
       [sp setRequiredFileType: @"h"];
@@ -1022,7 +1022,7 @@ NSImage *browserImage = nil;
 		       stringByAppendingString: @".h"]];
       if (result == NSOKButton)
 	{
-	  headerName = [sp filename];
+	  headerName = [[sp URL] path];
 	  NSDebugLog(@"Saving %@", className);
 	  if (![classManager makeSourceAndHeaderFilesForClass: className
 			     withName: sourceName
@@ -1046,9 +1046,9 @@ NSImage *browserImage = nil;
   [self selectClass: className];
 }
 
-@end
+//@end
 
-@implementation GormClassEditor (NSOutlineViewDataSource)
+//@implementation GormClassEditor (NSOutlineViewDataSource)
 
 // --- NSOutlineView dataSource ---
 - (id)        outlineView: (NSOutlineView *)anOutlineView 

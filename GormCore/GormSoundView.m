@@ -39,7 +39,8 @@
 @implementation NSSound (SoundView)
 - (NSData *)data
 {
-  return _data;
+  return nil;
+  //return _data;
 }
 @end
 

@@ -37,6 +37,9 @@
 #include "GormDocument.h"
 #include "GormObjectEditor.h"
 
+#undef _
+#define _(x) x
+
 @implementation GormResourceManager
 
 - (NSArray *) resourcePasteboardTypes

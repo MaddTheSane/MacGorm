@@ -35,6 +35,8 @@
 #include "GormProtocol.h"
 #include <GormLib/IBApplicationAdditions.h>
 #include <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
+
 
 NSNotificationCenter *nc = nil;
 

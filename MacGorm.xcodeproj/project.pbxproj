@@ -135,7 +135,6 @@
 		554D99101E90353000E79BFA /* GormWrapperLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98931E90353000E79BFA /* GormWrapperLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		554D99111E90353000E79BFA /* GormWrapperLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98941E90353000E79BFA /* GormWrapperLoader.m */; };
 		554D99121E90353000E79BFA /* NSCell+GormAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98951E90353000E79BFA /* NSCell+GormAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		554D99131E90353000E79BFA /* NSCell+GormAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98961E90353000E79BFA /* NSCell+GormAdditions.m */; };
 		554D99141E90353000E79BFA /* NSColorWell+GormExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98971E90353000E79BFA /* NSColorWell+GormExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		554D99151E90353000E79BFA /* NSColorWell+GormExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98981E90353000E79BFA /* NSColorWell+GormExtensions.m */; };
 		554D99161E90353000E79BFA /* NSFontManager+GormExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98991E90353000E79BFA /* NSFontManager+GormExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -181,6 +180,23 @@
 		554D999B1E903C7100E79BFA /* InterfaceBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D99771E903C7100E79BFA /* InterfaceBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		554D999C1E903C7100E79BFA /* README in Resources */ = {isa = PBXBuildFile; fileRef = 554D99781E903C7100E79BFA /* README */; };
 		554D999D1E903C7100E79BFA /* Version in Resources */ = {isa = PBXBuildFile; fileRef = 554D99791E903C7100E79BFA /* Version */; };
+		554D9A2B1E9067AE00E79BFA /* GormObjCHeaderParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D9A291E9067AE00E79BFA /* GormObjCHeaderParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D9A2E1E9067AE00E79BFA /* GormObjCHeaderParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D9A271E9067AE00E79BFA /* GormObjCHeaderParser.framework */; };
+		554D9A2F1E9067AE00E79BFA /* GormObjCHeaderParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 554D9A271E9067AE00E79BFA /* GormObjCHeaderParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		554D9A411E9067F600E79BFA /* NSScanner+OCHeaderParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D9A331E9067F600E79BFA /* NSScanner+OCHeaderParser.h */; };
+		554D9A421E9067F600E79BFA /* NSScanner+OCHeaderParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D9A341E9067F600E79BFA /* NSScanner+OCHeaderParser.m */; };
+		554D9A431E9067F600E79BFA /* OCClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D9A351E9067F600E79BFA /* OCClass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D9A441E9067F600E79BFA /* OCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D9A361E9067F600E79BFA /* OCClass.m */; };
+		554D9A451E9067F600E79BFA /* OCHeaderParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D9A371E9067F600E79BFA /* OCHeaderParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D9A461E9067F600E79BFA /* OCHeaderParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D9A381E9067F600E79BFA /* OCHeaderParser.m */; };
+		554D9A471E9067F600E79BFA /* OCIVar.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D9A391E9067F600E79BFA /* OCIVar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D9A481E9067F600E79BFA /* OCIVar.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D9A3A1E9067F600E79BFA /* OCIVar.m */; };
+		554D9A491E9067F600E79BFA /* OCIVarDecl.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D9A3B1E9067F600E79BFA /* OCIVarDecl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D9A4A1E9067F600E79BFA /* OCIVarDecl.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D9A3C1E9067F600E79BFA /* OCIVarDecl.m */; };
+		554D9A4B1E9067F600E79BFA /* OCMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D9A3D1E9067F600E79BFA /* OCMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D9A4C1E9067F600E79BFA /* OCMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D9A3E1E9067F600E79BFA /* OCMethod.m */; };
+		554D9A4D1E9067F600E79BFA /* ParserFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D9A3F1E9067F600E79BFA /* ParserFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D9A4E1E9067F600E79BFA /* ParserFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D9A401E9067F600E79BFA /* ParserFunctions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,6 +263,20 @@
 			remoteGlobalIDString = 554D99491E903C1000E79BFA;
 			remoteInfo = GormLib;
 		};
+		554D9A2C1E9067AE00E79BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D97EA1E9031E700E79BFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 554D9A261E9067AE00E79BFA;
+			remoteInfo = GormObjCHeaderParser;
+		};
+		554D9A4F1E90687300E79BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D991B1E90372F00E79BFA /* gnustep.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 559A064C120493A7004BBA32;
+			remoteInfo = gnustep;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -257,6 +287,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				554D981B1E90350C00E79BFA /* GormCore.framework in Embed Frameworks */,
+				554D9A2F1E9067AE00E79BFA /* GormObjCHeaderParser.framework in Embed Frameworks */,
 				554D99521E903C1000E79BFA /* GormLib.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -446,6 +477,23 @@
 		554D99771E903C7100E79BFA /* InterfaceBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterfaceBuilder.h; sourceTree = "<group>"; };
 		554D99781E903C7100E79BFA /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		554D99791E903C7100E79BFA /* Version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Version; sourceTree = "<group>"; };
+		554D9A271E9067AE00E79BFA /* GormObjCHeaderParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GormObjCHeaderParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		554D9A291E9067AE00E79BFA /* GormObjCHeaderParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GormObjCHeaderParser.h; sourceTree = "<group>"; };
+		554D9A2A1E9067AE00E79BFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		554D9A331E9067F600E79BFA /* NSScanner+OCHeaderParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScanner+OCHeaderParser.h"; sourceTree = "<group>"; };
+		554D9A341E9067F600E79BFA /* NSScanner+OCHeaderParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+OCHeaderParser.m"; sourceTree = "<group>"; };
+		554D9A351E9067F600E79BFA /* OCClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCClass.h; sourceTree = "<group>"; };
+		554D9A361E9067F600E79BFA /* OCClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCClass.m; sourceTree = "<group>"; };
+		554D9A371E9067F600E79BFA /* OCHeaderParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCHeaderParser.h; sourceTree = "<group>"; };
+		554D9A381E9067F600E79BFA /* OCHeaderParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCHeaderParser.m; sourceTree = "<group>"; };
+		554D9A391E9067F600E79BFA /* OCIVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCIVar.h; sourceTree = "<group>"; };
+		554D9A3A1E9067F600E79BFA /* OCIVar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCIVar.m; sourceTree = "<group>"; };
+		554D9A3B1E9067F600E79BFA /* OCIVarDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCIVarDecl.h; sourceTree = "<group>"; };
+		554D9A3C1E9067F600E79BFA /* OCIVarDecl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCIVarDecl.m; sourceTree = "<group>"; };
+		554D9A3D1E9067F600E79BFA /* OCMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMethod.h; sourceTree = "<group>"; };
+		554D9A3E1E9067F600E79BFA /* OCMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCMethod.m; sourceTree = "<group>"; };
+		554D9A3F1E9067F600E79BFA /* ParserFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserFunctions.h; sourceTree = "<group>"; };
+		554D9A401E9067F600E79BFA /* ParserFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserFunctions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,6 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				554D981A1E90350C00E79BFA /* GormCore.framework in Frameworks */,
+				554D9A2E1E9067AE00E79BFA /* GormObjCHeaderParser.framework in Frameworks */,
 				554D99511E903C1000E79BFA /* GormLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +521,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		554D9A231E9067AE00E79BFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -482,6 +538,7 @@
 				554D97F41E9031E700E79BFA /* MacGorm */,
 				554D98141E90350C00E79BFA /* GormCore */,
 				554D994B1E903C1000E79BFA /* GormLib */,
+				554D9A281E9067AE00E79BFA /* GormObjCHeaderParser */,
 				554D97F31E9031E700E79BFA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -492,6 +549,7 @@
 				554D97F21E9031E700E79BFA /* MacGorm.app */,
 				554D98131E90350C00E79BFA /* GormCore.framework */,
 				554D994A1E903C1000E79BFA /* GormLib.framework */,
+				554D9A271E9067AE00E79BFA /* GormObjCHeaderParser.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -653,8 +711,10 @@
 				554D98151E90350C00E79BFA /* GormCore.h */,
 				554D98161E90350C00E79BFA /* Info.plist */,
 			);
+			indentWidth = 2;
 			path = GormCore;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		554D991A1E90371300E79BFA /* Third-party */ = {
 			isa = PBXGroup;
@@ -727,6 +787,29 @@
 				554D994D1E903C1000E79BFA /* Info.plist */,
 			);
 			path = GormLib;
+			sourceTree = "<group>";
+		};
+		554D9A281E9067AE00E79BFA /* GormObjCHeaderParser */ = {
+			isa = PBXGroup;
+			children = (
+				554D9A331E9067F600E79BFA /* NSScanner+OCHeaderParser.h */,
+				554D9A341E9067F600E79BFA /* NSScanner+OCHeaderParser.m */,
+				554D9A351E9067F600E79BFA /* OCClass.h */,
+				554D9A361E9067F600E79BFA /* OCClass.m */,
+				554D9A371E9067F600E79BFA /* OCHeaderParser.h */,
+				554D9A381E9067F600E79BFA /* OCHeaderParser.m */,
+				554D9A391E9067F600E79BFA /* OCIVar.h */,
+				554D9A3A1E9067F600E79BFA /* OCIVar.m */,
+				554D9A3B1E9067F600E79BFA /* OCIVarDecl.h */,
+				554D9A3C1E9067F600E79BFA /* OCIVarDecl.m */,
+				554D9A3D1E9067F600E79BFA /* OCMethod.h */,
+				554D9A3E1E9067F600E79BFA /* OCMethod.m */,
+				554D9A3F1E9067F600E79BFA /* ParserFunctions.h */,
+				554D9A401E9067F600E79BFA /* ParserFunctions.m */,
+				554D9A291E9067AE00E79BFA /* GormObjCHeaderParser.h */,
+				554D9A2A1E9067AE00E79BFA /* Info.plist */,
+			);
+			path = GormObjCHeaderParser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -834,6 +917,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		554D9A241E9067AE00E79BFA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D9A471E9067F600E79BFA /* OCIVar.h in Headers */,
+				554D9A431E9067F600E79BFA /* OCClass.h in Headers */,
+				554D9A491E9067F600E79BFA /* OCIVarDecl.h in Headers */,
+				554D9A411E9067F600E79BFA /* NSScanner+OCHeaderParser.h in Headers */,
+				554D9A451E9067F600E79BFA /* OCHeaderParser.h in Headers */,
+				554D9A4D1E9067F600E79BFA /* ParserFunctions.h in Headers */,
+				554D9A2B1E9067AE00E79BFA /* GormObjCHeaderParser.h in Headers */,
+				554D9A4B1E9067F600E79BFA /* OCMethod.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -851,6 +949,7 @@
 			dependencies = (
 				554D98191E90350C00E79BFA /* PBXTargetDependency */,
 				554D99501E903C1000E79BFA /* PBXTargetDependency */,
+				554D9A2D1E9067AE00E79BFA /* PBXTargetDependency */,
 			);
 			name = MacGorm;
 			productName = MacGorm;
@@ -896,6 +995,25 @@
 			productReference = 554D994A1E903C1000E79BFA /* GormLib.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		554D9A261E9067AE00E79BFA /* GormObjCHeaderParser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 554D9A301E9067AE00E79BFA /* Build configuration list for PBXNativeTarget "GormObjCHeaderParser" */;
+			buildPhases = (
+				554D9A221E9067AE00E79BFA /* Sources */,
+				554D9A231E9067AE00E79BFA /* Frameworks */,
+				554D9A241E9067AE00E79BFA /* Headers */,
+				554D9A251E9067AE00E79BFA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				554D9A501E90687300E79BFA /* PBXTargetDependency */,
+			);
+			name = GormObjCHeaderParser;
+			productName = GormObjCHeaderParser;
+			productReference = 554D9A271E9067AE00E79BFA /* GormObjCHeaderParser.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -914,6 +1032,10 @@
 						ProvisioningStyle = Automatic;
 					};
 					554D99491E903C1000E79BFA = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+					};
+					554D9A261E9067AE00E79BFA = {
 						CreatedOnToolsVersion = 8.3;
 						ProvisioningStyle = Automatic;
 					};
@@ -945,6 +1067,7 @@
 				554D97F11E9031E700E79BFA /* MacGorm */,
 				554D98121E90350C00E79BFA /* GormCore */,
 				554D99491E903C1000E79BFA /* GormLib */,
+				554D9A261E9067AE00E79BFA /* GormObjCHeaderParser */,
 			);
 		};
 /* End PBXProject section */
@@ -1008,6 +1131,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		554D9A251E9067AE00E79BFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1055,7 +1185,6 @@
 				554D99091E90353000E79BFA /* GormViewWithSubviewsEditor.m in Sources */,
 				554D98CB1E90353000E79BFA /* GormInternalViewEditor.m in Sources */,
 				554D98C11E90353000E79BFA /* GormHelpInspector.m in Sources */,
-				554D99131E90353000E79BFA /* NSCell+GormAdditions.m in Sources */,
 				554D98D71E90353000E79BFA /* GormObjectInspector.m in Sources */,
 				554D990D1E90353000E79BFA /* GormWindowTemplate.m in Sources */,
 				554D98BF1E90353000E79BFA /* GormGenericEditor.m in Sources */,
@@ -1108,6 +1237,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		554D9A221E9067AE00E79BFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D9A441E9067F600E79BFA /* OCClass.m in Sources */,
+				554D9A4E1E9067F600E79BFA /* ParserFunctions.m in Sources */,
+				554D9A461E9067F600E79BFA /* OCHeaderParser.m in Sources */,
+				554D9A4A1E9067F600E79BFA /* OCIVarDecl.m in Sources */,
+				554D9A421E9067F600E79BFA /* NSScanner+OCHeaderParser.m in Sources */,
+				554D9A4C1E9067F600E79BFA /* OCMethod.m in Sources */,
+				554D9A481E9067F600E79BFA /* OCIVar.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1135,6 +1278,16 @@
 			isa = PBXTargetDependency;
 			target = 554D99491E903C1000E79BFA /* GormLib */;
 			targetProxy = 554D9A051E90404700E79BFA /* PBXContainerItemProxy */;
+		};
+		554D9A2D1E9067AE00E79BFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 554D9A261E9067AE00E79BFA /* GormObjCHeaderParser */;
+			targetProxy = 554D9A2C1E9067AE00E79BFA /* PBXContainerItemProxy */;
+		};
+		554D9A501E90687300E79BFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = gnustep;
+			targetProxy = 554D9A4F1E90687300E79BFA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1186,6 +1339,7 @@
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -1228,6 +1382,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -1269,7 +1424,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1297,7 +1452,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1325,7 +1480,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1352,7 +1507,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1366,6 +1521,60 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.GormLib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		554D9A311E9067AE00E79BFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NeXT_RUNTIME=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GormObjCHeaderParser/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.GormObjCHeaderParser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		554D9A321E9067AE00E79BFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NeXT_RUNTIME=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GormObjCHeaderParser/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.GormObjCHeaderParser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1406,6 +1615,14 @@
 			buildConfigurations = (
 				554D99541E903C1000E79BFA /* Debug */,
 				554D99551E903C1000E79BFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		554D9A301E9067AE00E79BFA /* Build configuration list for PBXNativeTarget "GormObjCHeaderParser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				554D9A311E9067AE00E79BFA /* Debug */,
+				554D9A321E9067AE00E79BFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

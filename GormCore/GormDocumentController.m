@@ -27,13 +27,18 @@
 #include "GormPrivate.h"
 #include <GormCore/GormDocument.h>
 #include <GormCore/GormDocumentController.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
+
+#undef _
+#define _(x) x
+
 
 @implementation GormDocumentController
 
 - (id) currentDocument
 {
   NSArray  *documents = [self documents];
-  unsigned i = [documents count];
+  NSInteger i = [documents count];
   id result = nil;
 
   if (i > 0)
@@ -117,7 +122,7 @@
       {
 	NSPanel	 *aWindow;
 	NSRect	 frame = [[NSScreen mainScreen] frame];
-	unsigned style = NSTitledWindowMask | NSClosableWindowMask;
+	NSWindowStyleMask style = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable;
 	
 	if ([NSPanel respondsToSelector: @selector(allocSubstitute)])
 	  {

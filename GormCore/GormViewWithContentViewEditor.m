@@ -30,6 +30,8 @@
 #include "GormViewKnobs.h"
 #include "GormInternalViewEditor.h"
 
+extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
+
 @interface GormViewEditor (Private)
 - (NSRect) _displayMovingFrameWithHint: (NSRect) frame
                      andPlacementInfo: (GormPlacementInfo *)gpi;
@@ -102,7 +104,7 @@
 {
   NSString *characters = [theEvent characters];
   unichar character = 0;
-  float moveBy = 1.0;
+  CGFloat moveBy = 1.0;
 
   if ([characters length] > 0)
     {
@@ -243,7 +245,7 @@
 #define MAX(A,B) ((A)>(B)?(A):(B))
 #define MIN(A,B) ((A)<(B)?(A):(B))
 
-int _sortViews(id view1, id view2, void *context)
+NSInteger _sortViews(id view1, id view2, void *context)
 {
   BOOL isVertical = *((BOOL *)context);
   NSInteger order = NSOrderedSame;
@@ -252,8 +254,8 @@ int _sortViews(id view1, id view2, void *context)
 
   if(!isVertical)
     {
-      float y1 = rect1.origin.y;
-      float y2 = rect2.origin.y;
+      CGFloat y1 = rect1.origin.y;
+      CGFloat y2 = rect2.origin.y;
 
       if(y1 == y2) 
 	order = NSOrderedSame;
@@ -262,8 +264,8 @@ int _sortViews(id view1, id view2, void *context)
     }
   else
     {
-      float x1 = rect1.origin.x;
-      float x2 = rect2.origin.x;
+      CGFloat x1 = rect1.origin.x;
+      CGFloat x2 = rect2.origin.x;
 
       if(x1 == x2) 
 	order = NSOrderedSame;

@@ -33,6 +33,12 @@
 #include "GormClassManager.h"
 
 #include <AppKit/NSClipView.h>
+
+#undef _
+#define _(x) x
+
+extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
+
 /*
  * Method to return the image that should be used to display objects within
  * the matrix containing the objects in a document.
@@ -421,9 +427,9 @@ static NSMapTable	*docMap = 0;
 {
   if (flag == YES && selected != nil)
     {
-      unsigned	pos = [objects indexOfObjectIdenticalTo: selected];
-      int	r = pos / [self numberOfColumns];
-      int	c = pos % [self numberOfColumns];
+      NSUInteger	pos = [objects indexOfObjectIdenticalTo: selected];
+      NSInteger	r = pos / [self numberOfColumns];
+      NSInteger	c = pos % [self numberOfColumns];
 
       [self selectCellAtRow: r column: c];
     }
@@ -437,12 +443,12 @@ static NSMapTable	*docMap = 0;
 
 - (void) mouseDown: (NSEvent*)theEvent
 {
-  if ([theEvent modifierFlags] & NSControlKeyMask)
+  if ([theEvent modifierFlags] & NSEventModifierFlagControl)
     {
       NSPoint	loc = [theEvent locationInWindow];
       NSString	*name;
       NSInteger	r = 0, c = 0;
-      int	pos = 0;
+      NSInteger	pos = 0;
       id	obj = nil;
 
       loc = [self convertPoint: loc fromView: nil];
@@ -490,7 +496,7 @@ static NSMapTable	*docMap = 0;
     {
       NSPoint	loc = [sender draggingLocation];
       NSInteger	r, c;
-      int	pos;
+      NSInteger	pos;
       id	obj = nil;
 
       loc = [self convertPoint: loc fromView: nil];
@@ -527,7 +533,7 @@ static NSMapTable	*docMap = 0;
     {
       NSPoint	loc = [sender draggingLocation];
       NSInteger	r, c;
-      int	pos;
+      NSInteger	pos;
       id	obj = nil;
 
       loc = [self convertPoint: loc fromView: nil];

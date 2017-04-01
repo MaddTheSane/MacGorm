@@ -15,4 +15,5 @@ FOUNDATION_EXPORT double GormLibVersionNumber;
 FOUNDATION_EXPORT const unsigned char GormLibVersionString[];
 
 #import <GormLib/InterfaceBuilder.h>
+#import <GormLib/IBInspectorMode.h>
 

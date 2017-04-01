@@ -34,7 +34,10 @@
 #include "GormSound.h"
 #include <GNUstepBase/GNUstep.h>
 
-#define _(__x) __x
+#undef _
+#define _(x) x
+
+extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 
 #define NUM_DEFAULT_INSPECTORS 5
 

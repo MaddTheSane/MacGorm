@@ -41,6 +41,12 @@
 #include <AppKit/NSColor.h>
 #include <GNUstepBase/GNUstep.h>
 
+
+#undef _
+#define _(x) x
+
+extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
+
 static NSNotificationCenter *nc = nil;
 static const NSInteger current_version = 1;
 

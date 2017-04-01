@@ -53,7 +53,6 @@
 - (void) copySelection;
 - (void) deleteSelection;
 - (void) pasteInSelection;
-- (void) refreshCells;
 - (void) closeSubeditors;
 
 - (NSWindow*) window;

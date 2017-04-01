@@ -23,12 +23,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/NSNibConnector.h>
+#import <AppKit/NSNibConnector.h>
+#import <AppKit/NSNibOutletConnector.h>
+#import <AppKit/NSNibControlConnector.h>
 #include "GormPrivate.h"
 #include "GormCustomView.h"
 #include <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 // @class GormCustomView;
+
+#undef _
+#define _(x) x
 
 @implementation	GormFilesOwner
 - (NSString*) className
@@ -153,7 +159,7 @@
 
       rect = NSMakeRect(0, 0, IVW, IVH);
       window = [[NSWindow alloc] initWithContentRect: rect
-					   styleMask: NSBorderlessWindowMask 
+					   styleMask: NSWindowStyleMaskBorderless 
 					     backing: NSBackingStoreRetained
 					       defer: NO];
       contents = [window contentView];

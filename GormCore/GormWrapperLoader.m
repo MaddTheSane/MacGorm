@@ -33,6 +33,7 @@
 #include <GormCore/GormSound.h>
 #include <GormCore/GormImage.h>
 #include <GNUstepBase/GNUstep.h>
+#include <GNUstepBase/GSObjCRuntime.h>
 
 static NSMutableDictionary *_wrapperLoaderMap = nil;
 static GormWrapperLoaderFactory *_sharedWrapperLoaderFactory = nil;

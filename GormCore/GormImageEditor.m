@@ -30,6 +30,11 @@
 #include "GormImage.h"
 #include <GNUStepBase/GNUstep.h>
 
+#undef _
+#define _(x) x
+
+extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
+
 @implementation	GormImageEditor
 
 static NSMapTable *docMap = 0;

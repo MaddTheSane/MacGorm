@@ -26,6 +26,7 @@
 #include <objc/runtime.h>
 #include <GNUstepBase/GNUstep.h>
 
+#undef _
 #define _(__x) __x
 
 @implementation GormObjectInspector

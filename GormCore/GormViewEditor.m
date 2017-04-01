@@ -36,19 +36,25 @@
 #include "GormViewKnobs.h"
 #include "GormClassManager.h"
 #include "GormDocument.h"
+#include "GormViewWithContentViewEditor.h"
 
 #include <math.h>
 #include <stdlib.h>
+
+#undef _
+#define _(x) x
+
+extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 
 @implementation GormPlacementInfo
 @end
 
 @implementation GormPlacementHint
-- (float) position { return _position; }
-- (float) start { return _start; }
-- (float) end { return _end; }
-- (NSRect) frame { return _frame; }
-- (GormHintBorder) border { return _border; }
+@synthesize position = _position;
+@synthesize start = _start;
+@synthesize end = _end;
+@synthesize frame = _frame;
+@synthesize border = _border;
 - (NSString *) description
 {
   switch (_border)
@@ -68,20 +74,22 @@
     }
 }
 - (id) initWithBorder: (GormHintBorder) border
-	     position: (float) position
-	validityStart: (float) start
-	  validityEnd: (float) end
+	     position: (CGFloat) position
+	validityStart: (CGFloat) start
+	  validityEnd: (CGFloat) end
 		frame: (NSRect) frame
 {
-  _border = border;
-  _start = start;
-  _end = end;
-  _position = position;
-  _frame = frame;
+  if (self = [super init]) {
+    _border = border;
+    _start = start;
+    _end = end;
+    _position = position;
+    _frame = frame;
+  }
   return self;
 }
 
-- (NSRect) rectWithHalfDistance: (int) halfHeight
+- (NSRect) rectWithHalfDistance: (NSInteger) halfHeight
 {
   switch (_border)
     {
@@ -98,7 +106,7 @@
     }
 }
 
-- (int) distanceToFrame: (NSRect) frame
+- (NSInteger) distanceToFrame: (NSRect) frame
 {
   NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
   NSInteger guideSpacing = [userDefaults integerForKey: @"GuideSpacing"];
@@ -855,7 +863,7 @@ static BOOL currently_displaying = NO;
 			andEvent: (NSEvent *)theEvent
 		andPlacementInfo: (GormPlacementInfo*) gpi
 {
-  if ([theEvent modifierFlags] & NSShiftKeyMask)
+  if ([theEvent modifierFlags] & NSEventModifierFlagShift)
     {
       [self _displayFrame: frame
 	    withPlacementInfo: gpi];
@@ -1271,7 +1279,7 @@ static BOOL currently_displaying = NO;
 
 - (void) mouseDown: (NSEvent*)theEvent
 {
-  if ([theEvent modifierFlags] & NSControlKeyMask)
+  if ([theEvent modifierFlags] & NSEventModifierFlagControl)
     // start a action/outlet connection
     {
 
@@ -1572,7 +1580,7 @@ static BOOL done_editing;
    edit it */
 - (NSEvent *) editTextField: view withEvent: (NSEvent *)theEvent
 {
-  unsigned eventMask;
+  NSEventMask eventMask;
   BOOL wasEditable;
   BOOL didDrawBackground;
   NSTextField *editField;
@@ -1596,8 +1604,8 @@ static BOOL done_editing;
 
   /* Do some modal editing */
   [editField selectText: self];
-  eventMask = NSLeftMouseDownMask |  NSLeftMouseUpMask  |
-  NSKeyDownMask  |  NSKeyUpMask  | NSFlagsChangedMask;
+  eventMask = NSEventMaskLeftMouseDown |  NSEventMaskLeftMouseUp  |
+  NSEventMaskKeyDown  |  NSEventMaskKeyUp  | NSEventMaskFlagsChanged;
 
   done_editing = NO;
   while (!done_editing)
@@ -1610,7 +1618,7 @@ static BOOL done_editing;
       eType = [e type];
       switch (eType)
 	{
-	case NSLeftMouseDown:
+	case NSEventTypeLeftMouseDown:
 	  {
 	    NSPoint dp =  [self convertPoint: [e locationInWindow]
 				fromView: nil];
@@ -1622,19 +1630,19 @@ static BOOL done_editing;
 	  }
 	  [[editField currentEditor] mouseDown: e];
 	  break;
-	case NSLeftMouseUp:
+	case NSEventTypeLeftMouseUp:
 	  [[editField currentEditor] mouseUp: e];
 	  break;
-	case NSLeftMouseDragged:
+	case NSEventTypeLeftMouseDragged:
 	  [[editField currentEditor] mouseDragged: e];
 	  break;
-	case NSKeyDown:
+	case NSEventTypeKeyDown:
 	  [[editField currentEditor] keyDown: e];
 	  break;
-	case NSKeyUp:
+	case NSEventTypeKeyUp:
 	  [[editField currentEditor] keyUp: e];
 	  break;
-	case NSFlagsChanged:
+	case NSEventTypeFlagsChanged:
 	  [[editField currentEditor] flagsChanged: e];
 	  break;
 	default:

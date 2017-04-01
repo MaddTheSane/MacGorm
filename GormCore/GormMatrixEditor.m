@@ -39,6 +39,11 @@
 
 #define _EO ((NSMatrix*)_editedObject)
 
+#undef _
+#define _(x) x
+
+extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
+
 @interface GormViewEditor (Private)
 - (void) _displayFrame: (NSRect) frame
      withPlacementInfo: (GormPlacementInfo*)gpi;
@@ -306,8 +311,8 @@ static BOOL done_editing;
       }
     if (onKnob == YES)
       {
-	if (_next_responder)
-	  return [_next_responder mouseDown: theEvent];
+	if (_nextResponder)
+	  return [_nextResponder mouseDown: theEvent];
 	else
 	  return [self noResponderFor: @selector(mouseDown:)];
       }
@@ -432,7 +437,7 @@ static BOOL done_editing;
   NSInteger width;
   NSInteger height;
       
-  if ([theEvent modifierFlags] & NSAlternateKeyMask)
+  if ([theEvent modifierFlags] & NSEventModifierFlagOption)
     {
       NSInteger rows = [_EO numberOfRows];
       NSInteger cols = [_EO numberOfColumns];
@@ -470,7 +475,7 @@ static BOOL done_editing;
 	  height = cols * heightIncrement + [_EO frame].size.height;
 	}
     }
-  else if ([theEvent modifierFlags] & NSControlKeyMask)
+  else if ([theEvent modifierFlags] & NSEventModifierFlagControl)
     {
       NSInteger rows = [_EO numberOfRows];
       NSInteger cols = [_EO numberOfColumns];

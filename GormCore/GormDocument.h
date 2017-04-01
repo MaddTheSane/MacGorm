@@ -29,6 +29,7 @@
 #include <AppKit/AppKit.h>
 #include <Foundation/Foundation.h>
 #include <GNUstepGUI/GSNibContainer.h>
+#include <GNUstepGUI/GSNibLoading.h>
 #include <GormLib/InterfaceBuilder.h>
 
 @class GormClassManager, GormClassEditor, GormObjectProxy, GormFilesOwner, 
@@ -55,7 +56,7 @@
 }
 @end
 
-@interface GormDocument : NSDocument <IBDocuments, GSNibContainer, NSCoding>
+@interface GormDocument : NSDocument <IBDocuments, GSNibContainer, NSCoding, NSToolbarDelegate>
 {
   GormClassManager      *classManager;
   GormFilesOwner	*filesOwner;

@@ -25,6 +25,7 @@
 #include <GormLib/IBPalette.h>
 #include <Foundation/Foundation.h>
 #include <AppKit/AppKit.h>
+#include <GNUstepBase/GNUstep.h>
 
 NSString	*IBCellPboardType = @"IBCellPboardType";
 NSString	*IBMenuPboardType = @"IBMenuPboardType";

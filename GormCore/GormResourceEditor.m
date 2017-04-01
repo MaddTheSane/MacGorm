@@ -30,8 +30,11 @@
 #include "GormFunctions.h"
 #include "GormPalettesManager.h"
 #include "GormResource.h"
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 
+#undef _
 #define _(x) x
+
 @implementation	GormResourceEditor
 
 - (BOOL) acceptsTypeFromArray: (NSArray*)types
@@ -115,7 +118,7 @@
       objects = [[NSMutableArray alloc] init];
       proto = [[NSButtonCell alloc] init];
       [proto setBordered: NO];
-      [proto setAlignment: NSCenterTextAlignment];
+      [proto setAlignment: NSTextAlignmentCenter];
       [proto setImagePosition: NSImageAbove];
       [proto setSelectable: NO];
       [proto setEditable: NO];
@@ -192,9 +195,9 @@
 {
   NSInteger row, column;
   NSInteger newRow, newColumn;
-  unsigned eventMask = NSLeftMouseUpMask | NSLeftMouseDownMask
-			| NSMouseMovedMask | NSLeftMouseDraggedMask
-			| NSPeriodicMask;
+  NSEventMask eventMask = NSEventMaskLeftMouseUp | NSEventMaskLeftMouseDown
+			| NSEventMaskMouseMoved | NSEventMaskLeftMouseDragged
+			| NSEventMaskPeriodic;
   NSPoint lastLocation = [theEvent locationInWindow];
   NSEvent* lastEvent = theEvent;
   NSPoint initialLocation;
@@ -218,21 +221,23 @@
     {
       if ([_cells[row][column] isEnabled])
 	{
-	  if ((_mode == NSRadioModeMatrix) && _selectedCell != nil)
+	  if ((self.mode == NSRadioModeMatrix) && _selectedCell != nil)
 	    {
 	      [_selectedCell setState: NSOffState];
-	      [self drawCellAtRow: _selectedRow column: _selectedColumn];
-	      _selectedCells[_selectedRow][_selectedColumn] = NO;
+	      [self drawCellAtRow: _selectedRow column: _selectedCol];
+          [self deselectSelectedCell];
+	      //_selectedCells[_selectedRow][_selectedCol] = NO;
 	      _selectedCell = nil;
-	      _selectedRow = _selectedColumn = -1;
+	      _selectedRow = _selectedCol = -1;
 	    }
 	  [_cells[row][column] setState: NSOnState];
 	  [self drawCellAtRow: row column: column];
 	  [_window flushWindow];
-	  _selectedCells[row][column] = YES;
+      [self selectCellAtRow:row column:column];
+	  //_selectedCells[row][column] = YES;
 	  _selectedCell = _cells[row][column];
 	  _selectedRow = row;
-	  _selectedColumn = column;
+	  _selectedCol = column;
 	}
     }
   else
@@ -249,7 +254,7 @@
 		       fromView: nil];
 
 
-  while ([lastEvent type] != NSLeftMouseUp)
+  while ([lastEvent type] != NSEventTypeLeftMouseUp)
     {
       if((![self getRow: &newRow
 		 column: &newColumn
@@ -340,11 +345,11 @@
 
 - (void) refreshCells
 {
-  unsigned	count = [objects count];
-  unsigned	index;
-  int		cols = 0;
-  int		rows;
-  int		width;
+  NSUInteger	count = [objects count];
+  NSUInteger	index;
+  NSInteger		cols = 0;
+  NSInteger		rows;
+  NSInteger		width;
 
   // return if the superview is not available.
   if(![self superview])
