@@ -164,51 +164,29 @@ static NSImage  *fileImage = nil;
  */ 
 + (void) initialize
 {
-  if (self == [GormDocument class])
-    {
-      NSBundle	*bundle;
-      NSString	*path;
-
-      bundle = [NSBundle mainBundle];
-      path = [bundle pathForImageResource: @"GormObject"];
-      if (path != nil)
-	{
-	  objectsImage = [[NSImage alloc] initWithContentsOfFile: path];
+	if (self == [GormDocument class]) {
+		NSBundle	*bundle;
+		NSString	*path;
+		
+		objectsImage = [[NSImage imageNamed:@"GormObject"] retain];
+		imagesImage = [[NSImage imageNamed:@"GormImage"] retain];
+		soundsImage = [[NSImage imageNamed:@"GormSound"] retain];
+		classesImage = [[NSImage imageNamed:@"GormClass"] retain];
+		fileImage = [[NSImage imageNamed:@"Gorm"] retain];
+		
+		// register the resource managers...
+		[IBResourceManager registerResourceManagerClass:
+		 [IBResourceManager class]];
+		[IBResourceManager registerResourceManagerClass:
+		 [GormResourceManager class]];
+		[self setVersion: GNUSTEP_NIB_VERSION];
 	}
-      path = [bundle pathForImageResource: @"GormImage"];
-      if (path != nil)
-	{
-	  imagesImage = [[NSImage alloc] initWithContentsOfFile: path];
-	}
-      path = [bundle pathForImageResource: @"GormSound"];
-      if (path != nil)
-	{
-	  soundsImage = [[NSImage alloc] initWithContentsOfFile: path];
-	}
-      path = [bundle pathForImageResource: @"GormClass"];
-      if (path != nil)
-	{
-	  classesImage = [[NSImage alloc] initWithContentsOfFile: path];
-	}
-      path = [bundle pathForImageResource: @"Gorm"];
-      if (path != nil)
-	{
-	  fileImage = [[NSImage alloc] initWithContentsOfFile: path];
-	}
-
-      // register the resource managers...
-      [IBResourceManager registerResourceManagerClass: 
-			   [IBResourceManager class]];
-      [IBResourceManager registerResourceManagerClass: 
-			   [GormResourceManager class]];
-      [self setVersion: GNUSTEP_NIB_VERSION];
-    }
 }
 
 /**
  * Initialize the new GormDocument object.
  */
-- (id) init 
+- (id) init
 {
   self = [super init];
   if (self != nil)
@@ -1041,19 +1019,17 @@ static NSImage  *fileImage = nil;
 - (NSArray*) connectorsForDestination: (id)destination
                               ofClass: (Class)aConnectorClass
 {
-  NSMutableArray	*array = [NSMutableArray arrayWithCapacity: 16];
-  NSEnumerator		*enumerator = [connections objectEnumerator];
-  id<IBConnectors>	c;
-
-  while ((c = [enumerator nextObject]) != nil)
-    {
-      if ([c destination] == destination
-	&& (aConnectorClass == 0 || aConnectorClass == [c class]))
-	{
-	  [array addObject: c];
+	NSMutableArray	*array = [NSMutableArray arrayWithCapacity: 16];
+	NSEnumerator		*enumerator = [connections objectEnumerator];
+	id<IBConnectors>	c;
+	
+	while ((c = [enumerator nextObject]) != nil) {
+		if ([c destination] == destination
+			&& (aConnectorClass == 0 || aConnectorClass == [c class])) {
+			[array addObject: c];
+		}
 	}
-    }
-  return array;
+	return array;
 }
 
 /**
@@ -1071,19 +1047,17 @@ static NSImage  *fileImage = nil;
 - (NSArray*) connectorsForSource: (id)source
 			 ofClass: (Class)aConnectorClass
 {
-  NSMutableArray	*array = [NSMutableArray arrayWithCapacity: 16];
-  NSEnumerator		*enumerator = [connections objectEnumerator];
-  id<IBConnectors>	c;
-
-  while ((c = [enumerator nextObject]) != nil)
-    {
-      if ([c source] == source
-	&& (aConnectorClass == 0 || aConnectorClass == [c class]))
-	{
-	  [array addObject: c];
+	NSMutableArray	*array = [NSMutableArray arrayWithCapacity: 16];
+	NSEnumerator		*enumerator = [connections objectEnumerator];
+	id<IBConnectors>	c;
+	
+	while ((c = [enumerator nextObject]) != nil) {
+		if ([c source] == source
+			&& (aConnectorClass == 0 || aConnectorClass == [c class])) {
+			[array addObject: c];
+		}
 	}
-    }
-  return array;
+	return array;
 }
 
 /**
@@ -1105,12 +1079,11 @@ static NSImage  *fileImage = nil;
 - (BOOL) containsObjectWithName: (NSString*)aName forParent: (id)parent
 {
   id	obj = [nameTable objectForKey: aName];
-
-  if (obj == nil)
-    {
-      return NO;
-    }
-  return YES; 
+  
+  if (obj == nil) {
+    return NO;
+  }
+  return YES;
 }
 
 /**
@@ -1136,7 +1109,7 @@ static NSImage  *fileImage = nil;
 {
   NSEnumerator	*enumerator;
   NSMutableSet	*editorSet;
-  id		obj;
+  id<IBEditors>	obj;
   NSMutableData	*data;
   NSArchiver    *archiver;
 
@@ -1177,9 +1150,7 @@ static NSImage  *fileImage = nil;
   [archiver encodeRootObject: anArray];
 
   // reactivate
-  enumerator = [editorSet objectEnumerator];
-  while ((obj = [enumerator nextObject]) != nil)
-    {
+  for (id<IBEditors> obj in editorSet) {
       [obj activate];
     }
   RELEASE(editorSet);
@@ -1257,8 +1228,8 @@ static NSImage  *fileImage = nil;
  * Pull all objects which are under the given parent, into array.
  */
 - (void) _retrieveObjectsForParent: (id)parent
-			 intoArray: (NSMutableArray *)array
-		       recursively: (BOOL)flag
+						 intoArray: (NSMutableArray *)array
+					   recursively: (BOOL)flag
 {
   NSArray *cons = [self connectorsForDestination: parent
 			ofClass: [NSNibConnector class]];
@@ -1302,124 +1273,104 @@ static NSImage  *fileImage = nil;
  */
 - (void) detachObject: (id)anObject
 {
-  if([self containsObject: anObject])
-    {
-      NSString	       *name = RETAIN([self nameForObject: anObject]); // released at end of method...
-      unsigned	       count;
-      NSArray          *objs = [self retrieveObjectsForParent: anObject recursively: NO];
-      id               obj = nil;
-      NSEnumerator     *en = [objs objectEnumerator];
-      id               editor = [self editorForObject: anObject create: NO];
-      id               parent = [self parentEditorForEditor: editor];
-
-      // close the editor...
-      [editor close];
-      if([parent respondsToSelector: @selector(selectObjects:)])
-	{
-	  [parent selectObjects: [NSArray array]];
+	if ([self containsObject: anObject]) {
+		NSString	       *name = RETAIN([self nameForObject: anObject]); // released at end of method...
+		NSUInteger       count;
+		NSArray          *objs = [self retrieveObjectsForParent: anObject recursively: NO];
+		id               obj = nil;
+		NSEnumerator     *en = [objs objectEnumerator];
+		id               editor = [self editorForObject: anObject create: NO];
+		id               parent = [self parentEditorForEditor: editor];
+		
+		// close the editor...
+		[editor close];
+		if([parent respondsToSelector: @selector(selectObjects:)])
+		{
+			[parent selectObjects: [NSArray array]];
+		}
+		
+		count = [connections count];
+		while (count-- > 0) {
+			id<IBConnectors> con = [connections objectAtIndex: count];
+			
+			if ([con destination] == anObject || [con source] == anObject) {
+				[connections removeObjectAtIndex: count];
+			}
+		}
+		
+		// if the font manager is being reset, zero out the instance variable.
+		if ([name isEqual: @"NSFont"]) {
+			fontManager = nil;
+		}
+		
+		if ([anObject isKindOfClass: [NSWindow class]]
+			|| [anObject isKindOfClass: [NSMenu class]]
+			|| [topLevelObjects containsObject: anObject]) {
+			[objectsView removeObject: anObject];
+		}
+		
+		// if it's in the top level items array, remove it.
+		if ([topLevelObjects containsObject: anObject]) {
+			[topLevelObjects removeObject: anObject];
+		}
+		
+		// eliminate it from being the windows/services menu, if it's being detached.
+		if ([anObject isKindOfClass: [NSMenu class]]) {
+			if ([self windowsMenu] == anObject) {
+				[self setWindowsMenu: nil];
+			} else if ([self servicesMenu] == anObject) {
+				[self setServicesMenu: nil];
+			} else if ([self recentDocumentsMenu] == anObject) {
+				[self setRecentDocumentsMenu: nil];
+			}
+		}
+		
+		/*
+		 * Make sure this window isn't in the list of objects to be made visible
+		 * on nib loading.
+		 */
+		if ([anObject isKindOfClass: [NSWindow class]]) {
+			[self setObject: anObject isVisibleAtLaunch: NO];
+		}
+		
+		// some objects are given a name, some are not.  The only ones we need
+		// to worry about are those that have names.
+		if (name != nil) {
+			// remove from custom class map...
+			NSDebugLog(@"Delete from custom class map -> %@",name);
+			[classManager removeCustomClassForName: name];
+			if([anObject isKindOfClass: [NSScrollView class]]) {
+				NSView *subview = [anObject documentView];
+				NSString *objName = [self nameForObject: subview];
+				NSDebugLog(@"Delete from custom class map -> %@",objName);
+				[classManager removeCustomClassForName: objName];
+			} else if([anObject isKindOfClass: [NSWindow class]]) {
+				[anObject setReleasedWhenClosed: YES];
+				[anObject close];
+			}
+			
+			// make certain it's not displayed, if it's being detached.
+			if ([anObject isKindOfClass: [NSView class]]) {
+				[anObject removeFromSuperview];
+			}
+			
+			[nameTable removeObjectForKey: name];
+			
+			// free...
+			NSMapRemove(objToName, (void*)anObject);
+		}
+		
+		// iterate over the list and remove any subordinate objects.
+		if (en != nil) {
+			while ((obj = [en nextObject]) != nil) {
+				[self detachObject: obj];
+			}
+		}
+		
+		[self setSelectionFromEditor: nil]; // clear the selection.
+		RELEASE(name); // retained at beginning of method...
+		[self touch]; // set the document as modified
 	}
-
-      count = [connections count];
-      while (count-- > 0)
-	{
-	  id<IBConnectors> con = [connections objectAtIndex: count];
-	  
-	  if ([con destination] == anObject || [con source] == anObject)
-	    {
-	      [connections removeObjectAtIndex: count];
-	    }
-	}
-      
-      // if the font manager is being reset, zero out the instance variable.
-      if([name isEqual: @"NSFont"])
-	{
-	  fontManager = nil;
-	}
-      
-      if ([anObject isKindOfClass: [NSWindow class]] 
-	  || [anObject isKindOfClass: [NSMenu class]] 
-	  || [topLevelObjects containsObject: anObject])
-	{
-	  [objectsView removeObject: anObject];
-	}
-      
-      // if it's in the top level items array, remove it.
-      if([topLevelObjects containsObject: anObject])
-	{
-	  [topLevelObjects removeObject: anObject];
-	}
-      
-      // eliminate it from being the windows/services menu, if it's being detached.
-      if ([anObject isKindOfClass: [NSMenu class]])
-	{
-	  if([self windowsMenu] == anObject)
-	    {
-	      [self setWindowsMenu: nil];
-	    }
-	  else if([self servicesMenu] == anObject)
-	    {
-	      [self setServicesMenu: nil];
-	    }
-	  else if([self recentDocumentsMenu] == anObject)
-	    {
-	      [self setRecentDocumentsMenu: nil];
-	    }
-	}
-      
-      /*
-       * Make sure this window isn't in the list of objects to be made visible
-       * on nib loading.
-       */
-      if([anObject isKindOfClass: [NSWindow class]])
-	{
-	  [self setObject: anObject isVisibleAtLaunch: NO];
-	}
-      
-      // some objects are given a name, some are not.  The only ones we need
-      // to worry about are those that have names.
-      if(name != nil)
-	{
-	  // remove from custom class map...
-	  NSDebugLog(@"Delete from custom class map -> %@",name);
-	  [classManager removeCustomClassForName: name];
-	  if([anObject isKindOfClass: [NSScrollView class]])
-	    {
-	      NSView *subview = [anObject documentView];
-	      NSString *objName = [self nameForObject: subview];
-	      NSDebugLog(@"Delete from custom class map -> %@",objName);
-	      [classManager removeCustomClassForName: objName];
-	    }
-	  else if([anObject isKindOfClass: [NSWindow class]])
-	    {
-	      [anObject setReleasedWhenClosed: YES];
-	      [anObject close];
-	    }
-
-	  // make certain it's not displayed, if it's being detached.
-	  if([anObject isKindOfClass: [NSView class]])
-	    {
-	      [anObject removeFromSuperview];
-	    }
-
-	  [nameTable removeObjectForKey: name];
-	  
-	  // free...
-	  NSMapRemove(objToName, (void*)anObject);
-	}
-      
-      // iterate over the list and remove any subordinate objects.
-      if(en != nil)
-	{
-	  while((obj = [en nextObject]) != nil)
-	    {
-	      [self detachObject: obj];
-	    }
-	}
-
-      [self setSelectionFromEditor: nil]; // clear the selection.
-      RELEASE(name); // retained at beginning of method...
-      [self touch]; // set the document as modified
-    }
 }
 
 /**
@@ -1555,42 +1506,38 @@ static NSImage  *fileImage = nil;
                          inEditor: (id<IBEditors>)anEditor
                            create: (BOOL)flag
 {
-  NSArray	*links;
-
+  NSArray<id<IBConnectors>>	*links;
+  
   /*
    * Look up the editor links for the object to see if it already has an
    * editor.  If it does return it, otherwise create a new editor and a
    * link to it if the flag is set.
    */
   links = [self connectorsForSource: anObject
-			    ofClass: [GormObjectToEditor class]];
-  if ([links count] == 0 && flag)
-    {
-      Class		eClass = NSClassFromString([anObject editorClassName]);
-      id<IBEditors>	editor;
-      id<IBConnectors>	link;
-
-      editor = [[eClass alloc] initWithObject: anObject inDocument: self];
-      link = AUTORELEASE([[GormObjectToEditor alloc] init]);
-      [link setSource: anObject];
-      [link setDestination: editor];
-      [connections addObject: link];
-      
-      if(![openEditors containsObject: editor] && editor != nil)
-	{
+							ofClass: [GormObjectToEditor class]];
+  if ([links count] == 0 && flag) {
+	Class		eClass = NSClassFromString([anObject editorClassName]);
+	id<IBEditors>	editor;
+	id<IBConnectors>	link;
+	
+	editor = [[eClass alloc] initWithObject: anObject inDocument: self];
+	link = AUTORELEASE([[GormObjectToEditor alloc] init]);
+	[link setSource: anObject];
+	[link setDestination: editor];
+	[connections addObject: link];
+	
+	if(![openEditors containsObject: editor] && editor != nil) {
 	  [openEditors addObject: editor];
 	}
-
-      if (anEditor == nil)
-	{
+	
+	if (anEditor == nil) {
 	  /*
 	   * By default all editors are owned by the top-level editor of
 	   * the document.
-           */
+	   */
 	  anEditor = objectsView;
 	}
-      if (anEditor != editor)
-	{
+	if (anEditor != editor) {
 	  /*
 	   * Link to the parent of the editor.
 	   */
@@ -1599,25 +1546,20 @@ static NSImage  *fileImage = nil;
 	  [link setDestination: anEditor];
 	  [connections addObject: link];
 	}
-      else
-	{
+	else {
 	  NSDebugLog(@"WARNING anEditor = editor");
 	}
-
-      [editor activate];
-      RELEASE((NSObject *)editor);
-
-      return editor;
-    }
-  else if ([links count] == 0)
-    {
-      return nil;
-    }
-  else
-    {
-      [[[links lastObject] destination] activate];
-      return [[links lastObject] destination];
-    }
+	
+	[editor activate];
+	RELEASE((NSObject *)editor);
+	
+	return editor;
+  } else if ([links count] == 0) {
+	return nil;
+  } else {
+	[(id<IBEditors>)[[links lastObject] destination] activate];
+	return [[links lastObject] destination];
+  }
 }
 
 /**
@@ -1625,34 +1567,30 @@ static NSImage  *fileImage = nil;
  */
 - (void) closeAllEditors
 {
-  NSEnumerator		*enumerator;
-  id<IBConnectors>	con;
-  NSMutableArray        *editors = [NSMutableArray array];
-
-  // remove the editor connections from the connection array...
-  enumerator = [connections objectEnumerator];
-  while ((con = [enumerator nextObject]) != nil)
-    {
-      if ([con isKindOfClass: [GormObjectToEditor class]])
-	{
-	  [editors addObject: con];
+	NSEnumerator		*enumerator;
+	id<IBConnectors>	con;
+	NSMutableArray        *editors = [NSMutableArray array];
+	
+	// remove the editor connections from the connection array...
+	enumerator = [connections objectEnumerator];
+	while ((con = [enumerator nextObject]) != nil) {
+		if ([con isKindOfClass: [GormObjectToEditor class]]) {
+			[editors addObject: con];
+		} else if ([con isKindOfClass: [GormEditorToParent class]]) {
+			[editors addObject: con];
+		}
 	}
-      else if ([con isKindOfClass: [GormEditorToParent class]])
-	{
-	  [editors addObject: con];
-	}
-    }
-  [connections removeObjectsInArray: editors];
-  [editors removeAllObjects];
-
-  // Close all of the editors & get all of the objects out.
-  // copy the array, since the close method calls editor:didCloseForObject:
-  // and would effect the array during the execution of 
-  // makeObjectsPerformSelector:.
-  [editors addObjectsFromArray: openEditors];
-  [editors makeObjectsPerformSelector: @selector(close)]; 
-  [openEditors removeAllObjects];
-  [editors removeAllObjects];
+	[connections removeObjectsInArray: editors];
+	[editors removeAllObjects];
+	
+	// Close all of the editors & get all of the objects out.
+	// copy the array, since the close method calls editor:didCloseForObject:
+	// and would effect the array during the execution of
+	// makeObjectsPerformSelector:.
+	[editors addObjectsFromArray: openEditors];
+	[editors makeObjectsPerformSelector: @selector(close)];
+	[openEditors removeAllObjects];
+	[editors removeAllObjects];
 }
 
 static void _real_close(GormDocument *self,
@@ -1903,26 +1841,24 @@ static void _real_close(GormDocument *self,
  */
 - (void) rebuildObjToNameMapping
 {
-  NSEnumerator  *enumerator;
-  NSString	*name;
-
-  NSDebugLog(@"------ Rebuilding object to name mapping...");
-  NSResetMapTable(objToName);
-  NSMapInsert(objToName, (void*)filesOwner, (void*)@"NSOwner");
-  NSMapInsert(objToName, (void*)firstResponder, (void*)@"NSFirst");
-  enumerator = [[nameTable allKeys] objectEnumerator];
-  while ((name = [enumerator nextObject]) != nil)
-    {
-      id obj = [nameTable objectForKey: name];
-      
-      NSDebugLog(@"%@ --> %@",name, obj);
-
-      NSMapInsert(objToName, (void*)obj, (void*)name);
-      if (([obj isKindOfClass: [NSMenu class]] && [name isEqual: @"NSMenu"]) || [obj isKindOfClass: [NSWindow class]])
-	{
-	  [[self openEditorForObject: obj] activate];
+	NSEnumerator  *enumerator;
+	NSString	*name;
+	
+	NSDebugLog(@"------ Rebuilding object to name mapping...");
+	NSResetMapTable(objToName);
+	NSMapInsert(objToName, (void*)filesOwner, (void*)@"NSOwner");
+	NSMapInsert(objToName, (void*)firstResponder, (void*)@"NSFirst");
+	enumerator = [[nameTable allKeys] objectEnumerator];
+	while ((name = [enumerator nextObject]) != nil) {
+		id obj = [nameTable objectForKey: name];
+		
+		NSDebugLog(@"%@ --> %@",name, obj);
+		
+		NSMapInsert(objToName, (void*)obj, (void*)name);
+		if (([obj isKindOfClass: [NSMenu class]] && [name isEqual: @"NSMenu"]) || [obj isKindOfClass: [NSWindow class]]) {
+			[[self openEditorForObject: obj] activate];
+		}
 	}
-    }
 }
 
 /**
@@ -1930,22 +1866,20 @@ static void _real_close(GormDocument *self,
  */
 - (id<IBEditors>) openEditorForObject: (id)anObject
 {
-  id<IBEditors>	e = [self editorForObject: anObject create: YES];
-  id<IBEditors, IBSelectionOwners> p = [self parentEditorForEditor: e];
-  
-  if (p != nil && p != objectsView)
-    {
-      [self openEditorForObject: [p editedObject]];
-    }
-
-  // prevent bringing front of menus before they've been properly sized.
-  if([anObject isKindOfClass: [NSMenu class]] == NO) 
-    {
-      [e orderFront];
-      [[e window] makeKeyAndOrderFront: self];
-    }
-
-  return e;
+	id<IBEditors>	e = [self editorForObject: anObject create: YES];
+	id<IBEditors, IBSelectionOwners> p = [self parentEditorForEditor: e];
+	
+	if (p != nil && p != objectsView) {
+		[self openEditorForObject: [p editedObject]];
+	}
+	
+	// prevent bringing front of menus before they've been properly sized.
+	if([anObject isKindOfClass: [NSMenu class]] == NO) {
+		[e orderFront];
+		[[e window] makeKeyAndOrderFront: self];
+	}
+	
+	return e;
 }
 
 /**
@@ -1969,89 +1903,81 @@ static void _real_close(GormDocument *self,
  */
 - (id) parentOfObject: (id)anObject
 {
-  NSArray		*old;
-  id<IBConnectors>	con;
-
-  old = [self connectorsForSource: anObject ofClass: [NSNibConnector class]];
-  con = [old lastObject];
-  if ([con destination] != filesOwner && [con destination] != firstResponder)
-    {
-      return [con destination];
-    }
-  return nil;
+	NSArray				*old;
+	id<IBConnectors>	con;
+	
+	old = [self connectorsForSource: anObject ofClass: [NSNibConnector class]];
+	con = [old lastObject];
+	if ([con destination] != filesOwner && [con destination] != firstResponder) {
+		return [con destination];
+	}
+	return nil;
 }
 
 /**
- * Paste objects of aType into the document from aPasteboard 
+ * Paste objects of aType into the document from aPasteboard
  * with parent as the parent of the objects.
  */
 - (NSArray*) pasteType: (NSString*)aType
         fromPasteboard: (NSPasteboard*)aPasteboard
                 parent: (id)parent
 {
-  NSData	*data;
-  NSArray	*objects;
-  NSEnumerator	*enumerator;
-  NSPoint	filePoint;
-  NSPoint	screenPoint;
-  NSUnarchiver *u;
-
-  data = [aPasteboard dataForType: aType];
-  if (data == nil)
-    {
-      NSDebugLog(@"Pasteboard %@ doesn't contain data of %@", aPasteboard, aType);
-      return nil;
-    }
-  u = AUTORELEASE([[NSUnarchiver alloc] initForReadingWithData: data]);
-  [u decodeClassName: @"GSCustomView" 
-     asClassName: @"GormCustomView"];
-  objects = [u decodeObject];
-  enumerator = [objects objectEnumerator];
-  filePoint = [[self window] mouseLocationOutsideOfEventStream];
-  screenPoint = [[self window] convertBaseToScreen: filePoint];
-
-  /*
-   * Windows and panels are a special case - for a multiple window paste,
-   * the windows need to be positioned so they are not on top of each other.
-   */
-  if ([aType isEqualToString: IBWindowPboardType])
-    {
-      NSWindow	*win;
-
-      while ((win = [enumerator nextObject]) != nil)
-	{
-	  [win setFrameTopLeftPoint: screenPoint];
-	  screenPoint.x += 10;
-	  screenPoint.y -= 10;
+	NSData		*data;
+	NSArray		*objects;
+	NSEnumerator	*enumerator;
+	NSPoint		filePoint;
+	NSPoint		screenPoint;
+	NSUnarchiver	*u;
+	
+	data = [aPasteboard dataForType: aType];
+	if (data == nil) {
+		NSDebugLog(@"Pasteboard %@ doesn't contain data of %@", aPasteboard, aType);
+		return nil;
 	}
-    }
-  else if([aType isEqualToString: IBViewPboardType]) 
-    {
-      NSEnumerator *enumerator = [objects objectEnumerator];
-      NSRect frame;
-      id obj;
-
-      while ((obj = [enumerator nextObject]) != nil)
-      {
-	// check to see if the object has a frame.  If so, then
-	// modify it.  If not, simply iterate to the next object
-	if([obj respondsToSelector: @selector(frame)]
-	   && [obj respondsToSelector: @selector(setFrame:)])
-	  {
-	    frame = [obj frame];
-	    frame.origin.x -= 6;
-	    frame.origin.y -= 6;
-	    [obj setFrame: frame];
-	    RETAIN(obj);
-	  }
-      } 
-    }
-
-  // attach the objects to the parent and touch the document.
-  [self attachObjects: objects toParent: parent];
-  [self touch];
-
-  return objects;
+	u = AUTORELEASE([[NSUnarchiver alloc] initForReadingWithData: data]);
+	[u decodeClassName: @"GSCustomView"
+		   asClassName: @"GormCustomView"];
+	objects = [u decodeObject];
+	enumerator = [objects objectEnumerator];
+	filePoint = [[self window] mouseLocationOutsideOfEventStream];
+	screenPoint = [[self window] convertBaseToScreen: filePoint];
+	
+	/*
+	 * Windows and panels are a special case - for a multiple window paste,
+	 * the windows need to be positioned so they are not on top of each other.
+	 */
+	if ([aType isEqualToString: IBWindowPboardType]) {
+		NSWindow	*win;
+		
+		while ((win = [enumerator nextObject]) != nil) {
+			[win setFrameTopLeftPoint: screenPoint];
+			screenPoint.x += 10;
+			screenPoint.y -= 10;
+		}
+	} else if ([aType isEqualToString: IBViewPboardType]) {
+		NSEnumerator *enumerator = [objects objectEnumerator];
+		NSRect frame;
+		id obj;
+		
+		while ((obj = [enumerator nextObject]) != nil) {
+			// check to see if the object has a frame.  If so, then
+			// modify it.  If not, simply iterate to the next object
+			if([obj respondsToSelector: @selector(frame)]
+			   && [obj respondsToSelector: @selector(setFrame:)]) {
+				frame = [obj frame];
+				frame.origin.x -= 6;
+				frame.origin.y -= 6;
+				[obj setFrame: frame];
+				RETAIN(obj);
+			}
+		}
+	}
+	
+	// attach the objects to the parent and touch the document.
+	[self attachObjects: objects toParent: parent];
+	[self touch];
+	
+	return objects;
 }
 
 /**
@@ -2060,21 +1986,21 @@ static void _real_close(GormDocument *self,
  */
 - (void) removeConnector: (id<IBConnectors>)aConnector
 {
-  NSNotificationCenter	*nc = [NSNotificationCenter defaultCenter];
-
-  RETAIN(aConnector); // prevent it from being dealloc'd until the notification is done.
-  // issue pre notification..
- [nc postNotificationName: IBWillRemoveConnectorNotification
-      object: aConnector];
-
-  // mark the document as changed.
-  [self touch];
-
-  // issue post notification..
-  [connections removeObjectIdenticalTo: aConnector];
-  [nc postNotificationName: IBDidRemoveConnectorNotification
-      object: aConnector];
-  RELEASE(aConnector); // NOW we can dealloc it.
+	NSNotificationCenter	*nc = [NSNotificationCenter defaultCenter];
+	
+	RETAIN(aConnector); // prevent it from being dealloc'd until the notification is done.
+	// issue pre notification..
+	[nc postNotificationName: IBWillRemoveConnectorNotification
+					  object: aConnector];
+	
+	// mark the document as changed.
+	[self touch];
+	
+	// issue post notification..
+	[connections removeObjectIdenticalTo: aConnector];
+	[nc postNotificationName: IBDidRemoveConnectorNotification
+					  object: aConnector];
+	RELEASE(aConnector); // NOW we can dealloc it.
 }
 
 /**
@@ -2085,28 +2011,25 @@ static void _real_close(GormDocument *self,
  */
 - (void) resignSelectionForEditor: (id<IBEditors>)editor
 {
-  NSEnumerator		*enumerator = [connections objectEnumerator];
-  Class			editClass = [GormObjectToEditor class];
-  id<IBConnectors>	c;
-
-  while ((c = [enumerator nextObject]) != nil)
-    {
-      if ([c class] == editClass)
-	{
-	  id<IBEditors>	e = [c destination];
-
-	  if (e != editor && [e wantsSelection])
-	    {
-	      [e activate];
-	      [self setSelectionFromEditor: e];
-	      return;
-	    }
+	NSEnumerator		*enumerator = [connections objectEnumerator];
+	Class				editClass = [GormObjectToEditor class];
+	id<IBConnectors>	c;
+	
+	while ((c = [enumerator nextObject]) != nil) {
+		if ([c class] == editClass) {
+			id<IBEditors>	e = [c destination];
+			
+			if (e != editor && [e wantsSelection]) {
+				[e activate];
+				[self setSelectionFromEditor: e];
+				return;
+			}
+		}
 	}
-    }
-  /*
-   * No editor available to take the selection - set a nil owner.
-   */
-  [self setSelectionFromEditor: nil];
+	/*
+	 * No editor available to take the selection - set a nil owner.
+	 */
+	[self setSelectionFromEditor: nil];
 }
 
 /**
@@ -2115,117 +2038,96 @@ static void _real_close(GormDocument *self,
  */
 - (void) setName: (NSString*)aName forObject: (id)object
 {
-  id		       oldObject = nil;
-  NSString	      *oldName = nil;
-  NSMutableDictionary *cc = [classManager customClassMap];
-  NSString            *className = nil;
-
-  if (object == nil)
-    {
-      NSDebugLog(@"Attempt to set name for nil object");
-      return;
-    }
-
-  if (aName == nil)
-    {
-      /*
-       * No name given - so we must generate one unless we already have one.
-       */
-      oldName = [self nameForObject: object];
-      if (oldName == nil)
-	{
-	  NSString	*base;
-	  unsigned	i = 0;
-
-	  /*
-	   * Generate a sensible name for the object based on its class.
-	   */
-	  if ([object isKindOfClass: [GSNibItem class]])
-	    {
-	      // use the actual class name for proxies
-	      base = [(id)object className];
-	    }
-	  else
-	    {
-	      base = NSStringFromClass([object class]);
-	    }
-
-	  // pare down the name, if we're generating it.
-	  if ([base hasPrefix: @"Gorm"])
-	    {
-	      base = [base substringFromIndex: 4];
-	    }
-	  if ([base hasPrefix: @"NS"] || [base hasPrefix: @"GS"])
-	    {
-	      base = [base substringFromIndex: 2];
-	    }
-
-	  aName = [base stringByAppendingFormat: @"(%u)", i];
-	  while ([nameTable objectForKey: aName] != nil)
-	    {
-	      aName = [base stringByAppendingFormat: @"(%u)", ++i];
-	    }
+	id		       oldObject = nil;
+	NSString	      *oldName = nil;
+	NSMutableDictionary *cc = [classManager customClassMap];
+	NSString            *className = nil;
+	
+	if (object == nil) {
+		NSDebugLog(@"Attempt to set name for nil object");
+		return;
 	}
-      else
-	{
-	  return; /* Already named ... nothing to do */
+	
+	if (aName == nil) {
+		/*
+		 * No name given - so we must generate one unless we already have one.
+		 */
+		oldName = [self nameForObject: object];
+		if (oldName == nil) {
+			NSString	*base;
+			unsigned	i = 0;
+			
+			/*
+			 * Generate a sensible name for the object based on its class.
+			 */
+			if ([object isKindOfClass: [GSNibItem class]]) {
+				// use the actual class name for proxies
+				base = [(id)object className];
+			} else {
+				base = NSStringFromClass([object class]);
+			}
+			
+			// pare down the name, if we're generating it.
+			if ([base hasPrefix: @"Gorm"]) {
+				base = [base substringFromIndex: 4];
+			}
+			if ([base hasPrefix: @"NS"] || [base hasPrefix: @"GS"]) {
+				base = [base substringFromIndex: 2];
+			}
+			
+			aName = [base stringByAppendingFormat: @"(%u)", i];
+			while ([nameTable objectForKey: aName] != nil) {
+				aName = [base stringByAppendingFormat: @"(%u)", ++i];
+			}
+		} else {
+			return; /* Already named ... nothing to do */
+		}
+	} else { // user supplied a name...
+		oldObject = [nameTable objectForKey: aName];
+		if (oldObject != nil) {
+			NSDebugLog(@"Attempt to re-use name '%@'", aName);
+			return;
+		}
+		oldName = [self nameForObject: object];
+		if (oldName != nil) {
+			if ([oldName isEqual: aName]) {
+				return; /* Already have this name ... nothing to do */
+			}
+			[nameTable removeObjectForKey: oldName];
+			NSMapRemove(objToName, (void*)object);
+		}
 	}
-    }
-  else // user supplied a name...
-    {
-      oldObject = [nameTable objectForKey: aName];
-      if (oldObject != nil)
-	{
-	  NSDebugLog(@"Attempt to re-use name '%@'", aName);
-	  return;
+	
+	// add it to the dictionary.
+	[nameTable setObject: object forKey: aName];
+	NSMapInsert(objToName, (void*)object, (void*)aName);
+	if (oldName != nil) {
+		RETAIN(oldName); // hold on to this temporarily...
+		[nameTable removeObjectForKey: oldName];
 	}
-      oldName = [self nameForObject: object];
-      if (oldName != nil)
-	{
-	  if ([oldName isEqual: aName])
-	    {
-	      return; /* Already have this name ... nothing to do */
-	    }
-	  [nameTable removeObjectForKey: oldName];
-	  NSMapRemove(objToName, (void*)object);
+	if ([objectsView containsObject: object]) {
+		[objectsView refreshCells];
 	}
-    }
-
-  // add it to the dictionary.
-  [nameTable setObject: object forKey: aName];
-  NSMapInsert(objToName, (void*)object, (void*)aName);
-  if (oldName != nil)
-    {
-      RETAIN(oldName); // hold on to this temporarily...
-      [nameTable removeObjectForKey: oldName];
-    }
-  if ([objectsView containsObject: object])
-    {
-      [objectsView refreshCells];
-    }
-
-  // check the custom classes map and replace the appropriate
-  // object, if a mapping exists.
-  if (cc != nil)
-    {
-      className = [cc objectForKey: oldName];
-      if (className != nil)
-	{
-          RETAIN(className);
-	  [cc removeObjectForKey: oldName];
-	  [cc setObject: className forKey: aName]; 
-	  RELEASE(className);
+	
+	// check the custom classes map and replace the appropriate
+	// object, if a mapping exists.
+	if (cc != nil) {
+		className = [cc objectForKey: oldName];
+		if (className != nil) {
+			RETAIN(className);
+			[cc removeObjectForKey: oldName];
+			[cc setObject: className forKey: aName];
+			RELEASE(className);
+		}
 	}
-    }
-
-  // release oldName, if we get to this point.
-  if(oldName != nil)
-    {
-      RELEASE(oldName);
-    }
-
-  // touch the document...
-  [self touch];
+	
+	// release oldName, if we get to this point.
+	if(oldName != nil) {
+		RELEASE(oldName);
+	}
+	
+	// touch the document...
+	[self touch];
 }
 
 /**
@@ -2233,14 +2135,11 @@ static void _real_close(GormDocument *self,
  */
 - (void) setObject: (id)anObject isVisibleAtLaunch: (BOOL)flag
 {
-  if (flag)
-    {
-      [visibleWindows addObject: anObject];
-    }
-  else
-    {
-      [visibleWindows removeObject: anObject];
-    }
+	if (flag) {
+		[visibleWindows addObject: anObject];
+	} else {
+		[visibleWindows removeObject: anObject];
+	}
 }
 
 /**
@@ -2248,7 +2147,7 @@ static void _real_close(GormDocument *self,
  */
 - (BOOL) objectIsVisibleAtLaunch: (id)anObject
 {
-  return [visibleWindows containsObject: anObject];
+	return [visibleWindows containsObject: anObject];
 }
 
 /**
@@ -2256,14 +2155,11 @@ static void _real_close(GormDocument *self,
  */
 - (void) setObject: (id)anObject isDeferred: (BOOL)flag
 {
-  if (flag)
-    {
-      [deferredWindows addObject: anObject];
-    }
-  else
-    {
-      [deferredWindows removeObject: anObject];
-    }
+	if (flag) {
+		[deferredWindows addObject: anObject];
+	} else {
+		[deferredWindows removeObject: anObject];
+	}
 }
 
 /**
@@ -2271,7 +2167,7 @@ static void _real_close(GormDocument *self,
  */
 - (BOOL) objectIsDeferred: (id)anObject
 {
-  return [deferredWindows containsObject: anObject];
+	return [deferredWindows containsObject: anObject];
 }
 
 // windows / services menus...
@@ -2281,14 +2177,11 @@ static void _real_close(GormDocument *self,
  */
 - (void) setWindowsMenu: (NSMenu *)anObject 
 {
-  if(anObject != nil)
-    {
-      [nameTable setObject: anObject forKey: @"NSWindowsMenu"];
-    }
-  else
-    {
-      [nameTable removeObjectForKey: @"NSWindowsMenu"];
-    }
+	if (anObject != nil) {
+		[nameTable setObject: anObject forKey: @"NSWindowsMenu"];
+	} else {
+		[nameTable removeObjectForKey: @"NSWindowsMenu"];
+	}
 }
 
 /**
@@ -2296,7 +2189,7 @@ static void _real_close(GormDocument *self,
  */ 
 - (NSMenu *) windowsMenu
 {
-  return [nameTable objectForKey: @"NSWindowsMenu"];
+	return [nameTable objectForKey: @"NSWindowsMenu"];
 }
 
 /**
@@ -2304,14 +2197,11 @@ static void _real_close(GormDocument *self,
  */
 - (void) setServicesMenu: (NSMenu *)anObject
 {
-  if(anObject != nil)
-    {
-      [nameTable setObject: anObject forKey: @"NSServicesMenu"];
-    }
-  else
-    {
-      [nameTable removeObjectForKey: @"NSServicesMenu"];
-    }
+	if (anObject != nil) {
+		[nameTable setObject: anObject forKey: @"NSServicesMenu"];
+	} else {
+		[nameTable removeObjectForKey: @"NSServicesMenu"];
+	}
 }
 
 /**
@@ -2319,7 +2209,7 @@ static void _real_close(GormDocument *self,
  */
 - (NSMenu *) servicesMenu
 {
-  return [nameTable objectForKey: @"NSServicesMenu"];
+	return [nameTable objectForKey: @"NSServicesMenu"];
 }
 
 /**
@@ -2327,14 +2217,11 @@ static void _real_close(GormDocument *self,
  */
 - (void) setRecentDocumentsMenu: (NSMenu *)anObject 
 {
-  if(anObject != nil)
-    {
-      [nameTable setObject: anObject forKey: @"NSRecentDocumentsMenu"];
-    }
-  else
-    {
-      [nameTable removeObjectForKey: @"NSRecentDocumentsMenu"];
-    }
+	if (anObject != nil) {
+		[nameTable setObject: anObject forKey: @"NSRecentDocumentsMenu"];
+	} else {
+		[nameTable removeObjectForKey: @"NSRecentDocumentsMenu"];
+	}
 }
 
 /**
@@ -2342,7 +2229,7 @@ static void _real_close(GormDocument *self,
  */ 
 - (NSMenu *) recentDocumentsMenu
 {
-  return [nameTable objectForKey: @"NSRecentDocumentsMenu"];
+	return [nameTable objectForKey: @"NSRecentDocumentsMenu"];
 }
 
 /**
@@ -2351,64 +2238,53 @@ static void _real_close(GormDocument *self,
  */
 - (void) setDocumentActive: (BOOL)flag
 {
-  if (flag != isActive && isDocumentOpen)
-    {
-      NSEnumerator	*enumerator;
-      id		obj;
-
-      // stop all connection activities.
-      [(id<Gorm>)NSApp stopConnecting];
-
-      enumerator = [nameTable objectEnumerator];
-      if (flag)
-	{
-	  GormDocument *document = (GormDocument*)[(id<IB>)NSApp activeDocument];
-
-	  // set the current document active and unset the old one.
-	  [document setDocumentActive: NO];
-	  isActive = YES;
-
-	  // display everything.
-	  while ((obj = [enumerator nextObject]) != nil)
-	    {
-	      NSString *name = [document nameForObject: obj];
-	      if ([obj isKindOfClass: [NSWindow class]])
-		{
-		  [obj orderFront: self];
+	if (flag != isActive && isDocumentOpen) {
+		NSEnumerator	*enumerator;
+		id		obj;
+		
+		// stop all connection activities.
+		[(id<Gorm>)NSApp stopConnecting];
+		
+		enumerator = [nameTable objectEnumerator];
+		if (flag) {
+			GormDocument *document = (GormDocument*)[(id<IB>)NSApp activeDocument];
+			
+			// set the current document active and unset the old one.
+			[document setDocumentActive: NO];
+			isActive = YES;
+			
+			// display everything.
+			while ((obj = [enumerator nextObject]) != nil)
+			{
+				NSString *name = [document nameForObject: obj];
+				if ([obj isKindOfClass: [NSWindow class]]) {
+					[obj orderFront: self];
+				} else if ([obj isKindOfClass: [NSMenu class]] &&
+						   [name isEqual: @"NSMenu"]) {
+					[obj display];
+				}
+			}
+			
+			//
+			// Reset the selection to the current selection held by the current
+			// selection owner of this document when the document becomes active.
+			// This allows the app to switch to the correct inspector when the new
+			// document is selected.
+			//
+			[self setSelectionFromEditor: lastEditor];
+		} else {
+			isActive = NO;
+			while ((obj = [enumerator nextObject]) != nil) {
+				if ([obj isKindOfClass: [NSWindow class]]) {
+					[obj orderOut: self];
+				} else if ([obj isKindOfClass: [NSMenu class]]  &&
+						   [[self nameForObject: obj] isEqual: @"NSMenu"]) {
+					[obj close];
+				}
+			}
+			[self setSelectionFromEditor: nil];
 		}
-	      else if ([obj isKindOfClass: [NSMenu class]] && 
-		       [name isEqual: @"NSMenu"])
-		{
-		  [obj display];
-		}
-	    }
-
-	  //
-	  // Reset the selection to the current selection held by the current
-	  // selection owner of this document when the document becomes active.
-	  // This allows the app to switch to the correct inspector when the new
-	  // document is selected.
-	  //
-	  [self setSelectionFromEditor: lastEditor];
 	}
-      else
-	{
-	  isActive = NO;
-	  while ((obj = [enumerator nextObject]) != nil)
-	    {
-	      if ([obj isKindOfClass: [NSWindow class]])
-		{
-		  [obj orderOut: self];
-		}
-	      else if ([obj isKindOfClass: [NSMenu class]]  &&
-		       [[self nameForObject: obj] isEqual: @"NSMenu"])
-		{
-		  [obj close];
-		}
-	    }
-	  [self setSelectionFromEditor: nil];
-	}
-    }
 }
 
 /**
@@ -2417,18 +2293,17 @@ static void _real_close(GormDocument *self,
  */
 - (void) setSelectionFromEditor: (id<IBEditors>)anEditor
 {
-  NSNotificationCenter	*nc = [NSNotificationCenter defaultCenter];
-
-  NSDebugLog(@"setSelectionFromEditor %@", anEditor);
-  ASSIGN(lastEditor, anEditor);
-  [(id<Gorm>)NSApp stopConnecting]; // cease any connection
-  if ([(NSObject *)anEditor respondsToSelector: @selector(window)])
-    {
-      [[anEditor window] makeKeyWindow];
-      [[anEditor window] makeFirstResponder: (id)anEditor];
-    }
-  [nc postNotificationName: IBSelectionChangedNotification
-		    object: anEditor];
+	NSNotificationCenter	*nc = [NSNotificationCenter defaultCenter];
+	
+	NSDebugLog(@"setSelectionFromEditor %@", anEditor);
+	ASSIGN(lastEditor, anEditor);
+	[(id<Gorm>)NSApp stopConnecting]; // cease any connection
+	if ([(NSObject *)anEditor respondsToSelector: @selector(window)]) {
+		[[anEditor window] makeKeyWindow];
+		[[anEditor window] makeFirstResponder: (id)anEditor];
+	}
+	[nc postNotificationName: IBSelectionChangedNotification
+					  object: anEditor];
 }
 
 /**
@@ -2436,7 +2311,7 @@ static void _real_close(GormDocument *self,
  */
 - (void) touch
 {
-  [self updateChangeCount: NSChangeDone];
+	[self updateChangeCount: NSChangeDone];
 }
 
 /**
@@ -2444,107 +2319,90 @@ static void _real_close(GormDocument *self,
  */
 - (NSWindow*) windowAndRect: (NSRect*)r forObject: (id)object
 {
-  /*
-   * Get the window and rectangle for which link markup should be drawn.
-   */
-  if ([objectsView containsObject: object])
-    {
-      /*
-       * objects that exist in the document objects view must have their link
-       * markup drawn there, so we ask the view for the required rectangle.
-       */
-      *r = [objectsView rectForObject: object];
-      return [objectsView window];
-    }
-  else if ([object isKindOfClass: [NSMenuItem class]])
-    {
-      NSArray	*links;
-      NSMenu	*menu;
-      id	editor;
-
-      /*
-       * Menu items must have their markup drawn in the window of the
-       * editor of the parent menu.
-       */
-      links = [self connectorsForSource: object
-				ofClass: [NSNibConnector class]];
-      menu = [[links lastObject] destination];
-      editor = [self editorForObject: menu create: NO];
-      *r = [editor rectForObject: object];
-      return [editor window];
-    }
-  else if ([object isKindOfClass: [NSView class]])
-    {
-      /*
-       * Normal view objects just get link markup drawn on them.
-       */
-      id temp = object;
-      id editor = [self editorForObject: temp create: NO];
-      
-      while ((temp != nil) && (editor == nil))
-	{
-	  temp = [temp superview];
-	  editor = [self editorForObject: temp create: NO];
+	/*
+	 * Get the window and rectangle for which link markup should be drawn.
+	 */
+	if ([objectsView containsObject: object]) {
+		/*
+		 * objects that exist in the document objects view must have their link
+		 * markup drawn there, so we ask the view for the required rectangle.
+		 */
+		*r = [objectsView rectForObject: object];
+		return [objectsView window];
+	} else if ([object isKindOfClass: [NSMenuItem class]]) {
+		NSArray	*links;
+		NSMenu	*menu;
+		id	editor;
+		
+		/*
+		 * Menu items must have their markup drawn in the window of the
+		 * editor of the parent menu.
+		 */
+		links = [self connectorsForSource: object
+								  ofClass: [NSNibConnector class]];
+		menu = [[links lastObject] destination];
+		editor = [self editorForObject: menu create: NO];
+		*r = [editor rectForObject: object];
+		return [editor window];
+	} else if ([object isKindOfClass: [NSView class]]) {
+		/*
+		 * Normal view objects just get link markup drawn on them.
+		 */
+		id temp = object;
+		id editor = [self editorForObject: temp create: NO];
+		
+		while ((temp != nil) && (editor == nil)) {
+			temp = [temp superview];
+			editor = [self editorForObject: temp create: NO];
+		}
+		
+		if (temp == nil){
+			*r = [object convertRect: [object bounds] toView: nil];
+		} else if ([editor respondsToSelector:
+					@selector(windowAndRect:forObject:)]) {
+			return [editor windowAndRect: r forObject: object];
+		}
+	} else if ([object isKindOfClass: [NSTableColumn class]]) {
+		NSTableView *tv = (NSTableView *)[[(NSTableColumn*)object dataCell] controlView];
+		NSTableHeaderView *th =  [tv headerView];
+		NSUInteger index;
+		
+		if (th == nil || tv == nil) {
+			NSDebugLog(@"fail 1 %@ %@ %@", [(NSTableColumn*)object headerCell], th, tv);
+			*r = NSZeroRect;
+			return nil;
+		}
+		
+		index = [[tv tableColumns] indexOfObject: object];
+		
+		if (index == NSNotFound) {
+			NSDebugLog(@"fail 2");
+			*r = NSZeroRect;
+			return nil;
+		}
+		
+		*r = [th convertRect: [th headerRectOfColumn: index]
+					  toView: nil];
+		return [th window];
+	} else if([object isKindOfClass: [NSCell class]]) {
+		NSCell *cell = object;
+		NSView *control = [cell controlView];
+		
+		if ([control isKindOfClass: [NSMatrix class]]) {
+			NSInteger row, col;
+			NSMatrix *matrix = (NSMatrix *)control;
+			
+			if ([matrix getRow: &row column: &col ofCell: cell]) {
+				NSRect cellFrame = [matrix cellFrameAtRow: row column: col];
+				*r = [control convertRect: cellFrame toView: nil];
+				return [control window];
+			}
+		}
 	}
-
-      if (temp == nil)
-	{
-	  *r = [object convertRect: [object bounds] toView: nil];
-	}
-      else if ([editor respondsToSelector: 
-			 @selector(windowAndRect:forObject:)])
-	{
-	  return [editor windowAndRect: r forObject: object];
-	}
-    }
-  else if ([object isKindOfClass: [NSTableColumn class]])
-    {
-      NSTableView *tv = (NSTableView *)[[(NSTableColumn*)object dataCell] controlView];
-      NSTableHeaderView *th =  [tv headerView];
-      NSUInteger index;
-
-      if (th == nil || tv == nil)
-	{
-	  NSDebugLog(@"fail 1 %@ %@ %@", [(NSTableColumn*)object headerCell], th, tv);
-	  *r = NSZeroRect;
-	  return nil;
-	}
-      
-      index = [[tv tableColumns] indexOfObject: object];
-
-      if (index == NSNotFound)
-	{
-	  NSDebugLog(@"fail 2");
-	  *r = NSZeroRect;
-	  return nil;
-	}
-      
-      *r = [th convertRect: [th headerRectOfColumn: index]
-	       toView: nil];
-      return [th window];
-    }
-  else if([object isKindOfClass: [NSCell class]])
-    {
-      NSCell *cell = object;
-      NSView *control = [cell controlView];
-
-      if ([control isKindOfClass: [NSMatrix class]])
-        {
-          NSInteger row, col;
-          NSMatrix *matrix = (NSMatrix *)control;
-
-          if ([matrix getRow: &row column: &col ofCell: cell])
-            {
-              NSRect cellFrame = [matrix cellFrameAtRow: row column: col];
-              *r = [control convertRect: cellFrame toView: nil];
-              return [control window];
-            }
-        }
-    }
-
-  // if we get here, then it wasn't any of the above.
-  *r = NSZeroRect;
-  return nil;
+	
+	// if we get here, then it wasn't any of the above.
+	*r = NSZeroRect;
+	return nil;
 }
 
 /**
@@ -2561,97 +2419,84 @@ static void _real_close(GormDocument *self,
  * (paramter name) class name (parameter className). 
  */
 - (BOOL) removeConnectionsWithLabel: (NSString *)name
-		      forClassNamed: (NSString *)className
-			   isAction: (BOOL)action
+					  forClassNamed: (NSString *)className
+						   isAction: (BOOL)action
 {
-  NSEnumerator *en = [connections objectEnumerator];
-  NSMutableArray *removedConnections = [NSMutableArray array];
-  id<IBConnectors> c = nil;
-  BOOL removed = YES;
-  BOOL prompted = NO;
-
-  // find connectors to be removed.
-  while ((c = [en nextObject]) != nil)
-    {
-      id proxy = nil;
-      NSString *proxyClass = nil;
-      NSString *label = [c label];
-
-      if(label == nil)
-	continue;
-
-      if (action)
-	{
-	  if (![label hasSuffix: @":"]) 
-	    continue;
-
-	  if (![classManager isAction: label ofClass: className])
-	    continue;
-
-	  proxy = [c destination];
+	NSEnumerator *en = [connections objectEnumerator];
+	NSMutableArray *removedConnections = [NSMutableArray array];
+	id<IBConnectors> c = nil;
+	BOOL removed = YES;
+	BOOL prompted = NO;
+	
+	// find connectors to be removed.
+	while ((c = [en nextObject]) != nil) {
+		id proxy = nil;
+		NSString *proxyClass = nil;
+		NSString *label = [c label];
+		
+		if(label == nil)
+			continue;
+		
+		if (action) {
+			if (![label hasSuffix: @":"])
+				continue;
+			
+			if (![classManager isAction: label ofClass: className])
+				continue;
+			
+			proxy = [c destination];
+		} else {
+			if ([label hasSuffix: @":"])
+				continue;
+			
+			if (![classManager isOutlet: label ofClass: className])
+				continue;
+			
+			proxy = [c source];
+		}
+		
+		// get the class for the current connectors object
+		proxyClass = [proxy className];
+		
+		if ([label isEqualToString: name] && ([proxyClass isEqualToString: className] ||
+											  [classManager isSuperclass: className linkedToClass: proxyClass])) {
+			NSString *title;
+			NSString *msg;
+			NSInteger retval;
+			
+			if(prompted == NO) {
+				title = [NSString stringWithFormat:
+						 @"Modifying %@",(action==YES?@"Action":@"Outlet")];
+				msg = [NSString stringWithFormat:
+					   _(@"This will break all connections to '%@'.  Continue?"), name];
+				retval = NSRunAlertPanel(title, msg,_(@"OK"),_(@"Cancel"), nil, nil);
+				prompted = YES;
+			} else {
+				removed = NO;
+				break;
+			}
+			
+			if (retval == NSAlertDefaultReturn) {
+				removed = YES;
+				[removedConnections addObject: c];
+			} else {
+				removed = NO;
+				break;
+			}
+		}
 	}
-      else
-	{
-	  if ([label hasSuffix: @":"]) 
-	    continue;
-
-	  if (![classManager isOutlet: label ofClass: className])
-	    continue;
-
-	  proxy = [c source];
+	
+	// actually remove the connections.
+	if (removed) {
+		en = [removedConnections objectEnumerator];
+		while((c = [en nextObject]) != nil) {
+			[self removeConnector: c];
+		}
 	}
-      
-      // get the class for the current connectors object
-      proxyClass = [proxy className];
-
-      if ([label isEqualToString: name] && ([proxyClass isEqualToString: className] ||
-	  [classManager isSuperclass: className linkedToClass: proxyClass]))
-	{
-	  NSString *title;
-	  NSString *msg;
-	  NSInteger retval;
-
-	  if(prompted == NO)
-	    {
-	      title = [NSString stringWithFormat:
-				  @"Modifying %@",(action==YES?@"Action":@"Outlet")];
-	      msg = [NSString stringWithFormat:
-				_(@"This will break all connections to '%@'.  Continue?"), name];
-	      retval = NSRunAlertPanel(title, msg,_(@"OK"),_(@"Cancel"), nil, nil);
-	      prompted = YES;
-	    }
-	  else
-	    {
-		removed = NO;
-		break;
-	    }
-
-	  if (retval == NSAlertDefaultReturn)
-	    {
-	      removed = YES;
-	      [removedConnections addObject: c];
-	    }
-	  else
-	    {
-	      removed = NO;
-	      break;
-	    }
-	}
-    }
-
-  // actually remove the connections.
-  if(removed)
-    {
-      en = [removedConnections objectEnumerator];
-      while((c = [en nextObject]) != nil)
-	{
-	  [self removeConnector: c];
-	}
-    }
-
-  // done...
-  NSDebugLog(@"Removed references to %@ on %@", name, className);
-  return removed;
+	
+	// done...
+	NSDebugLog(@"Removed references to %@ on %@", name, className);
+	return removed;
 }
 
 /**
@@ -2659,60 +2504,53 @@ static void _real_close(GormDocument *self,
  */
 - (BOOL) removeConnectionsForClassNamed: (NSString *)className
 {
-  NSEnumerator *en = nil; 
-  id<IBConnectors> c = nil;
-  BOOL removed = YES;
-  NSInteger retval = -1;
-  NSString *title = [NSString stringWithFormat: _(@"Modifying Class")];
-  NSString *msg;
-
-  msg = [NSString stringWithFormat: _(@"This will break all connections to "
-    @"actions/outlets to instances of class '%@' and it's subclasses.  Continue?"), className];
-
-  // ask the user if he/she wants to continue...
-  retval = NSRunAlertPanel(title, msg,_(@"OK"),_(@"Cancel"), nil, nil);
-  if (retval == NSAlertDefaultReturn)
-    {
-      removed = YES;
-    }
-  else
-    {
-      removed = NO;
-    }
-
-  // remove all.
-  if(removed)
-    {
-      NSMutableArray *removedConnections = [NSMutableArray array];
-
-      // first find all of the connections...
-      en = [connections objectEnumerator];
-      while ((c = [en nextObject]) != nil)
-	{
-	  NSString *srcClass = [[c source] className];
-	  NSString *dstClass = [[c destination] className];
-
-	  if ([srcClass isEqualToString: className] ||
-	      [classManager isSuperclass: className linkedToClass: srcClass] ||
-	      [dstClass isEqualToString: className] ||
-	      [classManager isSuperclass: className linkedToClass: dstClass])
-	    {
-	      [removedConnections addObject: c];
-	    }
+	NSEnumerator *en = nil;
+	id<IBConnectors> c = nil;
+	BOOL removed = YES;
+	NSInteger retval = -1;
+	NSString *title = [NSString stringWithFormat: _(@"Modifying Class")];
+	NSString *msg;
+	
+	msg = [NSString stringWithFormat: _(@"This will break all connections to "
+										@"actions/outlets to instances of class '%@' and it's subclasses.  Continue?"), className];
+	
+	// ask the user if he/she wants to continue...
+	retval = NSRunAlertPanel(title, msg,_(@"OK"),_(@"Cancel"), nil, nil);
+	if (retval == NSAlertDefaultReturn) {
+		removed = YES;
+	} else {
+		removed = NO;
 	}
-
-      // then remove them.
-      en = [removedConnections objectEnumerator];
-      while((c = [en nextObject]) != nil)
-	{
-	  [self removeConnector: c];
+	
+	// remove all.
+	if (removed) {
+		NSMutableArray *removedConnections = [NSMutableArray array];
+		
+		// first find all of the connections...
+		en = [connections objectEnumerator];
+		while ((c = [en nextObject]) != nil) {
+			NSString *srcClass = [[c source] className];
+			NSString *dstClass = [[c destination] className];
+			
+			if ([srcClass isEqualToString: className] ||
+				[classManager isSuperclass: className linkedToClass: srcClass] ||
+				[dstClass isEqualToString: className] ||
+				[classManager isSuperclass: className linkedToClass: dstClass]) {
+				[removedConnections addObject: c];
+			}
+		}
+		
+		// then remove them.
+		en = [removedConnections objectEnumerator];
+		while ((c = [en nextObject]) != nil) {
+			[self removeConnector: c];
+		}
 	}
-    }
-  
-  // done...
-  NSDebugLog(@"Removed references to actions/outlets for objects of %@",
-    className);
-  return removed;
+	
+	// done...
+	NSDebugLog(@"Removed references to actions/outlets for objects of %@",
+			   className);
+	return removed;
 }
 
 /**
@@ -2721,49 +2559,40 @@ static void _real_close(GormDocument *self,
  */
 - (void) refreshConnectionsForClassNamed: (NSString *)className
 {
-  NSEnumerator *en = [connections objectEnumerator];
-  NSMutableArray *removedConnections = [NSMutableArray array];
-  id<IBConnectors> c = nil;
-  
-  // first find all of the connections...
-  while ((c = [en nextObject]) != nil)
-    {
-      NSString *srcClass = [[c source] className];
-      NSString *dstClass = [[c destination] className];
-      NSString *label = [c label];
-      
-      if ([srcClass isEqualToString: className] ||
-	  [classManager isSuperclass: className 
-			linkedToClass: srcClass])
-	{
-	  if([c isKindOfClass: [NSNibOutletConnector class]])
-	    {
-	      if([classManager outletExists: label onClassNamed: className] == NO)
-		{
-		  [removedConnections addObject: c];
-		}
-	    }	      
+	NSEnumerator *en = [connections objectEnumerator];
+	NSMutableArray *removedConnections = [NSMutableArray array];
+	id<IBConnectors> c = nil;
+	
+	// first find all of the connections...
+	while ((c = [en nextObject]) != nil) {
+		NSString *srcClass = [[c source] className];
+		NSString *dstClass = [[c destination] className];
+		NSString *label = [c label];
+		
+		if ([srcClass isEqualToString: className] ||
+			[classManager isSuperclass: className
+						 linkedToClass: srcClass]) {
+				if ([c isKindOfClass: [NSNibOutletConnector class]]) {
+					if([classManager outletExists: label onClassNamed: className] == NO) {
+						[removedConnections addObject: c];
+					}
+				}
+			} else if ([dstClass isEqualToString: className] ||
+					  [classManager isSuperclass: className
+								   linkedToClass: dstClass]) {
+						  if ([c isKindOfClass: [NSNibControlConnector class]]) {
+							  if ([classManager actionExists: label onClassNamed: className] == NO) {
+								  [removedConnections addObject: c];
+							  }
+						  }
+					  }
 	}
-      else if([dstClass isEqualToString: className] ||
-	      [classManager isSuperclass: className 
-			    linkedToClass: dstClass])
-	{
-	  if([c isKindOfClass: [NSNibControlConnector class]])
-	    {
-	      if([classManager actionExists: label onClassNamed: className] == NO)
-		{
-		  [removedConnections addObject: c];
-		}
-	    }
+	
+	// then remove them.
+	en = [removedConnections objectEnumerator];
+	while ((c = [en nextObject]) != nil) {
+		[self removeConnector: c];
 	}
-    }
-  
-  // then remove them.
-  en = [removedConnections objectEnumerator];
-  while((c = [en nextObject]) != nil)
-    {
-      [self removeConnector: c];
-    }
 }
 
 /**
@@ -3604,20 +3433,20 @@ static void _real_close(GormDocument *self,
  */
 - (void) reactivateEditors
 {
-  NSEnumerator		*enumerator;
-  id<IBConnectors>	con;
-
-  /*
-   * Restore editor links and reactivate the editors.
-   */
-  [connections addObjectsFromArray: savedEditors];
-  enumerator = [savedEditors objectEnumerator];
-  while ((con = [enumerator nextObject]) != nil)
-    {
-      if ([[con source] isKindOfClass: [NSView class]] == NO)
-	[[con destination] activate];
-    }
-  [savedEditors removeAllObjects];
+	NSEnumerator		*enumerator;
+	id<IBConnectors>	con;
+	
+	/*
+	 * Restore editor links and reactivate the editors.
+	 */
+	[connections addObjectsFromArray: savedEditors];
+	enumerator = [savedEditors objectEnumerator];
+	while ((con = [enumerator nextObject]) != nil) {
+		if ([[con source] isKindOfClass: [NSView class]] == NO) {
+			[(id<IBEditors>)[con destination] activate];
+		}
+	}
+	[savedEditors removeAllObjects];
 }
 
 - (void) setFileType: (NSString *)type

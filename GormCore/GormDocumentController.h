@@ -31,17 +31,14 @@
 
 #include <AppKit/NSDocumentController.h>
 
-typedef enum 
-{
+typedef NS_ENUM(NSInteger, GormDocumentType) {
   GormApplication = 0,
   GormEmpty = 1,
   GormInspector = 2,
   GormPalette = 3
-} GormDocumentType;
+};
 
 @interface GormDocumentController : NSDocumentController
-{
-}
 
 - (void) buildDocumentForType: (GormDocumentType)documentType;
 - (id) openDocumentWithContentsOfURL:(NSURL *)url;

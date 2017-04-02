@@ -35,6 +35,8 @@
 #include <GormCore/GormServer.h>
 
 #include <GNUstepBase/GSObjCRuntime.h>
+#include <GNUstepBase/GNUstep.h>
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 #include <GormPrefs/GormPrefController.h>
 
 @interface Gorm : NSApplication <IB, Gorm>
@@ -71,8 +73,12 @@
 - (void) handleNotification: (NSNotification*)aNotification;
 @end
 
+@interface Gorm () <NSApplicationDelegate>
+
+@end
+
 // Handle server protocol methods...
-@interface Gorm (GormServer) <GormServer>
+@interface Gorm () <GormServer>
 @end
 
 @implementation Gorm
@@ -87,100 +93,97 @@
 */
 - (id) init
 {
-  self = [super init];
-  if (self != nil)
-    {
-      NSNotificationCenter	*nc = [NSNotificationCenter defaultCenter];
-      NSNotificationCenter      *ndc = [NSDistributedNotificationCenter defaultCenter];
-      NSBundle			*bundle = [NSBundle mainBundle];
-      NSString			*path;
-      NSConnection              *conn = [NSConnection defaultConnection];
-
-      path = [bundle pathForImageResource: @"GormLinkImage"];
-      linkImage = [[NSImage alloc] initWithContentsOfFile: path];
-      path = [bundle pathForImageResource: @"GormSourceTag"];
-      sourceImage = [[NSImage alloc] initWithContentsOfFile: path];
-      path = [bundle pathForImageResource: @"GormTargetTag"];
-      targetImage = [[NSImage alloc] initWithContentsOfFile: path];
-      path = [bundle pathForImageResource: @"Gorm"];
-      gormImage = [[NSImage alloc] initWithContentsOfFile: path];
-      path = [bundle pathForImageResource: @"GormTesting"];
-      testingImage = [[NSImage alloc] initWithContentsOfFile: path];
-
-      documents = [[NSMutableArray alloc] init];
-      // regular notifications...
-      [nc addObserver: self
-	  selector: @selector(handleNotification:)
-	  name: IBSelectionChangedNotification
-	  object: nil];
-      [nc addObserver: self
-	  selector: @selector(handleNotification:)
-	  name: IBWillCloseDocumentNotification
-	  object: nil];
-
-      // distibuted notifications...
-      [ndc addObserver: self
+	self = [super init];
+	if (self != nil) {
+		NSNotificationCenter		*nc = [NSNotificationCenter defaultCenter];
+		NSNotificationCenter		*ndc = [NSDistributedNotificationCenter defaultCenter];
+		NSBundle					*bundle = [NSBundle mainBundle];
+		NSString					*path;
+		NSConnection				*conn = [NSConnection defaultConnection];
+		
+		path = [bundle pathForImageResource: @"GormLinkImage"];
+		linkImage = [[NSImage alloc] initWithContentsOfFile: path];
+		path = [bundle pathForImageResource: @"GormSourceTag"];
+		sourceImage = [[NSImage alloc] initWithContentsOfFile: path];
+		path = [bundle pathForImageResource: @"GormTargetTag"];
+		targetImage = [[NSImage alloc] initWithContentsOfFile: path];
+		path = [bundle pathForImageResource: @"Gorm"];
+		gormImage = [[NSImage alloc] initWithContentsOfFile: path];
+		path = [bundle pathForImageResource: @"GormTesting"];
+		testingImage = [[NSImage alloc] initWithContentsOfFile: path];
+		
+		documents = [[NSMutableArray alloc] init];
+		// regular notifications...
+		[nc addObserver: self
+			   selector: @selector(handleNotification:)
+				   name: IBSelectionChangedNotification
+				 object: nil];
+		[nc addObserver: self
+			   selector: @selector(handleNotification:)
+				   name: IBWillCloseDocumentNotification
+				 object: nil];
+		
+		// distibuted notifications...
+		[ndc addObserver: self
 	   selector: @selector(handleNotification:)
-	   name: @"GormAddClassNotification"
-	   object: nil];
-      [ndc addObserver: self
+					name: @"GormAddClassNotification"
+				  object: nil];
+		[ndc addObserver: self
 	   selector: @selector(handleNotification:)
-	   name: @"GormDeleteClassNotification"
-	   object: nil];
-      [ndc addObserver: self
+					name: @"GormDeleteClassNotification"
+				  object: nil];
+		[ndc addObserver: self
 	   selector: @selector(handleNotification:)
-	   name: @"GormParseClassNotification"
-	   object: nil];
-
-      /*
-       * establish registration domain defaults from file.
-       */
-      path = [bundle pathForResource: @"Defaults" ofType: @"plist"];
-      if (path != nil)
-	{
+					name: @"GormParseClassNotification"
+				  object: nil];
+		
+		/*
+		 * establish registration domain defaults from file.
+		 */
+		path = [bundle pathForResource: @"Defaults" ofType: @"plist"];
+		if (path != nil)
+		{
 	  NSDictionary	*dict;
-
+			
 	  dict = [NSDictionary dictionaryWithContentsOfFile: path];
 	  if (dict != nil)
-	    {
-	      NSUserDefaults	*defaults = [NSUserDefaults standardUserDefaults];
-
-	      [defaults registerDefaults: dict];
-	    }
-	}
-
-      /*
-       * load the interface...
-       */
-      if(![NSBundle loadNibNamed: @"Gorm" owner: self])
-	{
+	  {
+		  NSUserDefaults	*defaults = [NSUserDefaults standardUserDefaults];
+		  
+		  [defaults registerDefaults: dict];
+	  }
+		}
+		
+		/*
+		 * load the interface...
+		 */
+		if(![NSBundle loadNibNamed: @"Gorm" owner: self]) {
 	  NSLog(@"Failed to load interface");
 	  exit(-1);
-	}
-
-      /*
-       * Make sure the palettes/plugins managers exist, so that the
-       * editors and inspectors provided in the standard palettes
-       * are available.
-       */
-      [self palettesManager];
-      [self pluginManager];
-
-      /*
-       * set the delegate.
-       */
-      [self setDelegate: self];
-
-      /*
-       * Start the server
-       */
-      [conn setRootObject: self];
-      if([conn registerName: @"GormServer"] == NO)
-	{
+		}
+		
+		/*
+		 * Make sure the palettes/plugins managers exist, so that the
+		 * editors and inspectors provided in the standard palettes
+		 * are available.
+		 */
+		[self palettesManager];
+		[self pluginManager];
+		
+		/*
+		 * set the delegate.
+		 */
+		[self setDelegate: self];
+		
+		/*
+		 * Start the server
+		 */
+		[conn setRootObject: self];
+		if([conn registerName: @"GormServer"] == NO) {
 	  NSLog(@"Could not register GormServer");
+		}
 	}
-    }
-  return self;
+	return self;
 }
 
 
@@ -219,11 +222,12 @@
   return NO;
 }
 
-- (void) applicationOpenUntitledFile: (id)sender
+- (BOOL) applicationOpenUntitledFile: (id)sender
 {
   GormDocumentController *dc = [NSDocumentController sharedDocumentController];
   // open a new document and build an application type document by default...
   [dc newDocument: sender];
+	return YES;
 }
 
 - (void) applicationDidFinishLaunching: (NSApplication*)sender
@@ -616,7 +620,7 @@
 
 	      // so we don't get the warning...
 	      [self setServicesMenu: nil];
-	      [[self mainMenu] display];
+	      //[[self mainMenu] display];
 	      en = [[self windows] objectEnumerator];
 	      while((obj = [en nextObject]) != nil)
 		{
@@ -1387,9 +1391,8 @@
 {
   [[self keyWindow] print: sender];
 }
-@end
 
-@implementation Gorm (GormServer)
+#pragma mark - GormServer
 // Methods to support external apps adding and deleting
 // classes from the current document...
 - (void) addClass: (NSDictionary *) dict

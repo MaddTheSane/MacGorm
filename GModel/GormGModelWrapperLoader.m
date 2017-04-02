@@ -29,7 +29,7 @@
 #include <GNUstepGUI/GMArchiver.h>
 #include <GNUstepGUI/IMLoading.h>
 #include <GNUstepGUI/IMCustomObject.h>
-#include <GNUstepGUI/GSDisplayServer.h>
+//#include <GNUstepGUI/GSDisplayServer.h>
 #include <GormCore/GormPrivate.h>
 #include <GormCore/GormCustomView.h>
 #include <GormCore/GormDocument.h>

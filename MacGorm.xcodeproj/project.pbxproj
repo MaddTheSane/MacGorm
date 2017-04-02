@@ -325,6 +325,27 @@
 			remoteGlobalIDString = 559D49B61E90D5E1003E1A48;
 			remoteInfo = GormPrefs;
 		};
+		559D49DF1E90DF29003E1A48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D991B1E90372F00E79BFA /* gnustep.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 559A064C120493A7004BBA32;
+			remoteInfo = gnustep;
+		};
+		559D49E11E90DF4F003E1A48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D993F1E903B8400E79BFA /* GNUstepGUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 554D99331E903B5200E79BFA;
+			remoteInfo = GNUstepGUI;
+		};
+		559D49E31E90DF53003E1A48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D991B1E90372F00E79BFA /* gnustep.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 559A064C120493A7004BBA32;
+			remoteInfo = gnustep;
+		};
 		55C0074A1E90A2D40039F09B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 554D97EA1E9031E700E79BFA /* Project object */;
@@ -423,7 +444,7 @@
 		554D98311E90352F00E79BFA /* GormCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormCustomView.m; sourceTree = "<group>"; };
 		554D98321E90352F00E79BFA /* GormDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormDefines.h; sourceTree = "<group>"; };
 		554D98331E90352F00E79BFA /* GormDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormDocument.h; sourceTree = "<group>"; };
-		554D98341E90352F00E79BFA /* GormDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = GormDocument.m; sourceTree = "<group>"; };
+		554D98341E90352F00E79BFA /* GormDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = GormDocument.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		554D98351E90352F00E79BFA /* GormDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormDocumentController.h; sourceTree = "<group>"; };
 		554D98361E90352F00E79BFA /* GormDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormDocumentController.m; sourceTree = "<group>"; };
 		554D98371E90352F00E79BFA /* GormDocumentWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormDocumentWindow.h; sourceTree = "<group>"; };
@@ -1101,8 +1122,11 @@
 				554D9A281E9067AE00E79BFA /* GormObjCHeaderParser */,
 				559D49B81E90D5E1003E1A48 /* GormPrefs */,
 			);
+			indentWidth = 4;
 			name = "Application Frameworks";
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 1;
 		};
 /* End PBXGroup section */
 
@@ -1301,6 +1325,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				559D49E01E90DF29003E1A48 /* PBXTargetDependency */,
 			);
 			name = GormLib;
 			productName = GormLib;
@@ -1338,6 +1363,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				559D49E41E90DF53003E1A48 /* PBXTargetDependency */,
+				559D49E21E90DF4F003E1A48 /* PBXTargetDependency */,
 			);
 			name = GormPrefs;
 			productName = GormPrefs;
@@ -1806,6 +1833,21 @@
 			target = 559D49B61E90D5E1003E1A48 /* GormPrefs */;
 			targetProxy = 559D49BC1E90D5E1003E1A48 /* PBXContainerItemProxy */;
 		};
+		559D49E01E90DF29003E1A48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = gnustep;
+			targetProxy = 559D49DF1E90DF29003E1A48 /* PBXContainerItemProxy */;
+		};
+		559D49E21E90DF4F003E1A48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GNUstepGUI;
+			targetProxy = 559D49E11E90DF4F003E1A48 /* PBXContainerItemProxy */;
+		};
+		559D49E41E90DF53003E1A48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = gnustep;
+			targetProxy = 559D49E31E90DF53003E1A48 /* PBXContainerItemProxy */;
+		};
 		55C0074B1E90A2D40039F09B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 55C007011E90A1A40039F09B /* GModel */;
@@ -1861,7 +1903,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -1884,7 +1926,6 @@
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -1910,7 +1951,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -1927,7 +1968,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -2043,6 +2083,7 @@
 					"NeXT_RUNTIME=1",
 					"$(inherited)",
 				);
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = GormLib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -2070,6 +2111,7 @@
 					"NeXT_RUNTIME=1",
 					"$(inherited)",
 				);
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = GormLib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";

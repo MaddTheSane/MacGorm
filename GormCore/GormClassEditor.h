@@ -27,6 +27,7 @@
 
 #include <GormLib/InterfaceBuilder.h>
 #include <AppKit/NSBox.h>
+#include <AppKit/NSBrowser.h>
 #include <GormCore/GormOutlineView.h>
 
 @class NSString, NSArray, GormDocument, GormClassManager, NSBrowser;

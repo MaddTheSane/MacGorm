@@ -89,7 +89,7 @@ static NSString *nibName = @"GormShelfPref";
 - (void)drawRect:(NSRect)rect
 {
   [super drawRect: rect];
-  [arrow compositeToPoint: NSZeroPoint operation: NSCompositeSourceOver];
+  [arrow compositeToPoint: NSZeroPoint operation: NSCompositingOperationSourceOver];
 }
 
 @end
@@ -124,10 +124,10 @@ static NSString *nibName = @"GormShelfPref";
 	  RETAIN (prefbox);
 	  RELEASE (win);
 	  
-	  [imView setImageScaling: NSScaleProportionally];	  
+	  [imView setImageScaling: NSImageScaleProportionallyDown];
 	  
 	  // set up the info...
-	  [imView setImage: [NSImage imageNamed: @"GormObject.tiff"]]; 		
+	  [imView setImage: [NSImage imageNamed: @"GormObject"]];
 	  ASSIGN(fname, @"GormSampleObjectName");
 	  cellsWidth = [self shelfCellsWidth];
 	  

@@ -157,38 +157,32 @@
 
 - (void) addObject: (id)anObject
 {
-  if([objects containsObject: anObject] == NO)
-    {
-      [super addObject: anObject];
-    }
-  else
-    {
-      NSString *type = [self resourceType];
-      NSString *msg = [NSString stringWithFormat: _(@"Problem adding %@"), type];
-      NSRunAlertPanel(msg, 
-		      _(@"A resource with the same name exists, remove it first."), 
-		      _(@"OK"), 
-		      nil, 
-		      nil);      
-    }
+	if([objects containsObject: anObject] == NO) {
+		[super addObject: anObject];
+	} else {
+		NSString *type = [self resourceType];
+		NSString *msg = [NSString stringWithFormat: _(@"Problem adding %@"), type];
+		NSRunAlertPanel(msg,
+						_(@"A resource with the same name exists, remove it first."),
+						_(@"OK"),
+						nil, 
+						nil);      
+	}
 }
 
 - (void) makeSelectionVisible: (BOOL)flag
 {
-  if (flag == YES && selected != nil)
-    {
-      unsigned	pos = [objects indexOfObjectIdenticalTo: selected];
-      int	r = pos / [self numberOfColumns];
-      int	c = pos % [self numberOfColumns];
-
-      [self selectCellAtRow: r column: c];
-    }
-  else
-    {
-      [self deselectAllCells];
-    }
-  [self displayIfNeeded];
-  [[self window] flushWindow];
+	if (flag == YES && selected != nil) {
+		NSUInteger	pos = [objects indexOfObjectIdenticalTo: selected];
+		NSInteger		r = pos / [self numberOfColumns];
+		NSInteger		c = pos % [self numberOfColumns];
+		
+		[self selectCellAtRow: r column: c];
+	} else {
+		[self deselectAllCells];
+	}
+	[self displayIfNeeded];
+	[[self window] flushWindow];
 }
 
 - (void) mouseDown: (NSEvent*)theEvent

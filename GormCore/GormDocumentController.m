@@ -71,7 +71,7 @@
 	NSMenu	 *aMenu;
 	NSWindow *aWindow;
 	NSRect	 frame = [[NSScreen mainScreen] frame];
-	unsigned style = NSTitledWindowMask | NSClosableWindowMask
+	NSWindowStyleMask style = NSTitledWindowMask | NSClosableWindowMask
 	  | NSResizableWindowMask | NSMiniaturizableWindowMask;
 	
 	if ([NSMenu respondsToSelector: @selector(allocSubstitute)])
@@ -152,7 +152,7 @@
       {
 	NSPanel	 *aWindow;
 	NSRect	 frame = [[NSScreen mainScreen] frame];
-	unsigned style = NSTitledWindowMask | NSClosableWindowMask;
+	NSWindowStyleMask style = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable;
 	
 	if ([NSPanel respondsToSelector: @selector(allocSubstitute)])
 	  {
@@ -208,6 +208,6 @@
 
 - (id) openDocumentWithContentsOfURL:(NSURL *)url
 {
-  return  [self openDocumentWithContentsOfURL:url display:YES];
+	return [self openDocumentWithContentsOfURL:url display:YES];
 }
 @end
