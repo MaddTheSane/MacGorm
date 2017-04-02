@@ -106,26 +106,41 @@
   // [panel setFrameUsingName: @"Plugins"];
   // [panel setFrameAutosaveName: @"Plugins"];
  
+#if 1
+	{
+		NSString *plugs = [[NSBundle mainBundle] builtInPlugInsPath];
+		NSArray *fileArr = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:plugs error:NULL];
+		NSMutableArray *tmpArr = [NSMutableArray array];
+		for (NSString *file in fileArr) {
+			//Skip files that begin with a period
+			if ([[file lastPathComponent] hasPrefix:@"."]) {
+				continue;
+			}
+			if ([[file pathExtension] isEqualToString:@"plugin"]) {
+				[tmpArr addObject:[plugs stringByAppendingPathComponent:file]];
+			}
+		}
+		array = tmpArr;
+	}
+#else
   array = [[NSBundle mainBundle] pathsForResourcesOfType: @"plugin"
                                  inDirectory: nil];
+#endif
+	
   if ([array count] > 0)
     {
-      unsigned	index;
-      
       array = [array sortedArrayUsingSelector: @selector(compare:)];
       
-      for (index = 0; index < [array count]; index++)
+      for (NSString *plugPath in array)
 	{
-	  [self loadPlugin: [array objectAtIndex: index]];
+	  [self loadPlugin: plugPath];
 	}
     }
   
   // if we have any user plugins load them as well.
   if(userPlugins != nil)
     {
-      NSEnumerator *en = [userPlugins objectEnumerator];
-      id pluginName = nil;
-      while((pluginName = [en nextObject]) != nil)
+      for (NSString *pluginName in userPlugins)
         {
           [self loadPlugin: pluginName];
         }

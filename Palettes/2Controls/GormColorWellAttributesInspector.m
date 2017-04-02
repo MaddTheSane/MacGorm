@@ -110,7 +110,7 @@
   [disabledSwitch setState: ([object isEnabled])?NSOffState:NSOnState];  // On = NO and Off = YES, since we're tracking the Disabled state.
   [borderedSwitch setState: [object isBordered]];
   [initialColorWell setColorWithoutAction: [object color]];
-  [tagField setIntValue: [object tag]];
+  [tagField setIntegerValue: [object tag]];
 
   [super revert:sender];
 }

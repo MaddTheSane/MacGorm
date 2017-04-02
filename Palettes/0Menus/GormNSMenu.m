@@ -27,7 +27,7 @@
 #include <Foundation/NSEnumerator.h>
 #include <AppKit/NSPopUpButton.h>
 #include <AppKit/NSPopUpButtonCell.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 
 @interface GormNSMenuWindow : NSPanel
 @end

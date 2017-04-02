@@ -83,7 +83,7 @@ extern NSString *GormResizeCellNotification;
   NSInteger t;
 }
 
-- initWithClassName: (NSString*)n;
+- (id)initWithClassName: (NSString*)n;
 - (NSString*) className;
 - (NSString*) inspectorClassName;
 - (NSString*) connectInspectorClassName;
@@ -97,8 +97,8 @@ extern NSString *GormResizeCellNotification;
 
 @interface NSDateFormatter (GormAdditions)
 
-+ (int) formatCount;
-+ (NSString *) formatAtIndex: (int)index;
++ (NSInteger) formatCount;
++ (NSString *) formatAtIndex: (NSInteger)index;
 + (NSInteger) indexOfFormat: (NSString *) format;
 + (NSString *) defaultFormat;
 + (id) defaultFormatValue;
@@ -107,13 +107,13 @@ extern NSString *GormResizeCellNotification;
 
 @interface NSNumberFormatter (GormAdditions)
 
-+ (int) formatCount;
-+ (NSString *) formatAtIndex: (int)index;
-+ (NSString *) positiveFormatAtIndex: (int)index;
-+ (NSString *) zeroFormatAtIndex: (int)index;
-+ (NSString *) negativeFormatAtIndex: (int)index;
-+ (NSDecimalNumber *) positiveValueAtIndex: (int)index;
-+ (NSDecimalNumber *) negativeValueAtIndex: (int)index;
++ (NSInteger) formatCount;
++ (NSString *) formatAtIndex: (NSInteger)index;
++ (NSString *) positiveFormatAtIndex: (NSInteger)index;
++ (NSString *) zeroFormatAtIndex: (NSInteger)index;
++ (NSString *) negativeFormatAtIndex: (NSInteger)index;
++ (NSDecimalNumber *) positiveValueAtIndex: (NSInteger)index;
++ (NSDecimalNumber *) negativeValueAtIndex: (NSInteger)index;
 + (NSInteger) indexOfFormat: (NSString *)format;
 + (NSString *) defaultFormat;
 + (id) defaultFormatValue;

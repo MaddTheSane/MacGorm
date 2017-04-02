@@ -22,11 +22,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <InterfaceBuilder/IBObjectAdditions.h>
+#include <GormLib/IBObjectAdditions.h>
 #include <AppKit/AppKit.h>
 
 #include <GormCore/GormPrivate.h>
 #include <GormCore/GormViewKnobs.h>
+#import <GNUstepBase/GNUstepBase.h>
 
 #include "GormTabViewEditor.h"
 
@@ -125,10 +126,6 @@
 }
 
 
-@end
-
-
-@implementation GormTabViewEditor (TabViewDelegate)
 
 - (void)       tabView: (NSTabView *)tabView 
   didSelectTabViewItem: (NSTabViewItem *)tabViewItem

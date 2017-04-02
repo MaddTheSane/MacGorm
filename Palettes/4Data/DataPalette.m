@@ -34,56 +34,57 @@
 #include <AppKit/NSTextView.h>
 #include <AppKit/NSWindow.h>
 #include <AppKit/NSClipView.h>
-#include <InterfaceBuilder/IBPalette.h>
-#include <InterfaceBuilder/IBViewResourceDragging.h>
+#include <GormLib/IBPalette.h>
+#include <GormLib/IBViewResourceDragging.h>
 #include <GormCore/GormPrivate.h>
+#import <GNUstepBase/GNUstepBase.h>
 
 /* -----------------------------------------------------------
  * Some additions to the NSNumberFormatter Class specific to Gorm
  * -----------------------------------------------------------*/
 NSArray *predefinedNumberFormats;
-int defaultNumberFormatIndex = 0;
+static const int defaultNumberFormatIndex = 0;
 
 @implementation NSNumberFormatter (GormAdditions)
 
-+ (int) formatCount
++ (NSInteger) formatCount
 {
   return [predefinedNumberFormats count];
 }
 
-+ (NSString *) formatAtIndex: (int)i
++ (NSString *) formatAtIndex: (NSInteger)i
 {
   return [[predefinedNumberFormats objectAtIndex:i] objectAtIndex:0];
 }
 
-+ (NSString *) positiveFormatAtIndex: (int)i
++ (NSString *) positiveFormatAtIndex: (NSInteger)i
 {
   NSString *fmt =[[predefinedNumberFormats objectAtIndex:i] objectAtIndex:0];
   
   return [ [fmt componentsSeparatedByString:@";"] objectAtIndex:0];
 }
 
-+ (NSString *) zeroFormatAtIndex: (int)i
++ (NSString *) zeroFormatAtIndex: (NSInteger)i
 {
   NSString *fmt =[[predefinedNumberFormats objectAtIndex:i] objectAtIndex:0];
   
   return [ [fmt componentsSeparatedByString:@";"] objectAtIndex:1];
 }
 
-+ (NSString *) negativeFormatAtIndex: (int)i
++ (NSString *) negativeFormatAtIndex: (NSInteger)i
 {
   NSString *fmt =[[predefinedNumberFormats objectAtIndex:i] objectAtIndex:0];
   
   return [ [fmt componentsSeparatedByString:@";"] objectAtIndex:2];
 }
 
-+ (NSDecimalNumber *) positiveValueAtIndex: (int)i
++ (NSDecimalNumber *) positiveValueAtIndex: (NSInteger)i
 {
    return [NSDecimalNumber decimalNumberWithString:
                 [[predefinedNumberFormats objectAtIndex:i] objectAtIndex:1] ];
 }
 
-+ (NSDecimalNumber *) negativeValueAtIndex: (int)i
++ (NSDecimalNumber *) negativeValueAtIndex: (NSInteger)i
 {
    return [NSDecimalNumber decimalNumberWithString:
                 [[predefinedNumberFormats objectAtIndex:i] objectAtIndex:2] ];
@@ -91,9 +92,9 @@ int defaultNumberFormatIndex = 0;
 
 + (NSInteger) indexOfFormat: (NSString *) format
 {
-  int i;
+  NSInteger i;
   NSString *fmt;
-  int count = [predefinedNumberFormats count];
+  NSInteger count = [predefinedNumberFormats count];
 
   for (i=0;i<count;i++)
     {
@@ -134,16 +135,16 @@ int defaultNumberFormatIndex = 0;
  * Some additions to the NSDateFormatter Class specific to Gorm
  * -----------------------------------------------------------*/
 NSArray *predefinedDateFormats;
-int defaultDateFormatIndex = 3;
+static const NSInteger defaultDateFormatIndex = 3;
 
 @implementation NSDateFormatter (GormAdditions)
 
-+ (int) formatCount
++ (NSInteger) formatCount
 {
   return [predefinedDateFormats count];
 }
 
-+ (NSString *) formatAtIndex: (int)index
++ (NSString *) formatAtIndex: (NSInteger)index
 {
   return [predefinedDateFormats objectAtIndex: index];
 }
@@ -160,7 +161,7 @@ int defaultDateFormatIndex = 3;
 
 + (id) defaultFormatValue
 {
-  return [NSCalendarDate calendarDate];
+  return [NSDate date];
 }
 
 @end
@@ -169,7 +170,7 @@ int defaultDateFormatIndex = 3;
  * The Data Palette (Scroll Text View, formatters, Combo box,...)
  *
  * -----------------------------------------------------------*/
-@interface DataPalette: IBPalette <IBViewResourceDraggingDelegates>
+@interface DataPalette: IBPalette <IBViewResourceDraggingDelegate>
 @end
 
 @implementation DataPalette
@@ -232,7 +233,7 @@ int defaultDateFormatIndex = 3;
 
   originalWindow = [[NSWindow alloc] initWithContentRect: 
 				       NSMakeRect(0, 0, 272, 192)
-				       styleMask: NSBorderlessWindowMask 
+				       styleMask: NSWindowStyleMaskBorderless 
 					 backing: NSBackingStoreRetained
 					   defer: NO];
   contents = [originalWindow contentView];
@@ -246,7 +247,7 @@ int defaultDateFormatIndex = 3;
   v = [[NSScrollView alloc] initWithFrame: NSMakeRect(20, 22, 113,148)];
   [v setHasVerticalScroller: YES];
   [v setHasHorizontalScroller: NO];
-  [v setAutoresizingMask: NSViewHeightSizable | NSViewWidthSizable];
+  [(NSScrollView*)v setAutoresizingMask: NSViewHeightSizable | NSViewWidthSizable];
   [[(NSScrollView *)v contentView] setAutoresizingMask: NSViewHeightSizable 
 			    | NSViewWidthSizable];
   [[(NSScrollView *)v contentView] setAutoresizesSubviews:YES];
@@ -281,7 +282,7 @@ int defaultDateFormatIndex = 3;
   // NSImageView
   v = [[NSImageView alloc] initWithFrame: NSMakeRect(143, 98, 96, 72)];
   [v setImageFrameStyle: NSImageFramePhoto]; //FramePhoto not implemented
-  [v setImageScaling: NSScaleProportionally];
+  [v setImageScaling: NSImageScaleProportionallyDown];
   [v setImageAlignment: NSImageAlignCenter];
   [v setImage: [NSImage imageNamed: @"Sunday_seurat.tiff"]];
   [contents addSubview: v];
@@ -293,7 +294,7 @@ int defaultDateFormatIndex = 3;
      */
   v = [[NSImageView alloc] initWithFrame: NSMakeRect(143, 48, 43, 43)];
   [v setImageFrameStyle: NSImageFramePhoto];
-  [v setImageScaling: NSScaleProportionally];
+  [v setImageScaling: NSImageScaleProportionallyDown];
   [v setImageAlignment: NSImageAlignCenter];
   [v setImage: [NSImage imageNamed: @"number_formatter.tiff"]];
   [contents addSubview: v];
@@ -306,7 +307,7 @@ int defaultDateFormatIndex = 3;
 
   v = [[NSImageView alloc] initWithFrame: NSMakeRect(196, 48, 43, 43)];
   [v setImageFrameStyle: NSImageFramePhoto];
-  [v setImageScaling: NSScaleProportionally];
+  [v setImageScaling: NSImageScaleProportionallyDown];
   [v setImageAlignment: NSImageAlignCenter];
   [v setImage: [NSImage imageNamed: @"date_formatter.tiff"]];
   [contents addSubview: v];

@@ -332,6 +332,10 @@
 		55C7EC3E1E91A610001CE0C5 /* GormTextViewSizeInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C7EC2E1E91A610001CE0C5 /* GormTextViewSizeInspector.m */; };
 		55C7EC3F1E91A610001CE0C5 /* inspectors.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C7EC2F1E91A610001CE0C5 /* inspectors.m */; };
 		55C7EC401E91A610001CE0C5 /* palette.table in Resources */ = {isa = PBXBuildFile; fileRef = 55C7EC301E91A610001CE0C5 /* palette.table */; };
+		55C7EC631E91B69A001CE0C5 /* 1Windows.palette in Copy Palettes */ = {isa = PBXBuildFile; fileRef = 55C7EB5C1E91A492001CE0C5 /* 1Windows.palette */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		55C7EC641E91B69A001CE0C5 /* 2Controls.palette in Copy Palettes */ = {isa = PBXBuildFile; fileRef = 55C7EB661E91A4B0001CE0C5 /* 2Controls.palette */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		55C7EC651E91B69A001CE0C5 /* 4Data.palette in Copy Palettes */ = {isa = PBXBuildFile; fileRef = 55C7EB7A1E91A522001CE0C5 /* 4Data.palette */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		55C7EC6C1E91B6E6001CE0C5 /* GormCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D98131E90350C00E79BFA /* GormCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -510,6 +514,27 @@
 			remoteGlobalIDString = 554D98121E90350C00E79BFA;
 			remoteInfo = GormCore;
 		};
+		55C7EC661E91B6B9001CE0C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D97EA1E9031E700E79BFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55C7EB5B1E91A492001CE0C5;
+			remoteInfo = 1Windows;
+		};
+		55C7EC681E91B6B9001CE0C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D97EA1E9031E700E79BFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55C7EB651E91A4B0001CE0C5;
+			remoteInfo = 2Controls;
+		};
+		55C7EC6A1E91B6B9001CE0C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D97EA1E9031E700E79BFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55C7EB791E91A522001CE0C5;
+			remoteInfo = 4Data;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -540,6 +565,19 @@
 				55C007481E90A2CC0039F09B /* Nib.plugin in Copy PlugIns */,
 			);
 			name = "Copy PlugIns";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55C7EC621E91B681001CE0C5 /* Copy Palettes */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				55C7EC631E91B69A001CE0C5 /* 1Windows.palette in Copy Palettes */,
+				55C7EC641E91B69A001CE0C5 /* 2Controls.palette in Copy Palettes */,
+				55C7EC651E91B69A001CE0C5 /* 4Data.palette in Copy Palettes */,
+			);
+			name = "Copy Palettes";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1021,6 +1059,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55C7EC6C1E91B6E6001CE0C5 /* GormCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1780,10 +1819,14 @@
 				554D97F01E9031E700E79BFA /* Resources */,
 				554D981F1E90350C00E79BFA /* Embed Frameworks */,
 				55C007451E90A2BA0039F09B /* Copy PlugIns */,
+				55C7EC621E91B681001CE0C5 /* Copy Palettes */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				55C7EC671E91B6B9001CE0C5 /* PBXTargetDependency */,
+				55C7EC691E91B6B9001CE0C5 /* PBXTargetDependency */,
+				55C7EC6B1E91B6B9001CE0C5 /* PBXTargetDependency */,
 				55C0074B1E90A2D40039F09B /* PBXTargetDependency */,
 				55C0074D1E90A2D40039F09B /* PBXTargetDependency */,
 				55C0074F1E90A2D40039F09B /* PBXTargetDependency */,
@@ -2683,6 +2726,21 @@
 			target = 554D98121E90350C00E79BFA /* GormCore */;
 			targetProxy = 55C7EC491E91A755001CE0C5 /* PBXContainerItemProxy */;
 		};
+		55C7EC671E91B6B9001CE0C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55C7EB5B1E91A492001CE0C5 /* 1Windows */;
+			targetProxy = 55C7EC661E91B6B9001CE0C5 /* PBXContainerItemProxy */;
+		};
+		55C7EC691E91B6B9001CE0C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55C7EB651E91A4B0001CE0C5 /* 2Controls */;
+			targetProxy = 55C7EC681E91B6B9001CE0C5 /* PBXContainerItemProxy */;
+		};
+		55C7EC6B1E91B6B9001CE0C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55C7EB791E91A522001CE0C5 /* 4Data */;
+			targetProxy = 55C7EC6A1E91B6B9001CE0C5 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -3482,6 +3540,7 @@
 				55C7EB391E91A3DE001CE0C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55C7EB5F1E91A492001CE0C5 /* Build configuration list for PBXNativeTarget "1Windows" */ = {
 			isa = XCConfigurationList;
@@ -3490,6 +3549,7 @@
 				55C7EB611E91A492001CE0C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55C7EB691E91A4B0001CE0C5 /* Build configuration list for PBXNativeTarget "2Controls" */ = {
 			isa = XCConfigurationList;
@@ -3498,6 +3558,7 @@
 				55C7EB6B1E91A4B0001CE0C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55C7EB731E91A500001CE0C5 /* Build configuration list for PBXNativeTarget "3Containers" */ = {
 			isa = XCConfigurationList;
@@ -3506,6 +3567,7 @@
 				55C7EB751E91A500001CE0C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55C7EB7D1E91A522001CE0C5 /* Build configuration list for PBXNativeTarget "4Data" */ = {
 			isa = XCConfigurationList;
@@ -3514,6 +3576,7 @@
 				55C7EB7F1E91A522001CE0C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

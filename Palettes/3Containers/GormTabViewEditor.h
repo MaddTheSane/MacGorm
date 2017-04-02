@@ -27,7 +27,9 @@
 #include <GormCore/GormViewWithSubviewsEditor.h>
 #include <GormCore/GormInternalViewEditor.h>
 
-@interface GormTabViewEditor : GormViewWithSubviewsEditor
+#import <AppKit/NSTabView.h>
+
+@interface GormTabViewEditor : GormViewWithSubviewsEditor <NSTabViewDelegate>
 {
   int selectedSubview;
   GormInternalViewEditor *currentView;

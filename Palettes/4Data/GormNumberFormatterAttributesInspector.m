@@ -31,6 +31,7 @@
 #include <GormCore/GormViewEditor.h>
 #include <GormCore/NSColorWell+GormExtensions.h>
 #include <GormCore/GormViewSizeInspector.h>
+#import <GNUstepBase/GNUstepBase.h>
 
 #include "GormNumberFormatterAttributesInspector.h"
 

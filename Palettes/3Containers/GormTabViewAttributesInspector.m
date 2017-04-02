@@ -42,7 +42,7 @@
 #include <AppKit/NSTabViewItem.h>
 #include <AppKit/NSTextField.h>
 
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 
 #define ORDERED_PREVIOUS 0
 #define ORDERED_NEXT     1

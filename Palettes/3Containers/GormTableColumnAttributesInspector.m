@@ -46,6 +46,7 @@
 #import <AppKit/NSTableColumn.h>
 #import <AppKit/NSForm.h>
 #import <AppKit/NSPopUpButton.h>
+#import <GNUstepBase/GNUstepBase.h>
 
 /*
   IBObjectAdditions category
@@ -100,15 +101,15 @@
     {
        if ([[sender cellAtRow: 0 column: 0] state] == NSOnState)
  	{
- 	  [[object headerCell] setAlignment: NSLeftTextAlignment];
+ 	  [[object headerCell] setAlignment: NSTextAlignmentLeft];
  	}
        else if ([[sender cellAtRow: 0 column: 1] state] == NSOnState)
  	{
- 	  [[object headerCell] setAlignment: NSCenterTextAlignment];
+ 	  [[object headerCell] setAlignment: NSTextAlignmentCenter];
  	}
        else if ([[sender cellAtRow: 0 column: 2] state] == NSOnState)
  	{
- 	  [[object headerCell] setAlignment: NSRightTextAlignment];
+ 	  [[object headerCell] setAlignment: NSTextAlignmentRight];
  	}
 
        // [[object headerCell] setAlignment: [[titleAlignmentMatrix selectedRow] tag]];
@@ -123,15 +124,15 @@
     {
       if ([[sender cellAtRow: 0 column: 0] state] == NSOnState)
 	{
-	  [[object dataCell] setAlignment: NSLeftTextAlignment];
+	  [[object dataCell] setAlignment: NSTextAlignmentLeft];
 	}
       else if ([[sender cellAtRow: 0 column: 1] state] == NSOnState)
 	{
-	  [[object dataCell] setAlignment: NSCenterTextAlignment];
+	  [[object dataCell] setAlignment: NSTextAlignmentCenter];
 	}
       else if ([[sender cellAtRow: 0 column: 2] state] == NSOnState)
 	{
-	  [[object dataCell] setAlignment: NSRightTextAlignment];
+	  [[object dataCell] setAlignment: NSTextAlignmentRight];
 	}
       [[object tableView] setNeedsDisplay: YES];
     }
@@ -159,7 +160,7 @@
       id classManager = [(id<Gorm>)NSApp classManager];
       id<IBDocuments> doc = [(id<IB>)NSApp activeDocument];
       id cell = nil;
-      int i = [cellTable selectedRow];
+      NSInteger i = [cellTable selectedRow];
       NSArray *list = [classManager allSubclassesOf: @"NSCell"];
       NSString *className = [list objectAtIndex: i];
       BOOL isCustom = [classManager isCustomClass: className];
@@ -249,13 +250,13 @@
   /* title Alignment */
   switch ([[object headerCell] alignment])
     {
-    case NSLeftTextAlignment:
+    case NSTextAlignmentLeft:
       [titleAlignmentMatrix selectCellAtRow: 0 column: 0];
       break;
-    case NSCenterTextAlignment:
+    case NSTextAlignmentCenter:
       [titleAlignmentMatrix selectCellAtRow: 0 column: 1];
       break;
-    case NSRightTextAlignment:
+    case NSTextAlignmentRight:
       [titleAlignmentMatrix selectCellAtRow: 0 column: 2];
       break;
     default:
@@ -265,13 +266,13 @@
   /* contents Alignment */
   switch ([[object dataCell] alignment])
     {
-    case NSLeftTextAlignment:
+    case NSTextAlignmentLeft:
       [contentsAlignmentMatrix selectCellAtRow: 0 column: 0];
       break;
-    case NSCenterTextAlignment:
+    case NSTextAlignmentCenter:
       [contentsAlignmentMatrix selectCellAtRow: 0 column: 1];
       break;
-    case NSRightTextAlignment:
+    case NSTextAlignmentRight:
       [contentsAlignmentMatrix selectCellAtRow: 0 column: 2];
       break;
     default:

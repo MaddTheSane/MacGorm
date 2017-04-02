@@ -27,7 +27,7 @@
 #ifndef INCLUDED_GormNumberFormatterAttributesInspector_h
 #define INCLUDED_GormNumberFormatterAttributesInspector_h
 
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 
 @interface GormNumberFormatterAttributesInspector : IBInspector
 {

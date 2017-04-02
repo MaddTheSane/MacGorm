@@ -33,7 +33,7 @@
 #ifndef INCLUDED_GormImageViewAttributesInspector_h
 #define INCLUDED_GormImageViewAttributesInspector_h
 
-#include <InterfaceBuilder/IBInspector.h>
+#include <GormLib/IBInspector.h>
 
 @class NSButton;
 @class NSMatrix;

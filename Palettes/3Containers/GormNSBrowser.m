@@ -100,9 +100,9 @@ static id _sharedDelegate = nil;
 
 - (void)encodeWithCoder: (NSCoder*) aCoder
 {
-  _browserDelegate = _gormDelegate;
+  _delegate = _gormDelegate;
   [super encodeWithCoder: aCoder];
-  _browserDelegate = _sharedDelegate;
+  _delegate = _sharedDelegate;
 }
 
 - (id) initWithCoder: (NSCoder*) aCoder

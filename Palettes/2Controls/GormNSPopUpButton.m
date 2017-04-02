@@ -1,5 +1,6 @@
 #include <GormCore/GormPrivate.h>
 #include "GormNSPopUpButton.h"
+#import <GNUstepBase/GNUstepBase.h>
 
 Class _gormnspopupbuttonCellClass = 0;
 
@@ -67,11 +68,11 @@ Class _gormnspopupbuttonCellClass = 0;
 - (void) attachPopUpWithFrame: (NSRect)cellFrame
                        inView: (NSView *)controlView
 {
-  NSRectEdge            preferredEdge = _pbcFlags.preferredEdge;
-  NSNotificationCenter  *nc = [NSNotificationCenter defaultCenter];
-  NSWindow              *cvWin = [controlView window];
-  NSMenuView            *mr = [[self menu] menuRepresentation];
-  int                   selectedItem;
+  NSRectEdge			preferredEdge = self.preferredEdge;
+  NSNotificationCenter	*nc = [NSNotificationCenter defaultCenter];
+  NSWindow				*cvWin = [controlView window];
+  id					mr = [[self menu] menuRepresentation];
+  NSInteger				selectedItem;
 
   [nc postNotificationName: NSPopUpButtonCellWillPopUpNotification
                     object: self];
@@ -83,7 +84,7 @@ Class _gormnspopupbuttonCellClass = 0;
   cellFrame = [controlView convertRect: cellFrame toView: nil];
   cellFrame.origin = [cvWin convertBaseToScreen: cellFrame.origin];
 
-  if (_pbcFlags.pullsDown)
+  if (self.pullsDown)
     selectedItem = -1;
   else
     {
@@ -124,6 +125,6 @@ Class _gormnspopupbuttonCellClass = 0;
   [nc addObserver: self
       selector: @selector(_handleNotification:)
       name: NSMenuDidSendActionNotification
-      object: _menu];
+      object: self.menu];
 }
 @end

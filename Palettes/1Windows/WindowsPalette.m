@@ -23,14 +23,15 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
 */
 
-#include <InterfaceBuilder/IBApplicationAdditions.h>
-#include <InterfaceBuilder/IBInspector.h>
-#include <InterfaceBuilder/IBPalette.h>
+#include <GormLib/IBApplicationAdditions.h>
+#include <GormLib/IBInspector.h>
+#include <GormLib/IBPalette.h>
 
 #include <GormCore/GormDocument.h>
 #include <GormCore/NSColorWell+GormExtensions.h>
 #include <GormCore/GormNSPanel.h>
 #include <GormCore/GormNSWindow.h>
+#import <GNUstepBase/GNUstepBase.h>
 
 #include "GormWindowSizeInspector.h"
 #include "WindowsPalette.h"
@@ -48,11 +49,11 @@
 - (id) initWithCoder: (NSCoder*)aCoder
 {
   id w;
-  unsigned style = ( NSTitledWindowMask | NSClosableWindowMask
-		     | NSResizableWindowMask | NSMiniaturizableWindowMask);
+  NSWindowStyleMask style = ( NSWindowStyleMaskTitled | NSWindowStyleMaskClosable
+		     | NSWindowStyleMaskResizable | NSWindowStyleMaskMiniaturizable);
   NSRect        screenRect = [[NSScreen mainScreen] frame];
-  float  x = (screenRect.size.width - 500)/2;
-  float  y = (screenRect.size.height - 300)/2;
+  CGFloat  x = (screenRect.size.width - 500)/2;
+  CGFloat  y = (screenRect.size.height - 300)/2;
   NSRect        windowRect = NSMakeRect(x,y,500,300);
 
   w = [[GormNSWindow alloc] initWithContentRect: windowRect 
@@ -81,9 +82,9 @@
 - (id) initWithCoder: (NSCoder*)aCoder
 {
   id		w;
-  unsigned	style = NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask;
+  NSWindowStyleMask	style = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskResizable;
   NSRect        screenRect = [[NSScreen mainScreen] frame];
-  float         
+  CGFloat
     x = (screenRect.size.width - 500)/2, 
     y = (screenRect.size.height - 300)/2;
   NSRect        windowRect = NSMakeRect(x,y,500,300);
@@ -115,7 +116,7 @@
   RELEASE(originalWindow);
   originalWindow = [[NSWindow alloc] initWithContentRect: 
 				       NSMakeRect(0, 0, 272, 192)
-				     styleMask: NSBorderlessWindowMask 
+				     styleMask: NSWindowStyleMaskBorderless 
 				     backing: NSBackingStoreRetained
 				     defer: NO];
   contents = [originalWindow contentView];

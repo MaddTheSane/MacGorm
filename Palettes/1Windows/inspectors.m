@@ -25,7 +25,7 @@
  */
 
 #include <AppKit/AppKit.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 #include "WindowsPalette.h"
 /*
   IBObjectAdditions category for NSPanel 
