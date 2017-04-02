@@ -29,8 +29,7 @@
 #include "GormSplitViewEditor.h"
 #include "GormViewKnobs.h"
 #include "GormInternalViewEditor.h"
-
-extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 
 @interface GormViewEditor (Private)
 - (NSRect) _displayMovingFrameWithHint: (NSRect) frame

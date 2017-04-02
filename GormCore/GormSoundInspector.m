@@ -35,11 +35,10 @@
 #include "GormPrivate.h"
 #include "GormSoundView.h"
 #include "GormSound.h"
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 
 #undef _
 #define _(x) x
-
-extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 
 @implementation GormSoundInspector
 + (void) initialize

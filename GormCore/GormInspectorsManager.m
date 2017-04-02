@@ -33,11 +33,10 @@
 #include "GormImage.h"
 #include "GormSound.h"
 #include <GNUstepBase/GNUstep.h>
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 
 #undef _
 #define _(x) x
-
-extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 
 #define NUM_DEFAULT_INSPECTORS 5
 
@@ -297,7 +296,7 @@ extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL
       current = 0;
     }
 
-  NSDebugLog(@"current %i",current);
+  NSDebugLog(@"current %li",(long)current);
 
   // refresh object.
   selectedObject = obj;

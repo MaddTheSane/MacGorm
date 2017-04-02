@@ -30,13 +30,12 @@
 #include "GormInternalViewEditor.h"
 #include "GormBoxEditor.h"
 #include "GormViewKnobs.h"
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 
 #define _EO ((NSSplitView *)_editedObject)
 
 #undef _
 #define _(x) x
-
-extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 
 @implementation GormSplitViewEditor
 

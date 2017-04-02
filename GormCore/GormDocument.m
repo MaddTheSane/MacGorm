@@ -62,6 +62,8 @@
 #import <AppKit/NSNibOutletConnector.h>
 #import <AppKit/NSNibControlConnector.h>
 
+#undef _
+#define _(__x) __x
 
 @interface GormDisplayCell : NSButtonCell
 @end
@@ -102,16 +104,6 @@
 }
 @end
 
-@interface NSDocument (GormPrivate)
-- (NSWindow *) _docWindow;
-@end
-
-@implementation NSDocument (GormPrivate)
-- (NSWindow *) _docWindow
-{
-  return _window;
-}
-@end
 
 @implementation	GormFirstResponder
 - (NSImage*) imageForViewer
@@ -342,7 +334,7 @@ static NSImage  *fileImage = nil;
   id                    o = nil;
 
   // get the window and cache it...
-  window = (GormDocumentWindow *)[self _docWindow];
+  window = (GormDocumentWindow *)self.windowForSheet;//(GormDocumentWindow *)[self _docWindow];
   [IBResourceManager registerForAllPboardTypes:window
 	  			inDocument:self];
   [window setDocument: self];
@@ -386,7 +378,7 @@ static NSImage  *fileImage = nil;
   objectsView = [[GormObjectEditor alloc] initWithObject: nil
 					  inDocument: self];
   [objectsView setFrame: mainRect];
-  [objectsView setAutoresizingMask:
+  [(NSView*)objectsView setAutoresizingMask:
 		 NSViewHeightSizable|NSViewWidthSizable];
   [scrollView setDocumentView: objectsView];
   RELEASE(objectsView); 
@@ -403,7 +395,7 @@ static NSImage  *fileImage = nil;
   imagesView = [[GormImageEditor alloc] initWithObject: nil
 					inDocument: self];
   [imagesView setFrame: mainRect];
-  [imagesView setAutoresizingMask: NSViewHeightSizable|NSViewWidthSizable];
+  [(NSView*)imagesView setAutoresizingMask: NSViewHeightSizable|NSViewWidthSizable];
   [imagesScrollView setDocumentView: imagesView];
   RELEASE(imagesView);
   
@@ -419,7 +411,7 @@ static NSImage  *fileImage = nil;
   soundsView = [[GormSoundEditor alloc] initWithObject: nil
 					inDocument: self];
   [soundsView setFrame: mainRect];
-  [soundsView setAutoresizingMask: NSViewHeightSizable|NSViewWidthSizable];
+  [(NSView*)soundsView setAutoresizingMask: NSViewHeightSizable|NSViewWidthSizable];
   [soundsScrollView setDocumentView: soundsView];
   RELEASE(soundsView);
   
@@ -923,7 +915,7 @@ static NSImage  *fileImage = nil;
     }
 }
 
-- (void) changeToViewWithTag: (int)tag
+- (void) changeToViewWithTag: (NSInteger)tag
 {
   switch (tag)
     {
@@ -974,7 +966,7 @@ static NSImage  *fileImage = nil;
     }
 }
 
-- (NSView *) viewWithTag:(int)tag
+- (NSView *) viewWithTag:(NSInteger)tag
 {
   switch (tag)
     {

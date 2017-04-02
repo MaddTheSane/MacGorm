@@ -39,9 +39,9 @@ typedef enum {None, Outlets, Actions} GSAttributeType;
 
 @interface GormOutlineView : NSOutlineView
 {
-  float _attributeOffset;
+  CGFloat _attributeOffset;
   BOOL _isEditing;
-  id _itemBeingEdited;
+  __unsafe_unretained id _itemBeingEdited;
   NSTableColumn *_actionColumn;
   NSTableColumn *_outletColumn;
   GSAttributeType _edittype;
@@ -49,22 +49,16 @@ typedef enum {None, Outlets, Actions} GSAttributeType;
 }
 
 // Instance methods
-- (float)attributeOffset;
-- (void)setAttributeOffset: (float)offset;
-- (id) itemBeingEdited;
-- (void) setItemBeingEdited: (id)item;
-- (BOOL) isEditing;
-- (void) setIsEditing: (BOOL)flag;
-- (NSTableColumn *)actionColumn;
-- (void) setActionColumn: (NSTableColumn *)ac;
-- (NSTableColumn *)outletColumn;
-- (void) setOutletColumn: (NSTableColumn *)oc;
-- (NSMenuItem *)menuItem;
-- (void) setMenuItem: (NSMenuItem *)item;
-- (GSAttributeType)editType;
-- (void) removeItemAtRow: (int)row;
+@property CGFloat attributeOffset;
+@property (assign) id itemBeingEdited;
+@property BOOL isEditing;
+@property (retain) NSTableColumn *actionColumn;
+@property (retain) NSTableColumn *outletColumn;
+@property (retain) NSMenuItem *menuItem;
+@property (readonly) GSAttributeType editType;
+- (void) removeItemAtRow: (NSInteger)row;
 - (void) reset;
-- (void) selectRow: (int)rowIndex;
+- (void) selectRow: (NSInteger)rowIndex;
 @end /* interface of GormOutlineView */
 
 // informal protocol to define necessary methods on

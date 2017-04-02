@@ -175,7 +175,7 @@
 
 - (void) activateEditorForView
 {
-  id editor = [[(id<IB>)NSApp activeDocument] editorForObject: _view create: YES];
+  id<IBEditors> editor = [[(id<IB>)NSApp activeDocument] editorForObject: _view create: YES];
   // NSArray *subviews = [_view subviews];
   // NSEnumerator *en = [subviews objectEnumerator];
   // id sub = nil;

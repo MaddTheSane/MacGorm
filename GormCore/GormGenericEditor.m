@@ -24,6 +24,7 @@
  */
 
 #include "GormGenericEditor.h"
+#include <GNUstepBase/GNUstep.h>
 
 @implementation	GormGenericEditor
 
@@ -79,7 +80,7 @@
     {
       NSPoint	loc = [theEvent locationInWindow];
       NSInteger	r = 0, c = 0;
-      int	pos = 0;
+      NSInteger	pos = 0;
       id	obj = nil;
 
       loc = [self convertPoint: loc fromView: nil];
@@ -102,9 +103,9 @@
 
 - (id) changeSelection: (id)sender
 {
-  int	row = [self selectedRow];
-  int	col = [self selectedColumn];
-  int	index = row * [self numberOfColumns] + col;
+  NSInteger	row = [self selectedRow];
+  NSInteger	col = [self selectedColumn];
+  NSInteger	index = row * [self numberOfColumns] + col;
   id	obj = nil;
 
   if (index >= 0 && index < [objects count])
@@ -246,9 +247,9 @@
 - (NSRect) rectForObject: (id)anObject
 {
   NSUInteger	pos = [objects indexOfObjectIdenticalTo: anObject];
-  NSRect	rect;
-  int		r;
-  int		c;
+  NSRect		rect;
+  NSInteger		r;
+  NSInteger		c;
 
   if (pos == NSNotFound)
     return NSZeroRect;
@@ -268,9 +269,9 @@
 {
   NSUInteger	count = [objects count];
   NSUInteger	index = 0;
-  int		cols = 0;
-  int		rows = 0;
-  int		width = 0;
+  NSInteger		cols = 0;
+  NSInteger		rows = 0;
+  NSInteger		width = 0;
 
   if ([self superview])
     width = [[self superview] bounds].size.width;

@@ -26,6 +26,7 @@
 
 #include <GormLib/IBObjectAdditions.h>
 #include <GNUstepBase/GNUstep.h>
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 #include "GormPrivate.h"
 #include "GormObjectEditor.h"
 #include "GormFunctions.h"
@@ -37,7 +38,6 @@
 #undef _
 #define _(x) x
 
-extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 
 /*
  * Method to return the image that should be used to display objects within

@@ -25,6 +25,7 @@
 #include "GormWindowTemplate.h"
 #include "GormNSWindow.h" 
 #include "GormNSPanel.h"
+#import <GNUstepGUI/GNUstepGUI.h>
 
 // @class GormNSWindow;
 // @class GormNSPanel;

@@ -89,12 +89,12 @@ static const NSWindowStyleMask defaultStyleMask = NSWindowStyleMaskTitled | NSWi
   return self;
 }
 
-- (void) _setStyleMask: (unsigned int) newStyleMask
+- (void) _setStyleMask: (NSWindowStyleMask) newStyleMask
 {
   _gormStyleMask = newStyleMask;
 }
 
-- (unsigned int) _styleMask
+- (NSWindowStyleMask) _styleMask
 {
   return _gormStyleMask;
 }
@@ -114,12 +114,12 @@ static const NSWindowStyleMask defaultStyleMask = NSWindowStyleMaskTitled | NSWi
   return _gormReleasedWhenClosed;
 }
 
-- (unsigned int) autoPositionMask
+- (NSUInteger) autoPositionMask
 {
   return autoPositionMask;
 }
 
-- (void) setAutoPositionMask: (unsigned int)mask
+- (void) setAutoPositionMask: (NSUInteger)mask
 {
   autoPositionMask = mask;
 }

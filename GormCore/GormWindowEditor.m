@@ -33,6 +33,7 @@
 #include "GormInternalViewEditor.h"
 #include "GormViewKnobs.h"
 #include "GormWindowEditor.h"
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 
 #include <math.h>
 

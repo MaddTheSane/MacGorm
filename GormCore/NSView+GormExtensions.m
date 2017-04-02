@@ -29,6 +29,7 @@
 #include "NSView+GormExtensions.h"
 #include <GormLib/IBViewResourceDragging.h>
 #include <GNUstepBase/GNUstep.h>
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 
 @implementation NSView (GormExtensions)
 /**
@@ -36,16 +37,15 @@
  */
 - (NSArray *) superviews
 {
-  NSMutableArray *result = [NSMutableArray array];
-  NSView *currentView = nil; 
+	NSMutableArray *result = [NSMutableArray array];
+	NSView *currentView = nil;
  
-  for(currentView = self; currentView != nil; 
-      currentView = [currentView superview])
-    {
-      [result addObject: currentView];
-    }
-
-  return result;
+	for (currentView = self; currentView != nil;
+		 currentView = [currentView superview]) {
+		[result addObject: currentView];
+	}
+	
+	return result;
 }
 
 /**
@@ -53,17 +53,16 @@
  */
 - (BOOL) hasSuperviewKindOfClass: (Class)cls
 {
-  NSEnumerator *en = [[self superviews] objectEnumerator];
-  NSView *v = nil;
-  BOOL result = NO;
-
-  while(((v = [en nextObject]) != nil) && 
-	result == NO)
-    {
-      result = [v isKindOfClass: cls];
-    }
-
-  return result;
+	NSEnumerator *en = [[self superviews] objectEnumerator];
+	NSView *v = nil;
+	BOOL result = NO;
+	
+	while (((v = [en nextObject]) != nil) &&
+		   result == NO) {
+		result = [v isKindOfClass: cls];
+	}
+	
+	return result;
 }
 
 /**
@@ -72,14 +71,13 @@
  */
 - (void) moveViewToFront: (NSView *)sv
 {
-  NSDebugLog(@"move to front %@", sv);
-  if([_subviews containsObject: sv])
-    {
-      RETAIN(sv); // make sure it doesn't deallocate the view.
-      [_subviews removeObject: sv];
-      [_subviews addObject: sv]; // add it to the end.
-      RELEASE(sv);
-    }
+	NSDebugLog(@"move to front %@", sv);
+	if([_subviews containsObject: sv]) {
+		RETAIN(sv); // make sure it doesn't deallocate the view.
+		[_subviews removeObject: sv];
+		[_subviews addObject: sv]; // add it to the end.
+		RELEASE(sv);
+	}
 }
 
 /**
@@ -88,22 +86,18 @@
  */
 - (void) moveViewToBack: (NSView *)sv
 {
-  NSDebugLog(@"move to back %@", sv);
-  if([_subviews containsObject: sv])
-    {
-      RETAIN(sv); // make sure it doesn't deallocate the view.
-      [_subviews removeObject: sv];
-      if([_subviews count] > 0)
-	{
-	  [_subviews insertObject: sv 
-		      atIndex: 0]; // add it to the end.
+	NSDebugLog(@"move to back %@", sv);
+	if ([_subviews containsObject: sv]) {
+		RETAIN(sv); // make sure it doesn't deallocate the view.
+		[_subviews removeObject: sv];
+		if ([_subviews count] > 0) {
+			[_subviews insertObject: sv
+							atIndex: 0]; // add it to the end.
+		} else {
+			[_subviews addObject: sv];
+		}
+		RELEASE(sv);
 	}
-      else
-	{
-	  [_subviews addObject: sv];
-	}
-      RELEASE(sv);
-    }
 }
 @end
 
@@ -114,33 +108,30 @@
 static NSMutableArray *_registeredViewResourceDraggingDelegates = nil;
 
 /**
- * IBViewResourceDraggingDelegates implementation.  These methods
+ * IBViewResourceDraggingDelegate implementation.  These methods
  * make it possible to declare types in palettes and dynamically select the
  * appropriate delegate to handle the addition of an object to the document.
  */
-@implementation NSView (IBViewResourceDraggingDelegates)
+@implementation NSView (IBViewResourceDraggingDelegate)
 
 /**
  * Types accepted by the view.
  */
 + (NSArray *) acceptedViewResourcePasteboardTypes
 {
-  NSMutableArray *result = nil;
-  if([_registeredViewResourceDraggingDelegates count] > 0)
-    {
-      NSEnumerator *en = [_registeredViewResourceDraggingDelegates objectEnumerator];
-      id delegate = nil;
-      result = [NSMutableArray array];
-
-      while((delegate = [en nextObject]) != nil)
-	{
-	  if([delegate respondsToSelector: @selector(viewResourcePasteboardTypes)])
-	    {
-	      [result addObjectsFromArray: [delegate viewResourcePasteboardTypes]];
-	    }
+	NSMutableArray *result = nil;
+	if ([_registeredViewResourceDraggingDelegates count] > 0) {
+		NSEnumerator *en = [_registeredViewResourceDraggingDelegates objectEnumerator];
+		id delegate = nil;
+		result = [NSMutableArray array];
+		
+		while((delegate = [en nextObject]) != nil) {
+			if([delegate respondsToSelector: @selector(viewResourcePasteboardTypes)]) {
+				[result addObjectsFromArray: [delegate viewResourcePasteboardTypes]];
+			}
+		}
 	}
-    }
-  return result;
+	return result;
 }
 
 /**
@@ -148,31 +139,29 @@ static NSMutableArray *_registeredViewResourceDraggingDelegates = nil;
  */
 + (NSArray *) registeredViewResourceDraggingDelegates
 {
-  return _registeredViewResourceDraggingDelegates;
+	return _registeredViewResourceDraggingDelegates;
 }
 
 /**
  * Register a delegate.
  */
-+ (void) registerViewResourceDraggingDelegate: (id<IBViewResourceDraggingDelegates>)delegate
++ (void) registerViewResourceDraggingDelegate: (id<IBViewResourceDraggingDelegate>)delegate
 {
-  if(_registeredViewResourceDraggingDelegates == nil)
-    {
-      _registeredViewResourceDraggingDelegates = [[NSMutableArray alloc] init];
-    }
-
-  [_registeredViewResourceDraggingDelegates addObject: delegate];
+	if (_registeredViewResourceDraggingDelegates == nil) {
+		_registeredViewResourceDraggingDelegates = [[NSMutableArray alloc] init];
+	}
+	
+	[_registeredViewResourceDraggingDelegates addObject: delegate];
 }
 
 /**
  * Remove a previously registered delegate.
  */
-+ (void) unregisterViewResourceDraggingDelegate: (id<IBViewResourceDraggingDelegates>)delegate
++ (void) unregisterViewResourceDraggingDelegate: (id<IBViewResourceDraggingDelegate>)delegate
 {
-  if(_registeredViewResourceDraggingDelegates != nil)
-    {
-      [_registeredViewResourceDraggingDelegates removeObject: delegate];
-    }
+	if (_registeredViewResourceDraggingDelegates != nil) {
+		[_registeredViewResourceDraggingDelegates removeObject: delegate];
+	}
 }
 
 @end

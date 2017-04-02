@@ -40,12 +40,11 @@
 #include <AppKit/NSImage.h>
 #include <AppKit/NSColor.h>
 #include <GNUstepBase/GNUstep.h>
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 
 
 #undef _
 #define _(x) x
-
-extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 
 static NSNotificationCenter *nc = nil;
 static const NSInteger current_version = 1;
@@ -190,6 +189,7 @@ static NSColor *darkGreyBlueColor = nil;
 
 - (void) _addNewActionToObject: (id)item
 {
+#if 0
   NSUInteger insertionPoint = 0;
   NSString *name = nil;
 
@@ -204,10 +204,12 @@ static NSColor *darkGreyBlueColor = nil;
       [self setNeedsDisplay: YES];
       [self noteNumberOfRowsChanged];
     }
+#endif
 }
 
 - (void) _addNewOutletToObject: (id)item
 {
+#if 0
   NSUInteger insertionPoint = 0;
   GormOutletActionHolder *holder = [[GormOutletActionHolder alloc] init];
   NSString *name = nil;
@@ -222,18 +224,19 @@ static NSColor *darkGreyBlueColor = nil;
       [self setNeedsDisplay: YES];
       [self noteNumberOfRowsChanged];
     }
+#endif
 }
 
-- (void) removeItemAtRow: (int)row
+- (void) removeItemAtRow: (NSInteger)row
 {
-  [_items removeObjectAtIndex: row];
-  _numberOfRows -= 1;
+  [self removeItemsAtIndexes:[NSIndexSet indexSetWithIndex:row] inParent:nil withAnimation:(NSTableViewAnimationSlideLeft)];
   [self setNeedsDisplay: YES];
   [self noteNumberOfRowsChanged];
 }
 
 - (void)_openActions: (id)item
 {
+#if 0
   NSInteger numchildren = 0;
   NSInteger i = 0;
   NSUInteger insertionPoint = 0;
@@ -272,10 +275,12 @@ static NSColor *darkGreyBlueColor = nil;
       [_items insertObject: holder atIndex: insertionPoint];
     }
   [self noteNumberOfRowsChanged];
+#endif
 }
 
 - (void) _openOutlets: (id)item
 {
+#if 0
   NSInteger numchildren = 0;
   NSInteger i = 0;
   NSInteger insertionPoint = 0;
@@ -314,6 +319,7 @@ static NSColor *darkGreyBlueColor = nil;
       [_items insertObject: holder atIndex: insertionPoint];
     }
   [self noteNumberOfRowsChanged];
+#endif
 }
 
 - (void) drawRow: (NSInteger)rowIndex clipRect: (NSRect)aRect
@@ -336,7 +342,7 @@ static NSColor *darkGreyBlueColor = nil;
   /* Using columnAtPoint: here would make it called twice per row per drawn 
      rect - so we avoid it and do it natively */
   
-  if (rowIndex >= _numberOfRows)
+  if (rowIndex >= self.numberOfRows)
     {
       return;
     }
@@ -344,7 +350,7 @@ static NSColor *darkGreyBlueColor = nil;
   /* Determine starting column as fast as possible */
   x_pos = NSMinX (aRect);
   i = 0;
-  while ((x_pos > _columnOrigins[i]) && (i < _numberOfColumns))
+  while ((x_pos > [self tableColumns][i].width) && (i < self.numberOfColumns))
     {
       i++;
     }
@@ -356,19 +362,19 @@ static NSColor *darkGreyBlueColor = nil;
   /* Determine ending column as fast as possible */
   x_pos = NSMaxX (aRect);
   // Nota Bene: we do *not* reset i
-  while ((x_pos > _columnOrigins[i]) && (i < _numberOfColumns))
+  while ((x_pos > [self tableColumns][i].width) && (i < self.numberOfColumns))
     {
       i++;
     }
   endingColumn = (i - 1);
 
   if (endingColumn == -1)
-    endingColumn = _numberOfColumns - 1;
+    endingColumn = self.numberOfColumns - 1;
 
   /* Draw the row between startingColumn and endingColumn */
   for (i = startingColumn; i <= endingColumn; i++)
     {
-      if (i != _editedColumn || rowIndex != _editedRow)
+      if (i != self.editedColumn || rowIndex != self.editedRow)
 	{
 	  id item = [self itemAtRow: rowIndex];
 	  id value = nil, valueforcell = nil;
@@ -410,7 +416,7 @@ static NSColor *darkGreyBlueColor = nil;
 	      drawingRect.size.width -= _attributeOffset;
 	    }	  
 
-	  if (tb == _outlineTableColumn && !isOutletAction)
+	  if (tb == self.outlineTableColumn && !isOutletAction)
 	    {
 	      NSImage *image = nil;
 	      NSInteger level = 0;
@@ -432,10 +438,10 @@ static NSColor *darkGreyBlueColor = nil;
 		}
 	      
 	      level = [self levelForItem: item];
-	      indentationFactor = _indentationPerLevel * level;
+	      indentationFactor = self.indentationPerLevel * level;
 	      imageCell = [[NSCell alloc] initImageCell: image];
 	      
-	      if (_indentationMarkerFollowsCell)
+	      if (self.indentationMarkerFollowsCell)
 		{
 		  imageRect.origin.x = drawingRect.origin.x + indentationFactor;
 		  imageRect.origin.y = drawingRect.origin.y;
@@ -485,7 +491,7 @@ static NSColor *darkGreyBlueColor = nil;
 	      // [cell drawWithFrame: drawingRect inView: self];
 	    }
 	  
-	  if (((tb != _outletColumn || tb != _actionColumn) && !isOutletAction) || (tb == _outlineTableColumn))
+	  if (((tb != _outletColumn || tb != _actionColumn) && !isOutletAction) || (tb == self.outlineTableColumn))
 	    {
 	      [cell drawWithFrame: drawingRect inView: self];
 	    }
@@ -510,13 +516,13 @@ static NSColor *darkGreyBlueColor = nil;
   BOOL isActionOrOutlet = NO;
 
   location = [self convertPoint: location  fromView: nil];
-  _clickedRow = [self rowAtPoint: location];
-  _clickedColumn = [self columnAtPoint: location];
-  _clickedItem = [self itemAtRow: _clickedRow];
+  //self.clickedRow = [self rowAtPoint: location];
+  //_clickedColumn = [self columnAtPoint: location];
+  _clickedItem = [self itemAtRow: self.clickedRow];
   isActionOrOutlet
     = [_clickedItem isKindOfClass: [GormOutletActionHolder class]];
 
-  tb = [_tableColumns objectAtIndex: _clickedColumn];
+  tb = [_tableColumns objectAtIndex: self.clickedColumn];
   if (tb == _actionColumn)
     {
       image = action;
@@ -528,8 +534,10 @@ static NSColor *darkGreyBlueColor = nil;
 
   if ((tb == _actionColumn || tb == _outletColumn) && !_isEditing)
     {
-      NSInteger position = 0;      
+      NSInteger position = 0;
+#if 0
       position += _columnOrigins[_clickedColumn] + 5;
+#endif
 
       if (location.x >= position
 	&& location.x <= position + [image size].width + 5)
@@ -582,76 +590,20 @@ static NSColor *darkGreyBlueColor = nil;
 }  
 
 // additional methods for subclass
-- (void) setAttributeOffset: (float)offset
-{
-  _attributeOffset = offset;
-}
-
-- (float) attributeOffset
-{
-  return _attributeOffset;
-}
-
-- (void) setItemBeingEdited: (id)item
-{
-  _itemBeingEdited = item;
-}
-
-- (id) itemBeingEdited
-{
-  return _itemBeingEdited;
-}
-
-- (void) setIsEditing: (BOOL)flag
-{
-  _isEditing = flag;
-}
-
-- (BOOL) isEditing
-{
-  return _isEditing;
-}
-
-- (void)setActionColumn: (NSTableColumn *)ac
-{
-  ASSIGN(_actionColumn,ac);
-}
-
-- (NSTableColumn *)actionColumn
-{
-  return _actionColumn;
-}
-
-- (void)setOutletColumn: (NSTableColumn *)oc
-{
-  ASSIGN(_outletColumn,oc);
-}
-
-- (NSTableColumn *)outletColumn
-{
-  return _outletColumn;
-}
-
-- (void)setMenuItem: (NSMenuItem *)item
-{
-  ASSIGN(_menuItem, item);
-}
-
-- (NSMenuItem *)menuItem
-{
-  return _menuItem;
-}
-
-- (GSAttributeType)editType
-{
-  return _edittype;
-}
+@synthesize attributeOffset = _attributeOffset;
+@synthesize itemBeingEdited = _itemBeingEdited;
+@synthesize isEditing = _isEditing;
+@synthesize menuItem = _menuItem;
+@synthesize actionColumn = _actionColumn;
+@synthesize outletColumn = _outletColumn;
+@synthesize editType = _edittype;
 
 - (void) editColumn: (NSInteger) columnIndex 
 		row: (NSInteger) rowIndex 
 	  withEvent: (NSEvent *) theEvent 
 	     select: (BOOL) flag
 {
+#if 0
   NSText *t;
   NSTableColumn *tb;
   NSRect drawingRect, imageRect;
@@ -666,7 +618,7 @@ static NSColor *darkGreyBlueColor = nil;
 
   // We refuse to edit cells if the delegate can not accept results 
   // of editing.
-  if (_dataSource_editable == NO)
+  if (/*_dataSource_editable == */NO)
     {
       return;
     }
@@ -674,13 +626,13 @@ static NSColor *darkGreyBlueColor = nil;
   [self scrollRowToVisible: rowIndex];
   [self scrollColumnToVisible: columnIndex];
 
-  if (rowIndex < 0 || rowIndex >= _numberOfRows 
-    || columnIndex < 0 || columnIndex >= _numberOfColumns)
+  if (rowIndex < 0 || rowIndex >= self.numberOfRows
+    || columnIndex < 0 || columnIndex >= self.numberOfColumns)
     {
       [NSException raise: NSInvalidArgumentException
 		   format: @"Row/column out of index in edit"];
     }
-  
+	
   if (_textObject != nil)
     {
       [self validateEditing];
@@ -701,7 +653,7 @@ static NSColor *darkGreyBlueColor = nil;
   
   _editedRow = rowIndex;
   _editedColumn = columnIndex;
-  item = [self itemAtRow: _editedRow];
+  item = [self itemAtRow: self.editedRow];
 
   // Prepare the cell
   tb = [_tableColumns objectAtIndex: columnIndex];
@@ -817,14 +769,15 @@ static NSColor *darkGreyBlueColor = nil;
 		   delegate: self
 		   event: theEvent];
     }
-  return;    
+  return;
+#endif
 }
 
-- (void) selectRow: (int)rowIndex
+- (void) selectRow: (NSInteger)rowIndex
 {
-  [self setNeedsDisplayInRect: [self rectOfRow: rowIndex]];
-  [_selectedRows addIndex: rowIndex];
-  _selectedRow = rowIndex;
+	[self setNeedsDisplayInRect: [self rectOfRow: rowIndex]];
+	[_selectedRows addIndex: rowIndex];
+	[super selectRow:rowIndex byExtendingSelection:NO];
 }
 @end /* implementation of GormOutlineView */
 

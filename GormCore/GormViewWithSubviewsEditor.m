@@ -28,6 +28,7 @@
 #include <GormCore/GormFontViewController.h>
 #include <GormCore/GormViewKnobs.h>
 #include <GNUstepBase/GNUstep.h>
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 
 @class GormEditorToParent;
 
@@ -864,7 +865,7 @@
   NSView        *superview;
   NSEnumerator		*enumerator;
   NSRect        oldMovingFrame;
-  NSRect        suggestedFrame;
+  NSRect        suggestedFrame = NSZeroRect;
   GormPlacementInfo *gpi = nil;
   BOOL shouldUpdateSelection = YES;
   BOOL mouseDidMove = NO;

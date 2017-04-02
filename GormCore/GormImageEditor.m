@@ -29,11 +29,10 @@
 #include <AppKit/NSImage.h>
 #include "GormImage.h"
 #include <GNUStepBase/GNUstep.h>
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 
 #undef _
 #define _(x) x
-
-extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 
 @implementation	GormImageEditor
 

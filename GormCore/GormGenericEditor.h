@@ -62,19 +62,15 @@
 - (BOOL) activate;
 - (id) initWithObject: (id)anObject inDocument: (id<IBDocuments>)aDocument;
 - (void) close;
-- (void) closeSubeditors;
 - (BOOL) containsObject: (id)anObject;
-- (void) copySelection;
-- (void) deleteSelection;
 - (id<IBDocuments>) document;
 - (id) editedObject;
 - (id<IBEditors>) openSubeditorForObject: (id)anObject;
 - (void) orderFront;
-- (void) pasteInSelection;
 - (NSRect) rectForObject: (id)anObject;
 
 - (NSArray *) objects;
-- (BOOL) isOpened;
+@property (readonly, getter=isOpened) BOOL opened;
 - (NSArray *) fileTypes;
 @end
 

@@ -24,6 +24,7 @@
 
 #include <AppKit/NSImage.h>
 #include <GormLib/IBObjectAdditions.h>
+#include <GNUstepBase/GNUstep.h>
 #include "GormImage.h"
 
 // implementation of category on NSImage.

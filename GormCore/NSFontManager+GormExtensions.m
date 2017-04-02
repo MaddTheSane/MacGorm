@@ -25,6 +25,7 @@
 #include <Foundation/NSObject.h>
 #include <Foundation/NSException.h>
 #include <AppKit/NSApplication.h>
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 #include "NSFontManager+GormExtensions.h"
 #include "GormDocument.h"
 
@@ -42,6 +43,7 @@
 }
 @end
 
+#if 0
 @implementation NSFontManager (GormExtensions)
 
 /**
@@ -83,3 +85,4 @@
 }
 
 @end
+#endif

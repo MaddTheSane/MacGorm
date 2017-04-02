@@ -32,7 +32,7 @@
 /**
  * Protocol describing those methods needed to accept resources.
  */
-@protocol IBViewResourceDraggingDelegates
+@protocol IBViewResourceDraggingDelegate
 
 /**
  * Ask if the view accepts the object.
@@ -64,7 +64,7 @@
 /**
  * Informal protocol on NSView.
  */
-@interface NSView (IBViewResourceDraggingDelegates)
+@interface NSView (IBViewResourceDraggingDelegate)
 
 /**
  * Types accepted by the view.
@@ -74,17 +74,17 @@
 /**
  * Return the list of registered delegates.
  */
-+ (NSArray *) registeredViewResourceDraggingDelegates;
+@property (class, readonly, retain) NSArray<id<IBViewResourceDraggingDelegate>> * registeredViewResourceDraggingDelegates;
 
 /**
  * Register a delegate.
  */
-+ (void) registerViewResourceDraggingDelegate: (id<IBViewResourceDraggingDelegates>)delegate;
++ (void) registerViewResourceDraggingDelegate: (id<IBViewResourceDraggingDelegate>)delegate;
 
 /**
  * Remove a previously registered delegate.
  */
-+ (void) unregisterViewResourceDraggingDelegate: (id<IBViewResourceDraggingDelegates>)delegate;
++ (void) unregisterViewResourceDraggingDelegate: (id<IBViewResourceDraggingDelegate>)delegate;
 
 @end
 #endif

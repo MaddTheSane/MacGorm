@@ -26,6 +26,7 @@
 #include <GormCore/GormOpenGLView.h>
 #include <Foundation/NSTimer.h>
 #include <AppKit/NSColor.h>
+#include <AppKit/NSBezierPath.h>
 //#include <AppKit/PSOperators.h>
 // #include <AppKit/NSOpenGL.h>
 // #include <GL/gl.h>
@@ -65,7 +66,8 @@
 {   
   // do nothing for now...
   [[NSColor blackColor] set];
-  PSrectfill(NSMinX(rect), NSMinY(rect), NSWidth(rect),  NSHeight(rect));
+  [[NSBezierPath bezierPathWithRect:rect] fill];
+  //PSrectfill(NSMinX(rect), NSMinY(rect), NSWidth(rect),  NSHeight(rect));
 }
 
 @end

@@ -24,7 +24,9 @@
 
 #include "GormObjectInspector.h"
 #include <objc/runtime.h>
-#include <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/GSTypeEncoding.h>
+#import <GNUstepBase/NSString+GNUstepBase.h>
 
 #undef _
 #define _(__x) __x

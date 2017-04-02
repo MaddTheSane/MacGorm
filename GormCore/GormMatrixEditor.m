@@ -36,13 +36,12 @@
 #include "GormPlacementInfo.h"
 #include "GormFontViewController.h"
 #include "GormViewKnobs.h"
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 
 #define _EO ((NSMatrix*)_editedObject)
 
 #undef _
 #define _(x) x
-
-extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 
 @interface GormViewEditor (Private)
 - (void) _displayFrame: (NSRect) frame

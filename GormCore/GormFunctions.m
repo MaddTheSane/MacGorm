@@ -30,6 +30,9 @@
 #include <Foundation/NSFileManager.h>
 #include <Foundation/NSPathUtilities.h>
 #include <Foundation/NSString.h>
+#include <GNUstepBase/GNUstep.h>
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
+#include <GNUstepBase/GSObjCRuntime.h>
 #include "GormClassPanelController.h"
 
 // find all subitems for the given items...

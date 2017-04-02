@@ -25,6 +25,7 @@
 #include <AppKit/AppKit.h>
 #include <Foundation/NSUserDefaults.h>
 #include <GNUStepBase/GNUstep.h>
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 #include <GormLib/InterfaceBuilder.h>
 
 #include "GormGenericEditor.h"
@@ -43,8 +44,6 @@
 
 #undef _
 #define _(x) x
-
-extern void NSDebugLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 
 @implementation GormPlacementInfo
 @end
