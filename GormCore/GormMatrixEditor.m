@@ -37,6 +37,7 @@
 #include "GormFontViewController.h"
 #include "GormViewKnobs.h"
 #include <GNUstepBase/NSDebug+GNUstepBase.h>
+#include <GNUstepGUI/GNUstepGUI.h>
 
 #define _EO ((NSMatrix*)_editedObject)
 

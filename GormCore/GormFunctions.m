@@ -38,38 +38,30 @@
 // find all subitems for the given items...
 void findAllWithArray(id item, NSMutableArray *array)
 {
-  [array addObject: item];
-  if([item isKindOfClass: [NSMenuItem class]])
-    {
-      if([item hasSubmenu])
-	{
-	  NSMenu *submenu = [item submenu];
-	  NSArray *items = [submenu itemArray];
-	  NSEnumerator *e = [items objectEnumerator];
-	  id i = nil;
-
-	  [array addObject: submenu];
-	  while((i = [e nextObject]) != nil)
-	    {
-	      findAllWithArray(i, array);
-	    }
+	[array addObject: item];
+	if ([item isKindOfClass: [NSMenuItem class]]) {
+		if ([item hasSubmenu]) {
+			NSMenu *submenu = [item submenu];
+			NSArray *items = [submenu itemArray];
+			
+			[array addObject: submenu];
+			for (id i in items) {
+				findAllWithArray(i, array);
+			}
+		}
 	}
-    } 
 }
 
 // find all sub items for the selections...
 NSArray* findAllSubmenus(NSArray *array)
 {
-  NSEnumerator *e = [array objectEnumerator];
-  id i = nil;
-  NSMutableArray *results = [[NSMutableArray alloc] init];
-
-  while((i = [e nextObject]) != nil)
-    {
-      findAllWithArray(i, results);
-    }
-
-  return results;
+	NSMutableArray *results = [[NSMutableArray alloc] init];
+	
+	for (id i in array) {
+		findAllWithArray(i, results);
+	}
+	
+	return results;
 }
 
 NSArray* findAll(NSMenu *menu)
@@ -80,24 +72,21 @@ NSArray* findAll(NSMenu *menu)
 
 void subviewsForView(NSView *view, NSMutableArray *array)
 {
-  if(view != nil)
-    {
-      NSArray *subviews = [view subviews];
-      NSEnumerator *en = [subviews objectEnumerator];
-      NSView *aView = nil;
-
-      // if it's not me and it's not and editor, include it in the list of
-      // things to be deleted from the document.
-      if(![view isKindOfClass: [GormViewEditor class]]) 
-	{
-	  [array addObject: view];
+	if (view != nil) {
+		NSArray *subviews = [view subviews];
+		NSEnumerator *en = [subviews objectEnumerator];
+		NSView *aView = nil;
+		
+		// if it's not me and it's not and editor, include it in the list of
+		// things to be deleted from the document.
+		if (![view isKindOfClass: [GormViewEditor class]])  {
+			[array addObject: view];
+		}
+		
+		while ((aView = [en nextObject]) != nil) {
+			subviewsForView( aView, array );
+		}
 	}
-
-      while((aView = [en nextObject]) != nil)
-	{
-	  subviewsForView( aView, array );
-	}
-    }
 }
 
 NSArray *allSubviews(NSView *view)
@@ -111,69 +100,57 @@ NSArray *allSubviews(NSView *view)
 // cut the text...  code taken from GWorkspace, by Enrico Sersale
 static inline NSString *cutText(NSString *filename, id label, NSInteger lenght)
 {
-  NSString *cutname = nil;
-  NSString *reststr = nil;
-  NSString *dots;
-  NSFont *labfont;
-  NSDictionary *attr;
-  float w, cw, dotslenght;
-  NSInteger i;
-  
-  cw = 0;
-  labfont = [label font];
-  
-  attr = [NSDictionary dictionaryWithObjectsAndKeys: 
-			 labfont, NSFontAttributeName, nil];  
-  
-  dots = @"...";  
-  dotslenght = [dots sizeWithAttributes: attr].width;  
-  w = [filename sizeWithAttributes: attr].width;
-  
-  if (w > lenght) 
-    {
-      i = 0;
-      while (cw <= (lenght - dotslenght)) 
-	{
-	  if (i == [filename cStringLength]) 
-	    {
-	      break;
-	    }
-	  cutname = [filename substringToIndex: i];
-	  reststr = [filename substringFromIndex: i];
-	  cw = [cutname sizeWithAttributes: attr].width;
-	  i++;
-	}	
-      if ([cutname isEqual: filename] == NO) 
-	{      
-	  if ([reststr cStringLength] <= 3) 
-	    { 
-	      return filename;
-	    } 
-	  else 
-	    {
-	      cutname = [cutname stringByAppendingString: dots];
-	    }
-	} 
-      else 
-	{
-	  return filename;
-	}	
-    } 
-  else 
-    {
-      return filename;
-    }
-  
-  return cutname;
+	NSString *cutname = nil;
+	NSString *reststr = nil;
+	NSString *dots;
+	NSFont *labfont;
+	NSDictionary *attr;
+	CGFloat w, cw, dotslenght;
+	NSInteger i;
+	
+	cw = 0;
+	labfont = [label font];
+	
+	attr = [NSDictionary dictionaryWithObjectsAndKeys:
+			labfont, NSFontAttributeName, nil];
+	
+	dots = @"…";
+	dotslenght = [dots sizeWithAttributes: attr].width;
+	w = [filename sizeWithAttributes: attr].width;
+	
+	if (w > lenght) {
+		i = 0;
+		while (cw <= (lenght - dotslenght)) {
+			if (i == [filename cStringLength]) {
+				break;
+			}
+			cutname = [filename substringToIndex: i];
+			reststr = [filename substringFromIndex: i];
+			cw = [cutname sizeWithAttributes: attr].width;
+			i++;
+		}
+		if ([cutname isEqual: filename] == NO) {
+			if ([reststr cStringLength] <= 3) {
+				return filename;
+			} else {
+				cutname = [cutname stringByAppendingString: dots];
+			}
+		} else {
+			return filename;
+		}	
+	} else {
+		return filename;
+	}
+	
+	return cutname;
 }
 
 NSString *cutFileLabelText(NSString *filename, id label, NSInteger length)
 {
-  if (length > 0) 
-    {
-      return cutText(filename, label, length);
-    }
-  return filename;
+	if (length > 0) {
+		return cutText(filename, label, length);
+	}
+	return filename;
 }
 
 NSSize defaultCellSize()
@@ -186,95 +163,89 @@ NSSize defaultCellSize()
 
 NSColor *colorFromDict(NSDictionary *dict)
 {
-  if(dict != nil)
-    {
-      return [NSColor colorWithCalibratedRed: [[dict objectForKey: @"red"] floatValue]
-		      green: [[dict objectForKey: @"green"] floatValue]
-		      blue: [[dict objectForKey: @"blue"] floatValue]
-		      alpha: [[dict objectForKey: @"alpha"] floatValue]];
-    }
-  return nil;
+	if (dict != nil) {
+		return [NSColor colorWithCalibratedRed: [[dict objectForKey: @"red"] doubleValue]
+										 green: [[dict objectForKey: @"green"] doubleValue]
+										  blue: [[dict objectForKey: @"blue"] doubleValue]
+										 alpha: [[dict objectForKey: @"alpha"] doubleValue]];
+	}
+	return nil;
 }
 
 NSDictionary *colorToDict(NSColor *color)
 {
-  if(color != nil)
-    {
-      NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-      CGFloat red, green, blue, alpha;
-      NSNumber *fred = nil;
-      NSNumber *fgreen = nil;
-      NSNumber *fblue = nil;
-      NSNumber *falpha = nil;
-      
-      [color getRed: &red
-	     green: &green
-	     blue: &blue
-	     alpha: &alpha];
-      
-      fred   = [NSNumber numberWithFloat: red];
-      fgreen = [NSNumber numberWithFloat: green];
-      fblue  = [NSNumber numberWithFloat: blue];
-      falpha = [NSNumber numberWithFloat: alpha];
-      
-      [dict setObject: fred   forKey: @"red"];
-      [dict setObject: fgreen forKey: @"green"];
-      [dict setObject: fblue  forKey: @"blue"];
-      [dict setObject: falpha forKey: @"alpha"];
-      
-      return dict;
-    }
-  return nil;
+	if (color != nil) {
+		NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+		CGFloat red, green, blue, alpha;
+		NSNumber *fred = nil;
+		NSNumber *fgreen = nil;
+		NSNumber *fblue = nil;
+		NSNumber *falpha = nil;
+		
+		[color getRed: &red
+				green: &green
+				 blue: &blue
+				alpha: &alpha];
+		
+		fred   = @(red);
+		fgreen = @(green);
+		fblue  = @(blue);
+		falpha = @(alpha);
+		
+		[dict setObject: fred   forKey: @"red"];
+		[dict setObject: fgreen forKey: @"green"];
+		[dict setObject: fblue  forKey: @"blue"];
+		[dict setObject: falpha forKey: @"alpha"];
+		
+		return dict;
+	}
+	return nil;
 }
 
 NSArray *systemImagesList()
 {
-  NSString *lib = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSSystemDomainMask, YES) lastObject];
-
-  NSString *path = [lib stringByAppendingPathComponent: @"Images"];
-  NSArray *contents = [[NSFileManager defaultManager] directoryContentsAtPath: path];
-  NSEnumerator *en = [contents objectEnumerator];
-  NSMutableArray *result = [NSMutableArray array];
-  id obj;
-  NSArray *fileTypes = [NSImage imageFileTypes];
-
-  while((obj = [en nextObject]) != nil)
-    {
-      if([fileTypes containsObject: [obj pathExtension]])
-	{
-	  NSString *pathString = [path stringByAppendingPathComponent: obj];
-	  [result addObject: pathString];
+	NSString *lib = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSSystemDomainMask, YES) lastObject];
+	
+	NSString *path = [lib stringByAppendingPathComponent: @"Images"];
+	NSArray *contents = [[NSFileManager defaultManager] directoryContentsAtPath: path];
+	NSEnumerator *en = [contents objectEnumerator];
+	NSMutableArray *result = [NSMutableArray array];
+	id obj;
+	NSArray *fileTypes = [NSImage imageFileTypes];
+	
+	while((obj = [en nextObject]) != nil) {
+		if([fileTypes containsObject: [obj pathExtension]]) {
+			NSString *pathString = [path stringByAppendingPathComponent: obj];
+			[result addObject: pathString];
+		}
 	}
-    }
-
-  return result;
+	
+	return result;
 }
 
 NSArray *systemSoundsList()
 {
-  NSString *lib = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSSystemDomainMask, YES) lastObject];
-  NSString *path = [lib stringByAppendingPathComponent: @"Sounds"];
-  NSArray *contents = [[NSFileManager defaultManager] directoryContentsAtPath: path];
-  NSEnumerator *en = [contents objectEnumerator];
-  NSMutableArray *result = [NSMutableArray array];
-  id obj;
-  NSArray *fileTypes = [NSSound soundUnfilteredFileTypes];
-
-  while((obj = [en nextObject]) != nil)
-    {
-      if([fileTypes containsObject: [obj pathExtension]])
-	{
-	  NSString *pathString = [path stringByAppendingPathComponent: obj];
-	  [result addObject: pathString];
+	NSString *lib = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSSystemDomainMask, YES) lastObject];
+	NSString *path = [lib stringByAppendingPathComponent: @"Sounds"];
+	NSArray *contents = [[NSFileManager defaultManager] directoryContentsAtPath: path];
+	NSEnumerator *en = [contents objectEnumerator];
+	NSMutableArray *result = [NSMutableArray array];
+	id obj;
+	NSArray *fileTypes = [NSSound soundUnfilteredFileTypes];
+	
+	while((obj = [en nextObject]) != nil) {
+		if([fileTypes containsObject: [obj pathExtension]]) {
+			NSString *pathString = [path stringByAppendingPathComponent: obj];
+			[result addObject: pathString];
+		}
 	}
-    }
-
-  return result;
+	
+	return result;
 }
 
 int appVersion(long a, long b, long c)
 {
-  return (((a) << 16)+((b) << 8) + (c));
+	return (((a) << 16)+((b) << 8) + (c));
 }
 
 NSString *promptForClassName(NSString *title, NSArray *classes)
@@ -285,49 +256,44 @@ NSString *promptForClassName(NSString *title, NSArray *classes)
 
 NSString *identifierString(NSString *str)
 {
-  NSCharacterSet  *illegal = [[NSCharacterSet 
-				characterSetWithCharactersInString: 
-				  @"_0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"] 
-			       invertedSet];
-  NSCharacterSet  *numeric = [NSCharacterSet 
-			       characterSetWithCharactersInString:
-				 @"0123456789"];
-  NSCharacterSet  *white = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-  NSRange	  r;
-  NSMutableString *result;
-  
-  if (str == nil)
-    {
-      return nil;
-    }
-
-  result = [NSMutableString stringWithString: str];
-  r = [result rangeOfCharacterFromSet: illegal];
-  while (r.length > 0)
-    {
-      [result deleteCharactersInRange: r];
-      r = [result rangeOfCharacterFromSet: illegal];
-    }
-  r = [result rangeOfCharacterFromSet: numeric];
-  while (r.length > 0 && r.location == 0)
-    {
-      [result deleteCharactersInRange: r];
-      r = [result rangeOfCharacterFromSet: numeric];
-    }
-  r = [result rangeOfCharacterFromSet: white];
-  while (r.length > 0 && r.location == 0)
-    {
-      [result deleteCharactersInRange: r];
-      r = [result rangeOfCharacterFromSet: white];
-    }
-
-  // check the result's length.
-  if([result length] == 0)
-    {
-      result = [@"dummyIdentifier" mutableCopy];
-    }
-
-  return result;
+	NSCharacterSet  *illegal = [[NSCharacterSet
+								 characterSetWithCharactersInString:
+								 @"_0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"]
+								invertedSet];
+	NSCharacterSet  *numeric = [NSCharacterSet
+								characterSetWithCharactersInString:
+								@"0123456789"];
+	NSCharacterSet  *white = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+	NSRange	  r;
+	NSMutableString *result;
+	
+	if (str == nil) {
+		return nil;
+	}
+	
+	result = [NSMutableString stringWithString: str];
+	r = [result rangeOfCharacterFromSet: illegal];
+	while (r.length > 0) {
+		[result deleteCharactersInRange: r];
+		r = [result rangeOfCharacterFromSet: illegal];
+	}
+	r = [result rangeOfCharacterFromSet: numeric];
+	while (r.length > 0 && r.location == 0) {
+		[result deleteCharactersInRange: r];
+		r = [result rangeOfCharacterFromSet: numeric];
+	}
+	r = [result rangeOfCharacterFromSet: white];
+	while (r.length > 0 && r.location == 0) {
+		[result deleteCharactersInRange: r];
+		r = [result rangeOfCharacterFromSet: white];
+	}
+	
+	// check the result's length.
+	if ([result length] == 0) {
+		result = [@"dummyIdentifier" mutableCopy];
+	}
+	
+	return result;
 }
 
 NSString *formatAction(NSString *action)
@@ -352,11 +318,10 @@ NSString *formatOutlet(NSString *outlet)
  */
 NSArray *_GSObjCMethodNamesForClass(Class class, BOOL collect)
 {
-  if (class == nil)
-    {
-      return nil;
-    }
-  return GSObjCMethodNames((id)&class, collect);
+	if (class == nil) {
+		return nil;
+	}
+	return GSObjCMethodNames((id)&class, collect);
 }
 
 /**
@@ -367,33 +332,33 @@ NSArray *_GSObjCMethodNamesForClass(Class class, BOOL collect)
  */
 NSArray *_GSObjCVariableNames(Class class, BOOL collect)
 {
-  if (class == nil)
-    {
-      return nil;
-    }
-  return GSObjCVariableNames((id)&class, collect);
+	if (class == nil) {
+		return nil;
+	}
+	return GSObjCVariableNames((id)&class, collect);
 }
 
 
 NSRect minimalContainerFrame(NSArray *views)
 {
-  NSEnumerator *en = [views objectEnumerator];
-  id o = nil;
-  float w = 0.0;
-  float h = 0.0;
-
-  while((o = [en nextObject]) != nil)
-    {
-      NSRect frame = [o frame];
-      float nw = frame.origin.x + frame.size.width;
-      float nh = frame.origin.y + frame.size.height;
-
-      if(nw > w)
-	w = nw;
-
-      if(nh > h)
-	h = nh;
-    }
-
-  return NSMakeRect(0,0,w,h);
+	NSEnumerator *en = [views objectEnumerator];
+	id o = nil;
+	CGFloat w = 0.0;
+	CGFloat h = 0.0;
+	
+	while ((o = [en nextObject]) != nil) {
+		NSRect frame = [o frame];
+		CGFloat nw = frame.origin.x + frame.size.width;
+		CGFloat nh = frame.origin.y + frame.size.height;
+		
+		if(nw > w) {
+			w = nw;
+		}
+		
+		if(nh > h) {
+			h = nh;
+		}
+	}
+	
+	return NSMakeRect(0,0,w,h);
 }

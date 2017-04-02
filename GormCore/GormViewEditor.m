@@ -27,6 +27,7 @@
 #include <GNUStepBase/GNUstep.h>
 #include <GNUstepBase/NSDebug+GNUstepBase.h>
 #include <GormLib/InterfaceBuilder.h>
+#include <GNUstepGUI/GNUstepGUI.h>
 
 #include "GormGenericEditor.h"
 #include "GormViewEditor.h"

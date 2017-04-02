@@ -332,7 +332,7 @@ static NSColor *darkGreyBlueColor = nil;
   NSCell *imageCell = nil;
   NSRect imageRect;
   NSInteger i;
-  float x_pos;
+  CGFloat x_pos;
 
   if (_dataSource == nil)
     {

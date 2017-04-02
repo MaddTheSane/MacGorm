@@ -106,7 +106,7 @@ static BOOL _isInInterfaceBuilder = NO;
 	    {
 	      return NO;
 	    }
-	  cls = GSObjCSuper(cls); // get super class
+	  cls = class_getSuperclass(cls); // get super class
 	}
       return YES;
     }

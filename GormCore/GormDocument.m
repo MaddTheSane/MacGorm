@@ -1217,7 +1217,7 @@ static NSImage  *fileImage = nil;
 - (void) dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver: self];
-  ASSIGN(lastEditor, nil);
+  DESTROY(lastEditor);
   // [filePrefsWindow close];
 
   // Get rid of the selection box.

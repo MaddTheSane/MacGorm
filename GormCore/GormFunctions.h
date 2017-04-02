@@ -50,22 +50,22 @@ NSString *cutFileLabelText(NSString *filename, id label, NSInteger length);
 NSSize defaultCellSize();
 
 // color from string
-NSColor *colorFromDict(NSDictionary *colorString);
+NSColor *colorFromDict(NSDictionary<NSString*,NSNumber*> *colorString);
 
 // color to string
-NSDictionary *colorToDict(NSColor *color);
+NSDictionary<NSString*,NSNumber*> *colorToDict(NSColor *color);
 
 // get the list of images...
-NSArray *systemImagesList();
+NSArray<NSString*> *systemImagesList();
 
 // get the list of images...
-NSArray *systemSoundsList();
+NSArray<NSString*> *systemSoundsList();
 
 // compute the gorm version
 int appVersion(long a, long b, long c);
 
 // prompt for a class name.  Used mainly for gmodel loading...
-NSString *promptForClassName(NSString *title, NSArray *classes);
+NSString *promptForClassName(NSString *title, NSArray<NSString*> *classes);
 
 // format an identifier..
 NSString *identifierString(NSString *str);
@@ -77,9 +77,9 @@ NSString *formatAction(NSString *action);
 NSString *formatOutlet(NSString *outlet);
 
 // get information about class.
-NSArray *_GSObjCMethodNamesForClass(Class class, BOOL collect);
+NSArray<NSString*> *_GSObjCMethodNamesForClass(Class class, BOOL collect);
 
-NSArray *_GSObjCVariableNames(Class class, BOOL collect);
+NSArray<NSString*> *_GSObjCVariableNames(Class class, BOOL collect);
 
-NSRect minimalContainerFrame(NSArray *views);
+NSRect minimalContainerFrame(NSArray<NSView*> *views);
 #endif

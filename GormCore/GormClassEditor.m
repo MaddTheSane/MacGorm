@@ -991,7 +991,7 @@ NSImage *browserImage = nil;
 {
   NSSavePanel		*sp;
   NSString              *className = [self selectedClassName];
-  int			result;
+  NSInteger			result;
 
   sp = [NSSavePanel savePanel];
   sp.allowedFileTypes = @[@"m"];

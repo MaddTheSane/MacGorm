@@ -63,7 +63,7 @@ static NSUInteger defaultStyleMask = NSTitledWindowMask | NSClosableWindowMask
 }
 
 - (id) initWithContentRect: (NSRect)contentRect
-		 styleMask: (NSUInteger)aStyle
+		 styleMask: (NSWindowStyleMask)aStyle
 		   backing: (NSBackingStoreType)bufferingType
 		     defer: (BOOL)flag
 {
@@ -88,12 +88,12 @@ static NSUInteger defaultStyleMask = NSTitledWindowMask | NSClosableWindowMask
   return self;
 }
 
-- (void) _setStyleMask: (unsigned int)newStyleMask
+- (void) _setStyleMask: (NSWindowStyleMask)newStyleMask
 {
   _gormStyleMask = newStyleMask;
 }
 
-- (unsigned int) _styleMask
+- (NSWindowStyleMask) _styleMask
 {
   return _gormStyleMask;
 }
@@ -123,12 +123,12 @@ static NSUInteger defaultStyleMask = NSTitledWindowMask | NSClosableWindowMask
   return _gormReleasedWhenClosed;
 }
 
-- (unsigned int) autoPositionMask
+- (NSUInteger) autoPositionMask
 {
   return autoPositionMask;
 }
 
-- (void) setAutoPositionMask: (unsigned int)mask
+- (void) setAutoPositionMask: (NSUInteger)mask
 {
   autoPositionMask = mask;
 }

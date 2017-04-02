@@ -32,6 +32,7 @@
 - (BOOL) containsDocumentTypeName: (NSString *)tname;
 @end
 
+#if 0
 @implementation NSDocumentController (GormPrivate)
 - (NSArray *) types
 {
@@ -60,7 +61,7 @@
   return NO;
 }
 @end
-
+#endif
 
 @implementation GormPlugin
 - (void) registerDocumentTypeName: (NSString *)name
