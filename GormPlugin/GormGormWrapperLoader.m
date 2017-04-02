@@ -619,8 +619,8 @@
   NS_HANDLER
     {
       NSRunAlertPanel(_(@"Problem Loading"), 
-		      [NSString stringWithFormat: @"Failed to load file.  Exception: %@",[localException reason]], 
-		      _(@"OK"), nil, nil);
+		      @"Failed to load file.  Exception: %@",
+		      _(@"OK"), nil, nil, [localException reason]);
       result = NO; 
     }
   NS_ENDHANDLER;

@@ -1,0 +1,13 @@
+/* 
+  InfoPlist.strings
+  MacGorm
+
+  Created by C.W. Betts on 4/1/17.
+  Copyright © 2017 C.W. Betts. All rights reserved.
+*/
+
+GSGormFileType = "GNUstep Gorm";
+GSGModelFileType = "GNUstep GModel";
+GSNibFileType = "Cocoa Nib";
+GSXibFileType = "Cocoa Xib";
+GSPaletteFileType = "Gorm/Interface Builder Palette";

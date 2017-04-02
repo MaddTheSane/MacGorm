@@ -53,7 +53,7 @@ static BOOL gormFileOwnerDecoded;
 - (void) gmSetStyleMask: (unsigned int)mask
 {
    _styleMask = mask;
-   [GSServerForWindow(self) stylewindow: mask : [self windowNumber]];
+   //[GSServerForWindow(self) stylewindow: mask : [self windowNumber]];
 }
 @end
 
@@ -65,7 +65,7 @@ static BOOL gormFileOwnerDecoded;
 {
   id mainMenu;
   id windowMenu;
-  id delegate;
+  __unsafe_unretained id delegate;
   NSArray *windows;
 }
 
@@ -652,34 +652,41 @@ static BOOL gormFileOwnerDecoded;
 }
 @end
 
+static NSArray *NSStandardLibraryPaths()
+{
+	NSArray *libraryURLs = [[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSAllDomainsMask];
+	NSMutableArray *libraryPaths = [NSMutableArray arrayWithCapacity:libraryURLs.count];
+	for (NSURL *lib in libraryURLs) {
+		[libraryPaths addObject:lib.path];
+	}
+	return libraryPaths;
+}
+
 static 
 Class gmodel_class(NSString *className)
 {
-  static Class gmclass = Nil;
-
-  if (gmclass == Nil)
-    {
-      NSBundle	*theBundle;
-      NSEnumerator *benum;
-      NSString	*path;
-
-      /* Find the bundle */
-      benum = [NSStandardLibraryPaths() objectEnumerator];
-      while ((path = [benum nextObject]))
-	{
-	  path = [path stringByAppendingPathComponent: @"Bundles"];
-	  path = [path stringByAppendingPathComponent: @"libgmodel.bundle"];
-	  if ([[NSFileManager defaultManager] fileExistsAtPath: path])
-	    break;
-	  path = nil;
+	static Class gmclass = Nil;
+	
+	if (gmclass == Nil) {
+		NSBundle	*theBundle;
+		NSString	*path;
+		
+		/* Find the bundle */
+		for (path in NSStandardLibraryPaths()) {
+			path = [path stringByAppendingPathComponent: @"Bundles"];
+			path = [path stringByAppendingPathComponent: @"libgmodel.bundle"];
+			if ([[NSFileManager defaultManager] fileExistsAtPath: path]) {
+				break;
+			}
+			path = nil;
+		}
+		NSCAssert(path != nil, @"Unable to load gmodel bundle");
+		NSDebugLog(@"Loading gmodel from %@", path);
+		
+		theBundle = [NSBundle bundleWithPath: path];
+		NSCAssert(theBundle != nil, @"Can't init gmodel bundle");
+		gmclass = [theBundle classNamed: className];
+		NSCAssert(gmclass, @"Can't load gmodel bundle");
 	}
-      NSCAssert(path != nil, @"Unable to load gmodel bundle");
-      NSDebugLog(@"Loading gmodel from %@", path);
-
-      theBundle = [NSBundle bundleWithPath: path];
-      NSCAssert(theBundle != nil, @"Can't init gmodel bundle");
-      gmclass = [theBundle classNamed: className];
-      NSCAssert(gmclass, @"Can't load gmodel bundle");
-    }
-  return gmclass;
+	return gmclass;
 }

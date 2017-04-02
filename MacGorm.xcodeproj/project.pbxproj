@@ -201,6 +201,7 @@
 		554D9A5F1E907BCB00E79BFA /* GNUstepGUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D99441E903B8400E79BFA /* GNUstepGUI.framework */; };
 		554D9A601E907BE700E79BFA /* GormObjCHeaderParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D9A271E9067AE00E79BFA /* GormObjCHeaderParser.framework */; };
 		554D9A631E907BF100E79BFA /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D9A621E907BF100E79BFA /* AppKit.framework */; };
+		559D48DB1E90C7CD003E1A48 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 559D48DD1E90C7CD003E1A48 /* InfoPlist.strings */; };
 		55C006FD1E908E550039F09B /* GormOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D985E1E90352F00E79BFA /* GormOutlineView.m */; };
 		55C0070B1E90A1B90039F09B /* GormGModelPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C007081E90A1B90039F09B /* GormGModelPlugin.m */; };
 		55C0070C1E90A1B90039F09B /* GormGModelWrapperLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C0070A1E90A1B90039F09B /* GormGModelWrapperLoader.m */; };
@@ -217,7 +218,6 @@
 		55C007461E90A2CC0039F09B /* GModel.plugin in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = 55C007021E90A1A40039F09B /* GModel.plugin */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55C007471E90A2CC0039F09B /* Gorm.plugin in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = 55C007111E90A1F80039F09B /* Gorm.plugin */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55C007481E90A2CC0039F09B /* Nib.plugin in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = 55C007221E90A2480039F09B /* Nib.plugin */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		55C007491E90A2CC0039F09B /* Xib.plugin in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = 55C007361E90A27C0039F09B /* Xib.plugin */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55C007541E90A4540039F09B /* GormCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D98131E90350C00E79BFA /* GormCore.framework */; };
 		55C007551E90A50D0039F09B /* GormCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D98131E90350C00E79BFA /* GormCore.framework */; };
 		55C007561E90A50D0039F09B /* GormCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D98131E90350C00E79BFA /* GormCore.framework */; };
@@ -324,13 +324,6 @@
 			remoteGlobalIDString = 55C007211E90A2470039F09B;
 			remoteInfo = Nib;
 		};
-		55C007501E90A2D40039F09B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 554D97EA1E9031E700E79BFA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 55C007351E90A27C0039F09B;
-			remoteInfo = Xib;
-		};
 		55C007521E90A44F0039F09B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 554D97EA1E9031E700E79BFA /* Project object */;
@@ -365,7 +358,6 @@
 				55C007461E90A2CC0039F09B /* GModel.plugin in Copy PlugIns */,
 				55C007471E90A2CC0039F09B /* Gorm.plugin in Copy PlugIns */,
 				55C007481E90A2CC0039F09B /* Nib.plugin in Copy PlugIns */,
-				55C007491E90A2CC0039F09B /* Xib.plugin in Copy PlugIns */,
 			);
 			name = "Copy PlugIns";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -572,6 +564,7 @@
 		554D9A3F1E9067F600E79BFA /* ParserFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserFunctions.h; sourceTree = "<group>"; };
 		554D9A401E9067F600E79BFA /* ParserFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserFunctions.m; sourceTree = "<group>"; };
 		554D9A621E907BF100E79BFA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		559D48DC1E90C7CD003E1A48 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		55C007021E90A1A40039F09B /* GModel.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GModel.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C007041E90A1A40039F09B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55C007081E90A1B90039F09B /* GormGModelPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormGModelPlugin.m; sourceTree = "<group>"; };
@@ -676,9 +669,7 @@
 			children = (
 				554D991A1E90371300E79BFA /* Third-party */,
 				554D97F41E9031E700E79BFA /* MacGorm */,
-				554D98141E90350C00E79BFA /* GormCore */,
-				554D994B1E903C1000E79BFA /* GormLib */,
-				554D9A281E9067AE00E79BFA /* GormObjCHeaderParser */,
+				55C007591E90AC580039F09B /* Application Frameworks */,
 				55C007441E90A28F0039F09B /* Plugins */,
 				554D9A611E907BF100E79BFA /* Frameworks */,
 				554D97F31E9031E700E79BFA /* Products */,
@@ -722,6 +713,7 @@
 			children = (
 				554D980C1E90329E00E79BFA /* VersionProfiles.plist */,
 				554D97F91E9031E800E79BFA /* main.m */,
+				559D48DD1E90C7CD003E1A48 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1027,6 +1019,16 @@
 			name = Plugins;
 			sourceTree = "<group>";
 		};
+		55C007591E90AC580039F09B /* Application Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				554D98141E90350C00E79BFA /* GormCore */,
+				554D994B1E903C1000E79BFA /* GormLib */,
+				554D9A281E9067AE00E79BFA /* GormObjCHeaderParser */,
+			);
+			name = "Application Frameworks";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1166,7 +1168,6 @@
 				55C0074B1E90A2D40039F09B /* PBXTargetDependency */,
 				55C0074D1E90A2D40039F09B /* PBXTargetDependency */,
 				55C0074F1E90A2D40039F09B /* PBXTargetDependency */,
-				55C007511E90A2D40039F09B /* PBXTargetDependency */,
 				554D98191E90350C00E79BFA /* PBXTargetDependency */,
 				554D99501E903C1000E79BFA /* PBXTargetDependency */,
 				554D9A2D1E9067AE00E79BFA /* PBXTargetDependency */,
@@ -1418,6 +1419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				554D98021E9031E800E79BFA /* Assets.xcassets in Resources */,
+				559D48DB1E90C7CD003E1A48 /* InfoPlist.strings in Resources */,
 				554D980D1E90329E00E79BFA /* VersionProfiles.plist in Resources */,
 				554D98051E9031E800E79BFA /* Main.storyboard in Resources */,
 			);
@@ -1681,11 +1683,6 @@
 			target = 55C007211E90A2470039F09B /* Nib */;
 			targetProxy = 55C0074E1E90A2D40039F09B /* PBXContainerItemProxy */;
 		};
-		55C007511E90A2D40039F09B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 55C007351E90A27C0039F09B /* Xib */;
-			targetProxy = 55C007501E90A2D40039F09B /* PBXContainerItemProxy */;
-		};
 		55C007531E90A44F0039F09B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 554D98121E90350C00E79BFA /* GormCore */;
@@ -1700,6 +1697,14 @@
 				554D98041E9031E800E79BFA /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		559D48DD1E90C7CD003E1A48 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				559D48DC1E90C7CD003E1A48 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2185,6 +2190,7 @@
 				55C007071E90A1A40039F09B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55C007141E90A1F80039F09B /* Build configuration list for PBXNativeTarget "GormPlugin" */ = {
 			isa = XCConfigurationList;
@@ -2193,6 +2199,7 @@
 				55C007161E90A1F80039F09B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55C007251E90A2480039F09B /* Build configuration list for PBXNativeTarget "Nib" */ = {
 			isa = XCConfigurationList;
@@ -2201,6 +2208,7 @@
 				55C007271E90A2480039F09B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55C007391E90A27C0039F09B /* Build configuration list for PBXNativeTarget "Xib" */ = {
 			isa = XCConfigurationList;
@@ -2209,6 +2217,7 @@
 				55C0073B1E90A27C0039F09B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
