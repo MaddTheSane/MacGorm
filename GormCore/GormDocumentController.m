@@ -27,10 +27,8 @@
 #include "GormPrivate.h"
 #include <GormCore/GormDocument.h>
 #include <GormCore/GormDocumentController.h>
+#import <GNUstepBase/GNUstep.h>
 #import <GNUstepBase/NSDebug+GNUstepBase.h>
-
-#undef _
-#define _(x) x
 
 
 @implementation GormDocumentController

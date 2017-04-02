@@ -32,8 +32,6 @@
 #include "GormResource.h"
 #include <GNUstepBase/NSDebug+GNUstepBase.h>
 
-#undef _
-#define _(x) x
 
 @implementation	GormResourceEditor
 

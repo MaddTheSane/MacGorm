@@ -89,6 +89,18 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 @synthesize testingInterface = isTesting;
 @synthesize connecting = isConnecting;
 
++ (void)initialize
+{
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		NSURL *aURL = [[NSBundle mainBundle] URLForResource:@"Defaults" withExtension:@"plist"];
+		NSDictionary *ourDict = [[NSDictionary alloc] initWithContentsOfURL:aURL];
+		[[NSUserDefaults standardUserDefaults] registerDefaults:ourDict];
+		
+		RELEASE(ourDict);
+	});
+}
+
 - (id<IBDocuments>) activeDocument
 {
   return [[NSDocumentController sharedDocumentController] currentDocument];

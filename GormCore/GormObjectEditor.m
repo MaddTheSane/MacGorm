@@ -35,9 +35,6 @@
 
 #include <AppKit/NSClipView.h>
 
-#undef _
-#define _(x) x
-
 
 /*
  * Method to return the image that should be used to display objects within

@@ -43,8 +43,6 @@
 #include <math.h>
 #include <stdlib.h>
 
-#undef _
-#define _(x) x
 
 @implementation GormPlacementInfo
 @end

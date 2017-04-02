@@ -62,9 +62,6 @@
 #import <AppKit/NSNibOutletConnector.h>
 #import <AppKit/NSNibControlConnector.h>
 
-#undef _
-#define _(__x) __x
-
 @interface GormDisplayCell : NSButtonCell
 @end
 

@@ -43,9 +43,6 @@
 #include <GNUstepBase/NSDebug+GNUstepBase.h>
 
 
-#undef _
-#define _(x) x
-
 static NSNotificationCenter *nc = nil;
 static const NSInteger current_version = 1;
 

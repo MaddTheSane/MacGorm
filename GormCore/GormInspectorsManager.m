@@ -35,9 +35,6 @@
 #include <GNUstepBase/GNUstep.h>
 #include <GNUstepBase/NSDebug+GNUstepBase.h>
 
-#undef _
-#define _(x) x
-
 #define NUM_DEFAULT_INSPECTORS 5
 
 @interface GormDummyInspector : IBInspector

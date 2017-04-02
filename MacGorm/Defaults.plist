@@ -1,35 +1,57 @@
-{
-    AllowUserBundles = YES;
-    ArchiveType = Typed;
-    BuiltinPalettes = (
-	0Menus.palette,
-	1Windows.palette,
-	2Controls.palette,
-	3Containers.palette,
-	4Data.palette
-    );
-    BuiltinPlugins = (
-	Gorm.plugin,
-	Nib.plugin,
-	GModel.plugin
-    );
-    CellSizeWidth = 72;
-    ClassViewType = Browser;
-    GuideColor = {
-	alpha = 1;
-	blue = 0;
-	green = 0;
-	red = 1;
-    };
-    GuideSpacing = 10;
-    HeaderList = (
-    );
-    PreloadHeaders = NO;
-    ShowInspectors = YES;
-    ShowPalettes = YES;
-    UserPalettes = (
-    );
-   "NSWindow Frame Inspector" = "663 15 274 452 0 0  960 768 ";
-   "NSWindow Frame Palettes" = "663 470 274 298 0 0  960 768 ";
-   "NSWindow Frame Preferences" = "336 200 352 368 0 0  960 768 ";
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AllowUserBundles</key>
+	<true/>
+	<key>ArchiveType</key>
+	<string>Typed</string>
+	<key>BuiltinPalettes</key>
+	<array>
+		<string>0Menus.palette</string>
+		<string>1Windows.palette</string>
+		<string>2Controls.palette</string>
+		<string>3Containers.palette</string>
+		<string>4Data.palette</string>
+	</array>
+	<key>BuiltinPlugins</key>
+	<array>
+		<string>Gorm.plugin</string>
+		<string>Nib.plugin</string>
+		<string>GModel.plugin</string>
+	</array>
+	<key>CellSizeWidth</key>
+	<integer>72</integer>
+	<key>ClassViewType</key>
+	<string>Browser</string>
+	<key>GuideColor</key>
+	<dict>
+		<key>alpha</key>
+		<integer>1</integer>
+		<key>blue</key>
+		<integer>0</integer>
+		<key>green</key>
+		<integer>0</integer>
+		<key>red</key>
+		<integer>1</integer>
+	</dict>
+	<key>GuideSpacing</key>
+	<integer>10</integer>
+	<key>HeaderList</key>
+	<array/>
+	<key>NSWindow Frame Inspector</key>
+	<string>663 15 274 452 0 0  960 768 </string>
+	<key>NSWindow Frame Palettes</key>
+	<string>663 470 274 298 0 0  960 768 </string>
+	<key>NSWindow Frame Preferences</key>
+	<string>336 200 352 368 0 0  960 768 </string>
+	<key>PreloadHeaders</key>
+	<false/>
+	<key>ShowInspectors</key>
+	<true/>
+	<key>ShowPalettes</key>
+	<true/>
+	<key>UserPalettes</key>
+	<array/>
+</dict>
+</plist>

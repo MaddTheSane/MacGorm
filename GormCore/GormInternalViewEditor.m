@@ -32,10 +32,6 @@
 #include "GormDefines.h"
 #include <GNUstepBase/NSDebug+GNUstepBase.h>
 
-#undef _
-#define _(x) x
-
-
 @class GormEditorToParent;
 
 static NSImage *verticalImage;

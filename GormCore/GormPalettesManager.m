@@ -33,8 +33,6 @@
 #include <GNUStepBase/GNUstep.h>
 #include <GNUstepBase/NSDebug+GNUstepBase.h>
 
-#undef _
-#define _(x) x
 
 #define BUILTIN_PALETTES @"BuiltinPalettes"
 #define USER_PALETTES    @"UserPalettes"

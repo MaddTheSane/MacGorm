@@ -34,9 +34,6 @@
 #include "GormProtocol.h"
 #include "GormPrivate.h"
 
-#undef _
-#define _(x) x
-
 NSString *GormClassPboardType = @"GormClassPboardType";
 NSString *GormSwitchViewPreferencesNotification = @"GormSwitchViewPreferencesNotification";
 NSImage *outlineImage = nil;

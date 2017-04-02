@@ -117,9 +117,8 @@ static NSMapTable	*viewToType = 0;
   if (fileName == nil)
     {
       NSRunAlertPanel(NULL, 
-		      [NSString stringWithFormat: @"Palette could not load image %@.", 
-				fileName],
-		      @"OK", NULL, NULL);
+		      @"Palette could not load image %@.",
+		      @"OK", NULL, NULL, fileName);
       AUTORELEASE(self);
       return nil;
     }
@@ -135,9 +134,8 @@ static NSMapTable	*viewToType = 0;
 		  withZone: NSDefaultMallocZone()] == NO)
 	{
 	  NSRunAlertPanel(NULL, 
-			  [NSString stringWithFormat: @"Palette could not load nib/gorm %@.", 
-				    fileName],
-			  @"OK", NULL, NULL);
+			  @"Palette could not load nib/gorm %@.",
+			  @"OK", NULL, NULL, fileName);
 	  AUTORELEASE(self);
 	  return nil;
 	}

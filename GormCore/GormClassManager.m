@@ -41,8 +41,6 @@
 #include <GormObjCHeaderParser/OCMethod.h>
 #include <GormObjCHeaderParser/OCIVar.h>
 
-#undef _
-#define _(x) x
 /**
  * Just a few definitions to start things out.  To increase efficiency,
  * so that Gorm doesn't need to constantly derive the method list for

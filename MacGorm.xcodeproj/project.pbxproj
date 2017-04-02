@@ -376,6 +376,13 @@
 			remoteGlobalIDString = 554D98121E90350C00E79BFA;
 			remoteInfo = GormCore;
 		};
+		55C7EB2D1E918905001CE0C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 554D97EA1E9031E700E79BFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 554D98121E90350C00E79BFA;
+			remoteInfo = GormCore;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -935,8 +942,8 @@
 		554D991A1E90371300E79BFA /* Third-party */ = {
 			isa = PBXGroup;
 			children = (
-				554D993F1E903B8400E79BFA /* GNUstepGUI.xcodeproj */,
 				554D991B1E90372F00E79BFA /* gnustep.xcodeproj */,
+				554D993F1E903B8400E79BFA /* GNUstepGUI.xcodeproj */,
 			);
 			name = "Third-party";
 			path = Vendor;
@@ -1369,6 +1376,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				55C7EB2E1E918905001CE0C5 /* PBXTargetDependency */,
 				559D49E41E90DF53003E1A48 /* PBXTargetDependency */,
 				559D49E21E90DF4F003E1A48 /* PBXTargetDependency */,
 			);
@@ -1876,6 +1884,11 @@
 			target = 554D98121E90350C00E79BFA /* GormCore */;
 			targetProxy = 55C007521E90A44F0039F09B /* PBXContainerItemProxy */;
 		};
+		55C7EB2E1E918905001CE0C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 554D98121E90350C00E79BFA /* GormCore */;
+			targetProxy = 55C7EB2D1E918905001CE0C5 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -2039,6 +2052,7 @@
 				INFOPLIST_FILE = GormCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PLIST_FILE_OUTPUT_FORMAT = binary;
 				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.GormCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2067,6 +2081,7 @@
 				INFOPLIST_FILE = GormCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PLIST_FILE_OUTPUT_FORMAT = binary;
 				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.GormCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

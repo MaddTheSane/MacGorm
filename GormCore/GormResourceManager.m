@@ -28,6 +28,7 @@
 #include <AppKit/NSImage.h>
 #include <AppKit/NSPasteboard.h>
 #include <GormLib/IBPalette.h>
+#import <GNUstepBase/GNUstep.h>
 
 #include "GormSound.h"
 #include "GormImage.h"
@@ -37,8 +38,6 @@
 #include "GormDocument.h"
 #include "GormObjectEditor.h"
 
-#undef _
-#define _(x) x
 
 @implementation GormResourceManager
 
@@ -93,95 +92,84 @@
 
 - (void) addResourcesFromPasteboard:(NSPasteboard *)pb
 {
-  NSArray *types = [pb types];
-  NSArray *soundTypes = [NSSound soundUnfilteredFileTypes];
-  NSArray *imageTypes = [NSImage imageFileTypes];
-  NSInteger i;
-  NSInteger c = [types count];
-  BOOL found = NO;
-  
-  for (i = 0; i < c; i++)
-    {
-      id type = [types objectAtIndex:i];
-      
-      if ([type isEqual:NSFilenamesPboardType])
-        {
-	  NSInteger j, d;
-	  NSArray *files = [pb propertyListForType:type];
-	  found = YES;
-	  if (!files)
-	    {
-	      files = [NSUnarchiver unarchiveObjectWithData:
-			 [pb dataForType: NSFilenamesPboardType]];
-	    }
-
-	  for (j = 0, d = [files count]; j < d; j++)
-	    {
-	      NSString *file = [files objectAtIndex:j];
-	      NSString *ext = [file pathExtension];
-	      if ([ext isEqual:@"h"])
-	        {
-		  GormDocument *doc = (GormDocument *)document;
-		  GormClassManager *classManager = [doc classManager];
-                  NS_DURING
-                    {
-                      if (![classManager parseHeader: file])
-                        {
-                          NSString *fileName = [file lastPathComponent];
-                          NSString *message;
-
-			  message = [NSString stringWithFormat:
-                                      _(@"Unable to parse class in %@"), fileName];
-
-                          NSRunAlertPanel(_(@"Problem parsing class"),
-	                                  message,
-        	                          nil, nil, nil);
-                    	}
-
-		      [doc changeToViewWithTag:3];
-                    }
-                  NS_HANDLER
-                    {
-                      NSString *message = [localException reason];
-                      NSRunAlertPanel(_(@"Problem parsing class"),
-                                      message,
-                                      nil, nil, nil);
-                    }
-                  NS_ENDHANDLER;
-	        }
-	      else if ([imageTypes containsObject:ext])
-	        {
-		  GormDocument *doc = (GormDocument *)document;
-		  [(GormGenericEditor *)[doc viewWithTag:1]
-			  addObject:[GormImage imageForPath:file]]; 
-		  [doc changeToViewWithTag:1];
+	NSArray *types = [pb types];
+	NSArray *soundTypes = [NSSound soundUnfilteredFileTypes];
+	NSArray *imageTypes = [NSImage imageFileTypes];
+	NSInteger i;
+	NSInteger c = [types count];
+	BOOL found = NO;
+	
+	for (i = 0; i < c; i++) {
+		id type = [types objectAtIndex:i];
+		
+		if ([type isEqual:NSFilenamesPboardType]) {
+			NSInteger j, d;
+			NSArray *files = [pb propertyListForType:type];
+			found = YES;
+			if (!files)
+			{
+				files = [NSUnarchiver unarchiveObjectWithData:
+						 [pb dataForType: NSFilenamesPboardType]];
+			}
+			
+			for (j = 0, d = [files count]; j < d; j++)
+			{
+				NSString *file = [files objectAtIndex:j];
+				NSString *ext = [file pathExtension];
+				if ([ext isEqual:@"h"])
+				{
+					GormDocument *doc = (GormDocument *)document;
+					GormClassManager *classManager = [doc classManager];
+					@try {
+						if (![classManager parseHeader: file])
+						{
+							NSString *fileName = [file lastPathComponent];
+							
+							NSRunAlertPanel(_(@"Problem parsing class"),
+											_(@"Unable to parse class in %@"),
+											nil, nil, nil, fileName);
+						}
+						
+						[doc changeToViewWithTag:3];
+					} @catch (NSException *localException) {
+						NSString *message = [localException reason];
+						NSRunAlertPanel(_(@"Problem parsing class"),
+										@"%@",
+										nil, nil, nil, message);
+					}
+				}
+				else if ([imageTypes containsObject:ext])
+				{
+					GormDocument *doc = (GormDocument *)document;
+					[(GormGenericEditor *)[doc viewWithTag:1]
+					 addObject:[GormImage imageForPath:file]];
+					[doc changeToViewWithTag:1];
+				}
+				else if ([soundTypes containsObject:ext])
+				{
+					GormDocument *doc = (GormDocument *)document;
+					[(GormGenericEditor *)[doc viewWithTag:2]
+					 addObject:[GormSound soundForPath:file]];
+					[doc changeToViewWithTag:2];
+				}
+			}
 		}
-	      else if ([soundTypes containsObject:ext])
-	        {
-		  GormDocument *doc = (GormDocument *)document;
-		  [(GormGenericEditor *)[doc viewWithTag:2]
-			  addObject:[GormSound soundForPath:file]]; 
-		  [doc changeToViewWithTag:2];
-	        }
-	    }
 	}
-    }
-  
-  if (!found)
-    {
-      [super addResourcesFromPasteboard:pb];
-    }
+	
+	if (!found) {
+		[super addResourcesFromPasteboard:pb];
+	}
 }
 
 - (NSArray *) resourceFileTypes
 {
-  NSArray *types = [NSSound soundUnfilteredFileTypes];
+	NSArray *types = [NSSound soundUnfilteredFileTypes];
 
-  types = [types arrayByAddingObjectsFromArray:[NSImage imageFileTypes]];
+	types = [types arrayByAddingObjectsFromArray:[NSImage imageFileTypes]];
 
-  types = [types arrayByAddingObject:@"h"];
+	types = [types arrayByAddingObject:@"h"];
 
-  return types;
+	return types;
 }
 
 @end

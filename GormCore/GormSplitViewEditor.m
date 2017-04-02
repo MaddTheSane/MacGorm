@@ -34,8 +34,6 @@
 
 #define _EO ((NSSplitView *)_editedObject)
 
-#undef _
-#define _(x) x
 
 @implementation GormSplitViewEditor
 

@@ -33,8 +33,6 @@
 #include "GormShelfPref.h"
 #import <GNUstepBase/GNUstepBase.h>
 
-#undef _
-#define _(__x) __x
 
 #define BOX_W 197
 #define NAME_OR_Y 5
@@ -55,25 +53,25 @@ static NSString *nibName = @"GormShelfPref";
 
 - (void)dealloc
 {
-  RELEASE (arrow);
-  [super dealloc];
+	RELEASE (arrow);
+	[super dealloc];
 }
 
 - (id)initForController:(id)acontroller 
            withPosition:(ArrowPosition)pos
 {
-  self = [super init];
-  [self setFrame: NSMakeRect(0, 0, 16, 16)];	  
-  position = pos;
-  controller = acontroller;
-  
-  if (position == leftarrow) {
-    ASSIGN (arrow, [NSImage imageNamed: @"LeftArr"]);
-  } else {
-    ASSIGN (arrow, [NSImage imageNamed: @"RightArr"]);
-  }
-  
-  return self;
+	self = [super init];
+	[self setFrame: NSMakeRect(0, 0, 16, 16)];
+	position = pos;
+	controller = acontroller;
+	
+	if (position == leftarrow) {
+		ASSIGN (arrow, [NSImage imageNamed: @"LeftArr"]);
+	} else {
+		ASSIGN (arrow, [NSImage imageNamed: @"RightArr"]);
+	}
+	
+	return self;
 }
 
 - (ArrowPosition)position
@@ -88,8 +86,8 @@ static NSString *nibName = @"GormShelfPref";
 
 - (void)drawRect:(NSRect)rect
 {
-  [super drawRect: rect];
-  [arrow compositeToPoint: NSZeroPoint operation: NSCompositingOperationSourceOver];
+	[super drawRect: rect];
+	[arrow drawAtPoint:NSZeroPoint fromRect:NSZeroRect operation:NSCompositingOperationSourceOver fraction:1];
 }
 
 @end
@@ -109,57 +107,53 @@ static NSString *nibName = @"GormShelfPref";
 
 - (id)init
 {
-  self = [super init];
-  
-  if ((self = [super init]) != nil) 
-    {    
-      if ([NSBundle loadNibNamed: nibName owner: self] == NO) 
-	{
-	  NSLog(@"failed to load %@!", nibName);
-	} 
-      else 
-	{ 
-	  int orx;
-	  
-	  RETAIN (prefbox);
-	  RELEASE (win);
-	  
-	  [imView setImageScaling: NSImageScaleProportionallyDown];
-	  
-	  // set up the info...
-	  [imView setImage: [NSImage imageNamed: @"GormObject"]];
-	  ASSIGN(fname, @"GormSampleObjectName");
-	  cellsWidth = [self shelfCellsWidth];
-	  
-	  orx = (int)((BOX_W - cellsWidth) / 2);
-	  
-	  leftResizer = [[ArrResizer alloc] initForController: self 
-					    withPosition: leftarrow];
-	  [leftResizer setFrame: NSMakeRect(0, 0, NAME_W, NAME_W)];  
-	  [(NSBox *)leftResBox setContentView: leftResizer]; 
-	  [leftResBox setFrame: NSMakeRect(orx - NAME_W, NAME_OR_Y, NAME_W, NAME_W)];  
-	  
-	  rightResizer = [[ArrResizer alloc] initForController: self 
-					     withPosition: rightarrow];
-	  [rightResizer setFrame: NSMakeRect(0, 0, NAME_W, NAME_W)];
-	  [(NSBox *)rightResBox setContentView: rightResizer]; 
-	  [rightResBox setFrame: NSMakeRect(orx + cellsWidth, NAME_OR_Y, NAME_W, NAME_W)];  
-	  
-	  [nameField setFrame: NSMakeRect(orx, NAME_OR_Y, cellsWidth, NAME_W)];    
-	  [nameField setStringValue: cutFileLabelText(fname, nameField, cellsWidth -NAME_MARGIN)];
-	  
-	  /* Internationalization */
-	  [setButt setTitle: _(@"Default")];
-	  [iconbox setTitle: _(@"Title Width")];
-	}                              
-    }
-  
-  return self;
+	self = [super init];
+	
+	if ((self = [super init]) != nil) {
+		if ([NSBundle loadNibNamed: nibName owner: self] == NO) {
+			NSLog(@"failed to load %@!", nibName);
+		} else {
+			int orx;
+			
+			RETAIN (prefbox);
+			RELEASE (win);
+			
+			[imView setImageScaling: NSImageScaleProportionallyDown];
+			
+			// set up the info...
+			[imView setImage: [NSImage imageNamed: @"GormObject"]];
+			ASSIGN(fname, @"GormSampleObjectName");
+			cellsWidth = [self shelfCellsWidth];
+			
+			orx = (int)((BOX_W - cellsWidth) / 2);
+			
+			leftResizer = [[ArrResizer alloc] initForController: self
+												   withPosition: leftarrow];
+			[leftResizer setFrame: NSMakeRect(0, 0, NAME_W, NAME_W)];
+			[(NSBox *)leftResBox setContentView: leftResizer];
+			[leftResBox setFrame: NSMakeRect(orx - NAME_W, NAME_OR_Y, NAME_W, NAME_W)];
+			
+			rightResizer = [[ArrResizer alloc] initForController: self
+													withPosition: rightarrow];
+			[rightResizer setFrame: NSMakeRect(0, 0, NAME_W, NAME_W)];
+			[(NSBox *)rightResBox setContentView: rightResizer];
+			[rightResBox setFrame: NSMakeRect(orx + cellsWidth, NAME_OR_Y, NAME_W, NAME_W)];
+			
+			[nameField setFrame: NSMakeRect(orx, NAME_OR_Y, cellsWidth, NAME_W)];
+			[nameField setStringValue: cutFileLabelText(fname, nameField, cellsWidth -NAME_MARGIN)];
+			
+			/* Internationalization */
+			[setButt setTitle: _(@"Default")];
+			[iconbox setTitle: _(@"Title Width")];
+		}
+	}
+	
+	return self;
 }
 
 - (NSView *)view
 {
-  return ((NSView *)prefbox);
+	return ((NSView *)prefbox);
 }
 
 - (void)selectionChanged:(NSNotification *)n
@@ -181,8 +175,8 @@ static NSString *nibName = @"GormShelfPref";
 
 - (NSInteger) shelfCellsWidth
 {
-  // return the current cell width;
-  return [[NSUserDefaults standardUserDefaults] integerForKey: @"CellSizeWidth"];
+	// return the current cell width;
+	return [[NSUserDefaults standardUserDefaults] integerForKey: @"CellSizeWidth"];
 }
 
 - (void)tile
@@ -199,78 +193,77 @@ static NSString *nibName = @"GormShelfPref";
 
 - (void)startMouseEvent:(NSEvent *)event onResizer:(ArrResizer *)resizer
 {
-  NSApplication	*app = [NSApplication sharedApplication];
-  NSDate *farAway = [NSDate distantFuture];
-  ArrowPosition pos = [resizer position];
-  int orx = (int)[prefbox convertPoint: [event locationInWindow] fromView: nil].x;
-  NSView *resbox1 = (pos == leftarrow) ? leftResBox : rightResBox;
-  NSView *resbox2 = (pos == leftarrow) ? rightResBox : leftResBox;
-  unsigned int eventMask = NSLeftMouseUpMask | NSLeftMouseDraggedMask;
-  NSEvent	*e;
-
-  [prefbox lockFocus];
-  [[NSRunLoop currentRunLoop] limitDateForMode: NSEventTrackingRunLoopMode];
-
-  e = [app nextEventMatchingMask: eventMask
-	   untilDate: farAway
-	   inMode: NSEventTrackingRunLoopMode
-	   dequeue: YES];
-
-  while ([e type] != NSLeftMouseUp) 
-    {
-      int x = (int)[prefbox convertPoint: [e locationInWindow] fromView: nil].x;
-      int diff = x - orx;
-      int orx1 = (int)[resbox1 frame].origin.x;
-      int orx2 = (int)[resbox2 frame].origin.x;
-      
-      if ((max(orx1 + diff, orx2 - diff) - min(orx1 + diff, orx2 - diff)) < 160
-	  && (max(orx1 + diff, orx2 - diff) - min(orx1 + diff, orx2 - diff)) > 70) {      
-	int fieldwdt = max(orx1 + diff, orx2 - diff) - min(orx1 + diff, orx2 - diff) - NAME_W;
-	int nameforx = (int)((BOX_W - fieldwdt) / 2);
+	NSApplication	*app = [NSApplication sharedApplication];
+	NSDate *farAway = [NSDate distantFuture];
+	ArrowPosition pos = [resizer position];
+	int orx = (int)[prefbox convertPoint: [event locationInWindow] fromView: nil].x;
+	NSView *resbox1 = (pos == leftarrow) ? leftResBox : rightResBox;
+	NSView *resbox2 = (pos == leftarrow) ? rightResBox : leftResBox;
+	NSEventMask eventMask = NSEventMaskLeftMouseUp | NSEventMaskLeftMouseDragged;
+	NSEvent	*e;
 	
-	[resbox1 setFrameOrigin: NSMakePoint(orx1 + diff, NAME_OR_Y)];
-	[resbox2 setFrameOrigin: NSMakePoint(orx2 - diff, NAME_OR_Y)];
+	[prefbox lockFocus];
+	[[NSRunLoop currentRunLoop] limitDateForMode: NSEventTrackingRunLoopMode];
 	
-	[nameField setFrame: NSMakeRect(nameforx, NAME_OR_Y, fieldwdt, NAME_W)];    
-	[nameField setStringValue: cutFileLabelText(fname, nameField, fieldwdt -NAME_MARGIN)];
+	e = [app nextEventMatchingMask: eventMask
+						 untilDate: farAway
+							inMode: NSEventTrackingRunLoopMode
+						   dequeue: YES];
 	
-	[iconbox setNeedsDisplay: YES];
-	
-	orx = x;
-      }
-      e = [app nextEventMatchingMask: eventMask
-	       untilDate: farAway
-	       inMode: NSEventTrackingRunLoopMode
-	       dequeue: YES];
-    }
-  [prefbox unlockFocus];
-  [self setNewWidth: (int)[nameField frame].size.width];
-  [setButt setEnabled: YES];
+	while ([e type] != NSEventTypeLeftMouseUp) {
+		int x = (int)[prefbox convertPoint: [e locationInWindow] fromView: nil].x;
+		int diff = x - orx;
+		int orx1 = (int)[resbox1 frame].origin.x;
+		int orx2 = (int)[resbox2 frame].origin.x;
+		
+		if ((max(orx1 + diff, orx2 - diff) - min(orx1 + diff, orx2 - diff)) < 160
+			&& (max(orx1 + diff, orx2 - diff) - min(orx1 + diff, orx2 - diff)) > 70) {
+			int fieldwdt = max(orx1 + diff, orx2 - diff) - min(orx1 + diff, orx2 - diff) - NAME_W;
+			int nameforx = (int)((BOX_W - fieldwdt) / 2);
+			
+			[resbox1 setFrameOrigin: NSMakePoint(orx1 + diff, NAME_OR_Y)];
+			[resbox2 setFrameOrigin: NSMakePoint(orx2 - diff, NAME_OR_Y)];
+			
+			[nameField setFrame: NSMakeRect(nameforx, NAME_OR_Y, fieldwdt, NAME_W)];
+			[nameField setStringValue: cutFileLabelText(fname, nameField, fieldwdt -NAME_MARGIN)];
+			
+			[iconbox setNeedsDisplay: YES];
+			
+			orx = x;
+		}
+		e = [app nextEventMatchingMask: eventMask
+							 untilDate: farAway
+								inMode: NSEventTrackingRunLoopMode
+							   dequeue: YES];
+	}
+	[prefbox unlockFocus];
+	[self setNewWidth: (int)[nameField frame].size.width];
+	[setButt setEnabled: YES];
 }
 
 - (void) _postNotification
 {
-  NSDebugLog(@"Notify the app that the size has changed....");
-  [[NSNotificationCenter defaultCenter]
-    postNotificationName: GormResizeCellNotification
-    object: self];
+	NSDebugLog(@"Notify the app that the size has changed....");
+	[[NSNotificationCenter defaultCenter]
+	 postNotificationName: GormResizeCellNotification
+	 object: self];
 }
 
 - (void)setNewWidth:(NSInteger)w
 {
-  // set the new default...
-  [[NSUserDefaults standardUserDefaults] setInteger: w forKey: @"CellSizeWidth"];
-  [self _postNotification];
+	// set the new default...
+	[[NSUserDefaults standardUserDefaults] setInteger: w forKey: @"CellSizeWidth"];
+	[self _postNotification];
 }
 
 - (void)setDefaultWidth:(id)sender
 {
-  // set some default width...
-  cellsWidth = 72; 
-  [[NSUserDefaults standardUserDefaults] setInteger: cellsWidth forKey: @"CellSizeWidth"];
-  [self tile];
-  [setButt setEnabled: NO];  
-  [self _postNotification];
+	// set some default width...
+	cellsWidth = 72;
+	[[NSUserDefaults standardUserDefaults] setInteger: cellsWidth forKey: @"CellSizeWidth"];
+	[self tile];
+	[setButt setEnabled: NO];
+	[self _postNotification];
 }
 
 @end

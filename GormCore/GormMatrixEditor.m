@@ -41,9 +41,6 @@
 
 #define _EO ((NSMatrix*)_editedObject)
 
-#undef _
-#define _(x) x
-
 @interface GormViewEditor (Private)
 - (void) _displayFrame: (NSRect) frame
      withPlacementInfo: (GormPlacementInfo*)gpi;

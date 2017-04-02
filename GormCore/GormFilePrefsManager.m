@@ -42,9 +42,6 @@
 #include <GormLib/IBApplicationAdditions.h>
 #import <GNUstepBase/NSDebug+GNUstepBase.h>
 
-#undef _
-#define _(x) x
-
 NSString *formatVersion(NSInteger version)
 {
   NSInteger bit16 = 65536;

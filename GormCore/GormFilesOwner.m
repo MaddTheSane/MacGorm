@@ -33,9 +33,6 @@
 
 // @class GormCustomView;
 
-#undef _
-#define _(x) x
-
 @implementation	GormFilesOwner
 - (NSString*) className
 {
