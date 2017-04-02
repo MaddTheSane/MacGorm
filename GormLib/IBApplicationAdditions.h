@@ -43,6 +43,7 @@ IB_EXTERN NSString *IBDidEndTestingInterfaceNotification;
 /**
  * Returns YES, if the reciever is in testing mode.
  */
+@property (readonly, getter=isTestingInterface) BOOL testingInterface;
 - (BOOL) isTestingInterface;
 
 /**

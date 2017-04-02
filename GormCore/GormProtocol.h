@@ -34,6 +34,7 @@
 - (id) connectSource;
 - (id) connectDestination;
 - (void) displayConnectionBetween: (id)source and: (id)destination;
+@property (readonly, getter=isConnecting) BOOL connecting;
 - (BOOL) isConnecting;
 - (void) stopConnecting;
 

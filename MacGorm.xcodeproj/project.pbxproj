@@ -82,7 +82,7 @@
 		554D98DF1E90353000E79BFA /* GormPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98621E90352F00E79BFA /* GormPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		554D98E11E90353000E79BFA /* GormPluginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98641E90352F00E79BFA /* GormPluginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		554D98E21E90353000E79BFA /* GormPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98651E90352F00E79BFA /* GormPluginManager.m */; };
-		554D98E31E90353000E79BFA /* GormPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98661E90352F00E79BFA /* GormPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		554D98E31E90353000E79BFA /* GormPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98661E90352F00E79BFA /* GormPrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		554D98E41E90353000E79BFA /* GormPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D98671E90352F00E79BFA /* GormPrivate.m */; };
 		554D98E51E90353000E79BFA /* GormProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98681E90352F00E79BFA /* GormProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		554D98E61E90353000E79BFA /* GormResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D98691E90352F00E79BFA /* GormResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -217,6 +217,8 @@
 		559D49DC1E90D609003E1A48 /* GormPrefController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559D49CE1E90D609003E1A48 /* GormPrefController.m */; };
 		559D49DD1E90D609003E1A48 /* GormShelfPref.h in Headers */ = {isa = PBXBuildFile; fileRef = 559D49CF1E90D609003E1A48 /* GormShelfPref.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		559D49DE1E90D609003E1A48 /* GormShelfPref.m in Sources */ = {isa = PBXBuildFile; fileRef = 559D49D01E90D609003E1A48 /* GormShelfPref.m */; };
+		55B719511E917BCA0006E8EB /* ClassInformation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55B7194F1E917BCA0006E8EB /* ClassInformation.plist */; };
+		55B719521E917BCA0006E8EB /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55B719501E917BCA0006E8EB /* Defaults.plist */; };
 		55C006FD1E908E550039F09B /* GormOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D985E1E90352F00E79BFA /* GormOutlineView.m */; };
 		55C0070B1E90A1B90039F09B /* GormGModelPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C007081E90A1B90039F09B /* GormGModelPlugin.m */; };
 		55C0070C1E90A1B90039F09B /* GormGModelWrapperLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C0070A1E90A1B90039F09B /* GormGModelWrapperLoader.m */; };
@@ -627,6 +629,8 @@
 		559D49CE1E90D609003E1A48 /* GormPrefController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormPrefController.m; sourceTree = "<group>"; };
 		559D49CF1E90D609003E1A48 /* GormShelfPref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormShelfPref.h; sourceTree = "<group>"; };
 		559D49D01E90D609003E1A48 /* GormShelfPref.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormShelfPref.m; sourceTree = "<group>"; };
+		55B7194F1E917BCA0006E8EB /* ClassInformation.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = ClassInformation.plist; sourceTree = "<group>"; };
+		55B719501E917BCA0006E8EB /* Defaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Defaults.plist; sourceTree = "<group>"; };
 		55C007021E90A1A40039F09B /* GModel.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GModel.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C007041E90A1A40039F09B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55C007081E90A1B90039F09B /* GormGModelPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormGModelPlugin.m; sourceTree = "<group>"; };
@@ -782,8 +786,10 @@
 		554D97F81E9031E800E79BFA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				559D49B01E90D553003E1A48 /* Gorm.m */,
+				55B7194F1E917BCA0006E8EB /* ClassInformation.plist */,
+				55B719501E917BCA0006E8EB /* Defaults.plist */,
 				554D980C1E90329E00E79BFA /* VersionProfiles.plist */,
+				559D49B01E90D553003E1A48 /* Gorm.m */,
 				554D97F91E9031E800E79BFA /* main.m */,
 				559D48DD1E90C7CD003E1A48 /* InfoPlist.strings */,
 			);
@@ -1561,7 +1567,9 @@
 			files = (
 				554D98021E9031E800E79BFA /* Assets.xcassets in Resources */,
 				559D48DB1E90C7CD003E1A48 /* InfoPlist.strings in Resources */,
+				55B719521E917BCA0006E8EB /* Defaults.plist in Resources */,
 				554D980D1E90329E00E79BFA /* VersionProfiles.plist in Resources */,
+				55B719511E917BCA0006E8EB /* ClassInformation.plist in Resources */,
 				554D98051E9031E800E79BFA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2430,6 +2438,7 @@
 				559D49C21E90D5E1003E1A48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55C007051E90A1A40039F09B /* Build configuration list for PBXNativeTarget "GModel" */ = {
 			isa = XCConfigurationList;
