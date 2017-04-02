@@ -36,9 +36,9 @@
 #include <GormCore/GormCustomView.h>
 #include <GormCore/GormWindowTemplate.h>
 #include <GormCore/GormNSWindow.h>
+#import <GNUstepBase/GNUstepBase.h>
 
 #include "GormNibWrapperLoader.h"
-#define _(__x) __x
 
 @class GormNSWindow;
 
@@ -126,7 +126,7 @@
 					_(@"Could not open the associated classes file.\n"
 					  @"You won't be able to edit connections on custom classes");
 					[alert runModal];
-					[alert release];
+					DESTROY(alert);
 			    }
 			}
 		    }
@@ -352,7 +352,7 @@
 		alert.messageText = _(@"Problem Loading");
 		alert.informativeText = [NSString stringWithFormat: @"Failed to load file.  Exception: %@",[localException reason]];
 		[alert runModal];
-		[alert release];
+		DESTROY(alert);
       result = NO;
     }
 

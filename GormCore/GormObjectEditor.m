@@ -189,7 +189,7 @@ static NSMapTable	*docMap = 0;
 		[alert addButtonWithTitle:_(@"OK")];
 		[alert addButtonWithTitle:_(@"Cancel")];
 		NSInteger retval = [alert runModal];
-		[alert release];
+		DESTROY(alert);
 		
 	  // if the user *really* wants to delete the menu, do it.
 		if (retval != NSAlertFirstButtonReturn) {

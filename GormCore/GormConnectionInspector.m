@@ -436,7 +436,7 @@ selectCellWithString: (NSString*)title
 		alert.messageText = _(@"Problem making connection");
 		alert.informativeText = _(@"Please select a valid destination.");
 		[alert runModal];
-		[alert release];
+		DESTROY(alert);
 	} else if ([connectors containsObject: currentConnector] == YES) {
 		id con = currentConnector;
 		

@@ -164,7 +164,7 @@ selectCellWithString: (NSString*)title
 				[alert addButtonWithTitle:_(@"String")];
 				[alert addButtonWithTitle:_(@"Class name")];
 				result = [alert runModal];
-				[alert release];
+				DESTROY(alert);
 
 				if (result == NSAlertSecondButtonReturn) {
 					(*imp)(object, set, v);

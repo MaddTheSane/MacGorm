@@ -207,7 +207,7 @@ static NSImage	*dragImage = nil;
 		//alert.messageText = _(@"Settings");
 		alert.informativeText = _(@"No document is currently active");
 		[alert runModal];
-		[alert release];
+		DESTROY(alert);
 
       return;
     }

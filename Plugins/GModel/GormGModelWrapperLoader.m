@@ -313,7 +313,7 @@ static BOOL gormFileOwnerDecoded;
 				alert.messageText = _(@"Problem parsing class");
 				alert.informativeText = message;
 				[alert runModal];
-				[alert release];
+				DESTROY(alert);
 			}
 		} @catch (NSException *localException) {
 			NSString *message = [localException reason];
@@ -321,7 +321,7 @@ static BOOL gormFileOwnerDecoded;
 			alert.messageText = _(@"Problem parsing class");
 			alert.informativeText = message;
 			[alert runModal];
-			[alert release];
+			DESTROY(alert);
 		}
 	}
 }
@@ -460,7 +460,7 @@ static BOOL gormFileOwnerDecoded;
 		alert.messageText = _(@"GModel Loading");
 		alert.informativeText = localException.reason;
 		[alert runModal];
-		[alert release];
+		DESTROY(alert);
 		return NO;
 	}
 	gmobjects = [decoded performSelector: @selector(objects)];

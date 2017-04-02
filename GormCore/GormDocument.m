@@ -273,7 +273,7 @@ static NSImage  *fileImage = nil;
 				alert.messageText = _(@"Problem parsing class");
 				alert.informativeText = [NSString stringWithFormat:_(@"Unable to parse class in %@"), file];
 				[alert runModal];
-				[alert release];
+				DESTROY(alert);
 		    }
 		}
 	      @catch (NSException *localException)
@@ -283,7 +283,7 @@ static NSImage  *fileImage = nil;
 			alert.messageText = _(@"Problem parsing class");
 			alert.informativeText = message;
 			[alert runModal];
-			[alert release];
+			DESTROY(alert);
 		}
 	    }
 	}
@@ -442,7 +442,7 @@ static NSImage  *fileImage = nil;
 			[alert addButtonWithTitle:_(@"OK")];
 			[alert addButtonWithTitle:_(@"Cancel")];
 			NSInteger retval = [alert runModal];
-			[alert release];
+			DESTROY(alert);
 	      if(retval != NSAlertFirstButtonReturn)
 		{
 		  // close the document, if the user says "NO."
@@ -2474,7 +2474,7 @@ static void _real_close(GormDocument *self,
 				[alert addButtonWithTitle:_(@"OK")];
 				[alert addButtonWithTitle:_(@"Cancel")];
 				retval = [alert runModal];
-				[alert release];
+				DESTROY(alert);
 				prompted = YES;
 			} else {
 				removed = NO;

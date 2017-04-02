@@ -752,6 +752,7 @@
 				554D97F41E9031E700E79BFA /* MacGorm */,
 				55C007591E90AC580039F09B /* Application Frameworks */,
 				55C007441E90A28F0039F09B /* Plugins */,
+				55C7EB2F1E91A2C3001CE0C5 /* Palettes */,
 				554D9A611E907BF100E79BFA /* Frameworks */,
 				554D97F31E9031E700E79BFA /* Products */,
 			);
@@ -1077,7 +1078,7 @@
 			path = GModel;
 			sourceTree = "<group>";
 		};
-		55C007121E90A1F80039F09B /* GormPlugin */ = {
+		55C007121E90A1F80039F09B /* Gorm */ = {
 			isa = PBXGroup;
 			children = (
 				55C007171E90A21C0039F09B /* GormGormPlugin.m */,
@@ -1086,7 +1087,7 @@
 				55C0071A1E90A21C0039F09B /* GormGormWrapperLoader.m */,
 				55C007131E90A1F80039F09B /* Info.plist */,
 			);
-			path = GormPlugin;
+			path = Gorm;
 			sourceTree = "<group>";
 		};
 		55C007231E90A2480039F09B /* Nib */ = {
@@ -1120,11 +1121,11 @@
 			isa = PBXGroup;
 			children = (
 				55C007031E90A1A40039F09B /* GModel */,
-				55C007121E90A1F80039F09B /* GormPlugin */,
+				55C007121E90A1F80039F09B /* Gorm */,
 				55C007231E90A2480039F09B /* Nib */,
 				55C007371E90A27C0039F09B /* Xib */,
 			);
-			name = Plugins;
+			path = Plugins;
 			sourceTree = "<group>";
 		};
 		55C007591E90AC580039F09B /* Application Frameworks */ = {
@@ -1140,6 +1141,13 @@
 			sourceTree = "<group>";
 			tabWidth = 4;
 			usesTabs = 1;
+		};
+		55C7EB2F1E91A2C3001CE0C5 /* Palettes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Palettes;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -2263,7 +2271,7 @@
 					"$(inherited)",
 					"NO_GNUSTEP=1",
 				);
-				INFOPLIST_FILE = GModel/Info.plist;
+				INFOPLIST_FILE = Plugins/GModel/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.GModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2281,7 +2289,7 @@
 					"$(inherited)",
 					"NO_GNUSTEP=1",
 				);
-				INFOPLIST_FILE = GModel/Info.plist;
+				INFOPLIST_FILE = Plugins/GModel/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.GModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2299,7 +2307,7 @@
 					"$(inherited)",
 					"NO_GNUSTEP=1",
 				);
-				INFOPLIST_FILE = GormPlugin/Info.plist;
+				INFOPLIST_FILE = Plugins/GormPlugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.GormPlugin;
 				PRODUCT_NAME = Gorm;
@@ -2317,7 +2325,7 @@
 					"$(inherited)",
 					"NO_GNUSTEP=1",
 				);
-				INFOPLIST_FILE = GormPlugin/Info.plist;
+				INFOPLIST_FILE = Plugins/GormPlugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.GormPlugin;
 				PRODUCT_NAME = Gorm;
@@ -2335,7 +2343,7 @@
 					"$(inherited)",
 					"NO_GNUSTEP=1",
 				);
-				INFOPLIST_FILE = Nib/Info.plist;
+				INFOPLIST_FILE = Plugins/Nib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.Nib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2353,7 +2361,7 @@
 					"$(inherited)",
 					"NO_GNUSTEP=1",
 				);
-				INFOPLIST_FILE = Nib/Info.plist;
+				INFOPLIST_FILE = Plugins/Nib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.Nib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2371,7 +2379,7 @@
 					"$(inherited)",
 					"NO_GNUSTEP=1",
 				);
-				INFOPLIST_FILE = Xib/Info.plist;
+				INFOPLIST_FILE = Plugins/Xib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.Xib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2389,7 +2397,7 @@
 					"$(inherited)",
 					"NO_GNUSTEP=1",
 				);
-				INFOPLIST_FILE = Xib/Info.plist;
+				INFOPLIST_FILE = Plugins/Xib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = org.gnustep.Gorm.Xib;
 				PRODUCT_NAME = "$(TARGET_NAME)";

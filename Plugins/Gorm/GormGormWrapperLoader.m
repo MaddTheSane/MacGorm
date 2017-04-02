@@ -397,7 +397,7 @@
 					_(@"Could not open the associated classes file.\n"
 					  @"You won't be able to edit connections on custom classes");
 					[alert runModal];
-					[alert release];
+					DESTROY(alert);
 			    }
 			}
 		    }
@@ -421,7 +421,7 @@
 			_(@"Could not open the associated classes file.\n"
 			  @"You won't be able to edit connections on custom classes");
 			[alert runModal];
-			[alert release];
+			DESTROY(alert);
 		}
 	    }
 
@@ -627,7 +627,7 @@
 		alert.informativeText =
 		[NSString stringWithFormat:@"Failed to load file.  Exception: %@", localException.reason];
 		[alert runModal];
-		[alert release];
+		DESTROY(alert);
       result = NO;
     }
 
