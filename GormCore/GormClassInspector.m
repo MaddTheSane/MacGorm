@@ -551,7 +551,7 @@ objectValueForTableColumn: (NSTableColumn *)tc
 		  [super ok: sender];
 		  
 		  // ask the user if he/she wants to continue...
-		  retval = NSRunAlertPanel(title, msg,_(@"OK"),_(@"Cancel"), nil, nil);
+		  retval = NSRunAlertPanel(title, @"%@",_(@"OK"),_(@"Cancel"), nil, nil, msg);
 		  if (retval == NSAlertDefaultReturn)
 		    {
 		      removed = YES;

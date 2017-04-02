@@ -430,71 +430,62 @@ selectCellWithString: (NSString*)title
 
 - (void) ok: (id)sender
 {
-  if([currentConnector destination] == nil ||
-     [currentConnector source] == nil)
-    {
-      NSRunAlertPanel(_(@"Problem making connection"),
-		      _(@"Please select a valid destination."), 
-		      _(@"OK"), nil, nil, nil);
-    }
-  else if ([connectors containsObject: currentConnector] == YES)
-    {
-      id con = currentConnector;
-
-      [[(id<IB>)NSApp activeDocument] removeConnector: con];
-      [connectors removeObject: con];
-      [oldBrowser loadColumnZero];
-    }
-  else
-    {
-      NSString	*path;
-      id	dest;
-
-      /*
-       * Establishing a target/action type connection will automatically
-       * remove any previous target/action connection.
-       */
-      if ([currentConnector isKindOfClass: [NSNibControlConnector class]])
-	{
-	  NSEnumerator	*enumerator = [connectors objectEnumerator];
-	  id		con;
-
-	  while ((con = [enumerator nextObject]) != nil)
-	    {
-	      if ([con isKindOfClass: [NSNibControlConnector class]])
-		{
-		  [[(id<IB>)NSApp activeDocument] removeConnector: con];
-		  [connectors removeObjectIdenticalTo: con];
-		  break;
+	if([currentConnector destination] == nil ||
+	   [currentConnector source] == nil) {
+		NSAlert *alert = [NSAlert new];
+		alert.messageText = _(@"Problem making connection");
+		alert.informativeText = _(@"Please select a valid destination.");
+		[alert runModal];
+		[alert release];
+	} else if ([connectors containsObject: currentConnector] == YES) {
+		id con = currentConnector;
+		
+		[[(id<IB>)NSApp activeDocument] removeConnector: con];
+		[connectors removeObject: con];
+		[oldBrowser loadColumnZero];
+	} else {
+		NSString	*path;
+		id	dest;
+		
+		/*
+		 * Establishing a target/action type connection will automatically
+		 * remove any previous target/action connection.
+		 */
+		if ([currentConnector isKindOfClass: [NSNibControlConnector class]]) {			
+			for (id con in connectors) {
+				if ([con isKindOfClass: [NSNibControlConnector class]]) {
+					[[(id<IB>)NSApp activeDocument] removeConnector: con];
+					[connectors removeObjectIdenticalTo: con];
+					break;
+				}
+			}
+			
+			// select the new action from the list...
+			[self _selectAction: [currentConnector label]];
 		}
-	    }
-
-	  // select the new action from the list...
-	  [self _selectAction: [currentConnector label]];
+		[connectors addObject: currentConnector];
+		[[(id<IB>)NSApp activeDocument] addConnector: currentConnector];
+		
+		/*
+		 * When we establish a connection, we want to highlight it in
+		 * the browser so the user can see it has been done.
+		 */
+		dest = [currentConnector destination];
+		path = [[(id<IB>)NSApp activeDocument] nameForObject: dest];
+		path = [[currentConnector label] stringByAppendingFormat: @" (%@)", path];
+		path = [@"/" stringByAppendingString: path];
+		[oldBrowser loadColumnZero];
+		[oldBrowser setPath: path];
 	}
-      [connectors addObject: currentConnector];
-      [[(id<IB>)NSApp activeDocument] addConnector: currentConnector];
-      
-      /*
-       * When we establish a connection, we want to highlight it in
-       * the browser so the user can see it has been done.
-       */
-      dest = [currentConnector destination];
-      path = [[(id<IB>)NSApp activeDocument] nameForObject: dest];
-      path = [[currentConnector label] stringByAppendingFormat: @" (%@)", path];
-      path = [@"/" stringByAppendingString: path];
-      [oldBrowser loadColumnZero];
-      [oldBrowser setPath: path];
-    }
-
-  // mark as edited.   
-  [super ok: sender];
-  [self updateButtons];
+	
+	// mark as edited.
+	[super ok: sender];
+	[self updateButtons];
 }
 
 - (void) setObject: (id)anObject
 {
-  if (anObject != nil) 
+  if (anObject != nil)
     {
       NSArray		*array;
 

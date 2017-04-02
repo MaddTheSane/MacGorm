@@ -154,15 +154,21 @@ selectCellWithString: (NSString*)title
 			if (isString == YES) {
 				(*imp)(object, set, v);
 			} else {
-				int	result;
+				NSInteger result;
 				
 				v = [v stringByTrimmingSpaces];
-				result = NSRunAlertPanel(_(@"Settings"),
-										 [NSString stringWithFormat: _(@"Set object using '%@' as"), v],
-										 _(@"Object name"),_( @"String"), _(@"Class name"));
-				if (result == NSAlertAlternateReturn) {
+				NSAlert *alert = [[NSAlert alloc] init];
+				alert.messageText = _(@"Settings");
+				alert.informativeText = [NSString stringWithFormat: _(@"Set object using '%@' as"), v];
+				[alert addButtonWithTitle:_(@"Object name")];
+				[alert addButtonWithTitle:_(@"String")];
+				[alert addButtonWithTitle:_(@"Class name")];
+				result = [alert runModal];
+				[alert release];
+
+				if (result == NSAlertSecondButtonReturn) {
 					(*imp)(object, set, v);
-				} else if (result == NSAlertOtherReturn) {
+				} else if (result == NSAlertThirdButtonReturn) {
 					Class	c = NSClassFromString(v);
 					
 					if (c != 0) {

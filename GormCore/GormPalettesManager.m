@@ -202,10 +202,13 @@ static NSImage	*dragImage = nil;
   // this will always get the correct coordinates...
   rect = [[view superview] convertRect: [view frame] toView: nil];
 
-  if (active == nil)
-    {
-      NSRunAlertPanel (nil, _(@"No document is currently active"), 
-		       _(@"OK"), nil, nil);
+  if (active == nil) {
+		NSAlert *alert = [[NSAlert alloc] init];
+		//alert.messageText = _(@"Settings");
+		alert.informativeText = _(@"No document is currently active");
+		[alert runModal];
+		[alert release];
+
       return;
     }
 
@@ -421,83 +424,106 @@ static NSImage	*dragImage = nil;
   NSDictionary  *subClasses;
   IBPalette	*palette;
   NSImageCell	*cell;
-  int		col;
+  NSInteger		col;
 
   if([self bundlePathIsLoaded: path])
     {
-      NSRunAlertPanel (nil, _(@"Palette has already been loaded"), 
-		       _(@"OK"), nil, nil);
+		NSAlert *alert = [[NSAlert alloc] init];
+		//alert.messageText = _(@"Settings");
+		alert.informativeText = _(@"Palette has already been loaded");
+		[alert runModal];
+		DESTROY(alert);
+
       return NO;
     }
   bundle = [NSBundle bundleWithPath: path]; 
   if (bundle == nil)
     {
-      NSRunAlertPanel(nil, _(@"Could not load Palette"), 
-		      _(@"OK"), nil, nil);
+		NSAlert *alert = [[NSAlert alloc] init];
+		//alert.messageText = _(@"Settings");
+		alert.informativeText = _(@"Could not load Palette");
+		[alert runModal];
+		DESTROY(alert);
+
       return NO;
     }
 
   path = [bundle pathForResource: @"palette" ofType: @"table"];
   if (path == nil)
     {
-      NSRunAlertPanel(nil, _(@"File 'palette.table' missing"),
-		      _(@"OK"), nil, nil);
+		NSAlert *alert = [[NSAlert alloc] init];
+		//alert.messageText = _(@"Settings");
+		alert.informativeText = _(@"File 'palette.table' missing");
+		[alert runModal];
+		DESTROY(alert);
+
       return NO;
     }
 
   // attempt to load the palette table in either the strings or plist format.
-  NS_DURING
+  @try
     {
-      paletteInfo = [[NSString stringWithContentsOfFile: path] propertyList];
+      paletteInfo = [[NSString stringWithContentsOfFile: path usedEncoding: NULL error: NULL] propertyList];
       if (paletteInfo == nil)
 	{
-	  paletteInfo = [[NSString stringWithContentsOfFile: path] propertyListFromStringsFileFormat];
+	  paletteInfo = [[NSString stringWithContentsOfFile: path usedEncoding: NULL error: NULL] propertyListFromStringsFileFormat];
 	  if(paletteInfo == nil)
 	    {
-	      NSRunAlertPanel(_(@"Problem Loading Palette"), 
-			      _(@"Failed to load 'palette.table' using strings or property list format."),
-			      _(@"OK"), 
-			      nil, 
-			      nil);
+			NSAlert *alert = [[NSAlert alloc] init];
+			alert.messageText = _(@"Problem Loading Palette");
+			alert.informativeText = _(@"Failed to load 'palette.table' using strings or property list format.");
+			[alert runModal];
+			DESTROY(alert);
+
 	      return NO;
 	    }
 	}
     }
-  NS_HANDLER
+  @catch (NSException *localException)
     {
-      NSString *message = [NSString stringWithFormat: 
-				      _(@"Encountered exception %@ attempting to load 'palette.table'."),
-				    [localException reason]];
-      NSRunAlertPanel(_(@"Problem Loading Palette"), 
-		      message,
-		      _(@"OK"), 
-		      nil, 
-		      nil);
+		NSAlert *alert = [[NSAlert alloc] init];
+		alert.messageText = _(@"Problem Loading Palette");
+		alert.informativeText = [NSString stringWithFormat:
+								 _(@"Encountered exception %@ attempting to load 'palette.table'."),
+								 [localException reason]];
+		[alert runModal];
+		DESTROY(alert);
+
       return NO;
     }
-  NS_ENDHANDLER
 
   className = [paletteInfo objectForKey: @"Class"];
   if (className == nil)
     {
-      NSRunAlertPanel(nil, _(@"No palette class in 'palette.table'"),
-		      _(@"OK"), nil, nil);
+		NSAlert *alert = [[NSAlert alloc] init];
+		alert.messageText = _(@"Problem Loading Palette");
+		alert.informativeText = _(@"No palette class in 'palette.table'");
+		[alert runModal];
+		DESTROY(alert);
+
       return NO;
     }
 
   paletteClass = [bundle classNamed: className];
   if (paletteClass == 0)
     {
-      NSRunAlertPanel (nil, _(@"Could not load palette class"), 
-		       _(@"OK"), nil, nil);
+		NSAlert *alert = [[NSAlert alloc] init];
+		alert.messageText = _(@"Problem Loading Palette");
+		alert.informativeText = _(@"Could not load palette class");
+		[alert runModal];
+		DESTROY(alert);
+
       return NO;
     }
 
   palette = [[paletteClass alloc] init];
   if ([palette isKindOfClass: [IBPalette class]] == NO)
     {
-      NSRunAlertPanel (nil, _(@"Palette contains wrong type of class"), 
-		       _(@"OK"), nil, nil);
+		NSAlert *alert = [[NSAlert alloc] init];
+		alert.messageText = _(@"Problem Loading Palette");
+		alert.informativeText = _(@"Palette contains wrong type of class");
+		[alert runModal];
+		DESTROY(alert);
       RELEASE(palette);
       return NO;
     }
@@ -535,7 +561,7 @@ static NSImage	*dragImage = nil;
 
   // Resize the window appropriately so that we don't have issues
   // with scrolling.
-  if([window styleMask] & NSBorderlessWindowMask)
+  if([window styleMask] & NSWindowStyleMaskBorderless)
     {
       [window setFrame: NSMakeRect(0,0,272,160) display: NO];
     }
@@ -561,57 +587,46 @@ static NSImage	*dragImage = nil;
 
 - (id) openPalette: (id) sender
 {
-  NSArray	 *fileTypes = [NSArray arrayWithObject: @"palette"];
-  NSOpenPanel	 *oPanel = [NSOpenPanel openPanel];
-  int		 result;
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  NSArray        *userPalettes = [defaults arrayForKey: USER_PALETTES];
-  NSMutableArray *newUserPalettes = 
-    (userPalettes == nil)?[NSMutableArray array]:[NSMutableArray arrayWithArray: userPalettes];
-
-  [oPanel setAllowsMultipleSelection: YES];
-  [oPanel setCanChooseFiles: YES];
-  [oPanel setCanChooseDirectories: NO];
-  result = [oPanel runModalForDirectory: NSHomeDirectory()
-				   file: nil
-				  types: fileTypes];
-
-  if (result == NSOKButton)
-    {
-      NSArray	*filesToOpen = [oPanel filenames];
-      unsigned	count = [filesToOpen count];
-      unsigned	i;
-
-      for (i = 0; i < count; i++)
-	{
-	  NSString	*aFile = [filesToOpen objectAtIndex: i];
-
-	  if([self bundlePathIsLoaded: aFile] == YES &&
-	     [userPalettes containsObject: aFile] == NO)
-	    {
-	      // This is done here so that, if we try to reload a palette
-	      // that has previously been deleted during this session that
-	      // the palette manager won't fail, but it will simply add
-	      // the palette back in.  If this returns NO, then we should
-	      // flag a problem otherwise it's successful if the palette is
-	      // already in the bundles array.  This is to address bug#15989.
-	      [newUserPalettes addObject: aFile];
-	    }
-	  else if([self loadPalette: aFile] == NO)
-	    {
-	      return nil;
-	    }
-	  else
-	    {
-	      [newUserPalettes addObject: aFile];
-	    }
+	NSArray			*fileTypes = [NSArray arrayWithObject: @"palette"];
+	NSOpenPanel		*oPanel = [NSOpenPanel openPanel];
+	NSInteger		result;
+	NSUserDefaults	*defaults = [NSUserDefaults standardUserDefaults];
+	NSArray			*userPalettes = [defaults arrayForKey: USER_PALETTES];
+	NSMutableArray	*newUserPalettes =
+	(userPalettes == nil)?[NSMutableArray array]:[NSMutableArray arrayWithArray: userPalettes];
+	
+	[oPanel setAllowsMultipleSelection: YES];
+	[oPanel setCanChooseFiles: YES];
+	[oPanel setCanChooseDirectories: NO];
+	oPanel.directoryURL = [NSURL fileURLWithPath:NSHomeDirectory()];
+	oPanel.allowedFileTypes = fileTypes;
+	result = [oPanel runModal];
+	
+	if (result == NSFileHandlingPanelOKButton) {
+		for (NSURL *aURL in oPanel.URLs) {
+			NSString *aFile = [aURL path];
+			
+			if([self bundlePathIsLoaded: aFile] == YES &&
+			   [userPalettes containsObject: aFile] == NO){
+				// This is done here so that, if we try to reload a palette
+				// that has previously been deleted during this session that
+				// the palette manager won't fail, but it will simply add
+				// the palette back in.  If this returns NO, then we should
+				// flag a problem otherwise it's successful if the palette is
+				// already in the bundles array.  This is to address bug#15989.
+				[newUserPalettes addObject: aFile];
+			} else if([self loadPalette: aFile] == NO) {
+				return nil;
+			} else {
+				[newUserPalettes addObject: aFile];
+			}
+		}
+		
+		// reset the defaults to include the new palette.
+		[defaults setObject: newUserPalettes forKey: USER_PALETTES];
+		return self;
 	}
-
-      // reset the defaults to include the new palette.
-      [defaults setObject: newUserPalettes forKey: USER_PALETTES];
-      return self;
-    }
-  return nil;
+	return nil;
 }
 
 - (NSPanel*) panel
@@ -621,163 +636,138 @@ static NSImage	*dragImage = nil;
 
 - (void) setCurrentPalette: (id)anObj
 {
-  NSView	*wv;
-  NSView	*sv;
-  NSEnumerator	*enumerator;
-
-  if (current >= 0)
-    {
-      /*
-       * Move the views in the drag view back to the content view of the
-       * window they originally came from.
-       */
-      wv = [[[palettes objectAtIndex: current] originalWindow] contentView];
-      enumerator = [[dragView subviews] objectEnumerator];
-      while ((sv = [enumerator nextObject]) != nil)
-	{
-	  RETAIN(sv);
-	  [sv removeFromSuperview];
-	  [wv addSubview: sv];
-	  RELEASE(sv);
+	NSView	*wv;
+	NSEnumerator	*enumerator;
+	
+	if (current >= 0) {
+		/*
+		 * Move the views in the drag view back to the content view of the
+		 * window they originally came from.
+		 */
+		wv = [[[palettes objectAtIndex: current] originalWindow] contentView];
+		enumerator = [[dragView subviews] objectEnumerator];
+		for (NSView *sv in [dragView subviews]) {
+			RETAIN(sv);
+			[sv removeFromSuperview];
+			[wv addSubview: sv];
+			RELEASE(sv);
+		}
 	}
-    }
-
-  current = [anObj selectedColumn];
-  if (current >= 0 && current < [palettes count])
-    {
-      id palette = [palettes objectAtIndex: current];
-
-      /*
-       * Set the window title to reflect the palette selection.
-       */
-      [panel setTitle: [NSString stringWithFormat: @"Palettes (%@)", 
-				 [palette className]]];
-
-      /*
-       * Move the views from their original window into our drag view.
-       * Resize our drag view to the right size fitrst.
-       */
-      wv = [[palette originalWindow] contentView];
-      if (wv)
-        [dragView setFrameSize: [wv frame].size];
-      enumerator = [[wv subviews] objectEnumerator];
-      while ((sv = [enumerator nextObject]) != nil)
-	{
-	  RETAIN(sv);
-	  [sv removeFromSuperview];
-	  [dragView addSubview: sv];
-	  RELEASE(sv);
+	
+	current = [anObj selectedColumn];
+	if (current >= 0 && current < [palettes count]) {
+		id palette = [palettes objectAtIndex: current];
+		
+		/*
+		 * Set the window title to reflect the palette selection.
+		 */
+		[panel setTitle: [NSString stringWithFormat: @"Palettes (%@)",
+						  [palette className]]];
+		
+		/*
+		 * Move the views from their original window into our drag view.
+		 * Resize our drag view to the right size fitrst.
+		 */
+		wv = [[palette originalWindow] contentView];
+		if (wv)
+			[dragView setFrameSize: [wv frame].size];
+		enumerator = [[wv subviews] objectEnumerator];
+		for (NSView *sv in wv.subviews) {
+			RETAIN(sv);
+			[sv removeFromSuperview];
+			[dragView addSubview: sv];
+			RELEASE(sv);
+		}
+	} else {
+		NSLog(@"Bad palette selection - %d", (int)[anObj selectedColumn]);
+		current = -1;
 	}
-    }
-  else
-    {
-      NSLog(@"Bad palette selection - %d", (int)[anObj selectedColumn]);
-      current = -1;
-    }
-  [dragView setNeedsDisplay: YES];
+	[dragView setNeedsDisplay: YES];
 }
 
 - (NSMutableArray *) actionsForClass: (Class) cls
 {
-  NSArray *methodArray = _GSObjCMethodNamesForClass(cls, NO);
-  NSEnumerator *en = [methodArray objectEnumerator];
-  NSMethodSignature *actionSig = [NSMethodSignature signatureWithObjCTypes: "v12@0:4@8"];
-  NSMutableArray *actionsArray = [NSMutableArray array];
-  NSString *methodName = nil;
-  NSRange setRange = NSMakeRange(0,3);
-
-  while((methodName = [en nextObject]) != nil)
-    {
-      SEL sel = NSSelectorFromString(methodName);
-      NSMethodSignature *signature = [cls instanceMethodSignatureForSelector: sel];
-      if([signature numberOfArguments] == 3)
-	{
-	  if([actionSig isEqual: signature] && NSEqualRanges([methodName rangeOfString: @"set"], setRange) == NO &&
-	     [methodName isEqual: @"encodeWithCoder:"] == NO && [methodName isEqual: @"mouseDown:"] == NO)
-	    {
-	      [actionsArray addObject: methodName];
-	    }
+	NSArray *methodArray = _GSObjCMethodNamesForClass(cls, NO);
+	NSMethodSignature *actionSig = [NSMethodSignature signatureWithObjCTypes: "v12@0:4@8"];
+	NSMutableArray *actionsArray = [NSMutableArray array];
+	NSRange setRange = NSMakeRange(0,3);
+	
+	for (NSString *methodName in methodArray) {
+		SEL sel = NSSelectorFromString(methodName);
+		NSMethodSignature *signature = [cls instanceMethodSignatureForSelector: sel];
+		if([signature numberOfArguments] == 3) {
+			if([actionSig isEqual: signature] && NSEqualRanges([methodName rangeOfString: @"set"], setRange) == NO &&
+			   [methodName isEqual: @"encodeWithCoder:"] == NO && [methodName isEqual: @"mouseDown:"] == NO) {
+				[actionsArray addObject: methodName];
+			}
+		}
 	}
-    }
-  
-  return actionsArray;
+	
+	return actionsArray;
 }
 
 - (NSMutableArray *) outletsForClass: (Class) cls
 {
-  NSArray *methodArray = _GSObjCMethodNamesForClass(cls, NO);
-  NSEnumerator *en = [methodArray objectEnumerator];
-  NSMethodSignature *outletSig = [NSMethodSignature signatureWithObjCTypes: "v12@0:4@8"];
-  NSMutableArray *outletsArray = [NSMutableArray array];
-  NSString *methodName = nil;
-  NSRange setRange = NSMakeRange(0,3);
-
-  while((methodName = [en nextObject]) != nil)
-    {
-      SEL sel = NSSelectorFromString(methodName);
-      NSMethodSignature *signature = [cls instanceMethodSignatureForSelector: sel];
-      if([signature numberOfArguments] == 3)
-	{
-	  if([outletSig isEqual: signature] && NSEqualRanges([methodName rangeOfString: @"set"], setRange) == YES &&
-	     [methodName isEqual: @"encodeWithCoder:"] == NO && [methodName isEqual: @"mouseDown:"] == NO)
-	    {
-	      NSRange range = NSMakeRange(3,([methodName length] - 4));
-	      NSString *outletMethod = [[methodName substringWithRange: range] lowercaseString];
-	      if([methodArray containsObject: outletMethod])
-		{
-		  [outletsArray addObject: outletMethod];
+	NSArray *methodArray = _GSObjCMethodNamesForClass(cls, NO);
+	NSMethodSignature *outletSig = [NSMethodSignature signatureWithObjCTypes: "v12@0:4@8"];
+	NSMutableArray *outletsArray = [[NSMutableArray alloc] init];
+	NSRange setRange = NSMakeRange(0,3);
+	
+	for (NSString *methodName in methodArray) {
+		SEL sel = NSSelectorFromString(methodName);
+		NSMethodSignature *signature = [cls instanceMethodSignatureForSelector: sel];
+		if([signature numberOfArguments] == 3) {
+			if([outletSig isEqual: signature] && NSEqualRanges([methodName rangeOfString: @"set"], setRange) == YES &&
+			   [methodName isEqual: @"encodeWithCoder:"] == NO && [methodName isEqual: @"mouseDown:"] == NO) {
+				NSRange range = NSMakeRange(3,([methodName length] - 4));
+				NSString *outletMethod = [[methodName substringWithRange: range] lowercaseString];
+				if([methodArray containsObject: outletMethod]) {
+					[outletsArray addObject: outletMethod];
+				}
+			}
 		}
-	    }
 	}
-    }
-  
-  return outletsArray;
+	
+	return [outletsArray autorelease];
 }
 
 - (void) importClasses: (NSArray *)classes withDictionary: (NSDictionary *)dict
 {
-  NSEnumerator *en = [classes objectEnumerator];
-  id className = nil;
-  NSMutableDictionary *masterDict = [NSMutableDictionary dictionary];
-
-  // import the classes.
-  while((className = [en nextObject]) != nil)
-    {
-      NSMutableDictionary *classDict = [NSMutableDictionary dictionary];      
-      Class cls = NSClassFromString(className);
-      Class supercls = [cls superclass];
-      NSString *superClassName = NSStringFromClass(supercls);
-      NSMutableArray *actions = [self actionsForClass: cls];
-      NSMutableArray *outlets = [self outletsForClass: cls];
-      
-      // if the superclass is defined, set it.  if not, don't since
-      // this might be a palette which adds a root class.
-      if(superClassName != nil)
-	{
-	  [classDict setObject: superClassName forKey: @"Super"];
+	NSMutableDictionary *masterDict = [NSMutableDictionary dictionary];
+	
+	// import the classes.
+	for (id className in classes) {
+		NSMutableDictionary *classDict = [NSMutableDictionary dictionary];
+		Class cls = NSClassFromString(className);
+		Class supercls = [cls superclass];
+		NSString *superClassName = NSStringFromClass(supercls);
+		NSMutableArray *actions = [self actionsForClass: cls];
+		NSMutableArray *outlets = [self outletsForClass: cls];
+		
+		// if the superclass is defined, set it.  if not, don't since
+		// this might be a palette which adds a root class.
+		if (superClassName != nil) {
+			[classDict setObject: superClassName forKey: @"Super"];
+		}
+		
+		// set the action/outlet keys
+		if (actions != nil) {
+			[classDict setObject: actions forKey: @"Actions"];
+		}
+		if (outlets != nil) {
+			[classDict setObject: outlets forKey: @"Outlets"];
+		}
+		
+		[masterDict setObject: classDict forKey: className];
 	}
-
-      // set the action/outlet keys
-      if(actions != nil)
-	{
-	  [classDict setObject: actions forKey: @"Actions"];
+	
+	// override any elements needed, if it's present.
+	if (dict != nil) {
+		[masterDict addEntriesFromDictionary: dict];
 	}
-      if(outlets != nil)
-	{
-	  [classDict setObject: outlets forKey: @"Outlets"];
-	}
-
-      [masterDict setObject: classDict forKey: className];
-    }
-  
-  // override any elements needed, if it's present.
-  if(dict != nil)
-    {
-      [masterDict addEntriesFromDictionary: dict];
-    }
-  
-  // add the classes to the dictionary...
-  [importedClasses addEntriesFromDictionary: masterDict];
+	
+	// add the classes to the dictionary...
+	[importedClasses addEntriesFromDictionary: masterDict];
 }
 
 - (NSDictionary *) importedClasses
@@ -807,17 +797,14 @@ static NSImage	*dragImage = nil;
 
 - (void) importSounds: (NSArray *)sounds withBundle: (NSBundle *) bundle
 {
-  NSEnumerator *en = [sounds objectEnumerator];
-  id name = nil;
-  NSMutableArray *paths = [NSMutableArray array];
-
-  while((name = [en nextObject]) != nil)
-    {
-      NSString *path = [bundle pathForSoundResource: name];
-      [paths addObject: path];
-    }
-
-  [importedSounds addObjectsFromArray: paths];
+	NSMutableArray *paths = [NSMutableArray array];
+	
+	for (id name in sounds) {
+		NSString *path = [bundle pathForSoundResource: name];
+		[paths addObject: path];
+	}
+	
+	[importedSounds addObjectsFromArray: paths];
 }
 
 - (NSArray *) importedSounds

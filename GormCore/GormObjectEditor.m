@@ -112,14 +112,13 @@ static NSMapTable	*docMap = 0;
 
 + (id) editorForDocument: (id<IBDocuments>)aDocument
 {
-  id	editor = NSMapGet(docMap, (void*)aDocument);
-
-  if (editor == nil)
-    {
-      editor = [[self alloc] initWithObject: nil inDocument: aDocument];
-      AUTORELEASE(editor);
-    }
-  return editor;
+	id editor = NSMapGet(docMap, (void*)aDocument);
+	
+	if (editor == nil) {
+		editor = [[self alloc] initWithObject: nil inDocument: aDocument];
+		AUTORELEASE(editor);
+	}
+	return editor;
 }
 
 + (void) setEditor: (id)editor
@@ -179,18 +178,23 @@ static NSMapTable	*docMap = 0;
 {
   if (selected != nil
       && [[document nameForObject: selected] isEqualToString: @"NSOwner"] == NO
-      && [[document nameForObject: selected] isEqualToString: @"NSFirst"] == NO)
-    {
+      && [[document nameForObject: selected] isEqualToString: @"NSFirst"] == NO) {
       if ([selected isKindOfClass: [NSMenu class]] &&
-	  [[document nameForObject: selected] isEqual: @"NSMenu"] == YES)
-	{
+	  [[document nameForObject: selected] isEqual: @"NSMenu"] == YES) {
 	  NSString *title = _(@"Removing Main Menu");
 	  NSString *msg = _(@"Are you sure you want to do this?");
-	  NSInteger retval = NSRunAlertPanel(title, msg,_(@"OK"),_(@"Cancel"), nil, nil);
-	  
+		NSAlert *alert = [[NSAlert alloc] init];
+		alert.messageText = title;
+		alert.informativeText = msg;
+		[alert addButtonWithTitle:_(@"OK")];
+		[alert addButtonWithTitle:_(@"Cancel")];
+		NSInteger retval = [alert runModal];
+		[alert release];
+		
 	  // if the user *really* wants to delete the menu, do it.
-	  if(retval != NSAlertDefaultReturn)
+		if (retval != NSAlertFirstButtonReturn) {
 	    return;
+		}
 	}
 
       [document detachObject: selected];
@@ -228,97 +232,85 @@ static NSMapTable	*docMap = 0;
 
 - (NSDragOperation) draggingEntered: (id<NSDraggingInfo>)sender
 {
-  NSArray   *pbTypes = nil;
-  
-  // Get the resource manager first, if nil don't bother calling the rest...
-  dragPb = [sender draggingPasteboard];
-  pbTypes = [dragPb types];
-  
-  if ([pbTypes containsObject: GormLinkPboardType] == YES)
-    {
-      dragType = GormLinkPboardType;
-    }
-  else
-    {
-      dragType = nil;
-    }
-  
-  return [self draggingUpdated: sender];
+	NSArray   *pbTypes = nil;
+	
+	// Get the resource manager first, if nil don't bother calling the rest...
+	dragPb = [sender draggingPasteboard];
+	pbTypes = [dragPb types];
+	
+	if ([pbTypes containsObject: GormLinkPboardType] == YES) {
+		dragType = GormLinkPboardType;
+	} else {
+		dragType = nil;
+	}
+	
+	return [self draggingUpdated: sender];
 }
 
 - (NSDragOperation) draggingUpdated: (id<NSDraggingInfo>)sender
 {
-  if (dragType == GormLinkPboardType)
-    {
-      NSPoint	loc = [sender draggingLocation];
-      NSInteger	r, c;
-      NSInteger	pos;
-      id	obj = nil;
-
-      loc = [self convertPoint: loc fromView: nil];
-      [self getRow: &r column: &c forPoint: loc];
-      pos = r * [self numberOfColumns] + c;
-      if (pos >= 0 && pos < [objects count])
-	{
-	  obj = [objects objectAtIndex: pos];
+	if (dragType == GormLinkPboardType) {
+		NSPoint	loc = [sender draggingLocation];
+		NSInteger	r, c;
+		NSInteger	pos;
+		id	obj = nil;
+		
+		loc = [self convertPoint: loc fromView: nil];
+		[self getRow: &r column: &c forPoint: loc];
+		pos = r * [self numberOfColumns] + c;
+		if (pos >= 0 && pos < [objects count]) {
+			obj = [objects objectAtIndex: pos];
+		}
+		if (obj == [NSApp connectSource]) {
+			return NSDragOperationNone;	/* Can't drag an object onto itsself */
+		}
+		
+		[NSApp displayConnectionBetween: [NSApp connectSource] and: obj];
+		if (obj != nil) {
+			return NSDragOperationLink;
+		}
+		
+		return NSDragOperationNone;
 	}
-      if (obj == [NSApp connectSource])
-	{
-	  return NSDragOperationNone;	/* Can't drag an object onto itsself */
-	}
-
-      [NSApp displayConnectionBetween: [NSApp connectSource] and: obj];
-      if (obj != nil)
-	{
-	  return NSDragOperationLink;
-	}
-
-      return NSDragOperationNone;
-    }
-
-  return NSDragOperationNone;
+	
+	return NSDragOperationNone;
 }
 
 
 /**
  * Used for autoscrolling when you connect IBActions.
- * FIXME: Maybye there is a better way to do it.
+ * FIXME: Maybe there is a better way to do it.
 */
 - (void)draggingExited:(id < NSDraggingInfo >)sender
 {
-    if (dragType == GormLinkPboardType)
-      {
-	NSRect documentVisibleRect;
-	NSRect documentRect;
-	NSPoint	loc = [sender draggingLocation];
-
-	loc = [self convertPoint:loc fromView:nil];
-	documentVisibleRect = [(NSClipView *)[self superview] documentVisibleRect];
-	documentRect = [(NSClipView *)[self superview] documentRect];
-	
-	/* Down */
-	if ( (loc.y >= documentVisibleRect.size.height) 
-	     && ( ! NSEqualRects(documentVisibleRect,documentRect) ) ) 
-	  {
-	    loc.x = 0;
-	    loc.y = documentRect.origin.y + [self cellSize].height;
-	    [(NSClipView*) [self superview] scrollToPoint:loc];
-	  } 
-	/* up */
-	else if ( (loc.y + 10 >= documentVisibleRect.origin.y ) 
-		  && ( ! NSEqualRects(documentVisibleRect,documentRect) ) ) 
-	{
-	  loc.x = 0;
-	  loc.y = documentRect.origin.y - [self cellSize].height; 
-	  [(NSClipView*) [self superview] scrollToPoint:loc];
+	if (dragType == GormLinkPboardType) {
+		NSRect documentVisibleRect;
+		NSRect documentRect;
+		NSPoint	loc = [sender draggingLocation];
+		
+		loc = [self convertPoint:loc fromView:nil];
+		documentVisibleRect = [(NSClipView *)[self superview] documentVisibleRect];
+		documentRect = [(NSClipView *)[self superview] documentRect];
+		
+		/* Down */
+		if ((loc.y >= documentVisibleRect.size.height)
+			&& (!NSEqualRects(documentVisibleRect,documentRect))) {
+			loc.x = 0;
+			loc.y = documentRect.origin.y + [self cellSize].height;
+			[(NSClipView*) [self superview] scrollToPoint:loc];
+			/* up */
+		} else if ((loc.y + 10 >= documentVisibleRect.origin.y)
+				   && (!NSEqualRects(documentVisibleRect,documentRect))) {
+			loc.x = 0;
+			loc.y = documentRect.origin.y - [self cellSize].height;
+			[(NSClipView*) [self superview] scrollToPoint:loc];
+		}
 	}
-
-      }
 }
 
 - (NSDragOperation) draggingSourceOperationMaskForLocal: (BOOL)flag
 {
-  return NSDragOperationLink;
+	return NSDragOperationLink;
 }
 
 - (void) drawSelection
@@ -327,13 +319,12 @@ static NSMapTable	*docMap = 0;
 
 - (void) handleNotification: (NSNotification*)aNotification
 {
-  NSString *name = [aNotification name];
-
-  if([name isEqual: GormResizeCellNotification])
-    {
-      NSDebugLog(@"Recieved notification");
-      [self setCellSize: defaultCellSize()];
-    }
+	NSString *name = [aNotification name];
+	
+	if([name isEqual: GormResizeCellNotification]) {
+		NSDebugLog(@"Recieved notification");
+		[self setCellSize: defaultCellSize()];
+	}
 }
 
 /*
@@ -381,7 +372,7 @@ static NSMapTable	*docMap = 0;
       objects = [[NSMutableArray alloc] init];
       proto = [[NSButtonCell alloc] init];
       [proto setBordered: NO];
-      [proto setAlignment: NSCenterTextAlignment];
+      [proto setAlignment: NSTextAlignmentCenter];
       [proto setImagePosition: NSImageAbove];
       [proto setSelectable: NO];
       [proto setEditable: NO];

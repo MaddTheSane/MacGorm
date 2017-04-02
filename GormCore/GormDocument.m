@@ -264,26 +264,27 @@ static NSImage  *fileImage = nil;
 	      NSString *header = (NSString *)obj;
 	      
 	      NSDebugLog(@"Preloading %@", header);
-	      NS_DURING
+	      @try
 		{
 		  if(![classManager parseHeader: header])
 		    {
 		      NSString *file = [header lastPathComponent];
-		      NSString *message = [NSString stringWithFormat: 
-						      _(@"Unable to parse class in %@"),file];
-		      NSRunAlertPanel(_(@"Problem parsing class"), 
-				      message,
-				      nil, nil, nil);
+				NSAlert * alert = [[NSAlert alloc] init];
+				alert.messageText = _(@"Problem parsing class");
+				alert.informativeText = [NSString stringWithFormat:_(@"Unable to parse class in %@"), file];
+				[alert runModal];
+				[alert release];
 		    }
 		}
-	      NS_HANDLER
+	      @catch (NSException *localException)
 		{
 		  NSString *message = [localException reason];
-		  NSRunAlertPanel(_(@"Problem parsing class"), 
-				  message,
-				  nil, nil, nil);
+			NSAlert *alert = [[NSAlert alloc] init];
+			alert.messageText = _(@"Problem parsing class");
+			alert.informativeText = message;
+			[alert runModal];
+			[alert release];
 		}
-	      NS_ENDHANDLER;
 	    }
 	}
       
@@ -435,13 +436,14 @@ static NSImage  *fileImage = nil;
 	  
 	  if(version > currentVersion)
 	    {
-	      NSInteger retval = NSRunAlertPanel(_(@"Gorm Build Mismatch"),
-					   _(@"The file being loaded was created with a newer build, continue?"), 
-					   _(@"OK"), 
-					   _(@"Cancel"), 
-					   nil,
-					   nil);
-	      if(retval != NSAlertDefaultReturn)
+			NSAlert *alert = [[NSAlert alloc] init];
+			alert.messageText = _(@"Gorm Build Mismatch");
+			alert.informativeText = _(@"The file being loaded was created with a newer build, continue?");
+			[alert addButtonWithTitle:_(@"OK")];
+			[alert addButtonWithTitle:_(@"Cancel")];
+			NSInteger retval = [alert runModal];
+			[alert release];
+	      if(retval != NSAlertFirstButtonReturn)
 		{
 		  // close the document, if the user says "NO."
 		  [self close];
@@ -2466,14 +2468,20 @@ static void _real_close(GormDocument *self,
 						 @"Modifying %@",(action==YES?@"Action":@"Outlet")];
 				msg = [NSString stringWithFormat:
 					   _(@"This will break all connections to '%@'.  Continue?"), name];
-				retval = NSRunAlertPanel(title, msg,_(@"OK"),_(@"Cancel"), nil, nil);
+				NSAlert *alert = [[NSAlert alloc] init];
+				alert.messageText = title;
+				alert.informativeText = msg;
+				[alert addButtonWithTitle:_(@"OK")];
+				[alert addButtonWithTitle:_(@"Cancel")];
+				retval = [alert runModal];
+				[alert release];
 				prompted = YES;
 			} else {
 				removed = NO;
 				break;
 			}
 			
-			if (retval == NSAlertDefaultReturn) {
+			if (retval == NSAlertFirstButtonReturn) {
 				removed = YES;
 				[removedConnections addObject: c];
 			} else {
@@ -2505,15 +2513,21 @@ static void _real_close(GormDocument *self,
 	id<IBConnectors> c = nil;
 	BOOL removed = YES;
 	NSInteger retval = -1;
-	NSString *title = [NSString stringWithFormat: _(@"Modifying Class")];
+	NSString *title = _(@"Modifying Class");
 	NSString *msg;
 	
 	msg = [NSString stringWithFormat: _(@"This will break all connections to "
 										@"actions/outlets to instances of class '%@' and it's subclasses.  Continue?"), className];
 	
 	// ask the user if he/she wants to continue...
-	retval = NSRunAlertPanel(title, msg,_(@"OK"),_(@"Cancel"), nil, nil);
-	if (retval == NSAlertDefaultReturn) {
+	NSAlert *alert = [[NSAlert alloc] init];
+	alert.messageText = title;
+	alert.informativeText = msg;
+	[alert addButtonWithTitle:_(@"OK")];
+	[alert addButtonWithTitle:_(@"Cancel")];
+	retval = [alert runModal];
+	DESTROY(alert);
+	if (retval == NSAlertFirstButtonReturn) {
 		removed = YES;
 	} else {
 		removed = NO;
@@ -2602,14 +2616,20 @@ static void _real_close(GormDocument *self,
   id<IBConnectors> c = nil;
   BOOL renamed = YES;
   NSInteger retval = -1;
-  NSString *title = [NSString stringWithFormat: _(@"Modifying Class")];
+  NSString *title = _(@"Modifying Class");
   NSString *msg = [NSString stringWithFormat: 
 			      _(@"Change class name '%@' to '%@'.  Continue?"),
 			    className, newName];
 
   // ask the user if he/she wants to continue...
-  retval = NSRunAlertPanel(title, msg,_(@"OK"),_(@"Cancel"), nil, nil);
-  if (retval == NSAlertDefaultReturn)
+	NSAlert *alert = [[NSAlert alloc] init];
+	alert.messageText = title;
+	alert.informativeText = msg;
+	[alert addButtonWithTitle:_(@"OK")];
+	[alert addButtonWithTitle:_(@"Cancel")];
+	retval = [alert runModal];
+	DESTROY(alert);
+  if (retval == NSAlertFirstButtonReturn)
     {
       renamed = YES;
     }
@@ -2671,25 +2691,18 @@ static void _real_close(GormDocument *self,
  */
 - (id) openSound: (id)sender
 {
-  NSArray	*fileTypes = [NSSound soundUnfilteredFileTypes]; 
-  NSArray	*filenames;
-  NSString	*filename;
+  NSArray		*fileTypes = [NSSound soundUnfilteredTypes];
   NSOpenPanel	*oPanel = [NSOpenPanel openPanel];
-  int		result;
-  int		i;
+  NSInteger		result;
 
   [oPanel setAllowsMultipleSelection: YES];
   [oPanel setCanChooseFiles: YES];
   [oPanel setCanChooseDirectories: NO];
-  result = [oPanel runModalForDirectory: nil
-				   file: nil
-				  types: fileTypes];
-  if (result == NSOKButton)
-    {
-      filenames = [oPanel filenames];
-      for (i=0; i<[filenames count]; i++)
-      {
-        filename = [filenames objectAtIndex:i];
+	oPanel.allowedFileTypes = fileTypes;
+  result = [oPanel runModal];
+  if (result == NSFileHandlingPanelOKButton) {
+      for (NSURL *fileURL in oPanel.URLs) {
+        NSString *filename = [fileURL path];
         NSDebugLog(@"Loading sound file: %@",filenames);
         [soundsView addObject: [GormSound soundForPath: filename]];
       }
@@ -2704,25 +2717,18 @@ static void _real_close(GormDocument *self,
  */
 - (id) openImage: (id)sender
 {
-  NSArray	*fileTypes = [NSImage imageFileTypes]; 
-  NSArray	*filenames;
+  NSArray		*fileTypes = [NSImage imageTypes];
   NSOpenPanel	*oPanel = [NSOpenPanel openPanel];
-  NSString	*filename;
-  int		result;
-  int		i;
+  NSInteger		result;
 
   [oPanel setAllowsMultipleSelection: YES];
   [oPanel setCanChooseFiles: YES];
   [oPanel setCanChooseDirectories: NO];
-  result = [oPanel runModalForDirectory: nil
-				   file: nil
-				  types: fileTypes];
-  if (result == NSOKButton)
-    {
-      filenames = [oPanel filenames];
-      for (i=0; i<[filenames count]; i++)
-      {
-        filename = [filenames objectAtIndex:i];
+	oPanel.allowedFileTypes = fileTypes;
+  result = [oPanel runModal];
+	if (result == NSFileHandlingPanelOKButton) {
+		for (NSURL *fileURL in oPanel.URLs) {
+			NSString *filename = [fileURL path];
         NSDebugLog(@"Loading image file: %@",filename);
         [imagesView addObject: [GormImage imageForPath: filename]];
       }
@@ -2737,9 +2743,9 @@ static void _real_close(GormDocument *self,
  */
 - (NSString *) description
 {
-  return [NSString stringWithFormat: @"<%s: %lx> = <<name table: %@, connections: %@>>",
+  return [NSString stringWithFormat: @"<%s: %p> = <<name table: %@, connections: %@>>",
 		   GSClassNameFromObject(self), 
-		   (unsigned long)self,
+		   self,
 		   nameTable, connections];
 }
 
@@ -2904,25 +2910,21 @@ static void _real_close(GormDocument *self,
 {
   NSArray	*fileTypes = [NSArray arrayWithObjects: @"strings", nil];
   NSOpenPanel	*oPanel = [NSOpenPanel openPanel];
-  int		result;
+  NSInteger		result;
 
   [oPanel setAllowsMultipleSelection: NO];
   [oPanel setCanChooseFiles: YES];
   [oPanel setCanChooseDirectories: NO];
-  result = [oPanel runModalForDirectory: nil
-				   file: nil
-				  types: fileTypes];
-  if (result == NSOKButton)
+	oPanel.allowedFileTypes = fileTypes;
+  result = [oPanel runModal];
+  if (result == NSFileHandlingPanelOKButton)
     {
       NSMutableArray *allObjects = [self _collectAllObjects];
-      NSString *filename = [oPanel filename];
-      NSDictionary *dictionary = [[NSString stringWithContentsOfFile: filename] propertyListFromStringsFileFormat];
-      NSEnumerator *en = [allObjects objectEnumerator];
-      id obj = nil;
+      NSString *filename = [[oPanel URL] path];
+      NSDictionary *dictionary = [[NSString stringWithContentsOfFile: filename usedEncoding:NULL error:NULL] propertyListFromStringsFileFormat];
 
       // change to translated values.
-      while((obj = [en nextObject]) != nil)
-	{
+      for(id obj in allObjects) {
 	  NSString *translation = nil; 
 
 	  if([obj respondsToSelector: @selector(setTitle:)] &&
@@ -2987,16 +2989,16 @@ static void _real_close(GormDocument *self,
 - (void) exportStrings: (id)sender
 {
   NSSavePanel	*sp = [NSSavePanel savePanel];
-  int		result;
+  NSInteger		result;
 
-  [sp setRequiredFileType: @"strings"];
+	sp.allowedFileTypes = @[@"strings"];
   [sp setTitle: _(@"Save strings file as...")];
-  result = [sp runModalForDirectory: NSHomeDirectory()
-	       file: nil];
-  if (result == NSOKButton)
+	sp.directoryURL = [NSURL fileURLWithPath: NSHomeDirectory()];
+  result = [sp runModal];
+  if (result == NSFileHandlingPanelOKButton)
     {
       NSMutableArray *allObjects = [self _collectAllObjects];
-      NSString *filename = [sp filename];
+      NSString *filename = [[sp URL] path];
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       NSEnumerator *en = [allObjects objectEnumerator];
       id obj = nil;
@@ -3032,7 +3034,7 @@ static void _real_close(GormDocument *self,
       if(touched)
 	{
 	  NSString *stringToWrite = [dictionary descriptionInStringsFileFormat];
-	  [stringToWrite writeToFile: filename atomically: YES];
+	  [stringToWrite writeToFile: filename atomically: YES encoding: NSUTF8StringEncoding error: NULL];
 	}
     } 
 }
@@ -3044,10 +3046,8 @@ static void _real_close(GormDocument *self,
 {
   NSArray *selection =  [[(id<IB>)NSApp selectionOwner] selection];
   NSInteger tag = [sender tag];
-  NSEnumerator *en = [selection objectEnumerator];
-  id v = nil;
 
-  while((v = [en nextObject]) != nil)
+  for (id v in selection)
     {
       if([v isKindOfClass: [NSView class]])
 	{
@@ -3076,15 +3076,13 @@ static void _real_close(GormDocument *self,
 {
   NSArray *selection =  [[(id<IB>)NSApp selectionOwner] selection];
   NSInteger tag = [sender tag];
-  NSEnumerator *en = [selection objectEnumerator];
-  id v = nil;
   id prev = nil;
 
   // Mark the document modified.
   [self touch];
 
   // Iterate over all in the selection and align them...
-  while((v = [en nextObject]) != nil)
+  for (id v in selection)
     {
       if([v isKindOfClass: [NSView class]])
 	{
@@ -3152,13 +3150,17 @@ static void _real_close(GormDocument *self,
    */
   if(isOlderArchive && [filePrefsManager isLatest])
     {
-      NSInteger retval = NSRunAlertPanel(_(@"Compatibility Warning"), 
-				   _(@"Saving will update this gorm to the latest version \n" 
-				     @"which may not be compatible with some previous versions \n"
-				     @"of GNUstep."),
-				   _(@"Save"),
-				   _(@"Don't Save"), nil, nil);
-      if (retval != NSAlertDefaultReturn)
+		NSInteger retval;
+		NSAlert *alert = [[NSAlert alloc] init];
+		alert.messageText = _(@"Compatibility Warning");
+		alert.informativeText = _(@"Saving will update this gorm to the latest version \n"
+								  @"which may not be compatible with some previous versions \n"
+								  @"of GNUstep.");
+		[alert addButtonWithTitle:_(@"Save")];
+		[alert addButtonWithTitle:_(@"Don't Save")];
+		retval = [alert runModal];
+		DESTROY(alert);
+      if (retval != NSAlertFirstButtonReturn)
 	{
 	  return nil;
 	}
@@ -3223,9 +3225,9 @@ static void _real_close(GormDocument *self,
 
 - (NSString *)displayName
 {
-  if ([self fileName] != nil)
+  if ([self fileURL] != nil)
     {
-      return [[self fileName] lastPathComponent];
+      return [[self fileURL] lastPathComponent];
     }
   else
     {
@@ -3371,29 +3373,25 @@ static void _real_close(GormDocument *self,
 
 - (id) initWithCoder: (NSCoder *)coder
 {
+	if (self = [super init]) {
   ASSIGN(topLevelObjects, [coder decodeObject]);
   ASSIGN(nameTable, [coder decodeObject]);
   ASSIGN(visibleWindows, [coder decodeObject]);
   ASSIGN(connections, [coder decodeObject]);
+	}
 
   return self;
 }
 
 - (void) awakeWithContext: (NSDictionary *)context
 {
-  NSEnumerator *en = [connections objectEnumerator];
-  id o = nil;
-  while((o = [en nextObject]) != nil)
-    {
-      [o establishConnection];
-    }
-
-  en = [visibleWindows objectEnumerator];
-  o = nil;
-  while((o = [en nextObject]) != nil)
-    {
-      [o orderFront: self];
-    }
+	for (id o in connections) {
+		[o establishConnection];
+	}
+	
+	for (id o in visibleWindows) {
+		[o orderFront: self];
+	}
 }
 
 /**
@@ -3401,16 +3399,12 @@ static void _real_close(GormDocument *self,
  */
 - (void) deactivateEditors
 {
-  NSEnumerator		*enumerator;
-  id<IBConnectors>	con;
-
   /*
    * Map all connector sources and destinations to their name strings.
    * Deactivate editors so they won't be archived.
    */
 
-  enumerator = [connections objectEnumerator];
-  while ((con = [enumerator nextObject]) != nil)
+  for (id<IBConnectors> con in connections)
     {
       if ([con isKindOfClass: [GormObjectToEditor class]])
 	{
@@ -3430,15 +3424,11 @@ static void _real_close(GormDocument *self,
  */
 - (void) reactivateEditors
 {
-	NSEnumerator		*enumerator;
-	id<IBConnectors>	con;
-	
 	/*
 	 * Restore editor links and reactivate the editors.
 	 */
 	[connections addObjectsFromArray: savedEditors];
-	enumerator = [savedEditors objectEnumerator];
-	while ((con = [enumerator nextObject]) != nil) {
+	for (id<IBConnectors> con in savedEditors) {
 		if ([[con source] isKindOfClass: [NSView class]] == NO) {
 			[(id<IBEditors>)[con destination] activate];
 		}

@@ -615,8 +615,8 @@ NSImage *browserImage = nil;
 	  NSString *message = [NSString stringWithFormat: 
 	    _(@"The class %@ has subclasses which must be removed"), anitem];
 	  NSRunAlertPanel(_(@"Problem removing class"), 
-			  message,
-			  nil, nil, nil);
+			  @"%@",
+			  nil, nil, nil, message);
 	}
     }    
 }
@@ -668,10 +668,9 @@ NSImage *browserImage = nil;
 					     withOutlets: [classDict objectForKey: @"Outlets"]];
 		  if(!added)
 		    {
-		      NSString *message = [NSString stringWithFormat: @"Addition of %@ with superclass %@ failed.", className,
-						    selectedClass];
 		      NSRunAlertPanel(_(@"Problem pasting class"),
-				      message, nil, nil, nil);
+				      @"Addition of %@ with superclass %@ failed.",
+							  nil, nil, nil, className, selectedClass);
 		    }
 		}
 	    }
@@ -679,7 +678,7 @@ NSImage *browserImage = nil;
       else
 	{
 	  NSRunAlertPanel(_(@"Problem pasting class"),
-			  _(@"FirstResponder cannot have subclasses."), nil, nil, nil);
+			  @"%@", nil, nil, nil, _(@"FirstResponder cannot have subclasses."));
 	}
     }
 }
@@ -837,8 +836,8 @@ NSImage *browserImage = nil;
 	    {
 	      // inform the user of this error.
 	      NSRunAlertPanel(_(@"Cannot instantiate"), 
-			      _(@"FirstResponder cannot be instantiated."),
-			      nil, nil, nil);
+						  @"%@", nil, nil, nil,
+						  _(@"FirstResponder cannot be instantiated."));
 	    }
 	}
     }
@@ -937,48 +936,37 @@ NSImage *browserImage = nil;
  */
 - (id) loadClass: (id)sender
 {
-  NSArray	*fileTypes = [NSArray arrayWithObjects: @"h", @"H", nil];
-  NSOpenPanel	*oPanel = [NSOpenPanel openPanel];
-  NSInteger		result;
-
-  [oPanel setAllowsMultipleSelection: NO];
-  [oPanel setCanChooseFiles: YES];
-  [oPanel setCanChooseDirectories: NO];
-  oPanel.allowedFileTypes = fileTypes;
-  result = [oPanel runModalForDirectory: nil
-				   file: nil
-				  types: fileTypes];
-  if (result == NSOKButton)
-    {
-      NSString *filename = [oPanel filename];
-
-      NS_DURING
-	{
-	  if(![classManager parseHeader: filename])
-	    {
-	      NSString *file = [filename lastPathComponent];
-	      NSString *message = [NSString stringWithFormat: 
-					      _(@"Unable to parse class in %@"),file];
-	      NSRunAlertPanel(_(@"Problem parsing class"), 
-			      message,
-			      nil, nil, nil);
-	    }
-	  else
-	    {
-	      return self;
-	    }
+	NSArray	*fileTypes = [NSArray arrayWithObjects: @"h", @"H", nil];
+	NSOpenPanel	*oPanel = [NSOpenPanel openPanel];
+	NSInteger		result;
+	
+	[oPanel setAllowsMultipleSelection: NO];
+	[oPanel setCanChooseFiles: YES];
+	[oPanel setCanChooseDirectories: NO];
+	oPanel.allowedFileTypes = fileTypes;
+	result = [oPanel runModal];
+	if (result == NSFileHandlingPanelOKButton) {
+		NSString *filename = [[oPanel URL] path];
+		
+		@try {
+			if (![classManager parseHeader: filename]) {
+				NSString *file = [filename lastPathComponent];
+				NSRunAlertPanel(_(@"Problem parsing class"),
+								_(@"Unable to parse class in %@"),
+								nil, nil, nil, file);
+			} else {
+				return self;
+			}
+		} @catch (NSException *localException) {
+			NSString *message = [localException reason];
+			NSRunAlertPanel(_(@"Problem parsing class"),
+							@"%@",
+							nil, nil, nil, message);
+		}
+		
 	}
-      NS_HANDLER
-	{
-	  NSString *message = [localException reason];
-	  NSRunAlertPanel(_(@"Problem parsing class"), 
-			  message,
-			  nil, nil, nil);
-	}
-      NS_ENDHANDLER
-    }
-
-  return nil;
+	
+	return nil;
 }
 
 /**
@@ -986,9 +974,9 @@ NSImage *browserImage = nil;
  */
 - (id) createClassFiles: (id)sender
 {
-  NSSavePanel		*sp;
-  NSString              *className = [self selectedClassName];
-  NSInteger			result;
+	NSSavePanel	*sp;
+	NSString	*className = [self selectedClassName];
+	NSInteger	result;
 
   sp = [NSSavePanel savePanel];
   sp.allowedFileTypes = @[@"m"];
@@ -1004,7 +992,7 @@ NSImage *browserImage = nil;
 		   file: [className stringByAppendingPathExtension: @"m"]];
     }
 
-  if (result == NSOKButton)
+  if (result == NSFileHandlingPanelOKButton)
     {
       NSString *sourceName = [[sp URL] path];
       NSString *headerName;
@@ -1017,7 +1005,7 @@ NSImage *browserImage = nil;
 		     [[[sourceName lastPathComponent]
 			stringByDeletingPathExtension] 
 		       stringByAppendingString: @".h"]];
-      if (result == NSOKButton)
+      if (result == NSFileHandlingPanelOKButton)
 	{
 	  headerName = [[sp URL] path];
 	  NSDebugLog(@"Saving %@", className);
@@ -1026,8 +1014,8 @@ NSImage *browserImage = nil;
 			     and: headerName])
 	    {
 	      NSRunAlertPanel(_(@"Alert"), 
-			      _(@"Could not create the class's file"),
-			      nil, nil, nil);
+			      @"%@",
+			      nil, nil, nil, _(@"Could not create the class's file"));
 	    }
 	  
 	  return self;
@@ -1115,14 +1103,9 @@ objectValueForTableColumn: (NSTableColumn *)aTableColumn
 		}
 	      else
 		{
-		  NSString *message;
-
-		  message = [NSString stringWithFormat: 
-		    _(@"The class %@ already has an action named %@"),
-		    [gov itemBeingEdited], formattedAction];
-
 		  NSRunAlertPanel(_(@"Problem Adding Action"),
-				  message, nil, nil, nil);
+				  _(@"The class %@ already has an action named %@"),
+				  nil, nil, nil, [gov itemBeingEdited], formattedAction);
 				  
 		}
 	    }
@@ -1148,13 +1131,9 @@ objectValueForTableColumn: (NSTableColumn *)aTableColumn
 		}
 	      else
 		{
-		  NSString *message;
-
-		  message = [NSString stringWithFormat: 
-		    _(@"The class %@ already has an outlet named %@"),
-		    [gov itemBeingEdited], formattedOutlet];
 		  NSRunAlertPanel(_(@"Problem Adding Outlet"),
-				  message, nil, nil, nil);
+				  _(@"The class %@ already has an outlet named %@"),
+				  nil, nil, nil, [gov itemBeingEdited], formattedOutlet);
 				  
 		}
 	    }

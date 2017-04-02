@@ -72,7 +72,7 @@
 {
   BOOL result = NO;
 
-  NS_DURING
+  @try
     {
       NSData		        *data = nil;
       NSData                    *classes = nil;
@@ -120,10 +120,13 @@
 			  // load the custom classes...
 			  if (![classManager loadNibFormatCustomClassesWithData: classes]) 
 			    {
-			      NSRunAlertPanel(_(@"Problem Loading"), 
-					      _(@"Could not open the associated classes file.\n"
-						@"You won't be able to edit connections on custom classes"), 
-					      _(@"OK"), nil, nil);
+					NSAlert *alert = [[NSAlert alloc] init];
+					alert.messageText = _(@"Problem Loading");
+					alert.informativeText =
+					_(@"Could not open the associated classes file.\n"
+					  @"You won't be able to edit connections on custom classes");
+					[alert runModal];
+					[alert release];
 			    }
 			}
 		    }
@@ -343,14 +346,15 @@
 	  [NSClassSwapper setIsInInterfaceBuilder: NO];      
 	}
     }
-  NS_HANDLER
+  @catch (NSException *localException)
     {
-      NSRunAlertPanel(_(@"Problem Loading"), 
-		      [NSString stringWithFormat: @"Failed to load file.  Exception: %@",[localException reason]], 
-		      _(@"OK"), nil, nil);
-      result = NO; 
+		NSAlert *alert = [[NSAlert alloc] init];
+		alert.messageText = _(@"Problem Loading");
+		alert.informativeText = [NSString stringWithFormat: @"Failed to load file.  Exception: %@",[localException reason]];
+		[alert runModal];
+		[alert release];
+      result = NO;
     }
-  NS_ENDHANDLER;
 
   // return the result.
   return result;

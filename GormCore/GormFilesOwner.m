@@ -236,44 +236,35 @@
 
 - (void) takeClassFrom: (id)sender
 {
-  NSString	*title = [[browser selectedCell] stringValue];
-
-  NSDebugLog(@"Selected %d, %@", (int)[browser selectedRowInColumn: 0], title);
-  if (hasConnections > 0 && [title isEqual: [object className]] == NO)
-    {
-      if (NSRunAlertPanel(nil, _(@"This operation will break existing connection"),
-			  _(@"OK"), _(@"Cancel"), nil) != NSAlertDefaultReturn)
-	{
-	  unsigned	pos = [classes indexOfObject: [object className]];
-
-	  [browser selectRow: pos inColumn: 0];
-	  return;
+	NSString	*title = [[browser selectedCell] stringValue];
+	
+	NSDebugLog(@"Selected %d, %@", (int)[browser selectedRowInColumn: 0], title);
+	if (hasConnections > 0 && [title isEqual: [object className]] == NO) {
+		if (NSRunAlertPanel(nil, @"%@",
+							_(@"OK"), _(@"Cancel"), nil,
+							_(@"This operation will break existing connection")) != NSAlertDefaultReturn) {
+			NSUInteger	pos = [classes indexOfObject: [object className]];
+			
+			[browser selectRow: pos inColumn: 0];
+			return;
+		} else {
+			NSArray	*array;
+			id		doc = [(id<IB>)NSApp activeDocument];
+			
+			array = [doc connectorsForSource: object
+									 ofClass: [NSNibOutletConnector class]];
+			for (id<IBConnectors> con in array) {
+				[doc removeConnector: con];
+			}
+			
+			array = [doc connectorsForDestination: object
+										  ofClass: [NSNibControlConnector class]];
+			for (id<IBConnectors> con in array) {
+				[doc removeConnector: con];
+			}
+			hasConnections = NO;
+		}
 	}
-      else
-	{
-	  NSArray	*array;
-	  id		doc = [(id<IB>)NSApp activeDocument];
-	  unsigned	i;
-
-	  array = [doc connectorsForSource: object
-		       ofClass: [NSNibOutletConnector class]];
-	  for (i = 0; i < [array count]; i++)
-	    {
-	      id<IBConnectors>	con = [array objectAtIndex: i];
-
-	      [doc removeConnector: con];
-	    }
-	  array = [doc connectorsForDestination: object
-		       ofClass: [NSNibControlConnector class]];
-	  for (i = 0; i < [array count]; i++)
-	    {
-	      id<IBConnectors>	con = [array objectAtIndex: i];
-
-	      [doc removeConnector: con];
-	    }
-	  hasConnections = NO;
-	}
-    }
-  [object setClassName: title];
+	[object setClassName: title];
 }
 @end

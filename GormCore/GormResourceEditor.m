@@ -161,10 +161,11 @@
 		NSString *type = [self resourceType];
 		NSString *msg = [NSString stringWithFormat: _(@"Problem adding %@"), type];
 		NSRunAlertPanel(msg,
-						_(@"A resource with the same name exists, remove it first."),
+						@"%@",
 						_(@"OK"),
 						nil, 
-						nil);      
+						nil,
+						_(@"A resource with the same name exists, remove it first."));
 	}
 }
 

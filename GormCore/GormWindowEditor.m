@@ -342,10 +342,9 @@
 
   NSDebugLog(@"draggedImage");
 
-  if(f == NO)
-    {
-      NSRunAlertPanel(nil, _(@"Window drag failed."),
-		      _(@"OK"), nil, nil);
+  if(f == NO) {
+      NSRunAlertPanel(nil, @"%@",
+		      _(@"OK"), nil, nil, _(@"Window drag failed."));
     }
 }
 

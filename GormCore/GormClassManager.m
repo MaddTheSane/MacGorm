@@ -1915,14 +1915,13 @@
 		{
 		  if([self isKnownClass: className])
 		    {
-		      NSString *title = [NSString stringWithFormat: 
-						    _(@"Reparsing Class")];
+		      NSString *title = _(@"Reparsing Class");
 		      NSString *msg = [NSString stringWithFormat: 
 						  _(@"This may break connections to "
 						    @"actions/outlets to instances of class '%@' "
 						    @"and it's subclasses.  Continue?"), 
 						className];
-		      NSInteger retval = NSRunAlertPanel(title, msg,_(@"OK"),_(@"Cancel"), nil, nil);
+		      NSInteger retval = NSRunAlertPanel(title, @"%@", _(@"OK"), _(@"Cancel"), nil, msg);
 
 		      if (retval == NSAlertDefaultReturn)
 			{
