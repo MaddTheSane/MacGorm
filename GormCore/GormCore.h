@@ -34,5 +34,9 @@ FOUNDATION_EXPORT const unsigned char GormCoreVersionString[];
 #include <GormCore/GormCustomView.h>
 #include <GormCore/GormWindowTemplate.h>
 #include <GormCore/GormNSWindow.h>
-
-
+#include <GormCore/GormGenericEditor.h>
+#include <GormCore/GormFontViewController.h>
+#include <GormCore/GormSetNameController.h>
+#include <GormCore/GormPluginManager.h>
+#include <GormCore/GormDocumentController.h>
+#include <GormCore/GormServer.h>
