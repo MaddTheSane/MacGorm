@@ -14,6 +14,9 @@ FOUNDATION_EXPORT double GormObjCHeaderParserVersionNumber;
 //! Project version string for GormObjCHeaderParser.
 FOUNDATION_EXPORT const unsigned char GormObjCHeaderParserVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <GormObjCHeaderParser/PublicHeader.h>
-
-
+#import <GormObjCHeaderParser/OCClass.h>
+#import <GormObjCHeaderParser/OCHeaderParser.h>
+#import <GormObjCHeaderParser/OCIVar.h>
+#import <GormObjCHeaderParser/OCIVarDecl.h>
+#import <GormObjCHeaderParser/OCMethod.h>
+#import <GormObjCHeaderParser/ParserFunctions.h>

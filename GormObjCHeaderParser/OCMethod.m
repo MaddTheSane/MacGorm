@@ -35,11 +35,10 @@
 
 - (id) initWithString: (NSString *)string
 {
-  if((self = [super init]) != nil)
-    {
-      ASSIGNCOPY(methodString, string);
+	if ((self = [super init]) != nil) {
+		ASSIGNCOPY(methodString, string);
     }
-  return self;
+	return self;
 }
 
 - (void) dealloc
@@ -52,7 +51,7 @@
 - (void) _strip
 {
 	NSScanner *stripScanner = [NSScanner scannerWithString: methodString];
-	NSString *resultString = @""; // [NSString stringWithString: @""];
+	NSString *resultString = @"";
 	NSCharacterSet *wsnl = [NSCharacterSet whitespaceAndNewlineCharacterSet];
 	
 	while (![stripScanner isAtEnd]) {

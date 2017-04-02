@@ -115,7 +115,7 @@
       resultString = tempString2;
     }
 
-  ASSIGN(ivarString, resultString);
+  ASSIGNCOPY(ivarString, resultString);
 }
 
 - (void) parse

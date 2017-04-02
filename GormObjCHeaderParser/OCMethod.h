@@ -37,7 +37,7 @@
   BOOL                  isClassMethod;
 }
 
-- (id) initWithString: (NSString *)string;
+- (instancetype) initWithString: (NSString *)string;
 @property (copy) NSString *name;
 @property BOOL isAction;
 @property BOOL isClassMethod;

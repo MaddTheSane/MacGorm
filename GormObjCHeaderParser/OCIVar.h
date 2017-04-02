@@ -36,11 +36,9 @@
   NSString              *ivarString;
 }
 
-- (id) initWithString: (NSString *)string;
-- (NSString *)name;
-- (void) setName: (NSString *)aName;
-- (BOOL) isOutlet;
-- (void) setIsOutlet: (BOOL)flag;
+- (instancetype) initWithString: (NSString *)string;
+@property (copy) NSString *name;
+@property BOOL isOutlet;
 - (void) parse;
 @end
 
