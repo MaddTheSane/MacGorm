@@ -27,8 +27,8 @@
 
 #include <Foundation/NSMapTable.h>
 #include <Foundation/NSObject.h>
-#include <InterfaceBuilder/IBDocuments.h>
-#include <InterfaceBuilder/IBSystem.h>
+#include <GormLib/IBDocuments.h>
+#include <GormLib/IBSystem.h>
 
 // forward references
 @class NSString;

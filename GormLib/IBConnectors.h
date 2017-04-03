@@ -28,7 +28,7 @@
 #include <Foundation/NSObject.h>
 #include <AppKit/NSApplication.h>
 #include <AppKit/NSNibConnector.h>
-#include <InterfaceBuilder/IBSystem.h>
+#include <GormLib/IBSystem.h>
 
 // forward declarations
 @class NSString;

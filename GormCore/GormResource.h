@@ -29,9 +29,9 @@
 #define INCLUDED_GormResource_h
 
 #include <Foundation/NSObject.h>
-#include <InterfaceBuilder/IBProjectFiles.h>
-#include <InterfaceBuilder/IBProjects.h>
-#include <InterfaceBuilder/IBObjectAdditions.h>
+#include <GormLib/IBProjectFiles.h>
+#include <GormLib/IBProjects.h>
+#include <GormLib/IBObjectAdditions.h>
 
 @class NSString, NSData;
 

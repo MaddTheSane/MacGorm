@@ -28,6 +28,8 @@
 #include "GormPalettesManager.h"
 #include <AppKit/NSImage.h>
 #include "GormImage.h"
+#include <GNUStepBase/GNUstep.h>
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
 
 @implementation	GormImageEditor
 

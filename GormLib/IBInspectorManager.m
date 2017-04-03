@@ -27,8 +27,9 @@
 #include <Foundation/NSDictionary.h>
 #include <Foundation/NSArray.h>
 #include <Foundation/NSEnumerator.h>
-#include <InterfaceBuilder/IBInspectorManager.h>
-#include <InterfaceBuilder/IBInspectorMode.h>
+#include <GormLib/IBInspectorManager.h>
+#include <GormLib/IBInspectorMode.h>
+#include <GNUstepBase/GNUstep.h>
 #include <math.h>
 
 static IBInspectorManager *_sharedInspectorManager = nil;
@@ -99,8 +100,8 @@ NSString *IBWillInspectWithModeNotification =
 			    localizedLabel: label
 			    inspectorClassName: className
 			    ordering: ord];
-  int position = 0;
-  int count = [modes count];
+  NSInteger position = 0;
+  NSInteger count = [modes count];
 
   if(ord == -1)
     {

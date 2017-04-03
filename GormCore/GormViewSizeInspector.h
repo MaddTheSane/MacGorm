@@ -28,7 +28,7 @@
 #ifndef INCLUDED_GormViewSizeInspector_h
 #define INCLUDED_GormViewSizeInspector_h
 
-#include <InterfaceBuilder/IBInspector.h>
+#include <GormLib/IBInspector.h>
 
 @class NSButton, NSForm;
 

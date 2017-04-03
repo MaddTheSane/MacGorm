@@ -27,7 +27,7 @@
 #define INCLUDED_GormInspectorsManager_h
 
 #include <Foundation/NSObject.h>
-#include <InterfaceBuilder/IBInspectorManager.h>
+#include <GormLib/IBInspectorManager.h>
 #include <Foundation/NSGeometry.h>
 
 @class NSPanel;
@@ -39,17 +39,17 @@
 
 @interface GormInspectorsManager : IBInspectorManager
 {
-  IBOutlet NSPanel	 *panel;
-  NSMutableDictionary	 *cache;
-  IBOutlet NSPopUpButton *popup;
-  IBOutlet NSBox	 *selectionView;
-  IBOutlet NSBox         *inspectorView;
-  NSView		 *buttonView;
-  NSString		 *oldInspector;
-  IBOutlet IBInspector	 *inspector;
-  int			 current;
-  BOOL			 hiddenDuringTest;
-  NSRect                 origFrame;
+  IBOutlet NSPanel		*panel;
+  NSMutableDictionary	*cache;
+  IBOutlet NSPopUpButton*popup;
+  IBOutlet NSBox		*selectionView;
+  IBOutlet NSBox		*inspectorView;
+  NSView				*buttonView;
+  NSString				*oldInspector;
+  IBOutlet IBInspector	*inspector;
+  NSInteger				current;
+  BOOL					hiddenDuringTest;
+  NSRect                origFrame;
 }
 - (NSPanel*) panel;
 - (void) setClassInspector;

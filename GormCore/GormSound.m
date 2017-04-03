@@ -25,7 +25,8 @@
 #include <Foundation/NSString.h>
 #include <AppKit/NSSound.h>
 #include <AppKit/NSImage.h>
-#include <InterfaceBuilder/IBObjectAdditions.h>
+#include <GormLib/IBObjectAdditions.h>
+#include <GNUStepBase/GNUstep.h>
 #include "GormSound.h"
 
 // sound proxy object...

@@ -27,16 +27,18 @@
 #include <GormObjCHeaderParser/OCIVar.h>
 #include <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
 #include <GormObjCHeaderParser/ParserFunctions.h>
+#include <GNUstepBase/GNUstep.h>
 
 @implementation OCIVar
+@synthesize name;
+@synthesize isOutlet;
 
 - (id) initWithString: (NSString *)string
 {
-  if((self = [super init]) != nil)
-    {
-      ASSIGN(ivarString, [string copy]);
-    }
-  return self;
+	if ((self = [super init]) != nil) {
+		ASSIGNCOPY(ivarString, string);
+	}
+	return self;
 }
 
 - (void) dealloc
@@ -44,26 +46,6 @@
   RELEASE(ivarString);
   RELEASE(name);
   [super dealloc];
-}
-
-- (NSString *) name
-{
-  return name;
-}
-
-- (void) setName: (NSString *)aName
-{
-  ASSIGN(name,aName);
-}
-
-- (BOOL) isOutlet
-{
-  return isOutlet;
-}
-
-- (void) setIsOutlet: (BOOL)flag
-{
-  isOutlet = flag;
 }
 
 - (void) _strip

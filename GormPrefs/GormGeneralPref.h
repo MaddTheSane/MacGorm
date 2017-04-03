@@ -3,13 +3,14 @@
 
 #include <Foundation/NSObject.h>
 #include <AppKit/NSView.h>
+#import <AppKit/NSButton.h>
 
 @interface GormGeneralPref : NSObject
 {
   id window;
-  id backupButton;
+  NSButton *backupButton;
   id interfaceMatrix;
-  id checkConsistency;
+  NSButton *checkConsistency;
   id _view;
 }
 

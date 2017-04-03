@@ -24,7 +24,7 @@
 */
 
 #include <AppKit/AppKit.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 
 #include "GormButtonAttributesInspector.h"
 #include "GormStepperAttributesInspector.h"

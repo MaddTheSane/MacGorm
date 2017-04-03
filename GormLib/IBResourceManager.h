@@ -27,9 +27,9 @@
 
 #include <Foundation/NSObject.h>
 #include <Foundation/NSArray.h>
-#include <InterfaceBuilder/IBProjects.h>
-#include <InterfaceBuilder/IBProjectFiles.h>
-#include <InterfaceBuilder/IBDocuments.h>
+#include <GormLib/IBProjects.h>
+#include <GormLib/IBProjectFiles.h>
+#include <GormLib/IBDocuments.h>
 
 @class NSString, NSPasteboard, NSMutableArray;
 

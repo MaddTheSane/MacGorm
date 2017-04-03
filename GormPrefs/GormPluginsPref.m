@@ -28,12 +28,13 @@
 
 #include <GormCore/GormPrivate.h>
 #include <GormCore/GormPluginManager.h>
+#import <GNUstepBase/GNUstepBase.h>
 #include "GormPluginsPref.h"
 
 @class NSTableView;
 
 // data source...
-@interface PluginDataSource : NSObject
+@interface PluginDataSource : NSObject <NSTableViewDataSource>
 @end
 
 @implementation PluginDataSource
@@ -100,7 +101,7 @@ objectValueForTableColumn: (NSTableColumn *)tc
 {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   NSMutableArray *list = [defaults objectForKey: @"UserPlugins"];
-  int row = [table selectedRow];
+  NSInteger row = [table selectedRow];
 
   if(row >= 0)
     {

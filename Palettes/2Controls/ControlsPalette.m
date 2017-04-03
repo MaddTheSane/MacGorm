@@ -23,16 +23,17 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
 */
 
-#include <InterfaceBuilder/IBPalette.h>
-#include <InterfaceBuilder/IBViewResourceDragging.h>
+#include <GormLib/IBPalette.h>
+#include <GormLib/IBViewResourceDragging.h>
 #include <AppKit/NSWindow.h>
 #include <AppKit/NSPopUpButton.h>
 #include <AppKit/NSPasteboard.h>
 #include <AppKit/NSImage.h>
 #include <AppKit/NSSound.h>
 #include "GormNSPopUpButton.h"
+#import <GNUstepBase/GNUstepBase.h>
 
-@interface ControlsPalette: IBPalette <IBViewResourceDraggingDelegates>
+@interface ControlsPalette: IBPalette <IBViewResourceDraggingDelegate>
 @end
 
 

@@ -28,7 +28,7 @@
 #include "GormPrivate.h"
 
 static NSString	*typeId = @"Object";
-static NSString	*typeChar = @"Character or Boolean";
+static NSString	*typeSChar = @"Character or Boolean";
 static NSString	*typeUChar = @"Unsigned character/bool";
 static NSString	*typeInt = @"Integer";
 static NSString	*typeUInt = @"Unsigned integer";

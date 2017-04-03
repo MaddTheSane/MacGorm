@@ -22,11 +22,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 #include <AppKit/AppKit.h>
 #include <GormCore/GormPrivate.h>
 #include <GormCore/GormViewWithSubviewsEditor.h>
 #include "GormButtonEditor.h"
+#import <GNUstepBase/GNUstepBase.h>
+
+#define GSCellTextImageYDist 1
+#define GSCellTextImageXDist 2
 
 #define _EO ((NSButton *)_editedObject)
 
@@ -48,24 +52,24 @@
   NSSize        titleSize = {0, 0};
   NSColor	*backgroundColor = nil;
   BOOL		flippedView = [controlView isFlipped];
-  NSCellImagePosition ipos = _cell.image_position;
+  NSCellImagePosition ipos = self.imagePosition;
 
   cellFrame = [self drawingRectForBounds: cellFrame];
 
-  if (_cell.is_highlighted)
+  if (self.isHighlighted)
     {
-      mask = _highlightsByMask;
+      mask = self.highlightsBy;
 
-      if (_cell.state)
-	mask &= ~_showAltStateMask;
+      if (self.state)
+	mask &= ~self.showsStateBy;
     }
-  else if (_cell.state)
-    mask = _showAltStateMask;
+  else if (self.state)
+    mask = self.showsStateBy;
   else
     mask = NSNoCellMask;
 
   /* Pushed in buttons contents are displaced to the bottom right 1px.  */
-  if (_cell.is_bordered && (mask & NSPushInCellMask))
+  if (self.isBordered && (mask & NSPushInCellMask))
     {
       cellFrame = NSOffsetRect(cellFrame, 1., flippedView ? 1. : -1.);
     }
@@ -88,16 +92,16 @@
    */
   if (mask & NSContentsCellMask)
     {
-      imageToDisplay = _altImage;
+      imageToDisplay = self.alternateImage;
       if (!imageToDisplay)
-	imageToDisplay = _cell_image;
+	imageToDisplay = self.image;
       titleToDisplay = _altContents;
       if (titleToDisplay == nil || [titleToDisplay isEqual: @""])
         titleToDisplay = _contents;
     }
   else
     {
-      imageToDisplay = _cell_image;
+      imageToDisplay = self.image;
       titleToDisplay = _contents;
     }
 
@@ -106,7 +110,7 @@
       imageSize = [imageToDisplay size];
     }
 
-  titleSize = [self _sizeText: titleToDisplay];
+  //titleSize = [self _sizeText: titleToDisplay];
 
   if (flippedView == YES)
     {
@@ -141,7 +145,7 @@
 	imageRect.origin = cellFrame.origin;
 	imageRect.size.width = imageSize.width;
 	imageRect.size.height = cellFrame.size.height;
-	if (_cell.is_bordered || _cell.is_bezeled) 
+	if (self.isBordered || self.isBezeled)
 	  {
 	    imageRect.origin.x += 3;
 	    imageRect.size.height -= 2;
@@ -150,7 +154,7 @@
 	titleRect = imageRect;
 	titleRect.origin.x += imageSize.width + GSCellTextImageXDist;
 	titleRect.size.width = cellFrame.size.width - imageSize.width - GSCellTextImageXDist;
-	if (_cell.is_bordered || _cell.is_bezeled) 
+	if (_cFlags.bordered || _cFlags.bezeled)
 	  {
 	    titleRect.size.width -= 3;
 	  }
@@ -166,7 +170,7 @@
 	imageRect.origin.y = cellFrame.origin.y;
 	imageRect.size.width = imageSize.width;
 	imageRect.size.height = cellFrame.size.height;
-	if (_cell.is_bordered || _cell.is_bezeled) 
+	if (_cFlags.bordered || _cFlags.bezeled)
 	  {
 	    imageRect.origin.x -= 3;
 	    imageRect.size.height -= 2;
@@ -175,7 +179,7 @@
 	titleRect.origin = cellFrame.origin;
 	titleRect.size.width = cellFrame.size.width - imageSize.width - GSCellTextImageXDist;
 	titleRect.size.height = cellFrame.size.height;
-	if (_cell.is_bordered || _cell.is_bezeled) 
+	if (_cFlags.bordered || _cFlags.bezeled)
 	  {
 	    titleRect.origin.x += 3;
 	    titleRect.size.width -= 3;
@@ -205,7 +209,7 @@
 	imageRect.size.height = cellFrame.size.height;
 	imageRect.size.height -= titleSize.height + GSCellTextImageYDist;
 
-	if (_cell.is_bordered || _cell.is_bezeled) 
+	if (_cFlags.bordered || _cFlags.bezeled)
 	  {
 	    imageRect.size.width -= 6;
 	    imageRect.origin.x   += 3;
@@ -234,7 +238,7 @@
 	imageRect.size.height = cellFrame.size.height;
 	imageRect.size.height -= titleSize.height + GSCellTextImageYDist;
 
-	if (_cell.is_bordered || _cell.is_bezeled) 
+	if (_cFlags.bordered || _cFlags.bezeled)
 	  {
 	    imageRect.size.width -= 6;
 	    imageRect.origin.x   += 3;
@@ -327,7 +331,7 @@ static NSRect oldFrame;
    edit it */
 - (NSEvent *) editTextField: view withEvent: (NSEvent *)theEvent
 {
-  unsigned eventMask;
+  NSEventMask eventMask;
   BOOL wasEditable;
   BOOL didDrawBackground;
   NSTextField *editField;
@@ -350,8 +354,8 @@ static NSRect oldFrame;
 
   /* Do some modal editing */
   [editField selectText: self];
-  eventMask = NSLeftMouseDownMask | NSLeftMouseUpMask |
-    NSKeyDownMask | NSKeyUpMask | NSFlagsChangedMask;
+  eventMask = NSEventMaskLeftMouseDown | NSEventMaskLeftMouseUp |
+    NSEventMaskKeyDown | NSEventMaskKeyUp | NSEventMaskFlagsChanged;
 
 
   done_editing = NO;
@@ -365,7 +369,7 @@ static NSRect oldFrame;
       eType = [e type];
       switch (eType)
 	{
-	case NSLeftMouseDown:
+	case NSEventTypeLeftMouseDown:
 	  {
 	    NSPoint dp =  [self convertPoint: [e locationInWindow]
 				fromView: nil];
@@ -377,19 +381,19 @@ static NSRect oldFrame;
 	  }
 	  [[editField currentEditor] mouseDown: e];
 	  break;
-	case NSLeftMouseUp:
+	case NSEventTypeLeftMouseUp:
 	  [[editField currentEditor] mouseUp: e];
 	  break;
-	case NSLeftMouseDragged:
+	case NSEventTypeLeftMouseDragged:
 	  [[editField currentEditor] mouseDragged: e];
 	  break;
-	case NSKeyDown:
+	case NSEventTypeKeyDown:
 	  [[editField currentEditor] keyDown: e];
 	  break;
-	case NSKeyUp:
+	case NSEventTypeKeyUp:
 	  [[editField currentEditor] keyUp: e];	  
 	  break;
-	case NSFlagsChanged:
+	case NSEventTypeFlagsChanged:
 	  [[editField currentEditor] flagsChanged: e];
 	  break;
 	default:
@@ -468,7 +472,7 @@ static NSRect oldFrame;
 
   newFrame = [[aNot object] frame];
 
-  if ([[aNot object] alignment] == NSCenterTextAlignment)
+  if ([[aNot object] alignment] == NSTextAlignmentCenter)
     {
       NSRect frame = [[_EO cell] 
 		       gormTitleRectForFrame: [_EO frame]

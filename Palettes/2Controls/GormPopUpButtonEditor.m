@@ -3,6 +3,7 @@
 #include <GormCore/GormControlEditor.h>
 #include <GormCore/GormViewWithSubviewsEditor.h>
 #include "GormNSPopUpButton.h"
+#import <GNUstepBase/GNUstepBase.h>
 
 #define _EO ((NSPopUpButton *)_editedObject)
 

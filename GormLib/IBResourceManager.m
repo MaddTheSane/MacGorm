@@ -22,9 +22,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <InterfaceBuilder/IBResourceManager.h>
-#include <InterfaceBuilder/IBObjectAdditions.h>
-#include <InterfaceBuilder/IBPalette.h>
+#include <GormLib/IBResourceManager.h>
+#include <GormLib/IBObjectAdditions.h>
+#include <GormLib/IBPalette.h>
 #include <Foundation/NSArchiver.h>
 #include <Foundation/NSArray.h>
 #include <Foundation/NSEnumerator.h>

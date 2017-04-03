@@ -26,10 +26,13 @@
 #ifndef INCLUDED_GormDocument_h
 #define INCLUDED_GormDocument_h
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
+#import <AppKit/NSNibConnector.h>
 #include <Foundation/Foundation.h>
 #include <GNUstepGUI/GSNibContainer.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GNUstepGUI/GSInstantiator.h>
+#import <GormCore/PrivateCocoaClasses.h>
+#include <GormLib/InterfaceBuilder.h>
 
 @class GormClassManager, GormClassEditor, GormObjectProxy, GormFilesOwner, 
   GormFilePrefsManager, GormDocumentWindow;
@@ -55,7 +58,7 @@
 }
 @end
 
-@interface GormDocument : NSDocument <IBDocuments, GSNibContainer, NSCoding>
+@interface GormDocument : NSDocument <IBDocuments, GSNibContainer, NSCoding, NSToolbarDelegate>
 {
   GormClassManager      *classManager;
   GormFilesOwner	*filesOwner;
@@ -190,13 +193,13 @@
  * Switches to the view using the specified tag.  
  * They are 0=objects, 1=images, 2=sounds, 3=classes, 4=file prefs.
  */
-- (void) changeToViewWithTag: (int)tag;
+- (void) changeToViewWithTag: (NSInteger)tag;
 
 /**
  * returns the view using the specified tag.  
  * They are 0=objects, 1=images, 2=sounds, 3=classes, 4=file prefs.
  */
-- (NSView *)viewWithTag:(int)tag;
+- (NSView *)viewWithTag:(NSInteger)tag;
 
 /**
  * Returns all pasteboard types registered for with the IBResourceManager.

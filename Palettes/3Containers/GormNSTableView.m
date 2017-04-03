@@ -23,7 +23,7 @@
 */
 
 #include <Foundation/NSObject.h>
-#include <InterfaceBuilder/IBApplicationAdditions.h>
+#include <GormLib/IBApplicationAdditions.h>
 #include <AppKit/NSTableColumn.h>
 #include "GormNSTableView.h"
 

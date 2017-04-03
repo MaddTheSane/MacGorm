@@ -27,7 +27,7 @@
 #ifndef INCLUDED_GormTextViewEditor_h
 #define INCLUDED_GormTextViewEditor_h
 
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 #include <Foundation/Foundation.h>
 #include <AppKit/AppKit.h>
 #include <GormCore/GormViewEditor.h>

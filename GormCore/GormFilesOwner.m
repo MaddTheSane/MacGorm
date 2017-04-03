@@ -23,9 +23,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/NSNibConnector.h>
+#import <AppKit/NSNibConnector.h>
+#import <AppKit/NSNibOutletConnector.h>
+#import <AppKit/NSNibControlConnector.h>
 #include "GormPrivate.h"
 #include "GormCustomView.h"
+#include <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 // @class GormCustomView;
 
@@ -152,7 +156,7 @@
 
       rect = NSMakeRect(0, 0, IVW, IVH);
       window = [[NSWindow alloc] initWithContentRect: rect
-					   styleMask: NSBorderlessWindowMask 
+					   styleMask: NSWindowStyleMaskBorderless 
 					     backing: NSBackingStoreRetained
 					       defer: NO];
       contents = [window contentView];
@@ -232,44 +236,35 @@
 
 - (void) takeClassFrom: (id)sender
 {
-  NSString	*title = [[browser selectedCell] stringValue];
-
-  NSDebugLog(@"Selected %d, %@", (int)[browser selectedRowInColumn: 0], title);
-  if (hasConnections > 0 && [title isEqual: [object className]] == NO)
-    {
-      if (NSRunAlertPanel(nil, _(@"This operation will break existing connection"),
-			  _(@"OK"), _(@"Cancel"), nil) != NSAlertDefaultReturn)
-	{
-	  unsigned	pos = [classes indexOfObject: [object className]];
-
-	  [browser selectRow: pos inColumn: 0];
-	  return;
+	NSString	*title = [[browser selectedCell] stringValue];
+	
+	NSDebugLog(@"Selected %d, %@", (int)[browser selectedRowInColumn: 0], title);
+	if (hasConnections > 0 && [title isEqual: [object className]] == NO) {
+		if (NSRunAlertPanel(nil, @"%@",
+							_(@"OK"), _(@"Cancel"), nil,
+							_(@"This operation will break existing connection")) != NSAlertDefaultReturn) {
+			NSUInteger	pos = [classes indexOfObject: [object className]];
+			
+			[browser selectRow: pos inColumn: 0];
+			return;
+		} else {
+			NSArray	*array;
+			id		doc = [(id<IB>)NSApp activeDocument];
+			
+			array = [doc connectorsForSource: object
+									 ofClass: [NSNibOutletConnector class]];
+			for (id<IBConnectors> con in array) {
+				[doc removeConnector: con];
+			}
+			
+			array = [doc connectorsForDestination: object
+										  ofClass: [NSNibControlConnector class]];
+			for (id<IBConnectors> con in array) {
+				[doc removeConnector: con];
+			}
+			hasConnections = NO;
+		}
 	}
-      else
-	{
-	  NSArray	*array;
-	  id		doc = [(id<IB>)NSApp activeDocument];
-	  unsigned	i;
-
-	  array = [doc connectorsForSource: object
-		       ofClass: [NSNibOutletConnector class]];
-	  for (i = 0; i < [array count]; i++)
-	    {
-	      id<IBConnectors>	con = [array objectAtIndex: i];
-
-	      [doc removeConnector: con];
-	    }
-	  array = [doc connectorsForDestination: object
-		       ofClass: [NSNibControlConnector class]];
-	  for (i = 0; i < [array count]; i++)
-	    {
-	      id<IBConnectors>	con = [array objectAtIndex: i];
-
-	      [doc removeConnector: con];
-	    }
-	  hasConnections = NO;
-	}
-    }
-  [object setClassName: title];
+	[object setClassName: title];
 }
 @end

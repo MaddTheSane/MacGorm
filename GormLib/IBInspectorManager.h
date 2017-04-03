@@ -26,7 +26,7 @@
 #define INCLUDED_IBINSPECTORMANAGER_H
 
 #include <Foundation/NSObject.h>
-#include <InterfaceBuilder/IBSystem.h>
+#include <GormLib/IBSystem.h>
 
 @class NSString, NSMutableArray;
 

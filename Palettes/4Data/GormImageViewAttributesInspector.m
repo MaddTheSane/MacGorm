@@ -123,7 +123,7 @@
   if ( object == nil)
     return;
 
-  if ( [ [[object image] name] isEqualToString: @"Sunday_seurat.tiff"] )
+  if ( [ [[object image] name] isEqualToString: @"Sunday_seurat"] )
     [object setImage: nil];
   
   [iconField setStringValue: VSTR([[object image] name])];

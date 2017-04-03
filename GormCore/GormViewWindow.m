@@ -28,10 +28,11 @@
 #include <AppKit/NSColor.h>
 #include <Foundation/NSNotification.h>
 #include <Foundation/NSException.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
+#include <GNUstepBase/GNUstep.h>
 #include "GormFunctions.h"
 
-@interface GormViewWindowDelegate : NSObject
+@interface GormViewWindowDelegate : NSObject <NSWindowDelegate>
 {
   NSView *_view;
 }
@@ -174,7 +175,7 @@
 
 - (void) activateEditorForView
 {
-  id editor = [[(id<IB>)NSApp activeDocument] editorForObject: _view create: YES];
+  id<IBEditors> editor = [[(id<IB>)NSApp activeDocument] editorForObject: _view create: YES];
   // NSArray *subviews = [_view subviews];
   // NSEnumerator *en = [subviews objectEnumerator];
   // id sub = nil;

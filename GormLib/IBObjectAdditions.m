@@ -24,7 +24,7 @@
 
 #include <Foundation/NSObject.h>
 #include <Foundation/NSObjCRuntime.h>
-#include <InterfaceBuilder/IBObjectAdditions.h>
+#include <GormLib/IBObjectAdditions.h>
 
 // object additions -- object adopts protocol
 @implementation NSObject (_IBObjectAdditions)

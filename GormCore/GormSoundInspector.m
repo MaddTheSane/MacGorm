@@ -27,6 +27,7 @@
 /* All Rights reserved */
 
 #include <AppKit/AppKit.h>
+#include <GNUstepBase/GNUstep.h>
 #include "GormSoundInspector.h"
 #include "GormPrivate.h"
 #include "GormClassManager.h"
@@ -34,6 +35,8 @@
 #include "GormPrivate.h"
 #include "GormSoundView.h"
 #include "GormSound.h"
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
+
 
 @implementation GormSoundInspector
 + (void) initialize
@@ -100,7 +103,7 @@
 - (void) pause: (id)sender
 {
   NSDebugLog(@"Pause");
-  [object pause];
+  [(NSSound*)object pause];
 }
 
 - (void) record: (id)sender

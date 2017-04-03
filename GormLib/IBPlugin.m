@@ -25,7 +25,8 @@
 #include <Foundation/NSObject.h>
 #include <Foundation/NSString.h>
 #include <AppKit/NSView.h>
-#include <InterfaceBuilder/IBPlugin.h>
+#include <GormLib/IBPlugin.h>
+#include <GNUstepBase/GNUstep.h>
 
 static NSMapTable *instanceMap = 0;
 

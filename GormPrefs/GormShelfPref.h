@@ -68,7 +68,7 @@ typedef enum {
   ArrResizer *leftResizer; 
   ArrResizer *rightResizer;
   NSString *fname;    
-  int cellsWidth;
+  NSInteger cellsWidth;
 }
 
 /**
@@ -90,7 +90,7 @@ typedef enum {
 /**
  * Programmatically set a width.
  */ 
-- (void)setNewWidth:(int)w;
+- (void)setNewWidth:(NSInteger)w;
 
 /**
  * Set the resizer back to the default width.
@@ -105,7 +105,7 @@ typedef enum {
 /**
  * Return the current width.
  */ 
-- (int) shelfCellsWidth;
+- (NSInteger) shelfCellsWidth;
 @end
 
 #endif 

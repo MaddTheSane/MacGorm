@@ -6,6 +6,7 @@
 #include <AppKit/NSNibLoading.h>
 #include <AppKit/NSColorWell.h>
 #include <AppKit/NSColor.h>
+#import <GNUstepBase/GNUstepBase.h>
 
 @implementation GormGuidelinePref
 
@@ -14,7 +15,7 @@
   if((self = [super init]) != nil)
     {
       NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-      int spacing = [defaults integerForKey: @"GuideSpacing"];
+      NSInteger spacing = [defaults integerForKey: @"GuideSpacing"];
       NSColor *aColor = colorFromDict([defaults objectForKey: @"GuideColor"]);
 
       // default the color to something, if nothing is returned.
@@ -30,9 +31,9 @@
 	} 
 
       [colorWell setColor: aColor];
-      [spacingSlider setIntValue: spacing];
-      [currentSpacing setIntValue: spacing];
-      [halfSpacing setIntValue: spacing/2];
+      [spacingSlider setIntegerValue: spacing];
+      [currentSpacing setIntegerValue: spacing];
+      [halfSpacing setIntegerValue: spacing/2];
 
       _view =  [[window contentView] retain];
     }

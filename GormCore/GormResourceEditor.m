@@ -23,12 +23,15 @@
  */
 
 #include <AppKit/NSImage.h>
+#import <GNUstepBase/GNUstep.h>
 #include "GormDocument.h"
 #include "GormPrivate.h"
 #include "GormResourceEditor.h"
 #include "GormFunctions.h"
 #include "GormPalettesManager.h"
 #include "GormResource.h"
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
+
 
 @implementation	GormResourceEditor
 
@@ -113,7 +116,7 @@
       objects = [[NSMutableArray alloc] init];
       proto = [[NSButtonCell alloc] init];
       [proto setBordered: NO];
-      [proto setAlignment: NSCenterTextAlignment];
+      [proto setAlignment: NSTextAlignmentCenter];
       [proto setImagePosition: NSImageAbove];
       [proto setSelectable: NO];
       [proto setEditable: NO];
@@ -152,47 +155,42 @@
 
 - (void) addObject: (id)anObject
 {
-  if([objects containsObject: anObject] == NO)
-    {
-      [super addObject: anObject];
-    }
-  else
-    {
-      NSString *type = [self resourceType];
-      NSString *msg = [NSString stringWithFormat: _(@"Problem adding %@"), type];
-      NSRunAlertPanel(msg, 
-		      _(@"A resource with the same name exists, remove it first."), 
-		      _(@"OK"), 
-		      nil, 
-		      nil);      
-    }
+	if([objects containsObject: anObject] == NO) {
+		[super addObject: anObject];
+	} else {
+		NSString *type = [self resourceType];
+		NSString *msg = [NSString stringWithFormat: _(@"Problem adding %@"), type];
+		NSRunAlertPanel(msg,
+						@"%@",
+						_(@"OK"),
+						nil, 
+						nil,
+						_(@"A resource with the same name exists, remove it first."));
+	}
 }
 
 - (void) makeSelectionVisible: (BOOL)flag
 {
-  if (flag == YES && selected != nil)
-    {
-      unsigned	pos = [objects indexOfObjectIdenticalTo: selected];
-      int	r = pos / [self numberOfColumns];
-      int	c = pos % [self numberOfColumns];
-
-      [self selectCellAtRow: r column: c];
-    }
-  else
-    {
-      [self deselectAllCells];
-    }
-  [self displayIfNeeded];
-  [[self window] flushWindow];
+	if (flag == YES && selected != nil) {
+		NSUInteger	pos = [objects indexOfObjectIdenticalTo: selected];
+		NSInteger		r = pos / [self numberOfColumns];
+		NSInteger		c = pos % [self numberOfColumns];
+		
+		[self selectCellAtRow: r column: c];
+	} else {
+		[self deselectAllCells];
+	}
+	[self displayIfNeeded];
+	[[self window] flushWindow];
 }
 
 - (void) mouseDown: (NSEvent*)theEvent
 {
   NSInteger row, column;
   NSInteger newRow, newColumn;
-  unsigned eventMask = NSLeftMouseUpMask | NSLeftMouseDownMask
-			| NSMouseMovedMask | NSLeftMouseDraggedMask
-			| NSPeriodicMask;
+  NSEventMask eventMask = NSEventMaskLeftMouseUp | NSEventMaskLeftMouseDown
+			| NSEventMaskMouseMoved | NSEventMaskLeftMouseDragged
+			| NSEventMaskPeriodic;
   NSPoint lastLocation = [theEvent locationInWindow];
   NSEvent* lastEvent = theEvent;
   NSPoint initialLocation;
@@ -216,21 +214,23 @@
     {
       if ([_cells[row][column] isEnabled])
 	{
-	  if ((_mode == NSRadioModeMatrix) && _selectedCell != nil)
+	  if ((self.mode == NSRadioModeMatrix) && _selectedCell != nil)
 	    {
 	      [_selectedCell setState: NSOffState];
-	      [self drawCellAtRow: _selectedRow column: _selectedColumn];
-	      _selectedCells[_selectedRow][_selectedColumn] = NO;
+	      [self drawCellAtRow: _selectedRow column: _selectedCol];
+          [self deselectSelectedCell];
+	      //_selectedCells[_selectedRow][_selectedCol] = NO;
 	      _selectedCell = nil;
-	      _selectedRow = _selectedColumn = -1;
+	      _selectedRow = _selectedCol = -1;
 	    }
 	  [_cells[row][column] setState: NSOnState];
 	  [self drawCellAtRow: row column: column];
 	  [_window flushWindow];
-	  _selectedCells[row][column] = YES;
+      [self selectCellAtRow:row column:column];
+	  //_selectedCells[row][column] = YES;
 	  _selectedCell = _cells[row][column];
 	  _selectedRow = row;
-	  _selectedColumn = column;
+	  _selectedCol = column;
 	}
     }
   else
@@ -247,7 +247,7 @@
 		       fromView: nil];
 
 
-  while ([lastEvent type] != NSLeftMouseUp)
+  while ([lastEvent type] != NSEventTypeLeftMouseUp)
     {
       if((![self getRow: &newRow
 		 column: &newColumn
@@ -338,11 +338,11 @@
 
 - (void) refreshCells
 {
-  unsigned	count = [objects count];
-  unsigned	index;
-  int		cols = 0;
-  int		rows;
-  int		width;
+  NSUInteger	count = [objects count];
+  NSUInteger	index;
+  NSInteger		cols = 0;
+  NSInteger		rows;
+  NSInteger		width;
 
   // return if the superview is not available.
   if(![self superview])

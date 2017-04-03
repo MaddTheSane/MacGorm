@@ -26,7 +26,7 @@
 #define INCLUDED_IBCELLADDITIONS_H
 
 #include <AppKit/NSCell.h>
-#include <InterfaceBuilder/IBCellProtocol.h>
+#include <GormLib/IBCellProtocol.h>
 
 @interface NSCell (IBCellAdditions) <IBCellProtocol>
 @end

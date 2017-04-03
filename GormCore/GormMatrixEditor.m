@@ -24,8 +24,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <InterfaceBuilder/IBObjectAdditions.h>
+#include <GormLib/IBObjectAdditions.h>
 #include <AppKit/AppKit.h>
+#include <GNUstepBase/GNUstep.h>
 
 #include "GormPrivate.h"
 #include "GormImage.h"
@@ -35,6 +36,8 @@
 #include "GormPlacementInfo.h"
 #include "GormFontViewController.h"
 #include "GormViewKnobs.h"
+#include <GNUstepBase/NSDebug+GNUstepBase.h>
+#include <GNUstepGUI/GNUstepGUI.h>
 
 #define _EO ((NSMatrix*)_editedObject)
 
@@ -305,8 +308,8 @@ static BOOL done_editing;
       }
     if (onKnob == YES)
       {
-	if (_next_responder)
-	  return [_next_responder mouseDown: theEvent];
+	if (_nextResponder)
+	  return [_nextResponder mouseDown: theEvent];
 	else
 	  return [self noResponderFor: @selector(mouseDown:)];
       }
@@ -431,7 +434,7 @@ static BOOL done_editing;
   NSInteger width;
   NSInteger height;
       
-  if ([theEvent modifierFlags] & NSAlternateKeyMask)
+  if ([theEvent modifierFlags] & NSEventModifierFlagOption)
     {
       NSInteger rows = [_EO numberOfRows];
       NSInteger cols = [_EO numberOfColumns];
@@ -469,7 +472,7 @@ static BOOL done_editing;
 	  height = cols * heightIncrement + [_EO frame].size.height;
 	}
     }
-  else if ([theEvent modifierFlags] & NSControlKeyMask)
+  else if ([theEvent modifierFlags] & NSEventModifierFlagControl)
     {
       NSInteger rows = [_EO numberOfRows];
       NSInteger cols = [_EO numberOfColumns];

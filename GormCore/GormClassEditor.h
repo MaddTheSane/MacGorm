@@ -25,8 +25,9 @@
 #ifndef INCLUDED_GormClassEditor_h
 #define INCLUDED_GormClassEditor_h
 
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 #include <AppKit/NSBox.h>
+#include <AppKit/NSBrowser.h>
 #include <GormCore/GormOutlineView.h>
 
 @class NSString, NSArray, GormDocument, GormClassManager, NSBrowser;
@@ -34,7 +35,7 @@
 extern NSString *GormClassPboardType;
 extern NSString *GormSwitchViewPreferencesNotification;
 
-@interface GormClassEditor : NSView <IBEditors, IBSelectionOwners>
+@interface GormClassEditor : NSView <IBEditors, IBSelectionOwners, NSOutlineViewDelegate, NSOutlineViewDataSource, NSBrowserDelegate>
 {
   GormDocument          *document;
   GormClassManager      *classManager;

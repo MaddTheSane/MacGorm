@@ -44,6 +44,8 @@
 #include <AppKit/NSMatrix.h>
 #include <AppKit/NSNibLoading.h>
 #include <AppKit/NSFormCell.h>
+#import <AppKit/NSStepper.h>
+#import <GNUstepBase/GNUstepBase.h>
 
 /*
   IBObjectAdditions category
@@ -78,7 +80,7 @@ NSUInteger numberStepperValue;
      later in -[ok:]. 
      (It allows us to avoid the value being hardcoded).
    */
-  numberStepperValue = [numberStepper intValue];
+  numberStepperValue = [numberStepper integerValue];
 
   return self;
 }
@@ -88,7 +90,7 @@ NSUInteger numberStepperValue;
 {
   NSInteger	rows;
   NSInteger	cols;
-  int	i;
+  NSInteger	i;
       
   [object getNumberOfRows: &rows columns: &cols];
   
@@ -192,7 +194,7 @@ NSUInteger numberStepperValue;
     }
   else if(sender == numberStepper)
     {
-      int delta = [sender intValue] - numberStepperValue;
+      NSInteger delta = [sender intValue] - numberStepperValue;
       NSRect rect = [object frame];
       NSSize cell = [object cellSize];
       NSSize inter = [object intercellSpacing];
@@ -211,8 +213,8 @@ NSUInteger numberStepperValue;
 	}
       cell.height = (rect.size.height + inter.height) / rows - inter.height;
       [object setCellSize: cell];
-      [[dimensionsForm cellAtIndex: 0] setIntValue: rows];
-      [sender setIntValue: numberStepperValue];
+      [[dimensionsForm cellAtIndex: 0] setIntegerValue: rows];
+      [sender setIntegerValue: numberStepperValue];
       [dimensionsForm setNeedsDisplay: YES];
       [object setNeedsDisplay: YES];
     }
@@ -266,10 +268,10 @@ NSUInteger numberStepperValue;
   }
   
   /* number of fields */
-  [[dimensionsForm cellAtIndex: 0] setIntValue: [object numberOfRows]];
+  [[dimensionsForm cellAtIndex: 0] setIntegerValue: [object numberOfRows]];
 
   /* tag */
-  [[tagForm cellAtRow: 0 column: 0] setIntValue: [object tag]];
+  [[tagForm cellAtRow: 0 column: 0] setIntegerValue: [object tag]];
 
   [super revert:sender];
 }

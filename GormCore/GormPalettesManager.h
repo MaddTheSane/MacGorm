@@ -38,7 +38,7 @@
   NSView		*dragView;
   NSMutableArray	*bundles;
   NSMutableArray	*palettes;
-  int			current;
+  NSInteger			current;
   BOOL			hiddenDuringTest;
   NSMutableDictionary   *importedClasses;
   NSMutableArray        *importedImages;

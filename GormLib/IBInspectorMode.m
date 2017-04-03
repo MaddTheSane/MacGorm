@@ -22,9 +22,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <InterfaceBuilder/IBInspectorMode.h>
+#include <GormLib/IBInspectorMode.h>
 #include <Foundation/NSArray.h>
 #include <Foundation/NSString.h>
+#include <GNUstepBase/GNUstep.h>
 
 /**
  * IBInspectorMode is an internal class in the InterfaceBuilder framework.

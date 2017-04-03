@@ -27,9 +27,10 @@
 #define INCLUDED_GormFilesOwner_h
 
 #include <Foundation/NSObject.h>
-#include <InterfaceBuilder/IBInspector.h>
+#include <GormLib/IBInspector.h>
+#import <AppKit/NSBrowser.h>
 
-@class NSMutableArray, NSBrowser, NSString;
+@class NSMutableArray, NSString;
 
 /*
  * Each document has a GormFilesOwner object that is used as a placeholder
@@ -43,7 +44,7 @@
 - (void) setClassName: (NSString*)aName;
 @end
 
-@interface GormFilesOwnerInspector : IBInspector
+@interface GormFilesOwnerInspector : IBInspector <NSBrowserDelegate>
 {
   NSBrowser	        *browser;
   NSMutableArray	*classes;

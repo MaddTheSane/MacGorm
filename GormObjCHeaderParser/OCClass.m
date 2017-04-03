@@ -33,15 +33,19 @@
 #include <GormObjCHeaderParser/OCIVarDecl.h>
 #include <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
 #include <GormObjCHeaderParser/ParserFunctions.h>
+#include <GNUstepBase/GNUstep.h>
 
 @implementation OCClass
+@synthesize className;
+@synthesize superClassName;
+@synthesize isCategory;
 - (id) initWithString: (NSString *)string
 {
   if((self = [super init]) != nil)
     {
       methods = [[NSMutableArray alloc] init];
       ivars = [[NSMutableArray alloc] init];
-      ASSIGN(classString, string);
+      ASSIGNCOPY(classString, string);
     }
   return self;
 }
@@ -80,36 +84,6 @@
   [ivar setName: name];
   [ivar setIsOutlet: flag];
   [ivars addObject: ivar];
-}
-
-- (NSString *) className
-{
-  return className;
-}
-
-- (void) setClassName: (NSString *)name
-{
-  ASSIGN(className, name);
-}
-
-- (NSString *) superClassName
-{
-  return superClassName;
-}
-
-- (void) setSuperClassName: (NSString *)name
-{
-  ASSIGN(superClassName,name);
-}
-
-- (BOOL) isCategory
-{
-  return isCategory;
-}
-
-- (void) setIsCategory: (BOOL)flag
-{
-  isCategory = flag;
 }
 
 - (void) _strip

@@ -24,6 +24,7 @@
 
 #include <Foundation/Foundation.h>
 #include <AppKit/AppKit.h>
+#import <GNUstepGUI/GNUstepGUI.h>
 
 #include <GormCore/GormPalettesManager.h>
 #include <GormCore/GormClassManager.h>

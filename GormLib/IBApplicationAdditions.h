@@ -25,9 +25,9 @@
 #ifndef INCLUDED_IBAPPLICATIONADDITIONS_H
 #define INCLUDED_IBAPPLICATIONADDITIONS_H
 
-#include <InterfaceBuilder/IBDocuments.h>
-#include <InterfaceBuilder/IBEditors.h>
-#include <InterfaceBuilder/IBSystem.h>
+#include <GormLib/IBDocuments.h>
+#include <GormLib/IBEditors.h>
+#include <GormLib/IBSystem.h>
 
 IB_EXTERN NSString *IBWillBeginTestingInterfaceNotification;
 IB_EXTERN NSString *IBDidBeginTestingInterfaceNotification;
@@ -43,6 +43,7 @@ IB_EXTERN NSString *IBDidEndTestingInterfaceNotification;
 /**
  * Returns YES, if the reciever is in testing mode.
  */
+@property (readonly, getter=isTestingInterface) BOOL testingInterface;
 - (BOOL) isTestingInterface;
 
 /**

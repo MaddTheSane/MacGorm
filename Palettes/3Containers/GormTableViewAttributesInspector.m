@@ -40,6 +40,7 @@
 #import <AppKit/NSForm.h>
 #import <AppKit/NSMatrix.h>
 #import <AppKit/NSNibLoading.h>
+#import <GNUstepBase/GNUstepBase.h>
 
 
 @implementation GormTableViewAttributesInspector

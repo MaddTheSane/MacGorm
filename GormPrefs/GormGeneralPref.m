@@ -33,6 +33,7 @@
 #include <AppKit/NSMatrix.h>
 
 #include <GormCore/GormClassEditor.h>
+#import <GNUstepBase/GNUstepBase.h>
 
 static NSString *BACKUPFILE=@"BackupFile";
 static NSString *INTTYPE=@"ClassViewType";

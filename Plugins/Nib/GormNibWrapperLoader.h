@@ -26,10 +26,10 @@
 #define GORM_NIBWRAPPERLOADER
 
 #include <GormCore/GormWrapperLoader.h>
-#include <GNUstepGUI/GSNibLoading.h>
+//#include <GNUstepGUI/GSNibLoading.h>
 #include "GormNibCustomResource.h"
 
-@interface GormNibWrapperLoader : GormWrapperLoader
+@interface GormNibWrapperLoader : GormWrapperLoader <NSKeyedUnarchiverDelegate>
 {
   NSIBObjectData *container;
   id nibFilesOwner;

@@ -25,6 +25,9 @@
 
 #include <Foundation/Foundation.h>
 #include <AppKit/AppKit.h>
+#import <AppKit/NSNibConnector.h>
+#import <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 #include "GormClassEditor.h"
 #include "GormClassManager.h"
 #include "GormFunctions.h"
@@ -313,7 +316,7 @@ NSImage *browserImage = nil;
       NSArray	 *classes, *subclasses;
       NSMutableArray *subClassesArray = [NSMutableArray array];
       NSEnumerator	 *en;
-      int		 row = 0;
+      NSInteger		 row = 0;
       NSInteger            col = 0;
       
       if ( ( className != nil )  
@@ -455,7 +458,7 @@ NSImage *browserImage = nil;
 
 - (void) editClass
 {
-  int	row = [outlineView selectedRow];
+  NSInteger	row = [outlineView selectedRow];
 
   if (row >= 0)
     {
@@ -467,14 +470,13 @@ NSImage *browserImage = nil;
 //--- IBSelectionOwners protocol ---
 - (NSUInteger) selectionCount
 {
-  return ([outlineView selectedRow] == -1)?0:1;
+  return ([outlineView selectedRow] == -1) ? 0 : 1;
 }
 
 - (NSArray*) selection
 {
   // when asked for a selection, it returns a class proxy
-  if (selectedClass != nil) 
-    {
+  if (selectedClass != nil)  {
       NSArray		*array;
       GormClassProxy	*classProxy;
       NSString          *sc = [NSString stringWithString: selectedClass];
@@ -483,9 +485,7 @@ NSImage *browserImage = nil;
       array = [NSArray arrayWithObject: classProxy];
       RELEASE(classProxy);
       return array;
-    } 
-  else
-    {
+    }  else {
       return [NSArray array];
     }
 }
@@ -607,7 +607,7 @@ NSImage *browserImage = nil;
 		  [self reloadData];
 		  [nc postNotificationName: GormDidModifyClassNotification
 		      object: classManager];
-		  ASSIGN(selectedClass, nil); // don't keep the class we're pointing to.
+		  DESTROY(selectedClass); // don't keep the class we're pointing to.
 		}
 	    }
 	}
@@ -616,8 +616,8 @@ NSImage *browserImage = nil;
 	  NSString *message = [NSString stringWithFormat: 
 	    _(@"The class %@ has subclasses which must be removed"), anitem];
 	  NSRunAlertPanel(_(@"Problem removing class"), 
-			  message,
-			  nil, nil, nil);
+			  @"%@",
+			  nil, nil, nil, message);
 	}
     }    
 }
@@ -669,10 +669,9 @@ NSImage *browserImage = nil;
 					     withOutlets: [classDict objectForKey: @"Outlets"]];
 		  if(!added)
 		    {
-		      NSString *message = [NSString stringWithFormat: @"Addition of %@ with superclass %@ failed.", className,
-						    selectedClass];
 		      NSRunAlertPanel(_(@"Problem pasting class"),
-				      message, nil, nil, nil);
+				      @"Addition of %@ with superclass %@ failed.",
+							  nil, nil, nil, className, selectedClass);
 		    }
 		}
 	    }
@@ -680,7 +679,7 @@ NSImage *browserImage = nil;
       else
 	{
 	  NSRunAlertPanel(_(@"Problem pasting class"),
-			  _(@"FirstResponder cannot have subclasses."), nil, nil, nil);
+			  @"%@", nil, nil, nil, _(@"FirstResponder cannot have subclasses."));
 	}
     }
 }
@@ -838,8 +837,8 @@ NSImage *browserImage = nil;
 	    {
 	      // inform the user of this error.
 	      NSRunAlertPanel(_(@"Cannot instantiate"), 
-			      _(@"FirstResponder cannot be instantiated."),
-			      nil, nil, nil);
+						  @"%@", nil, nil, nil,
+						  _(@"FirstResponder cannot be instantiated."));
 	    }
 	}
     }
@@ -938,47 +937,37 @@ NSImage *browserImage = nil;
  */
 - (id) loadClass: (id)sender
 {
-  NSArray	*fileTypes = [NSArray arrayWithObjects: @"h", @"H", nil];
-  NSOpenPanel	*oPanel = [NSOpenPanel openPanel];
-  int		result;
-
-  [oPanel setAllowsMultipleSelection: NO];
-  [oPanel setCanChooseFiles: YES];
-  [oPanel setCanChooseDirectories: NO];
-  result = [oPanel runModalForDirectory: nil
-				   file: nil
-				  types: fileTypes];
-  if (result == NSOKButton)
-    {
-      NSString *filename = [oPanel filename];
-
-      NS_DURING
-	{
-	  if(![classManager parseHeader: filename])
-	    {
-	      NSString *file = [filename lastPathComponent];
-	      NSString *message = [NSString stringWithFormat: 
-					      _(@"Unable to parse class in %@"),file];
-	      NSRunAlertPanel(_(@"Problem parsing class"), 
-			      message,
-			      nil, nil, nil);
-	    }
-	  else
-	    {
-	      return self;
-	    }
+	NSArray	*fileTypes = [NSArray arrayWithObjects: @"h", @"H", nil];
+	NSOpenPanel	*oPanel = [NSOpenPanel openPanel];
+	NSInteger		result;
+	
+	[oPanel setAllowsMultipleSelection: NO];
+	[oPanel setCanChooseFiles: YES];
+	[oPanel setCanChooseDirectories: NO];
+	oPanel.allowedFileTypes = fileTypes;
+	result = [oPanel runModal];
+	if (result == NSFileHandlingPanelOKButton) {
+		NSString *filename = [[oPanel URL] path];
+		
+		@try {
+			if (![classManager parseHeader: filename]) {
+				NSString *file = [filename lastPathComponent];
+				NSRunAlertPanel(_(@"Problem parsing class"),
+								_(@"Unable to parse class in %@"),
+								nil, nil, nil, file);
+			} else {
+				return self;
+			}
+		} @catch (NSException *localException) {
+			NSString *message = [localException reason];
+			NSRunAlertPanel(_(@"Problem parsing class"),
+							@"%@",
+							nil, nil, nil, message);
+		}
+		
 	}
-      NS_HANDLER
-	{
-	  NSString *message = [localException reason];
-	  NSRunAlertPanel(_(@"Problem parsing class"), 
-			  message,
-			  nil, nil, nil);
-	}
-      NS_ENDHANDLER
-    }
-
-  return nil;
+	
+	return nil;
 }
 
 /**
@@ -986,15 +975,14 @@ NSImage *browserImage = nil;
  */
 - (id) createClassFiles: (id)sender
 {
-  NSSavePanel		*sp;
-  NSString              *className = [self selectedClassName];
-  int			result;
+	NSSavePanel	*sp;
+	NSString	*className = [self selectedClassName];
+	NSInteger	result;
 
   sp = [NSSavePanel savePanel];
-  [sp setRequiredFileType: @"m"];
+  sp.allowedFileTypes = @[@"m"];
   [sp setTitle: _(@"Save source file as...")];
-  if ([document fileName] == nil)
-    {
+  if ([document fileName] == nil) {
       result = [sp runModalForDirectory: NSHomeDirectory() 
 		   file: [className stringByAppendingPathExtension: @"m"]];
     }
@@ -1005,9 +993,9 @@ NSImage *browserImage = nil;
 		   file: [className stringByAppendingPathExtension: @"m"]];
     }
 
-  if (result == NSOKButton)
+  if (result == NSFileHandlingPanelOKButton)
     {
-      NSString *sourceName = [sp filename];
+      NSString *sourceName = [[sp URL] path];
       NSString *headerName;
 
       [sp setRequiredFileType: @"h"];
@@ -1018,17 +1006,17 @@ NSImage *browserImage = nil;
 		     [[[sourceName lastPathComponent]
 			stringByDeletingPathExtension] 
 		       stringByAppendingString: @".h"]];
-      if (result == NSOKButton)
+      if (result == NSFileHandlingPanelOKButton)
 	{
-	  headerName = [sp filename];
+	  headerName = [[sp URL] path];
 	  NSDebugLog(@"Saving %@", className);
 	  if (![classManager makeSourceAndHeaderFilesForClass: className
 			     withName: sourceName
 			     and: headerName])
 	    {
 	      NSRunAlertPanel(_(@"Alert"), 
-			      _(@"Could not create the class's file"),
-			      nil, nil, nil);
+			      @"%@",
+			      nil, nil, nil, _(@"Could not create the class's file"));
 	    }
 	  
 	  return self;
@@ -1044,9 +1032,9 @@ NSImage *browserImage = nil;
   [self selectClass: className];
 }
 
-@end
+//@end
 
-@implementation GormClassEditor (NSOutlineViewDataSource)
+//@implementation GormClassEditor (NSOutlineViewDataSource)
 
 // --- NSOutlineView dataSource ---
 - (id)        outlineView: (NSOutlineView *)anOutlineView 
@@ -1116,14 +1104,9 @@ objectValueForTableColumn: (NSTableColumn *)aTableColumn
 		}
 	      else
 		{
-		  NSString *message;
-
-		  message = [NSString stringWithFormat: 
-		    _(@"The class %@ already has an action named %@"),
-		    [gov itemBeingEdited], formattedAction];
-
 		  NSRunAlertPanel(_(@"Problem Adding Action"),
-				  message, nil, nil, nil);
+				  _(@"The class %@ already has an action named %@"),
+				  nil, nil, nil, [gov itemBeingEdited], formattedAction);
 				  
 		}
 	    }
@@ -1149,13 +1132,9 @@ objectValueForTableColumn: (NSTableColumn *)aTableColumn
 		}
 	      else
 		{
-		  NSString *message;
-
-		  message = [NSString stringWithFormat: 
-		    _(@"The class %@ already has an outlet named %@"),
-		    [gov itemBeingEdited], formattedOutlet];
 		  NSRunAlertPanel(_(@"Problem Adding Outlet"),
-				  message, nil, nil, nil);
+				  _(@"The class %@ already has an outlet named %@"),
+				  nil, nil, nil, [gov itemBeingEdited], formattedOutlet);
 				  
 		}
 	    }

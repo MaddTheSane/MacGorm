@@ -23,7 +23,7 @@
  */
 
 #include <Foundation/NSString.h>
-#include <InterfaceBuilder/IBDocuments.h>
+#include <GormLib/IBDocuments.h>
 
 NSString *IBDidOpenDocumentNotification = @"IBDidOpenDocumentNotification";
 NSString *IBWillSaveDocumentNotification = @"IBWillSaveDocumentNotification";

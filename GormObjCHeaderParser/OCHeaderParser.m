@@ -27,6 +27,7 @@
 #include <GormObjCHeaderParser/OCHeaderParser.h>
 #include <GormObjCHeaderParser/OCClass.h>
 #include <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
+#include <GNUstepBase/GNUstep.h>
 
 @implementation OCHeaderParser
 +(void) initialize
@@ -40,13 +41,11 @@
 
 - (id) initWithContentsOfFile: (NSString *)file
 {
-  if((self = [super init]) != nil)
-    {
-      fileData = [NSString stringWithContentsOfFile: file];
-      classes = [[NSMutableArray alloc] init];
-      RETAIN(fileData);
-    }
-  return self;
+	if ((self = [super init]) != nil) {
+		fileData = [[NSString alloc] initWithContentsOfFile: file usedEncoding: NULL error: NULL];
+		classes = [[NSMutableArray alloc] init];
+	}
+	return self;
 }
 
 - (void) dealloc
@@ -63,33 +62,31 @@
 
 - (void) _stripComments
 {
-  NSScanner *scanner = [NSScanner scannerWithString: fileData];
-  NSString *resultString = @"";
-  NSString *finalString = @"";
-
-  // strip all of the one line comments out...
-  [scanner setCharactersToBeSkipped: nil];
-  while(![scanner isAtEnd])
-    {
-      NSString *tempString = nil;
-      [scanner scanUpToString: @"//" intoString: &tempString];
-      [scanner scanUpToString: @"\n" intoString: NULL];
-      resultString = [resultString stringByAppendingString: tempString];
-    }
-
-  // strip all of the multiline comments out...
-  scanner = [NSScanner scannerWithString: resultString];
-  [scanner setCharactersToBeSkipped: nil];
-  while(![scanner isAtEnd])
-    {
-      NSString *tempString = nil;
-      [scanner scanUpToString: @"/*" intoString: &tempString];
-      [scanner scanUpToAndIncludingString: @"*/" intoString: NULL];
-      finalString = [finalString stringByAppendingString: tempString];
-    }
-
-  // make this our new fileData...
-  ASSIGN(fileData, finalString);
+	NSScanner *scanner = [NSScanner scannerWithString: fileData];
+	NSString *resultString = @"";
+	NSString *finalString = @"";
+	
+	// strip all of the one line comments out...
+	[scanner setCharactersToBeSkipped: nil];
+	while (![scanner isAtEnd]) {
+		NSString *tempString = nil;
+		[scanner scanUpToString: @"//" intoString: &tempString];
+		[scanner scanUpToString: @"\n" intoString: NULL];
+		resultString = [resultString stringByAppendingString: tempString];
+	}
+	
+	// strip all of the multiline comments out...
+	scanner = [NSScanner scannerWithString: resultString];
+	[scanner setCharactersToBeSkipped: nil];
+	while (![scanner isAtEnd]) {
+		NSString *tempString = nil;
+		[scanner scanUpToString: @"/*" intoString: &tempString];
+		[scanner scanUpToAndIncludingString: @"*/" intoString: NULL];
+		finalString = [finalString stringByAppendingString: tempString];
+	}
+	
+	// make this our new fileData...
+	ASSIGNCOPY(fileData, finalString);
 }
 
 - (void) _stripPreProcessor
@@ -99,8 +96,7 @@
 
   // strip all of the one line comments out...
   [scanner setCharactersToBeSkipped: nil];
-  while(![scanner isAtEnd])
-    {
+  while (![scanner isAtEnd]) {
       NSString *tempString = @"";
       [scanner scanUpToString: @"#" intoString: &tempString];
       [scanner scanUpToAndIncludingString: @"\n" intoString: NULL];
@@ -108,7 +104,7 @@
     }
 
   // make this our new fileData...
-  ASSIGN(fileData,resultString);
+  ASSIGNCOPY(fileData, resultString);
 }
 
 - (void) _stripRedundantStatements
@@ -118,8 +114,7 @@
 
   // strip all of the one line comments out...
   [scanner setCharactersToBeSkipped: nil];
-  while(![scanner isAtEnd])
-    {
+  while (![scanner isAtEnd]) {
       NSString *tempString = nil, *aString = nil;
       // [scanner scanUpToString: @";" intoString: &tempString];
       // [scanner scanString: @";" intoString: &tempString2];
@@ -128,8 +123,8 @@
       // Scan any redundant ";" characters into aString... once it
       // returns nil we know we're done.
       do {
-	aString = nil;
-	[scanner scanString: @";" intoString: &aString];
+		  aString = nil;
+		  [scanner scanString: @";" intoString: &aString];
       } while([aString isEqualToString:@";"]);
 	
       [scanner scanUpToAndIncludingString: @"\n" intoString: NULL];
@@ -137,7 +132,7 @@
     }
 
   // make this our new fileData...
-  ASSIGN(fileData,resultString);
+  ASSIGNCOPY(fileData, resultString);
 }
 
 - (void) _preProcessFile
@@ -149,62 +144,53 @@
 
 - (BOOL) _processClasses
 {
-  NSScanner *scanner = [NSScanner scannerWithString: fileData];
-  BOOL result = YES;
-
-  NS_DURING
-    {
-      // get all of the classes...
-      while(![scanner isAtEnd])
-	{
-	  NSString *classString = nil;
-	  OCClass *cls = nil;
-	  
-	  [scanner scanUpToString: @"@interface" intoString: NULL];
-	  [scanner scanUpToAndIncludingString: @"@end" intoString: &classString];
-	  
-	  if(classString != nil && [classString length] != 0)
-	    {
-	      cls = AUTORELEASE([[OCClass alloc] initWithString: classString]);
-	      [cls parse];
-	      [classes addObject: cls];
-	    }
+	NSScanner *scanner = [NSScanner scannerWithString: fileData];
+	BOOL result = YES;
+	
+	@try {
+		// get all of the classes...
+		while (![scanner isAtEnd]) {
+			NSString *classString = nil;
+			OCClass *cls = nil;
+			
+			[scanner scanUpToString: @"@interface" intoString: NULL];
+			[scanner scanUpToAndIncludingString: @"@end" intoString: &classString];
+			
+			if (classString != nil && [classString length] != 0) {
+				cls = AUTORELEASE([[OCClass alloc] initWithString: classString]);
+				[cls parse];
+				[classes addObject: cls];
+			}
+		}
+		
+		// if we got zero classes, return NO.
+		if ([classes count] == 0) {
+			result = NO;
+		}
+	} @catch (NSException *localException) {
+		NSLog(@"%@",localException);
+		result = NO;
 	}
-
-      // if we got zero classes, return NO.
-      if([classes count] == 0)
-	{
-	  result = NO;
-	}
-    }
-  NS_HANDLER
-    {
-      NSLog(@"%@",localException); 
-      result = NO;
-    }
-  NS_ENDHANDLER
-
-  return result;
+	
+	return result;
 }
 
 - (BOOL) parse
 {
-  BOOL result = NO;
-  [self _preProcessFile];
-
-  NS_DURING
-    {
-      // parse the header here...
-      result = [self _processClasses];
-    }
-  NS_HANDLER
-    {
-      // exception while processing...
-      NSLog(@"%@",localException); 
-      result = NO;
-    }
-  NS_ENDHANDLER
-
-  return result;
+	BOOL result = NO;
+	[self _preProcessFile];
+	
+	@try {
+		// parse the header here...
+		result = [self _processClasses];
+	} @catch (NSException *localException) {
+		// exception while processing...
+		NSLog(@"%@",localException);
+		result = NO;
+	}
+	
+	
+	return result;
 }
+
 @end

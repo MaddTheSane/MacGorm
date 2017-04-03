@@ -27,13 +27,16 @@
 #include "GormPrivate.h"
 #include <GormCore/GormDocument.h>
 #include <GormCore/GormDocumentController.h>
+#import <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
+
 
 @implementation GormDocumentController
 
 - (id) currentDocument
 {
   NSArray  *documents = [self documents];
-  unsigned i = [documents count];
+  NSInteger i = [documents count];
   id result = nil;
 
   if (i > 0)
@@ -66,7 +69,7 @@
 	NSMenu	 *aMenu;
 	NSWindow *aWindow;
 	NSRect	 frame = [[NSScreen mainScreen] frame];
-	unsigned style = NSTitledWindowMask | NSClosableWindowMask
+	NSWindowStyleMask style = NSTitledWindowMask | NSClosableWindowMask
 	  | NSResizableWindowMask | NSMiniaturizableWindowMask;
 	
 	if ([NSMenu respondsToSelector: @selector(allocSubstitute)])
@@ -117,7 +120,7 @@
       {
 	NSPanel	 *aWindow;
 	NSRect	 frame = [[NSScreen mainScreen] frame];
-	unsigned style = NSTitledWindowMask | NSClosableWindowMask;
+	NSWindowStyleMask style = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable;
 	
 	if ([NSPanel respondsToSelector: @selector(allocSubstitute)])
 	  {
@@ -147,7 +150,7 @@
       {
 	NSPanel	 *aWindow;
 	NSRect	 frame = [[NSScreen mainScreen] frame];
-	unsigned style = NSTitledWindowMask | NSClosableWindowMask;
+	NSWindowStyleMask style = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable;
 	
 	if ([NSPanel respondsToSelector: @selector(allocSubstitute)])
 	  {
@@ -203,6 +206,6 @@
 
 - (id) openDocumentWithContentsOfURL:(NSURL *)url
 {
-  return  [self openDocumentWithContentsOfURL:url display:YES];
+	return [self openDocumentWithContentsOfURL:url display:YES];
 }
 @end

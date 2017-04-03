@@ -28,6 +28,7 @@
 #include <GormObjCHeaderParser/OCIVarDecl.h>
 #include <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
 #include <GormObjCHeaderParser/ParserFunctions.h>
+#include <GNUstepBase/GNUstep.h>
 
 @implementation OCIVarDecl
 
@@ -114,7 +115,7 @@
       resultString = tempString2;
     }
 
-  ASSIGN(ivarString, resultString);
+  ASSIGNCOPY(ivarString, resultString);
 }
 
 - (void) parse

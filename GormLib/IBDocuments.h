@@ -26,9 +26,9 @@
 #define INCLUDED_IBDOCUMENTS_H
 
 #include <Foundation/NSGeometry.h>
-#include <InterfaceBuilder/IBEditors.h>
-#include <InterfaceBuilder/IBConnectors.h>
-#include <InterfaceBuilder/IBSystem.h>
+#include <GormLib/IBEditors.h>
+#include <GormLib/IBConnectors.h>
+#include <GormLib/IBSystem.h>
 
 IB_EXTERN NSString *IBDidOpenDocumentNotification;
 IB_EXTERN NSString *IBWillSaveDocumentNotification;

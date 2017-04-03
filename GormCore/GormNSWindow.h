@@ -28,16 +28,16 @@
 
 @interface GormNSWindow : NSWindow
 {
-  unsigned _gormStyleMask;
+  NSWindowStyleMask _gormStyleMask;
   BOOL     _gormReleasedWhenClosed;
   NSUInteger autoPositionMask;
 }
-- (void) _setStyleMask: (unsigned int)newStyleMask;
-- (unsigned int) _styleMask;
+- (void) _setStyleMask: (NSWindowStyleMask)newStyleMask;
+- (NSWindowStyleMask) _styleMask;
 - (void) _setReleasedWhenClosed: (BOOL) flag;
 - (BOOL) _isReleasedWhenClosed;
-- (unsigned int) autoPositionMask;
-- (void) setAutoPositionMask: (unsigned int)mask;
+- (NSUInteger) autoPositionMask;
+- (void) setAutoPositionMask: (NSUInteger)mask;
 @end
 
 #endif

@@ -5,7 +5,7 @@
 #include <Foundation/NSArray.h>
 #include <AppKit/NSView.h>
 
-@interface GormPluginsPref : NSObject
+@interface GormPluginsPref : NSObject <NSTableViewDelegate>
 {
   id table;
   id addButton;

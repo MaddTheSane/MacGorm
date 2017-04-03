@@ -25,7 +25,7 @@
 #ifndef INCLUDED_IBVIEWPROTOCOL_H
 #define INCLUDED_IBVIEWPROTOCOL_H
 
-#include <InterfaceBuilder/IBDefines.h>
+#include <GormLib/IBDefines.h>
 #include <Foundation/NSGeometry.h>
 
 // forward references

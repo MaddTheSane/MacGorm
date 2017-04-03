@@ -26,8 +26,8 @@
 #include "GormPrivate.h"
 #include "GormFontViewController.h"
 #include "GormSetNameController.h"
-#include "GNUstepGUI/GSNibLoading.h"
 #include "GNUstepBase/GSObjCRuntime.h"
+#include <GNUstepBase/GNUstep.h>
 
 // for templates...
 #include <AppKit/NSControl.h>
@@ -105,7 +105,7 @@ static BOOL _isInInterfaceBuilder = NO;
 	    {
 	      return NO;
 	    }
-	  cls = GSObjCSuper(cls); // get super class
+	  cls = class_getSuperclass(cls); // get super class
 	}
       return YES;
     }

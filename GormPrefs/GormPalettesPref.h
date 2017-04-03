@@ -4,12 +4,14 @@
 #include <Foundation/NSObject.h>
 #include <Foundation/NSArray.h>
 #include <AppKit/NSView.h>
+#include <AppKit/NSTableView.h>
+#include <AppKit/NSButton.h>
 
-@interface GormPalettesPref : NSObject
+@interface GormPalettesPref : NSObject <NSTableViewDelegate>
 {
   id table;
-  id addButton;
-  id removeButton;
+  NSButton *addButton;
+  NSButton *removeButton;
   id window;
   id _view;
 }

@@ -27,6 +27,7 @@
 #include <Foundation/Foundation.h>
 #include <AppKit/AppKit.h>
 #include <GNUstepGUI/GSGormLoading.h>
+#include <GNUstepBase/GNUstepBase.h>
 #include <GormCore/GormWrapperBuilder.h>
 #include <GormCore/GormClassManager.h>
 #include <GormCore/GormFilePrefsManager.h>
@@ -273,8 +274,7 @@
 		intoClassName: @"GSCustomView"];
       
       
-      while((subClassName = [en nextObject]) != nil)
-	{
+      while ((subClassName = [en nextObject]) != nil) {
 	  NSString *realClassName = [substituteClasses objectForKey: subClassName];
 	  [archiver encodeClassName: subClassName
 		    intoClassName: realClassName];

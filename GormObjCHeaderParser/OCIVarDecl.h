@@ -28,15 +28,16 @@
 #define INCLUDED_OCIVarDecl_h
 
 @class NSMutableArray, NSString;
+@class OCIVar;
 
 @interface OCIVarDecl : NSObject
 {
   NSString *ivarString;
-  NSMutableArray *ivars;
+  NSMutableArray<OCIVar*> *ivars;
 }
 
-- (id) initWithString: (NSString *)string;
-- (NSArray *) ivars;
+- (instancetype) initWithString: (NSString *)string;
+@property (readonly, retain) NSArray<OCIVar*> *ivars;
 - (void) parse;
 @end
 

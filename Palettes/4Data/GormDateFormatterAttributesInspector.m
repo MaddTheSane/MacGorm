@@ -26,11 +26,12 @@
 
 #include <Foundation/Foundation.h>
 #include <AppKit/AppKit.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 #include <GormCore/GormPrivate.h>
 #include <GormCore/GormViewEditor.h>
 #include <GormCore/NSColorWell+GormExtensions.h>
 #include <GormCore/GormViewSizeInspector.h>
+#import <GNUstepBase/GNUstepBase.h>
 #include "GormDateFormatterAttributesInspector.h"
 
 /* this macro makes sure that the string contains a value, even if @"" */

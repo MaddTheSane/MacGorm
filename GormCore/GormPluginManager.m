@@ -29,6 +29,7 @@
 #include <AppKit/NSImage.h>
 #include <AppKit/NSSound.h>
 #include <GNUstepBase/GSObjCRuntime.h>
+#include <GNUstepBase/GNUstep.h>
 #include "GormFunctions.h"
 #include "GormPluginManager.h"
 
@@ -105,26 +106,41 @@
   // [panel setFrameUsingName: @"Plugins"];
   // [panel setFrameAutosaveName: @"Plugins"];
  
+#if 1
+	{
+		NSString *plugs = [[NSBundle mainBundle] builtInPlugInsPath];
+		NSArray *fileArr = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:plugs error:NULL];
+		NSMutableArray *tmpArr = [NSMutableArray array];
+		for (NSString *file in fileArr) {
+			//Skip files that begin with a period
+			if ([[file lastPathComponent] hasPrefix:@"."]) {
+				continue;
+			}
+			if ([[file pathExtension] isEqualToString:@"plugin"]) {
+				[tmpArr addObject:[plugs stringByAppendingPathComponent:file]];
+			}
+		}
+		array = tmpArr;
+	}
+#else
   array = [[NSBundle mainBundle] pathsForResourcesOfType: @"plugin"
                                  inDirectory: nil];
+#endif
+	
   if ([array count] > 0)
     {
-      unsigned	index;
-      
       array = [array sortedArrayUsingSelector: @selector(compare:)];
       
-      for (index = 0; index < [array count]; index++)
+      for (NSString *plugPath in array)
 	{
-	  [self loadPlugin: [array objectAtIndex: index]];
+	  [self loadPlugin: plugPath];
 	}
     }
   
   // if we have any user plugins load them as well.
   if(userPlugins != nil)
     {
-      NSEnumerator *en = [userPlugins objectEnumerator];
-      id pluginName = nil;
-      while((pluginName = [en nextObject]) != nil)
+      for (NSString *pluginName in userPlugins)
         {
           [self loadPlugin: pluginName];
         }
@@ -174,15 +190,17 @@
 
   if([self bundlePathIsLoaded: path])
     {
-      NSRunAlertPanel (nil, _(@"Plugin has already been loaded"), 
-		       _(@"OK"), nil, nil);
+      NSRunAlertPanel (nil, @"%@",
+		       _(@"OK"), nil, nil,
+			   _(@"Plugin has already been loaded"));
       return NO;
     }
   bundle = [NSBundle bundleWithPath: path]; 
   if (bundle == nil)
     {
-      NSRunAlertPanel(nil, _(@"Could not load Plugin"), 
-		      _(@"OK"), nil, nil);
+      NSRunAlertPanel(nil, @"%@",
+		      _(@"OK"), nil, nil,
+			  _(@"Could not load Plugin"));
       return NO;
     }
 
@@ -231,24 +249,27 @@
   className = [[bundle infoDictionary] objectForKey: @"NSPrincipalClass"];
   if (className == nil)
     {
-      NSRunAlertPanel(nil, _(@"No plugin class in plist"),
-		      _(@"OK"), nil, nil);
+      NSRunAlertPanel(nil, @"%@",
+		      _(@"OK"), nil, nil,
+			  _(@"No plugin class in plist"));
       return NO;
     }
 
   pluginClass = [bundle classNamed: className];
   if (pluginClass == 0)
     {
-      NSRunAlertPanel (nil, _(@"Could not load plugin class"), 
-		       _(@"OK"), nil, nil);
+      NSRunAlertPanel (nil, @"%@",
+		       _(@"OK"), nil, nil,
+					   _(@"Could not load plugin class"));
       return NO;
     }
 
   plugin = [[pluginClass alloc] init];
   if ([plugin isKindOfClass: [IBPlugin class]] == NO)
     {
-      NSRunAlertPanel (nil, _(@"Plugin contains wrong type of class"), 
-		       _(@"OK"), nil, nil);
+      NSRunAlertPanel (nil, @"%@",
+		       _(@"OK"), nil, nil,
+					   _(@"Plugin contains wrong type of class"));
       RELEASE(plugin);
       return NO;
     }
@@ -296,51 +317,40 @@
 
 - (id) openPlugin: (id) sender
 {
-  NSArray	 *fileTypes = [NSArray arrayWithObject: @"plugin"];
-  NSOpenPanel	 *oPanel = [NSOpenPanel openPanel];
-  int		 result;
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  NSArray        *userPlugins = [defaults arrayForKey: USER_PLUGINS];
-  NSMutableArray *newUserPlugins = 
-    (userPlugins == nil)?[NSMutableArray array]:[NSMutableArray arrayWithArray: userPlugins];
-
-  [oPanel setAllowsMultipleSelection: YES];
-  [oPanel setCanChooseFiles: YES];
-  [oPanel setCanChooseDirectories: NO];
-  result = [oPanel runModalForDirectory: NSHomeDirectory()
-				   file: nil
-				  types: fileTypes];
-
-  if (result == NSOKButton)
-    {
-      NSArray	*filesToOpen = [oPanel filenames];
-      unsigned	count = [filesToOpen count];
-      unsigned	i;
-
-      for (i = 0; i < count; i++)
-	{
-	  NSString	*aFile = [filesToOpen objectAtIndex: i];
-
-	  if([self bundlePathIsLoaded: aFile] == YES &&
-	     [userPlugins containsObject: aFile] == NO)
-	    {
-	      [newUserPlugins addObject: aFile];
-	    }
-	  else if([self loadPlugin: aFile] == NO)
-	    {
-	      return nil;
-	    }
-	  else
-	    {
-	      [newUserPlugins addObject: aFile];
-	    }
+	NSArray	 *fileTypes = [NSArray arrayWithObject: @"plugin"];
+	NSOpenPanel	 *oPanel = [NSOpenPanel openPanel];
+	NSInteger		 result;
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSArray        *userPlugins = [defaults arrayForKey: USER_PLUGINS];
+	NSMutableArray *newUserPlugins =
+	(userPlugins == nil)?[NSMutableArray array]:[NSMutableArray arrayWithArray: userPlugins];
+	
+	[oPanel setAllowsMultipleSelection: YES];
+	[oPanel setCanChooseFiles: YES];
+	[oPanel setCanChooseDirectories: NO];
+	oPanel.directoryURL = [NSURL fileURLWithPath:NSHomeDirectory()];
+	oPanel.allowedFileTypes = fileTypes;
+	result = [oPanel runModal];
+	
+	if (result == NSFileHandlingPanelOKButton) {
+		for (NSURL *aURL in oPanel.URLs) {
+			NSString *aFile = [aURL path];
+			
+			if ([self bundlePathIsLoaded: aFile] == YES &&
+			   [userPlugins containsObject: aFile] == NO) {
+				[newUserPlugins addObject: aFile];
+			} else if ([self loadPlugin: aFile] == NO) {
+				return nil;
+			} else {
+				[newUserPlugins addObject: aFile];
+			}
+		}
+		
+		// reset the defaults to include the new plugin.
+		[defaults setObject: newUserPlugins forKey: USER_PLUGINS];
+		return self;
 	}
-
-      // reset the defaults to include the new plugin.
-      [defaults setObject: newUserPlugins forKey: USER_PLUGINS];
-      return self;
-    }
-  return nil;
+	return nil;
 }
 
 /*

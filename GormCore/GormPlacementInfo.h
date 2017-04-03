@@ -25,9 +25,10 @@
 #define	INCLUDED_GormPlacementInfo_h
 
 #include <Foundation/NSObject.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 
 @class NSView, NSMutableArray;
+@class GormPlacementHint;
 
 @interface GormPlacementInfo : NSObject
 {
@@ -36,10 +37,10 @@
   NSRect oldRect;
   BOOL firstPass;
   BOOL hintInitialized;
-  NSMutableArray *leftHints;
-  NSMutableArray *rightHints;
-  NSMutableArray *topHints;
-  NSMutableArray *bottomHints;
+  NSMutableArray<GormPlacementHint*> *leftHints;
+  NSMutableArray<GormPlacementHint*> *rightHints;
+  NSMutableArray<GormPlacementHint*> *topHints;
+  NSMutableArray<GormPlacementHint*> *bottomHints;
   NSRect lastLeftRect;
   NSRect lastRightRect;
   NSRect lastTopRect;
@@ -58,23 +59,23 @@ typedef enum _GormHintBorder
 @interface GormPlacementHint : NSObject
 {
   GormHintBorder _border;
-  float _position;
-  float _start;
-  float _end;
+  CGFloat _position;
+  CGFloat _start;
+  CGFloat _end;
   NSRect _frame;
 }
 - (id) initWithBorder: (GormHintBorder) border
-	     position: (float) position
-	validityStart: (float) start
-	  validityEnd: (float) end
-		frame: (NSRect) frame;
-- (NSRect) rectWithHalfDistance: (int) halfDistance;
-- (int) distanceToFrame: (NSRect) frame;
-- (float) position;
-- (float) start;
-- (float) end;
-- (NSRect) frame;
-- (GormHintBorder) border;
+             position: (CGFloat) position
+        validityStart: (CGFloat) start
+          validityEnd: (CGFloat) end
+                frame: (NSRect) frame;
+- (NSRect) rectWithHalfDistance: (NSInteger) halfDistance;
+- (NSInteger) distanceToFrame: (NSRect) frame;
+@property (readonly) CGFloat position;
+@property (readonly) CGFloat start;
+@property (readonly) CGFloat end;
+@property (readonly) NSRect frame;
+@property (readonly) GormHintBorder border;
 @end
 
 #endif

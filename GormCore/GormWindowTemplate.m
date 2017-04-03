@@ -25,6 +25,8 @@
 #include "GormWindowTemplate.h"
 #include "GormNSWindow.h" 
 #include "GormNSPanel.h"
+#import <GNUstepGUI/GNUstepGUI.h>
+#import <GormCore/PrivateCocoaClasses.h>
 
 // @class GormNSWindow;
 // @class GormNSPanel;
@@ -36,7 +38,7 @@
 @implementation NSWindowTemplate (Private)
 - (void) setBaseWindowClass: (Class) clz
 {
-  _baseWindowClass = clz;
+  //_baseWindowClass = clz;
 }
 @end
 
@@ -54,7 +56,7 @@
 
 - (Class) baseWindowClass
 {
-  if([_windowClass isEqualToString:@"NSPanel"])
+  if([windowClass isEqualToString:@"NSPanel"])
     {
       return [GormNSPanel class];
     }

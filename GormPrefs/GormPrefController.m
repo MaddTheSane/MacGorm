@@ -10,6 +10,7 @@
 #include <AppKit/NSPopUpButton.h>
 #include <AppKit/NSNibLoading.h>
 #include <AppKit/NSWindow.h>
+#import <GNUstepBase/GNUstepBase.h>
 
 @implementation GormPrefController
 
@@ -44,7 +45,7 @@
 
 - (void) popupAction: (id)sender
 {
-  int tag = -1;
+  NSInteger tag = -1;
 
   if ( sender != popup )
     return;
@@ -71,7 +72,7 @@
       [prefBox setContentView: [_pluginsView view]];
       break;
     default:
-      NSLog(@"Error Default (GormPrefController.m) : - (void) popupAction: (id)sender, no match for tag %d",tag);
+      NSLog(@"Error Default (GormPrefController.m) : - (void) popupAction: (id)sender, no match for tag %ld",(long)tag);
       break;
     }
 }

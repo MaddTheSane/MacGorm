@@ -22,9 +22,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <InterfaceBuilder/IBPalette.h>
+#include <GormLib/IBPalette.h>
 #include <Foundation/Foundation.h>
 #include <AppKit/AppKit.h>
+#include <GNUstepBase/GNUstep.h>
 
 NSString	*IBCellPboardType = @"IBCellPboardType";
 NSString	*IBMenuPboardType = @"IBMenuPboardType";
@@ -116,9 +117,8 @@ static NSMapTable	*viewToType = 0;
   if (fileName == nil)
     {
       NSRunAlertPanel(NULL, 
-		      [NSString stringWithFormat: @"Palette could not load image %@.", 
-				fileName],
-		      @"OK", NULL, NULL);
+		      @"Palette could not load image %@.",
+		      @"OK", NULL, NULL, fileName);
       AUTORELEASE(self);
       return nil;
     }
@@ -134,9 +134,8 @@ static NSMapTable	*viewToType = 0;
 		  withZone: NSDefaultMallocZone()] == NO)
 	{
 	  NSRunAlertPanel(NULL, 
-			  [NSString stringWithFormat: @"Palette could not load nib/gorm %@.", 
-				    fileName],
-			  @"OK", NULL, NULL);
+			  @"Palette could not load nib/gorm %@.",
+			  @"OK", NULL, NULL, fileName);
 	  AUTORELEASE(self);
 	  return nil;
 	}

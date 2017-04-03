@@ -26,7 +26,7 @@
 #define INCLUDED_IBPLUGIN_H
 
 #include <Foundation/NSObject.h>
-#include <InterfaceBuilder/IBDocuments.h>
+#include <GormLib/IBDocuments.h>
 
 // forward references
 @class NSString;

@@ -27,11 +27,12 @@
 #include <AppKit/NSWindow.h>
 #include <AppKit/NSTabViewItem.h>
 #include <AppKit/NSScrollView.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 #include "GormNSBrowser.h"
 #include "GormNSTableView.h"
 #include "GormNSOutlineView.h"
 #include <math.h>
+#import <GNUstepBase/GNUstepBase.h>
 
 
 /* --------------------------------------------------------------- 

@@ -24,6 +24,7 @@
 #include <Foundation/Foundation.h>
 #include <AppKit/NSDocumentController.h>
 #include <GormCore/GormPlugin.h>
+#include <GNUstepBase/GNUstep.h>
 
 @interface NSDocumentController (GormPrivate)
 - (NSArray *) types;
@@ -31,6 +32,7 @@
 - (BOOL) containsDocumentTypeName: (NSString *)tname;
 @end
 
+#if 0
 @implementation NSDocumentController (GormPrivate)
 - (NSArray *) types
 {
@@ -59,7 +61,7 @@
   return NO;
 }
 @end
-
+#endif
 
 @implementation GormPlugin
 - (void) registerDocumentTypeName: (NSString *)name

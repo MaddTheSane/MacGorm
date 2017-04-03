@@ -23,10 +23,11 @@
  */
 
 #include <AppKit/AppKit.h>
-#include <InterfaceBuilder/InterfaceBuilder.h>
+#include <GormLib/InterfaceBuilder.h>
 #include "GormTableViewEditor.h"
 #include "GormNSTableView.h"
 #include <GormCore/GormViewKnobs.h>
+#import <GNUstepBase/GNUstepBase.h>
 
 NSString *IBTableColumnPboardType = @"IBTableColumnPboardType";
 
@@ -88,18 +89,18 @@ static NSText *_textObject;
 
 - (void) scrollToPoint: (NSPoint)point
 {
-  if ([_super_view respondsToSelector:@selector(scrollToPoint:)])
+  if ([_superview respondsToSelector:@selector(scrollToPoint:)])
     {
-      [(NSClipView *)_super_view scrollToPoint: point]; 
+      [(NSClipView *)_superview scrollToPoint: point];
     }
 }
 
 - (NSRect) documentVisibleRect
 {
   NSRect visRect = _bounds;
-  if ([_super_view respondsToSelector:@selector(documentVisibleRect)])
+  if ([_superview respondsToSelector:@selector(documentVisibleRect)])
     {
-      visRect = [(NSClipView *)_super_view documentVisibleRect]; 
+      visRect = [(NSClipView *)_superview documentVisibleRect];
     }
   return visRect; 
 }
@@ -269,7 +270,7 @@ static NSText *_textObject;
     }
   else if (hitView == tableView)
     {
-      if ([theEvent modifierFlags] & NSControlKeyMask)
+      if ([theEvent modifierFlags] & NSEventModifierFlagControl)
         {
 	  [super mouseDown: theEvent];
 	}
@@ -278,14 +279,14 @@ static NSText *_textObject;
 	  [tableView deselectColumn: [tableView selectedColumn]];
 	}
     }
-  else if (hitView == self && [theEvent modifierFlags] & NSControlKeyMask)
+  else if (hitView == self && [theEvent modifierFlags] & NSEventModifierFlagControl)
     {
       /*
        * see if we're making a connection from the selected column.
        * not useful in vanilla gorm as they have no outlets or actions,
        * but palettes might find it useful.
        */
-      int selectedColumn = [tableView selectedColumn];
+      NSInteger selectedColumn = [tableView selectedColumn];
 
       if (selectedColumn != -1)
         {
@@ -408,7 +409,7 @@ static NSText *_textObject;
 - (void) textDidEndEditing: (NSNotification *)aNotification
 {
   [_editedCell endEditing: _textObject];
-  [_currentHeaderCell setStringValue: [[_textObject text] copy]];
+  [_currentHeaderCell setStringValue: [[[_textObject string] copy] autorelease]];
 
   RELEASE(_editedCell);
 }
@@ -455,7 +456,7 @@ static NSText *_textObject;
 
       if (destination == nil)
 	{
-	  int col = 0;
+	  NSInteger col = 0;
 	  destination = _editedObject;	  
 	  if((col = [_editedObject selectedColumn]) != -1)
 	    {

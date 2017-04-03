@@ -27,7 +27,7 @@
 /* All Rights reserved */
 
 #include <AppKit/AppKit.h>
-#include <InterfaceBuilder/IBInspector.h>
+#include <GormLib/IBInspector.h>
 
 @class GormClassManager;
 

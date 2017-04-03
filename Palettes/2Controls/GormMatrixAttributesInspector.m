@@ -42,6 +42,7 @@
 #include <AppKit/NSForm.h>
 #include <AppKit/NSMatrix.h>
 #include <AppKit/NSNibLoading.h>
+#import <AppKit/NSStepper.h>
 
 
 @implementation	NSMatrix (IBObjectAdditions)
@@ -91,7 +92,7 @@ NSUInteger colsStepperValue;
     {
       NSInteger	rows;
       NSInteger	cols;
-      int	i;
+      NSInteger	i;
 
       [object getNumberOfRows: &rows columns: &cols];
 
@@ -133,13 +134,13 @@ NSUInteger colsStepperValue;
     }
   else if (sender == tagForm)
     {
-      [object setTag: [[sender cellAtIndex: 0] intValue]];
+      [object setTag: [[sender cellAtIndex: 0] integerValue]];
     }
   else if (sender == dimensionsForm)
     {
-      int rows = [[sender cellAtIndex: 0] intValue];
-      int cols = [[sender cellAtIndex: 1] intValue];
-      int num;
+      NSInteger rows = [[sender cellAtIndex: 0] integerValue];
+      NSInteger cols = [[sender cellAtIndex: 1] integerValue];
+      NSInteger num;
 
       while((num = [object numberOfRows]) != rows)
 	{
@@ -170,8 +171,8 @@ NSUInteger colsStepperValue;
     }
   else if(sender == rowsStepper)
     {
-      int delta = [sender intValue] - rowsStepperValue;
-      int num = [object numberOfRows];
+      NSInteger delta = [sender intValue] - rowsStepperValue;
+      NSInteger num = [object numberOfRows];
       NSRect rect = [object frame];
       NSSize cell = [object cellSize];
       NSSize inter = [object intercellSpacing];
@@ -190,15 +191,15 @@ NSUInteger colsStepperValue;
 	}
       cell.height = (rect.size.height + inter.height) / num - inter.height;
       [object setCellSize: cell];
-      [[dimensionsForm cellAtIndex: 0] setIntValue: num];
-      [sender setIntValue: rowsStepperValue];
+      [[dimensionsForm cellAtIndex: 0] setIntegerValue: num];
+      [sender setIntegerValue: rowsStepperValue];
       [dimensionsForm setNeedsDisplay: YES];
       [object setNeedsDisplay: YES];
     }
   else if(sender == colsStepper)
     {
-      int delta = [sender intValue] - colsStepperValue;
-      int num = [object numberOfColumns];
+      NSInteger delta = [sender intValue] - colsStepperValue;
+      NSInteger num = [object numberOfColumns];
       NSRect rect = [object frame];
       NSSize cell = [object cellSize];
       NSSize inter = [object intercellSpacing];
@@ -217,8 +218,8 @@ NSUInteger colsStepperValue;
 	}
       cell.width = (rect.size.width + inter.width) / num - inter.width;
       [object setCellSize: cell];
-      [[dimensionsForm cellAtIndex: 1] setIntValue: num];
-      [sender setIntValue: colsStepperValue];
+      [[dimensionsForm cellAtIndex: 1] setIntegerValue: num];
+      [sender setIntegerValue: colsStepperValue];
       [dimensionsForm setNeedsDisplay: YES];
       [object setNeedsDisplay: YES];
     }
@@ -270,9 +271,9 @@ NSUInteger colsStepperValue;
   
   [selRectSwitch setState: 
     ([object isSelectionByRect]) ? NSOnState : NSOffState];
-  [[tagForm cellAtIndex: 0] setIntValue: [object tag]];
-  [[dimensionsForm cellAtIndex: 0] setIntValue: [object numberOfRows]];
-  [[dimensionsForm cellAtIndex: 1] setIntValue: [object numberOfColumns]];
+  [[tagForm cellAtIndex: 0] setIntegerValue: [object tag]];
+  [[dimensionsForm cellAtIndex: 0] setIntegerValue: [object numberOfRows]];
+  [[dimensionsForm cellAtIndex: 1] setIntegerValue: [object numberOfColumns]];
 
   [super revert:sender];
 }

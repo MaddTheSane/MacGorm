@@ -28,7 +28,8 @@
 
 #include <AppKit/AppKit.h>
 #include "GormSoundView.h"
-#include <AppKit/PSOperators.h>
+#include <GNUstepBase/GNUstep.h>
+//#include <AppKit/PSOperators.h>
 
 // add a data method to the NSSound class...
 @interface NSSound (SoundView)
@@ -38,7 +39,8 @@
 @implementation NSSound (SoundView)
 - (NSData *)data
 {
-  return _data;
+  return nil;
+  //return _data;
 }
 @end
 

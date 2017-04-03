@@ -25,7 +25,7 @@
 #ifndef INCLUDED_IBPROJECTFILES_H
 #define INCLUDED_IBPROJECTFILES_H
 
-#include <InterfaceBuilder/IBProjects.h>
+#include <GormLib/IBProjects.h>
 
 @class NSString;
 

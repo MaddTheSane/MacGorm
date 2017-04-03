@@ -37,13 +37,10 @@
   BOOL                  isClassMethod;
 }
 
-- (id) initWithString: (NSString *)string;
-- (NSString *)name;
-- (void) setName: (NSString *)aName;
-- (BOOL) isAction;
-- (void) setIsAction: (BOOL)flag;
-- (BOOL) isClassMethod;
-- (void) setIsClassMethod: (BOOL) flag;
+- (instancetype) initWithString: (NSString *)string;
+@property (copy) NSString *name;
+@property BOOL isAction;
+@property BOOL isClassMethod;
 - (void) parse;
 @end
 

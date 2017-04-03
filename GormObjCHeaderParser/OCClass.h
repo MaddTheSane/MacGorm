@@ -39,17 +39,14 @@
   NSString              *classString;
   BOOL                  isCategory;
 }
-- (id) initWithString: (NSString *)string;
+- (instancetype) initWithString: (NSString *)string;
 - (NSArray *) methods;
 - (void) addMethod: (NSString *)name isAction: (BOOL) flag;
 - (NSArray *) ivars;
 - (void) addIVar: (NSString *)name isOutlet: (BOOL) flag;
-- (NSString *) className;
-- (void) setClassName: (NSString *)name;
-- (NSString *) superClassName;
-- (void) setSuperClassName: (NSString *)name;
-- (BOOL) isCategory;
-- (void) setIsCategory: (BOOL)flag;
+@property (copy) NSString *className;
+@property (copy) NSString *superClassName;
+@property BOOL isCategory;
 - (void) parse;
 @end
 

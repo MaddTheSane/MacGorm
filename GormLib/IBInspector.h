@@ -26,7 +26,7 @@
 #define INCLUDED_IBINSPECTOR_H
 
 #include <Foundation/NSObject.h>
-#include <InterfaceBuilder/IBObjectProtocol.h>
+#include <GormLib/IBObjectProtocol.h>
 
 #define	IVH	388	/* Standard height of inspector view.	*/
 #define	IVW	272	/* Standard width of inspector view.	*/

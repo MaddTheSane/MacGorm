@@ -28,11 +28,12 @@
 
 #include <GormCore/GormPrivate.h>
 #include "GormPalettesPref.h"
+#import <GNUstepBase/GNUstepBase.h>
 
 @class NSTableView;
 
 // data source...
-@interface PaletteDataSource : NSObject
+@interface PaletteDataSource : NSObject <NSTableViewDataSource>
 @end
 
 @implementation PaletteDataSource
@@ -99,7 +100,7 @@ objectValueForTableColumn: (NSTableColumn *)tc
 {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   NSMutableArray *list = [defaults objectForKey: @"UserPalettes"];
-  int row = [table selectedRow];
+  NSInteger row = [table selectedRow];
 
   if(row >= 0)
     {
@@ -116,7 +117,7 @@ objectValueForTableColumn: (NSTableColumn *)tc
 
 - (BOOL)    tableView: (NSTableView *)tableView
 shouldEditTableColumn: (NSTableColumn *)aTableColumn
-		  row: (NSInteger)rowIndex
+				  row: (NSInteger)rowIndex
 {
   BOOL result = NO;
   return result;

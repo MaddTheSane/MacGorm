@@ -25,10 +25,12 @@
 #ifndef INCLUDED_IBDEFINES_H
 #define INCLUDED_IBDEFINES_H
 
+#import <Foundation/NSObjCRuntime.h>
+
 /*
  * Positions of handles for resizing items.
  */
-typedef enum {
+typedef NS_ENUM(NSInteger, IBKnobPosition) {
   IBBottomLeftKnobPosition = 0,
   IBMiddleLeftKnobPosition = 1,
   IBTopLeftKnobPosition = 2,
@@ -38,6 +40,6 @@ typedef enum {
   IBBottomRightKnobPosition = 6,
   IBBottomMiddleKnobPosition = 7,
   IBNoneKnobPosition = -1
-} IBKnobPosition;
+};
 
 #endif

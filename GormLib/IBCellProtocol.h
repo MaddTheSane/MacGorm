@@ -26,7 +26,7 @@
 #define INCLUDED_IBCELLPROTOCOL_H
 
 #include <Foundation/NSGeometry.h>
-#include <InterfaceBuilder/IBDefines.h>
+#include <GormLib/IBDefines.h>
 
 @protocol IBCellProtocol
 /**

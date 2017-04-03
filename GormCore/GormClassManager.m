@@ -28,10 +28,13 @@
 #include "GormDocument.h"
 #include "GormFilesOwner.h"
 #include "GormPalettesManager.h"
-#include <InterfaceBuilder/IBEditors.h>
-#include <InterfaceBuilder/IBPalette.h>
+#include <GormLib/IBEditors.h>
+#include <GormLib/IBPalette.h>
 #include <Foundation/NSValue.h>
 #include <Foundation/NSException.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GNUstepBase/GSObjCRuntime.h>
+#import <GNUstepBase/GNUstep.h>
 
 #include <GormObjCHeaderParser/OCHeaderParser.h>
 #include <GormObjCHeaderParser/OCClass.h>
@@ -1912,14 +1915,13 @@
 		{
 		  if([self isKnownClass: className])
 		    {
-		      NSString *title = [NSString stringWithFormat: 
-						    _(@"Reparsing Class")];
+		      NSString *title = _(@"Reparsing Class");
 		      NSString *msg = [NSString stringWithFormat: 
 						  _(@"This may break connections to "
 						    @"actions/outlets to instances of class '%@' "
 						    @"and it's subclasses.  Continue?"), 
 						className];
-		      NSInteger retval = NSRunAlertPanel(title, msg,_(@"OK"),_(@"Cancel"), nil, nil);
+		      NSInteger retval = NSRunAlertPanel(title, @"%@", _(@"OK"), _(@"Cancel"), nil, msg);
 
 		      if (retval == NSAlertDefaultReturn)
 			{

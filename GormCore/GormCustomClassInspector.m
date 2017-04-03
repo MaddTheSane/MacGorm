@@ -33,6 +33,8 @@
 #include "GormDocument.h"
 #include "GormPrivate.h"
 #include "GormViewEditor.h"
+#include <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 @implementation GormCustomClassInspector
 + (void) initialize

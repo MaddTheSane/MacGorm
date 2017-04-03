@@ -22,12 +22,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <InterfaceBuilder/IBApplicationAdditions.h>
-#include <InterfaceBuilder/IBInspector.h>
-#include <InterfaceBuilder/IBDocuments.h>
+#include <GormLib/IBApplicationAdditions.h>
+#include <GormLib/IBInspector.h>
+#include <GormLib/IBDocuments.h>
 #include <Foundation/NSString.h>
 #include <Foundation/NSNotification.h>
 #include <AppKit/NSWindow.h>
+#import <GNUstepBase/GNUstep.h>
 
 static NSNotificationCenter *nc = nil;
 

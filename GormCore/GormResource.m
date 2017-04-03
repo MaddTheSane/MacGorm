@@ -25,6 +25,7 @@
 #include <Foundation/NSData.h>
 #include <Foundation/NSObject.h>
 #include <Foundation/NSString.h>
+#include <GNUstepBase/GNUstep.h>
 #include "GormResource.h"
 
 // resource proxy object...
@@ -52,20 +53,20 @@
 
 - (id) initWithData: (NSData *)aData withFileName: (NSString *)aFileName inWrapper: (BOOL)flag
 {
-  if((self = [self init]))
-    {
-      ASSIGN(path, nil);
-      ASSIGN(fileName, aFileName);
-      ASSIGN(name, [fileName stringByDeletingPathExtension]);
-      ASSIGN(fileType, [fileName pathExtension]);
-      ASSIGN(data, aData);
-      language = nil;
-      isLocalized = NO;
-      isSystemResource = NO;
-      isInWrapper = flag;
-      project = nil;
-    }
-  return self;
+	if ((self = [self init])) {
+		//ASSIGN(path, nil);
+		DESTROY(path);
+		ASSIGN(fileName, aFileName);
+		ASSIGN(name, [fileName stringByDeletingPathExtension]);
+		ASSIGN(fileType, [fileName pathExtension]);
+		ASSIGN(data, aData);
+		language = nil;
+		isLocalized = NO;
+		isSystemResource = NO;
+		isInWrapper = flag;
+		project = nil;
+	}
+	return self;
 }
 
 - (id) initWithName: (NSString *)aName

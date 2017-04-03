@@ -22,6 +22,7 @@
  */
 
 #include "GormNibCustomResource.h"
+#import <GNUstepBase/GNUstepBase.h>
 
 @implementation GormNibNibCustomResource : NSCustomResource
 - (id) initWithCoder: (NSCoder *)coder

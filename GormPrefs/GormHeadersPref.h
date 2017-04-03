@@ -4,10 +4,11 @@
 #include <Foundation/NSObject.h>
 #include <Foundation/NSArray.h>
 #include <AppKit/NSView.h>
+#import <AppKit/NSButton.h>
 
 @interface GormHeadersPref : NSObject
 {
-  id preloadButton;
+  NSButton *preloadButton;
   id table;
   id addButton;
   id removeButton;

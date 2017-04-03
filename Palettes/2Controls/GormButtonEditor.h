@@ -25,10 +25,9 @@
 #define	INCLUDED_GormButtonEditor_h
 
 #include <GormCore/GormControlEditor.h>
+#import <AppKit/NSTextView.h>
 
-@class NSTextView;
-
-@interface GormButtonEditor : GormControlEditor
+@interface GormButtonEditor : GormControlEditor <NSTextViewDelegate>
 {
   NSTextView *tempTextView;
 }

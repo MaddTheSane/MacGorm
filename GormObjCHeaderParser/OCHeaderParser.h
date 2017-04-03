@@ -23,11 +23,12 @@
  */
 
 #include <Foundation/NSObject.h>
+#include <Foundation/NSArray.h>
 
 #ifndef INCLUDED_OCHeaderParser_h
 #define INCLUDED_OCHeaderParser_h
 
-@class NSMutableArray, NSString;
+@class NSString;
 
 @interface OCHeaderParser : NSObject
 {
@@ -35,7 +36,7 @@
   NSString *fileData;
 }
 
-- (id) initWithContentsOfFile: (NSString *)file;
+- (instancetype) initWithContentsOfFile: (NSString *)file;
 - (NSMutableArray *)classes;
 - (BOOL) parse;
 @end
