@@ -24,7 +24,7 @@
 
 #include <Foundation/Foundation.h>
 #include <AppKit/AppKit.h>
-#include <GNUstepGUI/GSNibLoading.h>
+#import <GormCore/PrivateCocoaClasses.h>
 
 @interface NSWindowTemplate (Private)
 - (void) setBaseWindowClass: (Class) clz;

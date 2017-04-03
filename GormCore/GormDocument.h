@@ -26,10 +26,12 @@
 #ifndef INCLUDED_GormDocument_h
 #define INCLUDED_GormDocument_h
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
+#import <AppKit/NSNibConnector.h>
 #include <Foundation/Foundation.h>
 #include <GNUstepGUI/GSNibContainer.h>
-#include <GNUstepGUI/GSNibLoading.h>
+#include <GNUstepGUI/GSInstantiator.h>
+#import <GormCore/PrivateCocoaClasses.h>
 #include <GormLib/InterfaceBuilder.h>
 
 @class GormClassManager, GormClassEditor, GormObjectProxy, GormFilesOwner, 

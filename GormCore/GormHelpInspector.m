@@ -2,7 +2,7 @@
 
 #include <AppKit/AppKit.h>
 #include "GormHelpInspector.h"
-#include <GNUstepGUI/GSNibLoading.h>
+#import <GormCore/PrivateCocoaClasses.h>
 
 @implementation GormHelpInspector
 - (id) init

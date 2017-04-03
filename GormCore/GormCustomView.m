@@ -33,7 +33,7 @@
 #include <AppKit/NSNibLoading.h>
 
 #include <GNUstepGUI/GSGormLoading.h>
-#include <GNUstepGUI/GSNibLoading.h>
+#import <GormCore/PrivateCocoaClasses.h>
 
 @class GSCustomView;
 

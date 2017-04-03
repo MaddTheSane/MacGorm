@@ -28,7 +28,6 @@
 #include <GormLib/IBInspector.h>
 #include <GNUstepBase/GNUstep.h>
 #import <GNUstepBase/NSDebug+GNUstepBase.h>
-#import <GNUstepGUI/GSNibLoading.h>
 #import <AppKit/NSNibOutletConnector.h>
 #import <AppKit/NSNibControlConnector.h>
 

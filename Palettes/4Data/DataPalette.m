@@ -284,7 +284,7 @@ static const NSInteger defaultDateFormatIndex = 3;
   [v setImageFrameStyle: NSImageFramePhoto]; //FramePhoto not implemented
   [v setImageScaling: NSImageScaleProportionallyDown];
   [v setImageAlignment: NSImageAlignCenter];
-  [v setImage: [NSImage imageNamed: @"Sunday_seurat.tiff"]];
+  [v setImage: [NSImage imageNamed: @"Sunday_seurat"]];
   [contents addSubview: v];
   RELEASE(v);
 
@@ -296,7 +296,7 @@ static const NSInteger defaultDateFormatIndex = 3;
   [v setImageFrameStyle: NSImageFramePhoto];
   [v setImageScaling: NSImageScaleProportionallyDown];
   [v setImageAlignment: NSImageAlignCenter];
-  [v setImage: [NSImage imageNamed: @"number_formatter.tiff"]];
+  [v setImage: [NSImage imageNamed: @"number_formatter"]];
   [contents addSubview: v];
 
   nf = [[NSNumberFormatter alloc] init];
@@ -309,7 +309,7 @@ static const NSInteger defaultDateFormatIndex = 3;
   [v setImageFrameStyle: NSImageFramePhoto];
   [v setImageScaling: NSImageScaleProportionallyDown];
   [v setImageAlignment: NSImageAlignCenter];
-  [v setImage: [NSImage imageNamed: @"date_formatter.tiff"]];
+  [v setImage: [NSImage imageNamed: @"date_formatter"]];
   [contents addSubview: v];
 
   df = [[NSDateFormatter alloc]

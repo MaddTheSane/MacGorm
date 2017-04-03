@@ -24,7 +24,9 @@
 #ifndef GORM_NIBCUSTOMRESOURCE
 #define GORM_NIBCUSTOMRESOURCE
 
-#include <GNUstepGUI/GSNibLoading.h>
+//#include <GNUstepGUI/GSNibLoading.h>
+
+#import <GormCore/GormCore.h>
 
 @interface GormNibNibCustomResource : NSCustomResource
 @end

@@ -336,6 +336,35 @@
 		55C7EC641E91B69A001CE0C5 /* 2Controls.palette in Copy Palettes */ = {isa = PBXBuildFile; fileRef = 55C7EB661E91A4B0001CE0C5 /* 2Controls.palette */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55C7EC651E91B69A001CE0C5 /* 4Data.palette in Copy Palettes */ = {isa = PBXBuildFile; fileRef = 55C7EB7A1E91A522001CE0C5 /* 4Data.palette */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55C7EC6C1E91B6E6001CE0C5 /* GormCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D98131E90350C00E79BFA /* GormCore.framework */; };
+		55C7ECA61E91BCDA001CE0C5 /* PrivateCocoaClasses.h in Headers */ = {isa = PBXBuildFile; fileRef = 55C7ECA51E91BCDA001CE0C5 /* PrivateCocoaClasses.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		55C7ECA71E91C9FD001CE0C5 /* Gorm.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECA91E91C9FD001CE0C5 /* Gorm.gorm */; };
+		55C7ECAA1E91CA04001CE0C5 /* GormClassEditor.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECAC1E91CA04001CE0C5 /* GormClassEditor.gorm */; };
+		55C7ECAD1E91CA0A001CE0C5 /* GormClassInspector.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECAF1E91CA0A001CE0C5 /* GormClassInspector.gorm */; };
+		55C7ECB01E91CA10001CE0C5 /* GormClassPanel.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECB21E91CA10001CE0C5 /* GormClassPanel.gorm */; };
+		55C7ECB31E91CA17001CE0C5 /* GormConnectionInspector.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECB51E91CA17001CE0C5 /* GormConnectionInspector.gorm */; };
+		55C7ECB61E91CA1E001CE0C5 /* GormCustomClassInspector.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECB81E91CA1E001CE0C5 /* GormCustomClassInspector.gorm */; };
+		55C7ECB91E91CA23001CE0C5 /* GormDocument.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECBB1E91CA23001CE0C5 /* GormDocument.gorm */; };
+		55C7ECBC1E91CA29001CE0C5 /* GormDummyInspector.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECBE1E91CA29001CE0C5 /* GormDummyInspector.gorm */; };
+		55C7ECBF1E91CA2F001CE0C5 /* GormFontView.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECC11E91CA2F001CE0C5 /* GormFontView.gorm */; };
+		55C7ECC21E91CA35001CE0C5 /* GormHelpInspector.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECC41E91CA35001CE0C5 /* GormHelpInspector.gorm */; };
+		55C7ECC51E91CA3C001CE0C5 /* GormImageInspector.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECC71E91CA3C001CE0C5 /* GormImageInspector.gorm */; };
+		55C7ECC81E91CA41001CE0C5 /* GormInconsistenciesPanel.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECCA1E91CA41001CE0C5 /* GormInconsistenciesPanel.gorm */; };
+		55C7ECCB1E91CA47001CE0C5 /* GormInspectorPanel.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECCD1E91CA47001CE0C5 /* GormInspectorPanel.gorm */; };
+		55C7ECCE1E91CA4D001CE0C5 /* GormNSSplitViewInspector.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECD01E91CA4D001CE0C5 /* GormNSSplitViewInspector.gorm */; };
+		55C7ECD11E91CA52001CE0C5 /* GormObjectInspector.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECD31E91CA52001CE0C5 /* GormObjectInspector.gorm */; };
+		55C7ECD41E91CA57001CE0C5 /* GormPalettePanel.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECD61E91CA57001CE0C5 /* GormPalettePanel.gorm */; };
+		55C7ECD71E91CA5C001CE0C5 /* GormPrefColors.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECD91E91CA5C001CE0C5 /* GormPrefColors.gorm */; };
+		55C7ECDA1E91CA61001CE0C5 /* GormPreferences.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECDC1E91CA61001CE0C5 /* GormPreferences.gorm */; };
+		55C7ECDD1E91CA67001CE0C5 /* GormPrefGeneral.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECDF1E91CA67001CE0C5 /* GormPrefGeneral.gorm */; };
+		55C7ECE01E91CA6C001CE0C5 /* GormPrefGuideline.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECE21E91CA6C001CE0C5 /* GormPrefGuideline.gorm */; };
+		55C7ECE31E91CA71001CE0C5 /* GormPrefHeaders.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECE51E91CA71001CE0C5 /* GormPrefHeaders.gorm */; };
+		55C7ECE61E91CA77001CE0C5 /* GormPrefPalettes.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECE81E91CA77001CE0C5 /* GormPrefPalettes.gorm */; };
+		55C7ECE91E91CA7D001CE0C5 /* GormPrefPlugins.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECEB1E91CA7D001CE0C5 /* GormPrefPlugins.gorm */; };
+		55C7ECEC1E91CA84001CE0C5 /* GormScrollViewAttributesInspector.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECEE1E91CA84001CE0C5 /* GormScrollViewAttributesInspector.gorm */; };
+		55C7ECEF1E91CA88001CE0C5 /* GormSetName.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECF11E91CA88001CE0C5 /* GormSetName.gorm */; };
+		55C7ECF21E91CA8E001CE0C5 /* GormShelfPref.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECF41E91CA8E001CE0C5 /* GormShelfPref.gorm */; };
+		55C7ECF51E91CA93001CE0C5 /* GormSoundInspector.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECF71E91CA93001CE0C5 /* GormSoundInspector.gorm */; };
+		55C7ECF81E91CA99001CE0C5 /* GormViewSizeInspector.gorm in Resources */ = {isa = PBXBuildFile; fileRef = 55C7ECFA1E91CA99001CE0C5 /* GormViewSizeInspector.gorm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -970,6 +999,35 @@
 		55C7EC2E1E91A610001CE0C5 /* GormTextViewSizeInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormTextViewSizeInspector.m; sourceTree = "<group>"; };
 		55C7EC2F1E91A610001CE0C5 /* inspectors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = inspectors.m; sourceTree = "<group>"; };
 		55C7EC301E91A610001CE0C5 /* palette.table */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = palette.table; sourceTree = "<group>"; };
+		55C7ECA51E91BCDA001CE0C5 /* PrivateCocoaClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateCocoaClasses.h; sourceTree = "<group>"; };
+		55C7ECA81E91C9FD001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/Gorm.gorm; sourceTree = "<group>"; };
+		55C7ECAB1E91CA04001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormClassEditor.gorm; sourceTree = "<group>"; };
+		55C7ECAE1E91CA0A001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormClassInspector.gorm; sourceTree = "<group>"; };
+		55C7ECB11E91CA10001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormClassPanel.gorm; sourceTree = "<group>"; };
+		55C7ECB41E91CA17001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormConnectionInspector.gorm; sourceTree = "<group>"; };
+		55C7ECB71E91CA1E001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormCustomClassInspector.gorm; sourceTree = "<group>"; };
+		55C7ECBA1E91CA23001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormDocument.gorm; sourceTree = "<group>"; };
+		55C7ECBD1E91CA29001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormDummyInspector.gorm; sourceTree = "<group>"; };
+		55C7ECC01E91CA2F001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormFontView.gorm; sourceTree = "<group>"; };
+		55C7ECC31E91CA35001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormHelpInspector.gorm; sourceTree = "<group>"; };
+		55C7ECC61E91CA3C001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormImageInspector.gorm; sourceTree = "<group>"; };
+		55C7ECC91E91CA41001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormInconsistenciesPanel.gorm; sourceTree = "<group>"; };
+		55C7ECCC1E91CA47001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormInspectorPanel.gorm; sourceTree = "<group>"; };
+		55C7ECCF1E91CA4D001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormNSSplitViewInspector.gorm; sourceTree = "<group>"; };
+		55C7ECD21E91CA52001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormObjectInspector.gorm; sourceTree = "<group>"; };
+		55C7ECD51E91CA57001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormPalettePanel.gorm; sourceTree = "<group>"; };
+		55C7ECD81E91CA5C001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormPrefColors.gorm; sourceTree = "<group>"; };
+		55C7ECDB1E91CA61001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormPreferences.gorm; sourceTree = "<group>"; };
+		55C7ECDE1E91CA67001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormPrefGeneral.gorm; sourceTree = "<group>"; };
+		55C7ECE11E91CA6C001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormPrefGuideline.gorm; sourceTree = "<group>"; };
+		55C7ECE41E91CA71001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormPrefHeaders.gorm; sourceTree = "<group>"; };
+		55C7ECE71E91CA77001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormPrefPalettes.gorm; sourceTree = "<group>"; };
+		55C7ECEA1E91CA7D001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormPrefPlugins.gorm; sourceTree = "<group>"; };
+		55C7ECED1E91CA84001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormScrollViewAttributesInspector.gorm; sourceTree = "<group>"; };
+		55C7ECF01E91CA88001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormSetName.gorm; sourceTree = "<group>"; };
+		55C7ECF31E91CA8E001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormShelfPref.gorm; sourceTree = "<group>"; };
+		55C7ECF61E91CA93001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormSoundInspector.gorm; sourceTree = "<group>"; };
+		55C7ECF91E91CA99001CE0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = en; path = en.lproj/GormViewSizeInspector.gorm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1141,6 +1199,34 @@
 		554D97F81E9031E800E79BFA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				55C7ECA91E91C9FD001CE0C5 /* Gorm.gorm */,
+				55C7ECAC1E91CA04001CE0C5 /* GormClassEditor.gorm */,
+				55C7ECAF1E91CA0A001CE0C5 /* GormClassInspector.gorm */,
+				55C7ECB21E91CA10001CE0C5 /* GormClassPanel.gorm */,
+				55C7ECB51E91CA17001CE0C5 /* GormConnectionInspector.gorm */,
+				55C7ECB81E91CA1E001CE0C5 /* GormCustomClassInspector.gorm */,
+				55C7ECBB1E91CA23001CE0C5 /* GormDocument.gorm */,
+				55C7ECBE1E91CA29001CE0C5 /* GormDummyInspector.gorm */,
+				55C7ECC11E91CA2F001CE0C5 /* GormFontView.gorm */,
+				55C7ECC41E91CA35001CE0C5 /* GormHelpInspector.gorm */,
+				55C7ECC71E91CA3C001CE0C5 /* GormImageInspector.gorm */,
+				55C7ECCA1E91CA41001CE0C5 /* GormInconsistenciesPanel.gorm */,
+				55C7ECCD1E91CA47001CE0C5 /* GormInspectorPanel.gorm */,
+				55C7ECD01E91CA4D001CE0C5 /* GormNSSplitViewInspector.gorm */,
+				55C7ECD31E91CA52001CE0C5 /* GormObjectInspector.gorm */,
+				55C7ECD61E91CA57001CE0C5 /* GormPalettePanel.gorm */,
+				55C7ECD91E91CA5C001CE0C5 /* GormPrefColors.gorm */,
+				55C7ECDC1E91CA61001CE0C5 /* GormPreferences.gorm */,
+				55C7ECDF1E91CA67001CE0C5 /* GormPrefGeneral.gorm */,
+				55C7ECE21E91CA6C001CE0C5 /* GormPrefGuideline.gorm */,
+				55C7ECE51E91CA71001CE0C5 /* GormPrefHeaders.gorm */,
+				55C7ECE81E91CA77001CE0C5 /* GormPrefPalettes.gorm */,
+				55C7ECEB1E91CA7D001CE0C5 /* GormPrefPlugins.gorm */,
+				55C7ECEE1E91CA84001CE0C5 /* GormScrollViewAttributesInspector.gorm */,
+				55C7ECF11E91CA88001CE0C5 /* GormSetName.gorm */,
+				55C7ECF41E91CA8E001CE0C5 /* GormShelfPref.gorm */,
+				55C7ECF71E91CA93001CE0C5 /* GormSoundInspector.gorm */,
+				55C7ECFA1E91CA99001CE0C5 /* GormViewSizeInspector.gorm */,
 				55B7194F1E917BCA0006E8EB /* ClassInformation.plist */,
 				55B719501E917BCA0006E8EB /* Defaults.plist */,
 				554D980C1E90329E00E79BFA /* VersionProfiles.plist */,
@@ -1279,6 +1365,7 @@
 				554D989A1E90353000E79BFA /* NSFontManager+GormExtensions.m */,
 				554D989B1E90353000E79BFA /* NSView+GormExtensions.h */,
 				554D989C1E90353000E79BFA /* NSView+GormExtensions.m */,
+				55C7ECA51E91BCDA001CE0C5 /* PrivateCocoaClasses.h */,
 				554D98151E90350C00E79BFA /* GormCore.h */,
 				554D98161E90350C00E79BFA /* Info.plist */,
 			);
@@ -1726,6 +1813,7 @@
 				554D98A31E90353000E79BFA /* GormClassManager.h in Headers */,
 				554D98C41E90353000E79BFA /* GormImageEditor.h in Headers */,
 				554D98C21E90353000E79BFA /* GormImage.h in Headers */,
+				55C7ECA61E91BCDA001CE0C5 /* PrivateCocoaClasses.h in Headers */,
 				554D98B21E90353000E79BFA /* GormDocumentController.h in Headers */,
 				554D99141E90353000E79BFA /* NSColorWell+GormExtensions.h in Headers */,
 				554D98A91E90353000E79BFA /* GormControlEditor.h in Headers */,
@@ -2223,11 +2311,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55C7ECE61E91CA77001CE0C5 /* GormPrefPalettes.gorm in Resources */,
+				55C7ECF51E91CA93001CE0C5 /* GormSoundInspector.gorm in Resources */,
+				55C7ECBF1E91CA2F001CE0C5 /* GormFontView.gorm in Resources */,
 				554D98021E9031E800E79BFA /* Assets.xcassets in Resources */,
+				55C7ECC81E91CA41001CE0C5 /* GormInconsistenciesPanel.gorm in Resources */,
+				55C7ECE01E91CA6C001CE0C5 /* GormPrefGuideline.gorm in Resources */,
+				55C7ECB91E91CA23001CE0C5 /* GormDocument.gorm in Resources */,
+				55C7ECEC1E91CA84001CE0C5 /* GormScrollViewAttributesInspector.gorm in Resources */,
+				55C7ECE31E91CA71001CE0C5 /* GormPrefHeaders.gorm in Resources */,
+				55C7ECD41E91CA57001CE0C5 /* GormPalettePanel.gorm in Resources */,
+				55C7ECF21E91CA8E001CE0C5 /* GormShelfPref.gorm in Resources */,
+				55C7ECD11E91CA52001CE0C5 /* GormObjectInspector.gorm in Resources */,
+				55C7ECCB1E91CA47001CE0C5 /* GormInspectorPanel.gorm in Resources */,
+				55C7ECBC1E91CA29001CE0C5 /* GormDummyInspector.gorm in Resources */,
+				55C7ECB61E91CA1E001CE0C5 /* GormCustomClassInspector.gorm in Resources */,
+				55C7ECDD1E91CA67001CE0C5 /* GormPrefGeneral.gorm in Resources */,
+				55C7ECB01E91CA10001CE0C5 /* GormClassPanel.gorm in Resources */,
+				55C7ECAA1E91CA04001CE0C5 /* GormClassEditor.gorm in Resources */,
 				559D48DB1E90C7CD003E1A48 /* InfoPlist.strings in Resources */,
+				55C7ECD71E91CA5C001CE0C5 /* GormPrefColors.gorm in Resources */,
 				55B719521E917BCA0006E8EB /* Defaults.plist in Resources */,
 				554D980D1E90329E00E79BFA /* VersionProfiles.plist in Resources */,
+				55C7ECCE1E91CA4D001CE0C5 /* GormNSSplitViewInspector.gorm in Resources */,
+				55C7ECA71E91C9FD001CE0C5 /* Gorm.gorm in Resources */,
+				55C7ECB31E91CA17001CE0C5 /* GormConnectionInspector.gorm in Resources */,
+				55C7ECAD1E91CA0A001CE0C5 /* GormClassInspector.gorm in Resources */,
+				55C7ECC51E91CA3C001CE0C5 /* GormImageInspector.gorm in Resources */,
+				55C7ECEF1E91CA88001CE0C5 /* GormSetName.gorm in Resources */,
 				55B719511E917BCA0006E8EB /* ClassInformation.plist in Resources */,
+				55C7ECE91E91CA7D001CE0C5 /* GormPrefPlugins.gorm in Resources */,
+				55C7ECC21E91CA35001CE0C5 /* GormHelpInspector.gorm in Resources */,
+				55C7ECF81E91CA99001CE0C5 /* GormViewSizeInspector.gorm in Resources */,
+				55C7ECDA1E91CA61001CE0C5 /* GormPreferences.gorm in Resources */,
 				554D98051E9031E800E79BFA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2758,6 +2874,230 @@
 				559D48DC1E90C7CD003E1A48 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		55C7ECA91E91C9FD001CE0C5 /* Gorm.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECA81E91C9FD001CE0C5 /* en */,
+			);
+			name = Gorm.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECAC1E91CA04001CE0C5 /* GormClassEditor.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECAB1E91CA04001CE0C5 /* en */,
+			);
+			name = GormClassEditor.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECAF1E91CA0A001CE0C5 /* GormClassInspector.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECAE1E91CA0A001CE0C5 /* en */,
+			);
+			name = GormClassInspector.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECB21E91CA10001CE0C5 /* GormClassPanel.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECB11E91CA10001CE0C5 /* en */,
+			);
+			name = GormClassPanel.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECB51E91CA17001CE0C5 /* GormConnectionInspector.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECB41E91CA17001CE0C5 /* en */,
+			);
+			name = GormConnectionInspector.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECB81E91CA1E001CE0C5 /* GormCustomClassInspector.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECB71E91CA1E001CE0C5 /* en */,
+			);
+			name = GormCustomClassInspector.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECBB1E91CA23001CE0C5 /* GormDocument.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECBA1E91CA23001CE0C5 /* en */,
+			);
+			name = GormDocument.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECBE1E91CA29001CE0C5 /* GormDummyInspector.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECBD1E91CA29001CE0C5 /* en */,
+			);
+			name = GormDummyInspector.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECC11E91CA2F001CE0C5 /* GormFontView.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECC01E91CA2F001CE0C5 /* en */,
+			);
+			name = GormFontView.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECC41E91CA35001CE0C5 /* GormHelpInspector.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECC31E91CA35001CE0C5 /* en */,
+			);
+			name = GormHelpInspector.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECC71E91CA3C001CE0C5 /* GormImageInspector.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECC61E91CA3C001CE0C5 /* en */,
+			);
+			name = GormImageInspector.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECCA1E91CA41001CE0C5 /* GormInconsistenciesPanel.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECC91E91CA41001CE0C5 /* en */,
+			);
+			name = GormInconsistenciesPanel.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECCD1E91CA47001CE0C5 /* GormInspectorPanel.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECCC1E91CA47001CE0C5 /* en */,
+			);
+			name = GormInspectorPanel.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECD01E91CA4D001CE0C5 /* GormNSSplitViewInspector.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECCF1E91CA4D001CE0C5 /* en */,
+			);
+			name = GormNSSplitViewInspector.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECD31E91CA52001CE0C5 /* GormObjectInspector.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECD21E91CA52001CE0C5 /* en */,
+			);
+			name = GormObjectInspector.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECD61E91CA57001CE0C5 /* GormPalettePanel.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECD51E91CA57001CE0C5 /* en */,
+			);
+			name = GormPalettePanel.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECD91E91CA5C001CE0C5 /* GormPrefColors.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECD81E91CA5C001CE0C5 /* en */,
+			);
+			name = GormPrefColors.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECDC1E91CA61001CE0C5 /* GormPreferences.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECDB1E91CA61001CE0C5 /* en */,
+			);
+			name = GormPreferences.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECDF1E91CA67001CE0C5 /* GormPrefGeneral.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECDE1E91CA67001CE0C5 /* en */,
+			);
+			name = GormPrefGeneral.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECE21E91CA6C001CE0C5 /* GormPrefGuideline.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECE11E91CA6C001CE0C5 /* en */,
+			);
+			name = GormPrefGuideline.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECE51E91CA71001CE0C5 /* GormPrefHeaders.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECE41E91CA71001CE0C5 /* en */,
+			);
+			name = GormPrefHeaders.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECE81E91CA77001CE0C5 /* GormPrefPalettes.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECE71E91CA77001CE0C5 /* en */,
+			);
+			name = GormPrefPalettes.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECEB1E91CA7D001CE0C5 /* GormPrefPlugins.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECEA1E91CA7D001CE0C5 /* en */,
+			);
+			name = GormPrefPlugins.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECEE1E91CA84001CE0C5 /* GormScrollViewAttributesInspector.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECED1E91CA84001CE0C5 /* en */,
+			);
+			name = GormScrollViewAttributesInspector.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECF11E91CA88001CE0C5 /* GormSetName.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECF01E91CA88001CE0C5 /* en */,
+			);
+			name = GormSetName.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECF41E91CA8E001CE0C5 /* GormShelfPref.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECF31E91CA8E001CE0C5 /* en */,
+			);
+			name = GormShelfPref.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECF71E91CA93001CE0C5 /* GormSoundInspector.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECF61E91CA93001CE0C5 /* en */,
+			);
+			name = GormSoundInspector.gorm;
+			sourceTree = "<group>";
+		};
+		55C7ECFA1E91CA99001CE0C5 /* GormViewSizeInspector.gorm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C7ECF91E91CA99001CE0C5 /* en */,
+			);
+			name = GormViewSizeInspector.gorm;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -26,7 +26,7 @@
 
 #include <Foundation/Foundation.h>
 #include <AppKit/AppKit.h>
-#include <GNUstepGUI/GSNibLoading.h>
+//#include <GNUstepGUI/GSNibLoading.h>
 
 #include <GormCore/GormWrapperBuilder.h>
 #include <GormCore/GormClassManager.h>
@@ -58,12 +58,12 @@
       unsigned int oid = 1;
       
       // Create the container for the .nib file...
-      ASSIGN(_root, owner);
-      NSMapInsert(_names, owner, @"File's Owner");
-      NSMapInsert(_oids, owner, [[NSNumber alloc] initWithUnsignedInt: oid++]);
-      ASSIGN(_framework, @"IBCocoaFramework");
-      [_topLevelObjects addObjectsFromArray: [[document topLevelObjects] allObjects]];
-      [_visibleWindows addObjectsFromArray: [[document visibleWindows] allObjects]];
+		[self setRootObject:owner];
+      NSMapInsert(self.nameTable, owner, @"File's Owner");
+      NSMapInsert(self.oidTable, owner, [[NSNumber alloc] initWithUnsignedInt: oid++]);
+		[self setTargetFramework:@"IBCocoaFramework"];
+      //[_topLevelObjects addObjectsFromArray: [[document topLevelObjects] allObjects]];
+      [[self visibleWindows] addObjectsFromArray: [[document visibleWindows] allObjects]];
 
       // fill in objects and connections....
       while((o = [en nextObject]) != nil)
@@ -107,7 +107,7 @@
 		}
               else
                 {
-                  NSMapInsert(_objects, src, dst);
+                  NSMapInsert(self.objectTable, src, dst);
                 }
 
 	      if (name == nil)
@@ -116,7 +116,7 @@
                 }
               else
                 {
-                  NSMapInsert(_names, src, name);
+                  NSMapInsert(self.nameTable, src, name);
                 }
 
 	      if (currOid == nil)
@@ -125,18 +125,18 @@
 		}
               else
                 {
-                  NSMapInsert(_oids, src, currOid);
+                  NSMapInsert(self.oidTable, src, currOid);
                 }
 	    }
 	  else
 	    {
-	      [_connections addObject: o];
-	      NSMapInsert(_oids, o, currOid);
+	      [self.connections addObject: o];
+	      NSMapInsert(self.oidTable, o, currOid);
 	    }
 	}
 
       // set the next oid...
-      _nextOid = oid;
+      self.nextObjectID = oid;
 
       // custom classes...
       en = [keys objectEnumerator];
@@ -144,7 +144,7 @@
 	{
 	  id obj = [document objectForName: o];
 	  NSString *className = [customClasses objectForKey: o];
-	  NSMapInsert(_classes, obj, className);
+	  NSMapInsert(self.classTable, obj, className);
 	}
     }
   return self;
@@ -314,7 +314,7 @@
 
 - (NSArray *) openItems
 {
-  NSMapTable *oids = [_container oids];
+  NSMapTable *oids = _container.oidTable;
   NSMutableArray *openItems = [NSMutableArray array];
   NSEnumerator *en = [[_container visibleWindows] objectEnumerator];
   id menu = [document objectForName: @"NSMenu"];

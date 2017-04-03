@@ -37,7 +37,7 @@
 #include <GormCore/GormProtocol.h>
 #include <GormCore/GormClassEditor.h>
 #include <GNUstepGUI/GSGormLoading.h>
-#include <GNUstepGUI/GSNibLoading.h>
+#import <GormCore/PrivateCocoaClasses.h>
 
 extern NSString *GormLinkPboardType;
 extern NSString *GormToggleGuidelineNotification;
