@@ -66,7 +66,7 @@
   GormObjectProxy       *fontManager;
   NSMapTable		*objToName;
   GormDocumentWindow	*window;
-  NSBox                 *selectionBox;
+  IBOutlet NSBox                 *selectionBox;
   NSScrollView		*scrollView;
   NSScrollView          *classesScrollView;
   NSScrollView          *soundsScrollView;
@@ -85,9 +85,9 @@
   NSToolbar             *toolbar;
   id                    lastEditor;
   BOOL                  isOlderArchive;
-  id                    filePrefsView;
-  GormFilePrefsManager  *filePrefsManager;
-  NSWindow              *filePrefsWindow;
+  IBOutlet id                    filePrefsView;
+  IBOutlet GormFilePrefsManager  *filePrefsManager;
+  IBOutlet NSWindow              *filePrefsWindow;
   NSMutableArray        *resourceManagers;
   NSData                *infoData;   /* data.info contents */
   NSMutableArray        *images;     /* temporary storage for images. */             
