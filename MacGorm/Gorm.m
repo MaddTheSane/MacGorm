@@ -167,9 +167,13 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 		/*
 		 * load the interface...
 		 */
+		@try {
 		if (![NSBundle loadNibNamed: @"Gorm" owner: self]) {
 			NSLog(@"Failed to load interface");
 			exit(-1);
+		}
+		} @catch (NSException *e) {
+			
 		}
 		
 		/*
