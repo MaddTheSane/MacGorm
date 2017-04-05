@@ -1,0 +1,35 @@
+{
+    IBClasses = (
+	{
+	    CLASS = GormPalettesManager;
+	    LANGUAGE = ObjC;
+	    OUTLETS = {
+		dragView = id;
+		panel = id;
+		selectionView = id;
+	    };
+	    SUPERCLASS = NSObject;
+	},
+	{
+	    CLASS = GormPaletteMatrix;
+	    LANGUAGE = ObjC;
+	    SUPERCLASS = NSMatrix;
+	},
+	{
+	    CLASS = GormPalettePanel;
+	    LANGUAGE = ObjC;
+	    SUPERCLASS = NSPanel;
+	},
+	{
+	    CLASS = GormPaletteView;
+	    LANGUAGE = ObjC;
+	    SUPERCLASS = NSView;
+	},
+	{
+	    CLASS = FirstResponder;
+	    LANGUAGE = ObjC;
+	    SUPERCLASS = NSObject;
+	}
+    );
+    IBVersion = 1;
+}
