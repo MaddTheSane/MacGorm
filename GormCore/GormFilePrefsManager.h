@@ -4,13 +4,13 @@
 
 @interface GormFilePrefsManager : NSObject <NSCoding>
 {
-  id showIncompatibilities;
-  id targetVersion;
-  id gormAppVersion;
-  id archiveType;
-  id iwindow;
-  id itable;
-  id fileType;
+  IBOutlet NSButton *showIncompatibilities;
+  IBOutlet NSPopUpButton *targetVersion;
+  IBOutlet NSTextField *gormAppVersion;
+  IBOutlet NSPopUpButton *archiveType;
+  IBOutlet NSWindow *iwindow;
+  IBOutlet NSTableView *itable;
+  IBOutlet NSTextField *fileType;
 
   // encoded ivars...
   NSInteger version;
@@ -24,17 +24,17 @@
 /**
  * Show incompatibilities in the panel.
  */
-- (void) showIncompatibilities: (id)sender;
+- (IBAction) showIncompatibilities: (id)sender;
 
 /**
  * Action called when the target version pulldown is selected.
  */
-- (void) selectTargetVersion: (id)sender;
+- (IBAction) selectTargetVersion: (id)sender;
 
 /**
  * Action called when the archive type pulldown is selected.
  */
-- (void) selectArchiveType: (id)sender;
+- (IBAction) selectArchiveType: (id)sender;
 
 /**
  * Loads the encoded file info.

@@ -10,7 +10,6 @@
 		55357BAA1E95A90A0022F2AA /* Gorm.nib in Resources */ = {isa = PBXBuildFile; fileRef = 55357BA61E95A90A0022F2AA /* Gorm.nib */; };
 		55357BAB1E95A90A0022F2AA /* GormDummyInspector.nib in Resources */ = {isa = PBXBuildFile; fileRef = 55357BA71E95A90A0022F2AA /* GormDummyInspector.nib */; };
 		55357BAC1E95A90A0022F2AA /* GormPalettePanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 55357BA81E95A90A0022F2AA /* GormPalettePanel.nib */; };
-		55357BAD1E95A90A0022F2AA /* GormViewSizeInspector.nib in Resources */ = {isa = PBXBuildFile; fileRef = 55357BA91E95A90A0022F2AA /* GormViewSizeInspector.nib */; };
 		554D97FA1E9031E800E79BFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D97F91E9031E800E79BFA /* main.m */; };
 		554D98021E9031E800E79BFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 554D98011E9031E800E79BFA /* Assets.xcassets */; };
 		554D98051E9031E800E79BFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554D98031E9031E800E79BFA /* Main.storyboard */; };
@@ -202,6 +201,7 @@
 		554D9A5F1E907BCB00E79BFA /* GNUstepGUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D99441E903B8400E79BFA /* GNUstepGUI.framework */; };
 		554D9A601E907BE700E79BFA /* GormObjCHeaderParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D9A271E9067AE00E79BFA /* GormObjCHeaderParser.framework */; };
 		554D9A631E907BF100E79BFA /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D9A621E907BF100E79BFA /* AppKit.framework */; };
+		55939C6F1E95ABD700D59B72 /* GormDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55939C6E1E95ABD700D59B72 /* GormDocument.xib */; };
 		559D48DB1E90C7CD003E1A48 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 559D48DD1E90C7CD003E1A48 /* InfoPlist.strings */; };
 		559D49B11E90D553003E1A48 /* Gorm.m in Sources */ = {isa = PBXBuildFile; fileRef = 559D49B01E90D553003E1A48 /* Gorm.m */; };
 		559D49BB1E90D5E1003E1A48 /* GormPrefs.h in Headers */ = {isa = PBXBuildFile; fileRef = 559D49B91E90D5E1003E1A48 /* GormPrefs.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -619,7 +619,6 @@
 		55357BA61E95A90A0022F2AA /* Gorm.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = Gorm.nib; sourceTree = "<group>"; };
 		55357BA71E95A90A0022F2AA /* GormDummyInspector.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = GormDummyInspector.nib; sourceTree = "<group>"; };
 		55357BA81E95A90A0022F2AA /* GormPalettePanel.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = GormPalettePanel.nib; sourceTree = "<group>"; };
-		55357BA91E95A90A0022F2AA /* GormViewSizeInspector.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = GormViewSizeInspector.nib; sourceTree = "<group>"; };
 		554D97F21E9031E700E79BFA /* MacGorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacGorm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		554D97F51E9031E800E79BFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		554D97F61E9031E800E79BFA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -819,6 +818,7 @@
 		554D9A3F1E9067F600E79BFA /* ParserFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserFunctions.h; sourceTree = "<group>"; };
 		554D9A401E9067F600E79BFA /* ParserFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserFunctions.m; sourceTree = "<group>"; };
 		554D9A621E907BF100E79BFA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		55939C6E1E95ABD700D59B72 /* GormDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GormDocument.xib; sourceTree = "<group>"; };
 		559D48DC1E90C7CD003E1A48 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		559D49B01E90D553003E1A48 /* Gorm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gorm.m; sourceTree = "<group>"; };
 		559D49B71E90D5E1003E1A48 /* GormPrefs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GormPrefs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1210,7 +1210,7 @@
 				55357BA61E95A90A0022F2AA /* Gorm.nib */,
 				55357BA71E95A90A0022F2AA /* GormDummyInspector.nib */,
 				55357BA81E95A90A0022F2AA /* GormPalettePanel.nib */,
-				55357BA91E95A90A0022F2AA /* GormViewSizeInspector.nib */,
+				55939C6E1E95ABD700D59B72 /* GormDocument.xib */,
 				55C7ECA91E91C9FD001CE0C5 /* Gorm.gorm */,
 				55C7ECAC1E91CA04001CE0C5 /* GormClassEditor.gorm */,
 				55C7ECAF1E91CA0A001CE0C5 /* GormClassInspector.gorm */,
@@ -2325,7 +2325,6 @@
 			files = (
 				55C7ECE61E91CA77001CE0C5 /* GormPrefPalettes.gorm in Resources */,
 				55357BAB1E95A90A0022F2AA /* GormDummyInspector.nib in Resources */,
-				55357BAD1E95A90A0022F2AA /* GormViewSizeInspector.nib in Resources */,
 				55357BAA1E95A90A0022F2AA /* Gorm.nib in Resources */,
 				55C7ECF51E91CA93001CE0C5 /* GormSoundInspector.gorm in Resources */,
 				55357BAC1E95A90A0022F2AA /* GormPalettePanel.nib in Resources */,
@@ -2339,6 +2338,7 @@
 				55C7ECD41E91CA57001CE0C5 /* GormPalettePanel.gorm in Resources */,
 				55C7ECF21E91CA8E001CE0C5 /* GormShelfPref.gorm in Resources */,
 				55C7ECD11E91CA52001CE0C5 /* GormObjectInspector.gorm in Resources */,
+				55939C6F1E95ABD700D59B72 /* GormDocument.xib in Resources */,
 				55C7ECCB1E91CA47001CE0C5 /* GormInspectorPanel.gorm in Resources */,
 				55C7ECBC1E91CA29001CE0C5 /* GormDummyInspector.gorm in Resources */,
 				55C7ECB61E91CA1E001CE0C5 /* GormCustomClassInspector.gorm in Resources */,

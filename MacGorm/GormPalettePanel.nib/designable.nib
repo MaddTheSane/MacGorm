@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="GormPalettesManager">
+            <connections>
+                <outlet property="dragView" destination="4" id="6"/>
+                <outlet property="panel" destination="2" id="5"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window title="Palettes" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" deferred="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="2" userLabel="Panel(0)" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="834" y="679" width="272" height="295"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1120" height="832"/>
+            <view key="contentView" id="3">
+                <rect key="frame" x="0.0" y="0.0" width="272" height="295"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <customView id="4" customClass="GormPaletteView">
+                        <rect key="frame" x="0.0" y="-1" width="272" height="202"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </customView>
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="8">
+                        <rect key="frame" x="0.0" y="201" width="271" height="94"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <clipView key="contentView" id="VQg-ww-KfT">
+                            <rect key="frame" x="1" y="1" width="269" height="92"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <customView id="7" customClass="GormPaletteMatrix">
+                                    <rect key="frame" x="0.0" y="0.0" width="97" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </customView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.33300000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="NO" id="10">
+                            <rect key="frame" x="1" y="77" width="269" height="16"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                            <cell key="cell" lineBreakMode="clipping" alignment="left" id="15">
+                                <font key="font" size="12" name="FreeSans"/>
+                            </cell>
+                            <connections>
+                                <action selector="_doScroll:" target="8" id="11"/>
+                            </connections>
+                        </scroller>
+                    </scrollView>
+                </subviews>
+            </view>
+        </window>
+    </objects>
+</document>
