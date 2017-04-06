@@ -27,6 +27,7 @@
 #include "GormPrivate.h"
 #include <GormCore/GormDocument.h>
 #include <GormCore/GormDocumentController.h>
+#import <GormCore/GormDocumentWindow.h>
 #import <GNUstepBase/GNUstep.h>
 #import <GNUstepBase/NSDebug+GNUstepBase.h>
 
@@ -69,8 +70,8 @@
 	NSMenu	 *aMenu;
 	NSWindow *aWindow;
 	NSRect	 frame = [[NSScreen mainScreen] frame];
-	NSWindowStyleMask style = NSTitledWindowMask | NSClosableWindowMask
-	  | NSResizableWindowMask | NSMiniaturizableWindowMask;
+	NSWindowStyleMask style = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable
+	  | NSWindowStyleMaskResizable | NSWindowStyleMaskMiniaturizable;
 	
 	if ([NSMenu respondsToSelector: @selector(allocSubstitute)])
 	  {

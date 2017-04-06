@@ -39,7 +39,7 @@
 
 @interface GormDummyInspector : IBInspector
 {
-    NSButton *button;
+    IBOutlet NSButton *button;
 }
 - (NSString *)title;
 @end

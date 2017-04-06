@@ -68,6 +68,7 @@
                 humanReadableName: (NSString *)hrName
                     forExtensions: (NSArray *)extensions
 {
+#if 0
   NSDocumentController *controller = [NSDocumentController sharedDocumentController];
   NSMutableArray *types = [[controller types] mutableCopy];
   
@@ -81,6 +82,7 @@
       [types addObject: dict];
       [controller setTypes: types];
     }
+#endif
 }
 @end
 

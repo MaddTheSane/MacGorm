@@ -274,7 +274,7 @@ CA
                                     <action selector="submenuAction:" target="27" id="98"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Disable guideLine" id="73">
+                            <menuItem title="Disable Guide Line" id="73">
                                 <connections>
                                     <action selector="guideline:" target="-2" id="74"/>
                                 </connections>

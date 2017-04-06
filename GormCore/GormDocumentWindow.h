@@ -27,10 +27,10 @@
 
 @interface GormDocumentWindow : NSWindow
 {
-  id _document;
+  __unsafe_unretained id _document;
   IBResourceManager *dragMgr;
 }
-- (void) setDocument:(id)document;
+@property (assign) id document;
 @end
 
 #define __INCLUDED_GormDocumentWindow_h
