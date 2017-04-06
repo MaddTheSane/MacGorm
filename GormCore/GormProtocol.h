@@ -33,47 +33,47 @@
 // Connections
 - (id) connectSource;
 - (id) connectDestination;
-- (void) displayConnectionBetween: (id)source and: (id)destination;
+- (void) displayConnectionBetween: (id)source and: (id)destination NS_SWIFT_NAME(displayConnectionBetween(source:destination:));
 @property (readonly, getter=isConnecting) BOOL connecting;
 - (BOOL) isConnecting;
 - (void) stopConnecting;
 
 // preferences
-- (void) preferencesPanel: (id) sender;
+- (IBAction) preferencesPanel: (id) sender;
 
 // Cut/Paste operations
-- (void) copy: (id)sender;
-- (void) cut: (id)sender;
-- (void) paste: (id)sender;
-- (void) delete: (id)sender;
-- (void) selectAllItems: (id)sender;
-- (void) setName: (id)sender;
+- (IBAction) copy: (id)sender;
+- (IBAction) cut: (id)sender;
+- (IBAction) paste: (id)sender;
+- (IBAction) delete: (id)sender;
+- (IBAction) selectAllItems: (id)sender;
+- (IBAction) setName: (id)sender;
 
 // palettes/inspectors.
-- (void) inspector: (id) sender;
-- (void) palettes: (id) sender;
-- (void) loadPalette: (id) sender;
-- (GormPalettesManager*) palettesManager;
-- (GormInspectorsManager*) inspectorsManager;
-- (GormPluginManager*) pluginManager;
+- (IBAction) inspector: (id) sender;
+- (IBAction) palettes: (id) sender;
+- (IBAction) loadPalette: (id) sender;
+@property (readonly, retain) GormPalettesManager *palettesManager;
+@property (readonly, retain) GormInspectorsManager *inspectorsManager;
+@property (readonly, retain) GormPluginManager *pluginManager;
 
 // testing the interface
 - (void) testInterface: (id)sender;
 - (id) endTesting: (id)sender;
 
 // sound & images
-- (void) loadSound: (id) sender;
-- (void) loadImage: (id) sender;
+- (IBAction) loadSound: (id) sender;
+- (IBAction) loadImage: (id) sender;
 
 // grouping/layout
-- (void) groupSelectionInSplitView: (id)sender;
-- (void) groupSelectionInBox: (id)sender;
-- (void) groupSelectionInScrollView: (id)sender;
-- (void) ungroup: (id)sender;
+- (IBAction) groupSelectionInSplitView: (id)sender;
+- (IBAction) groupSelectionInBox: (id)sender;
+- (IBAction) groupSelectionInScrollView: (id)sender;
+- (IBAction) ungroup: (id)sender;
 
 // added for classes support
 - (GormClassManager*) classManager;
-- (NSMenu*) classMenu;
+@property (assign) IBOutlet NSMenu *classMenu;
 
 // utility
 - (BOOL) documentNameIsUnique: (NSString *)filename;

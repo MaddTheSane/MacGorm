@@ -50,6 +50,7 @@ IB_EXTERN NSString *IBDidEndTestingInterfaceNotification;
  * Returns the current selection owner.
  */
 - (id<IBSelectionOwners>) selectionOwner;
+@property (readonly) id<IBSelectionOwners> selectionOwner;
 
 /**
  * Returns the current selection from the current selection
