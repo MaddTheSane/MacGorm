@@ -1,7 +1,7 @@
-#include <AppKit/AppKit.h>
-#include <GormCore/GormPrivate.h>
-#include <GormCore/GormControlEditor.h>
-#include <GormCore/GormViewWithSubviewsEditor.h>
+#import <AppKit/AppKit.h>
+#import <GormCore/GormPrivate.h>
+#import <GormCore/GormControlEditor.h>
+#import <GormCore/GormViewWithSubviewsEditor.h>
 #include "GormNSPopUpButton.h"
 #import <GNUstepBase/GNUstepBase.h>
 

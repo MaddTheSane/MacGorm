@@ -23,8 +23,8 @@
  */
 
 
-#include <Foundation/Foundation.h>
-#include <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
+#import <Foundation/Foundation.h>
+#import <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
 
 @implementation NSScanner (OCHeaderParser)
 - (void) scanUpToAndIncludingString: (NSString *)string 

@@ -1,4 +1,4 @@
-#include <GormCore/GormPrivate.h>
+#import <GormCore/GormPrivate.h>
 #include "GormNSPopUpButton.h"
 #import <GNUstepBase/GNUstepBase.h>
 

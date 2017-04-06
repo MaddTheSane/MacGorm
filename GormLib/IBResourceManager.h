@@ -25,11 +25,11 @@
 #ifndef INCLUDED_IBRESOURCEMANAGER_H
 #define INCLUDED_IBRESOURCEMANAGER_H
 
-#include <Foundation/NSObject.h>
-#include <Foundation/NSArray.h>
-#include <GormLib/IBProjects.h>
-#include <GormLib/IBProjectFiles.h>
-#include <GormLib/IBDocuments.h>
+#import <Foundation/NSObject.h>
+#import <Foundation/NSArray.h>
+#import <GormLib/IBProjects.h>
+#import <GormLib/IBProjectFiles.h>
+#import <GormLib/IBDocuments.h>
 
 @class NSString, NSPasteboard, NSMutableArray;
 

@@ -25,8 +25,8 @@
 #ifndef INCLUDED_IBPROJECTS_H
 #define INCLUDED_IBPROJECTS_H
 
-#include <Foundation/NSObject.h>
-#include <AppKit/NSInterfaceStyle.h>
+#import <Foundation/NSObject.h>
+#import <AppKit/NSInterfaceStyle.h>
 
 @class NSString, NSArray;
 

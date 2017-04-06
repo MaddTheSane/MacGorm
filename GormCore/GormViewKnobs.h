@@ -27,9 +27,9 @@
 #ifndef	INCLUDED_GormViewKnobs_h
 #define	INCLUDED_GormViewKnobs_h
 
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
-#include <GormLib/InterfaceBuilder.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+#import <GormLib/InterfaceBuilder.h>
 
 void
 GormShowFastKnobFills(void);

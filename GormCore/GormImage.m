@@ -22,9 +22,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/NSImage.h>
-#include <GormLib/IBObjectAdditions.h>
-#include <GNUstepBase/GNUstep.h>
+#import <AppKit/NSImage.h>
+#import <GormLib/IBObjectAdditions.h>
+#import <GNUstepBase/GNUstep.h>
 #include "GormImage.h"
 
 // implementation of category on NSImage.

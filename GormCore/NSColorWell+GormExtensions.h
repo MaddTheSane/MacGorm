@@ -25,8 +25,8 @@
 #ifndef INCLUDED_NSColorWell_GormExtensions_h
 #define INCLUDED_NSColorWell_GormExtensions_h
 
-#include <AppKit/NSColor.h>
-#include <AppKit/NSColorWell.h>
+#import <AppKit/NSColor.h>
+#import <AppKit/NSColorWell.h>
 
 @interface NSColorWell (GormExtensions)
 /**

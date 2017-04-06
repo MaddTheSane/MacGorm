@@ -24,15 +24,15 @@
 
 #include "GormFunctions.h"
 #include "GormViewEditor.h"
-#include <AppKit/AppKit.h>
-#include <Foundation/NSDictionary.h>
-#include <Foundation/NSUserDefaults.h>
-#include <Foundation/NSFileManager.h>
-#include <Foundation/NSPathUtilities.h>
-#include <Foundation/NSString.h>
-#include <GNUstepBase/GNUstep.h>
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
-#include <GNUstepBase/GSObjCRuntime.h>
+#import <AppKit/AppKit.h>
+#import <Foundation/NSDictionary.h>
+#import <Foundation/NSUserDefaults.h>
+#import <Foundation/NSFileManager.h>
+#import <Foundation/NSPathUtilities.h>
+#import <Foundation/NSString.h>
+#import <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GNUstepBase/GSObjCRuntime.h>
 #include "GormClassPanelController.h"
 
 // find all subitems for the given items...

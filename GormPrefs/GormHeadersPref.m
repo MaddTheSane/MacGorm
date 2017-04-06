@@ -1,13 +1,13 @@
 #include "GormHeadersPref.h"
 
-#include <Foundation/NSUserDefaults.h>
+#import <Foundation/NSUserDefaults.h>
 
-#include <AppKit/NSButton.h>
-#include <AppKit/NSTableView.h>
-#include <AppKit/NSWindow.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSOpenPanel.h>
-#include <AppKit/NSStringDrawing.h>
+#import <AppKit/NSButton.h>
+#import <AppKit/NSTableView.h>
+#import <AppKit/NSWindow.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSOpenPanel.h>
+#import <AppKit/NSStringDrawing.h>
 #import <GNUstepBase/GNUstepBase.h>
 
 // data source...

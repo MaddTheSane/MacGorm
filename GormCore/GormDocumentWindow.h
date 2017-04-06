@@ -22,8 +22,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/NSWindow.h>
-#include <GormLib/IBResourceManager.h>
+#import <AppKit/NSWindow.h>
+#import <GormLib/IBResourceManager.h>
 
 @interface GormDocumentWindow : NSWindow
 {

@@ -26,10 +26,10 @@
 #include "GormProtocol.h"
 #include "GormFunctions.h"
 #include "GormPalettesManager.h"
-#include <AppKit/NSImage.h>
+#import <AppKit/NSImage.h>
 #include "GormImage.h"
-#include <GNUStepBase/GNUstep.h>
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 @implementation	GormImageEditor
 

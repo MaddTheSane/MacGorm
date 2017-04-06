@@ -24,12 +24,12 @@
  */
 
 #include "GormPrivate.h"
-#include <Foundation/NSArray.h>
-#include <Foundation/NSSet.h>
-#include <AppKit/NSImage.h>
-#include <AppKit/NSSound.h>
-#include <GNUstepBase/GSObjCRuntime.h>
-#include <GNUstepBase/GNUstep.h>
+#import <Foundation/NSArray.h>
+#import <Foundation/NSSet.h>
+#import <AppKit/NSImage.h>
+#import <AppKit/NSSound.h>
+#import <GNUstepBase/GSObjCRuntime.h>
+#import <GNUstepBase/GNUstep.h>
 #include "GormFunctions.h"
 #include "GormPluginManager.h"
 

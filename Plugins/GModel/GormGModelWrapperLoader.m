@@ -22,21 +22,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/NSWindow.h>
-#include <AppKit/NSNibConnector.h>
-#include <Foundation/NSFileWrapper.h>
-#include <GNUstepBase/GNUstepBase.h>
-#include <GNUstepGUI/GMArchiver.h>
-#include <GNUstepGUI/IMLoading.h>
-#include <GNUstepGUI/IMCustomObject.h>
-//#include <GNUstepGUI/GSDisplayServer.h>
-#include <GormCore/GormPrivate.h>
-#include <GormCore/GormCustomView.h>
-#include <GormCore/GormDocument.h>
-#include <GormCore/GormFunctions.h>
+#import <AppKit/NSWindow.h>
+#import <AppKit/NSNibConnector.h>
+#import <Foundation/NSFileWrapper.h>
+#import <GNUstepBase/GNUstepBase.h>
+#import <GNUstepGUI/GMArchiver.h>
+#import <GNUstepGUI/IMLoading.h>
+#import <GNUstepGUI/IMCustomObject.h>
+//#import <GNUstepGUI/GSDisplayServer.h>
+#import <GormCore/GormPrivate.h>
+#import <GormCore/GormCustomView.h>
+#import <GormCore/GormDocument.h>
+#import <GormCore/GormFunctions.h>
 #include "GormGModelWrapperLoader.h"
-#include <AppKit/NSNibOutletConnector.h>
-#include <AppKit/NSNibControlConnector.h>
+#import <AppKit/NSNibOutletConnector.h>
+#import <AppKit/NSNibControlConnector.h>
 
 static Class gmodel_class(NSString *className);
 

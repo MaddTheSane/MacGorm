@@ -23,13 +23,13 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
 */
 
-#include <GormLib/IBPalette.h>
-#include <GormLib/IBViewResourceDragging.h>
-#include <AppKit/NSWindow.h>
-#include <AppKit/NSPopUpButton.h>
-#include <AppKit/NSPasteboard.h>
-#include <AppKit/NSImage.h>
-#include <AppKit/NSSound.h>
+#import <GormLib/IBPalette.h>
+#import <GormLib/IBViewResourceDragging.h>
+#import <AppKit/NSWindow.h>
+#import <AppKit/NSPopUpButton.h>
+#import <AppKit/NSPasteboard.h>
+#import <AppKit/NSImage.h>
+#import <AppKit/NSSound.h>
 #include "GormNSPopUpButton.h"
 #import <GNUstepBase/GNUstepBase.h>
 

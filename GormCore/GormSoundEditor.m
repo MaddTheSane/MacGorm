@@ -26,8 +26,8 @@
 #include "GormProtocol.h"
 #include "GormFunctions.h"
 #include "GormPalettesManager.h"
-#include <AppKit/NSSound.h>
-#include <GNUstepBase/GNUstep.h>
+#import <AppKit/NSSound.h>
+#import <GNUstepBase/GNUstep.h>
 #include "GormSound.h"
 
 @implementation	GormSoundEditor

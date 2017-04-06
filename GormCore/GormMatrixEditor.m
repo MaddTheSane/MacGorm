@@ -24,9 +24,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <GormLib/IBObjectAdditions.h>
-#include <AppKit/AppKit.h>
-#include <GNUstepBase/GNUstep.h>
+#import <GormLib/IBObjectAdditions.h>
+#import <AppKit/AppKit.h>
+#import <GNUstepBase/GNUstep.h>
 
 #include "GormPrivate.h"
 #include "GormImage.h"
@@ -36,8 +36,8 @@
 #include "GormPlacementInfo.h"
 #include "GormFontViewController.h"
 #include "GormViewKnobs.h"
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
-#include <GNUstepGUI/GNUstepGUI.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GNUstepGUI/GNUstepGUI.h>
 
 #define _EO ((NSMatrix*)_editedObject)
 

@@ -22,10 +22,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <GormLib/IBPalette.h>
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
-#include <GNUstepBase/GNUstep.h>
+#import <GormLib/IBPalette.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+#import <GNUstepBase/GNUstep.h>
 
 NSString	*IBCellPboardType = @"IBCellPboardType";
 NSString	*IBMenuPboardType = @"IBMenuPboardType";

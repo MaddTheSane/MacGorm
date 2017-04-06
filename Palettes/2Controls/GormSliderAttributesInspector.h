@@ -35,7 +35,7 @@
 #ifndef	INCLUDED_GormSliderAttributesInspector_h
 #define	INCLUDED_GormSliderAttributesInspector_h
 
-#include <GormLib/IBInspector.h>
+#import <GormLib/IBInspector.h>
 
 @class NSButton;
 @class NSForm;

@@ -22,11 +22,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <GormLib/IBObjectAdditions.h>
-#include <AppKit/AppKit.h>
+#import <GormLib/IBObjectAdditions.h>
+#import <AppKit/AppKit.h>
 
-#include <GormCore/GormPrivate.h>
-#include <GormCore/GormViewKnobs.h>
+#import <GormCore/GormPrivate.h>
+#import <GormCore/GormViewKnobs.h>
 #import <GNUstepBase/GNUstepBase.h>
 
 #include "GormTabViewEditor.h"

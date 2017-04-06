@@ -22,14 +22,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/NSObject.h>
-#include <Foundation/NSString.h>
-#include <Foundation/NSDictionary.h>
-#include <Foundation/NSArray.h>
-#include <Foundation/NSEnumerator.h>
-#include <GormLib/IBInspectorManager.h>
-#include <GormLib/IBInspectorMode.h>
-#include <GNUstepBase/GNUstep.h>
+#import <Foundation/NSObject.h>
+#import <Foundation/NSString.h>
+#import <Foundation/NSDictionary.h>
+#import <Foundation/NSArray.h>
+#import <Foundation/NSEnumerator.h>
+#import <GormLib/IBInspectorManager.h>
+#import <GormLib/IBInspectorMode.h>
+#import <GNUstepBase/GNUstep.h>
 #include <math.h>
 
 static IBInspectorManager *_sharedInspectorManager = nil;
@@ -124,21 +124,17 @@ NSString *IBWillInspectWithModeNotification =
  * Position in the inspector list that the "mode inspector"
  * appears.
  */
-- (unsigned int) indexOfModeWithIdentifier: (NSString *)ident
+- (NSInteger) indexOfModeWithIdentifier: (NSString *)ident
 {
-  NSEnumerator *en = [modes objectEnumerator];
-  int index = 0;
-  id mode = nil;
+  NSInteger index = 0;
 
-  while((mode = [en nextObject]) != nil)
-    {
-      if([[mode identifier] isEqualToString: ident])
-	{
-	  break;
+	for (id mode in modes) {
+		if ([[mode identifier] isEqualToString: ident]) {
+			break;
+		}
+		index++;
 	}
-      index++;
-    }
-  
+	
   return index;
 }
 @end

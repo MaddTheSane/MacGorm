@@ -33,11 +33,11 @@
 
 #include "GormTableColumnSizeInspector.h"
 
-#include <Foundation/NSNotification.h>
+#import <Foundation/NSNotification.h>
 
-#include <AppKit/NSForm.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSTableColumn.h>
+#import <AppKit/NSForm.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSTableColumn.h>
 
 #define MINIMUMINDEX 0
 #define CURRENTINDEX 1

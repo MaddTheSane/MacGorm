@@ -24,19 +24,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
-//#include <GNUstepGUI/GSNibLoading.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+//#import <GNUstepGUI/GSNibLoading.h>
 
-#include <GormCore/GormWrapperBuilder.h>
-#include <GormCore/GormClassManager.h>
-#include <GormCore/GormFilePrefsManager.h>
-#include <GormCore/GormDocument.h>
-#include <GormCore/GormProtocol.h>
-#include <GormCore/GormPalettesManager.h>
-#include <GormCore/GormCustomView.h>
-#include <GormCore/GormPrivate.h>
-#include <GormCore/GormFilesOwner.h>
+#import <GormCore/GormWrapperBuilder.h>
+#import <GormCore/GormClassManager.h>
+#import <GormCore/GormFilePrefsManager.h>
+#import <GormCore/GormDocument.h>
+#import <GormCore/GormProtocol.h>
+#import <GormCore/GormPalettesManager.h>
+#import <GormCore/GormCustomView.h>
+#import <GormCore/GormPrivate.h>
+#import <GormCore/GormFilesOwner.h>
 #import <GNUstepBase/GNUstepBase.h>
 
 // allow access to a private category...

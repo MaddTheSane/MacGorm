@@ -23,7 +23,7 @@
 */
 
 #include "GormNSOutlineView.h"
-#include <AppKit/NSTableColumn.h>
+#import <AppKit/NSTableColumn.h>
 #import <GNUstepBase/GNUstepBase.h>
 
 /* --------------------------------------------------------------- 

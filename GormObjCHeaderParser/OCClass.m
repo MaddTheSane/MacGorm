@@ -23,17 +23,17 @@
  */
 
 
-#include <Foundation/NSString.h>
-#include <Foundation/NSArray.h>
-#include <Foundation/NSScanner.h>
-#include <Foundation/NSCharacterSet.h>
-#include <GormObjCHeaderParser/OCClass.h>
-#include <GormObjCHeaderParser/OCMethod.h>
-#include <GormObjCHeaderParser/OCIVar.h>
-#include <GormObjCHeaderParser/OCIVarDecl.h>
-#include <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
-#include <GormObjCHeaderParser/ParserFunctions.h>
-#include <GNUstepBase/GNUstep.h>
+#import <Foundation/NSString.h>
+#import <Foundation/NSArray.h>
+#import <Foundation/NSScanner.h>
+#import <Foundation/NSCharacterSet.h>
+#import <GormObjCHeaderParser/OCClass.h>
+#import <GormObjCHeaderParser/OCMethod.h>
+#import <GormObjCHeaderParser/OCIVar.h>
+#import <GormObjCHeaderParser/OCIVarDecl.h>
+#import <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
+#import <GormObjCHeaderParser/ParserFunctions.h>
+#import <GNUstepBase/GNUstep.h>
 
 @implementation OCClass
 @synthesize className;

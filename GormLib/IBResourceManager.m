@@ -22,18 +22,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <GormLib/IBResourceManager.h>
-#include <GormLib/IBObjectAdditions.h>
-#include <GormLib/IBPalette.h>
-#include <Foundation/NSArchiver.h>
-#include <Foundation/NSArray.h>
-#include <Foundation/NSEnumerator.h>
-#include <Foundation/NSException.h>
-#include <Foundation/NSMapTable.h>
-#include <Foundation/NSNotification.h> 
-#include <Foundation/NSNull.h>
-#include <Foundation/NSString.h>
-#include <AppKit/NSPasteboard.h>
+#import <GormLib/IBResourceManager.h>
+#import <GormLib/IBObjectAdditions.h>
+#import <GormLib/IBPalette.h>
+#import <Foundation/NSArchiver.h>
+#import <Foundation/NSArray.h>
+#import <Foundation/NSEnumerator.h>
+#import <Foundation/NSException.h>
+#import <Foundation/NSMapTable.h>
+#import <Foundation/NSNotification.h> 
+#import <Foundation/NSNull.h>
+#import <Foundation/NSString.h>
+#import <AppKit/NSPasteboard.h>
 
 NSString *IBResourceManagerRegistryDidChangeNotification = @"IBResourceManagerRegistryDidChangeNotification";
 

@@ -34,7 +34,7 @@
 #ifndef INCLUDED_GormMatrixAttributesInspector_h
 #define INCLUDED_GormMatrixAttributesInspector_h
 
-#include <GormLib/IBInspector.h>
+#import <GormLib/IBInspector.h>
 
 @class NSButton;
 @class NSColorWell;

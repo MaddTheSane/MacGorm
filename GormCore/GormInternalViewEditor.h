@@ -24,7 +24,7 @@
 #ifndef	INCLUDED_GormInternalViewEditor_h
 #define	INCLUDED_GormInternalViewEditor_h
 
-#include <GormCore/GormViewWithContentViewEditor.h>
+#import <GormCore/GormViewWithContentViewEditor.h>
 
 @interface GormInternalViewEditor: GormViewWithContentViewEditor
 {

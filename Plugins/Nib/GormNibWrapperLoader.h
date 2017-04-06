@@ -25,8 +25,8 @@
 #ifndef GORM_NIBWRAPPERLOADER
 #define GORM_NIBWRAPPERLOADER
 
-#include <GormCore/GormWrapperLoader.h>
-//#include <GNUstepGUI/GSNibLoading.h>
+#import <GormCore/GormWrapperLoader.h>
+//#import <GNUstepGUI/GSNibLoading.h>
 #include "GormNibCustomResource.h"
 
 @interface GormNibWrapperLoader : GormWrapperLoader <NSKeyedUnarchiverDelegate>

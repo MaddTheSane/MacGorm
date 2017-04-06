@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <GormLib/InterfaceBuilder.h>
+#import <GormLib/InterfaceBuilder.h>
 
 #ifndef	INCLUDED_GormViewEditor_h
 #define	INCLUDED_GormViewEditor_h

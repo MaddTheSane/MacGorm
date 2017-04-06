@@ -22,8 +22,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/Foundation.h>
-#include <AppKit/NSText.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/NSText.h>
 #include "NSCell+GormAdditions.h"
 
 @implementation NSCell (GormAdditions)

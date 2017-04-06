@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/NSImage.h>
+#import <AppKit/NSImage.h>
 #import <GNUstepBase/GNUstep.h>
 #include "GormDocument.h"
 #include "GormPrivate.h"
@@ -30,7 +30,7 @@
 #include "GormFunctions.h"
 #include "GormPalettesManager.h"
 #include "GormResource.h"
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 
 @implementation	GormResourceEditor

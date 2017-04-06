@@ -1,9 +1,9 @@
 #ifndef INCLUDED_GormHeadersPref_h
 #define INCLUDED_GormHeadersPref_h
 
-#include <Foundation/NSObject.h>
-#include <Foundation/NSArray.h>
-#include <AppKit/NSView.h>
+#import <Foundation/NSObject.h>
+#import <Foundation/NSArray.h>
+#import <AppKit/NSView.h>
 #import <AppKit/NSButton.h>
 
 @interface GormHeadersPref : NSObject

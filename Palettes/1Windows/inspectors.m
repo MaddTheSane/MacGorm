@@ -24,8 +24,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/AppKit.h>
-#include <GormLib/InterfaceBuilder.h>
+#import <AppKit/AppKit.h>
+#import <GormLib/InterfaceBuilder.h>
 #include "WindowsPalette.h"
 /*
   IBObjectAdditions category for NSPanel 

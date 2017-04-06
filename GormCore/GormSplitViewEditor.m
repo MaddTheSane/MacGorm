@@ -22,15 +22,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <GormLib/IBObjectAdditions.h>
-#include <AppKit/AppKit.h>
+#import <GormLib/IBObjectAdditions.h>
+#import <AppKit/AppKit.h>
 
 #include "GormPrivate.h"
 #include "GormSplitViewEditor.h"
 #include "GormInternalViewEditor.h"
 #include "GormBoxEditor.h"
 #include "GormViewKnobs.h"
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 #define _EO ((NSSplitView *)_editedObject)
 

@@ -24,7 +24,7 @@
 #ifndef	INCLUDED_GormViewWithSubviewsEditor_h
 #define	INCLUDED_GormViewWithSubviewsEditor_h
 
-#include <GormCore/GormViewEditor.h>
+#import <GormCore/GormViewEditor.h>
 
 @interface GormViewWithSubviewsEditor : GormViewEditor <IBSelectionOwners>
 {

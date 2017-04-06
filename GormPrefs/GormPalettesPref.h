@@ -1,11 +1,11 @@
 #ifndef INCLUDED_GormPalettesPref_h
 #define INCLUDED_GormPalettesPref_h
 
-#include <Foundation/NSObject.h>
-#include <Foundation/NSArray.h>
-#include <AppKit/NSView.h>
-#include <AppKit/NSTableView.h>
-#include <AppKit/NSButton.h>
+#import <Foundation/NSObject.h>
+#import <Foundation/NSArray.h>
+#import <AppKit/NSView.h>
+#import <AppKit/NSTableView.h>
+#import <AppKit/NSButton.h>
 
 @interface GormPalettesPref : NSObject <NSTableViewDelegate>
 {

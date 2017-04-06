@@ -24,10 +24,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/AppKit.h>
-#include <GormLib/InterfaceBuilder.h>
-#include <GormCore/GormPrivate.h>
-#include <GormCore/GormDocument.h>
+#import <AppKit/AppKit.h>
+#import <GormLib/InterfaceBuilder.h>
+#import <GormCore/GormPrivate.h>
+#import <GormCore/GormDocument.h>
 
 @interface GormMenuAttributesInspector : IBInspector
 {

@@ -22,12 +22,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/AppKit.h>
-#include <GormCore/GormPrivate.h>
-#include <GormCore/GormStandaloneViewEditor.h>
-#include <GormCore/GormDefines.h>
-#include <GormCore/GormViewKnobs.h>
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <AppKit/AppKit.h>
+#import <GormCore/GormPrivate.h>
+#import <GormCore/GormStandaloneViewEditor.h>
+#import <GormCore/GormDefines.h>
+#import <GormCore/GormViewKnobs.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 static NSImage *verticalImage;
 static NSImage *horizontalImage;

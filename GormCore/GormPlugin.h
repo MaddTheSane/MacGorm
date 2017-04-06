@@ -23,7 +23,7 @@
 
 #ifndef GORM_GORMPLUGIN
 #define GORM_GORMPLUGIN
-#include <GormLib/IBPlugin.h>
+#import <GormLib/IBPlugin.h>
 
 @class NSString, NSArray;
 

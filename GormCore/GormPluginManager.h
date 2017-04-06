@@ -26,7 +26,7 @@
 #ifndef INCLUDED_GormPluginManager_h
 #define INCLUDED_GormPluginManager_h
 
-#include <Foundation/NSObject.h>
+#import <Foundation/NSObject.h>
 
 @class NSMutableArray, NSMutableDictionary, NSDictionary, NSArray, NSBundle;
 @class NSPanel, NSMatrix, NSView;

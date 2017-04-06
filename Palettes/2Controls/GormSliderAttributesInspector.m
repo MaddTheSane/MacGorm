@@ -33,12 +33,12 @@
 
 #include "GormSliderAttributesInspector.h"
 
-#include <Foundation/NSNotification.h>
+#import <Foundation/NSNotification.h>
 
-#include <AppKit/NSButton.h>
-#include <AppKit/NSForm.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSSlider.h>
+#import <AppKit/NSButton.h>
+#import <AppKit/NSForm.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSSlider.h>
 
 /* 
    IBObjectAdditions category

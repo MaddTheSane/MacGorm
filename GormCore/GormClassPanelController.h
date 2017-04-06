@@ -24,7 +24,7 @@
 
 /* All Rights reserved */
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
 
 @class NSMutableArray;
 

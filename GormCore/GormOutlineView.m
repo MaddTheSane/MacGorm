@@ -26,21 +26,21 @@
 */ 
 
 #include "GormOutlineView.h"
-#include <Foundation/NSNotification.h>
-#include <Foundation/NSNull.h>
-#include <Foundation/NSException.h>
-#include <Foundation/NSDebug.h>
-#include <Foundation/NSIndexSet.h>
-#include <AppKit/NSTableColumn.h>
-#include <AppKit/NSCell.h>
-#include <AppKit/NSEvent.h>
-#include <AppKit/NSMenuItem.h>
-#include <AppKit/NSTextFieldCell.h>
-#include <AppKit/NSWindow.h>
-#include <AppKit/NSImage.h>
-#include <AppKit/NSColor.h>
-#include <GNUstepBase/GNUstep.h>
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <Foundation/NSNotification.h>
+#import <Foundation/NSNull.h>
+#import <Foundation/NSException.h>
+#import <Foundation/NSDebug.h>
+#import <Foundation/NSIndexSet.h>
+#import <AppKit/NSTableColumn.h>
+#import <AppKit/NSCell.h>
+#import <AppKit/NSEvent.h>
+#import <AppKit/NSMenuItem.h>
+#import <AppKit/NSTextFieldCell.h>
+#import <AppKit/NSWindow.h>
+#import <AppKit/NSImage.h>
+#import <AppKit/NSColor.h>
+#import <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 
 static NSNotificationCenter *nc = nil;
@@ -63,29 +63,23 @@ static NSColor *lightGreyBlueColor = nil;
 static NSColor *darkGreyBlueColor = nil;
 
 @implementation GormOutletActionHolder
-- init
+@synthesize name = _name;
+- (id)init
 {
-  [super init];
-  _name = nil;
-  return self;
+	if (self = [super init]) {
+		_name = nil;
+	}
+	return self;
 }
 
-- initWithName: (NSString *)name
+- (id)initWithName: (NSString *)name
 {
-  [self init];
-  ASSIGN(_name,name);
-  return self;
+	if (self = [self init]) {
+		ASSIGNCOPY(_name,name);
+	}
+	return self;
 }
 
-- (NSString *)getName
-{
-  return _name;
-}
-
-- (void)setName: (NSString *)name
-{
-  ASSIGN(_name,name);
-}
 @end
 
 @implementation GormOutlineView
@@ -97,13 +91,13 @@ static NSColor *darkGreyBlueColor = nil;
       // initialize images
       [self setVersion: current_version];
       nc = [NSNotificationCenter defaultCenter];
-      collapsed    = [NSImage imageNamed: @"common_outlineCollapsed"];
-      expanded     = [NSImage imageNamed: @"common_outlineExpanded"];
-      unexpandable = [NSImage imageNamed: @"common_outlineUnexpandable"];
-      action       = [NSImage imageNamed: @"GormAction"];
-      outlet       = [NSImage imageNamed: @"GormOutlet"];
-      actionSelected = [NSImage imageNamed: @"GormActionSelected"];
-      outletSelected = [NSImage imageNamed: @"GormOutletSelected"];
+      collapsed    = RETAIN([NSImage imageNamed: @"common_outlineCollapsed"]);
+      expanded     = RETAIN([NSImage imageNamed: @"common_outlineExpanded"]);
+      unexpandable = RETAIN([NSImage imageNamed: @"common_outlineUnexpandable"]);
+      action       = RETAIN([NSImage imageNamed: @"GormAction"]);
+      outlet       = RETAIN([NSImage imageNamed: @"GormOutlet"]);
+      actionSelected = RETAIN([NSImage imageNamed: @"GormActionSelected"]);
+      outletSelected = RETAIN([NSImage imageNamed: @"GormOutletSelected"]);
 
       // initialize colors
       salmonColor = 
@@ -134,21 +128,20 @@ static NSColor *darkGreyBlueColor = nil;
   NSDebugLog(@"Double clicked");
 }
 
-- init
+- (id)init
 {
-  if((self = [super init]) != nil)
-    {
-      _actionColumn = nil;
-      _outletColumn = nil;
-      _isEditing = NO;
-      _attributeOffset = 0.0;
-      _edittype = None;
-      _menuItem = nil;
-      [self setDoubleAction: @selector(_handleDoubleClick:)];
-      [self setTarget: self];
-    }
-
-  return self;
+	if (self = [super init]) {
+		_actionColumn = nil;
+		_outletColumn = nil;
+		_isEditing = NO;
+		_attributeOffset = 0.0;
+		_edittype = None;
+		_menuItem = nil;
+		[self setDoubleAction: @selector(_handleDoubleClick:)];
+		[self setTarget: self];
+	}
+	
+	return self;
 }
 
 - (void) collapseItem: (id)item collapseChildren: (BOOL)collapseChildren;
@@ -596,9 +589,9 @@ static NSColor *darkGreyBlueColor = nil;
 @synthesize editType = _edittype;
 
 - (void) editColumn: (NSInteger) columnIndex 
-		row: (NSInteger) rowIndex 
-	  withEvent: (NSEvent *) theEvent 
-	     select: (BOOL) flag
+				row: (NSInteger) rowIndex
+		  withEvent: (NSEvent *) theEvent
+			 select: (BOOL) flag
 {
 #if 0
   NSText *t;

@@ -35,12 +35,12 @@
 
 #include "GormCellAttributesInspector.h"
 
-#include <Foundation/NSNotification.h>
+#import <Foundation/NSNotification.h>
 
-#include <AppKit/NSButton.h>
-#include <AppKit/NSCell.h>
-#include <AppKit/NSForm.h>
-#include <AppKit/NSNibLoading.h>
+#import <AppKit/NSButton.h>
+#import <AppKit/NSCell.h>
+#import <AppKit/NSForm.h>
+#import <AppKit/NSNibLoading.h>
 
 /*
   IBObjectAdditions category

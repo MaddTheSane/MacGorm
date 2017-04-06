@@ -25,7 +25,7 @@
 
 /* All Rights reserved */
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
 #include "GormDrawerAttributesInspector.h"
 
 @implementation GormDrawerAttributesInspector

@@ -35,7 +35,7 @@
 #ifndef	INCLUDED_GormButtonAttributesInspector_h
 #define	INCLUDED_GormButtonAttributesInspector_h
 
-#include <GormLib/IBInspector.h>
+#import <GormLib/IBInspector.h>
 
 @class NSForm;
 @class NSMatrix;

@@ -24,10 +24,10 @@
 
 /* All Rights reserved */
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
 #include "GormClassPanelController.h"
 #include "GormPrivate.h"
-#include <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/GNUstep.h>
 
 @implementation GormClassPanelController
 

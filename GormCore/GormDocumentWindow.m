@@ -24,9 +24,9 @@
 #include "GormDocumentWindow.h"
 #include "GormPrivate.h"
 
-#include <GormLib/IBResourceManager.h>
-#include <AppKit/NSDragging.h>
-#include <AppKit/NSPasteboard.h>
+#import <GormLib/IBResourceManager.h>
+#import <AppKit/NSDragging.h>
+#import <AppKit/NSPasteboard.h>
 
 @implementation GormDocumentWindow
 @synthesize document = _document;

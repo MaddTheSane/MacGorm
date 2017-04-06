@@ -24,9 +24,9 @@
 #ifndef	INCLUDED_GormNSOutlineView_h
 #define	INCLUDED_GormNSOutlineView_h
 
-#include <Foundation/Foundation.h>
-#include <AppKit/NSColor.h>
-#include <AppKit/NSOutlineView.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/NSColor.h>
+#import <AppKit/NSOutlineView.h>
 
 @interface GormNSOutlineView : NSOutlineView
 {

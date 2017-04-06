@@ -1,9 +1,9 @@
 #ifndef INCLUDED_GormPluginsPref_h
 #define INCLUDED_GormPluginsPref_h
 
-#include <Foundation/NSObject.h>
-#include <Foundation/NSArray.h>
-#include <AppKit/NSView.h>
+#import <Foundation/NSObject.h>
+#import <Foundation/NSArray.h>
+#import <AppKit/NSView.h>
 
 @interface GormPluginsPref : NSObject <NSTableViewDelegate>
 {

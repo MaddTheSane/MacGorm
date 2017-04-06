@@ -24,7 +24,7 @@
 #ifndef	INCLUDED_GormNSWindow_h
 #define	INCLUDED_GormNSWindow_h
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
 
 @interface GormNSWindow : NSWindow
 {

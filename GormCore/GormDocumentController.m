@@ -25,8 +25,8 @@
  */
 
 #include "GormPrivate.h"
-#include <GormCore/GormDocument.h>
-#include <GormCore/GormDocumentController.h>
+#import <GormCore/GormDocument.h>
+#import <GormCore/GormDocumentController.h>
 #import <GormCore/GormDocumentWindow.h>
 #import <GNUstepBase/GNUstep.h>
 #import <GNUstepBase/NSDebug+GNUstepBase.h>

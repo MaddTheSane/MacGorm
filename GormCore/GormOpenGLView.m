@@ -23,12 +23,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <GormCore/GormOpenGLView.h>
-#include <Foundation/NSTimer.h>
-#include <AppKit/NSColor.h>
-#include <AppKit/NSBezierPath.h>
-//#include <AppKit/PSOperators.h>
-// #include <AppKit/NSOpenGL.h>
+#import <GormCore/GormOpenGLView.h>
+#import <Foundation/NSTimer.h>
+#import <AppKit/NSColor.h>
+#import <AppKit/NSBezierPath.h>
+//#import <AppKit/PSOperators.h>
+// #import <AppKit/NSOpenGL.h>
 // #include <GL/gl.h>
 
 @implementation GormOpenGLView 

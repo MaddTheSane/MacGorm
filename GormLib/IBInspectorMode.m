@@ -22,21 +22,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <GormLib/IBInspectorMode.h>
-#include <Foundation/NSArray.h>
-#include <Foundation/NSString.h>
-#include <GNUstepBase/GNUstep.h>
+#import <GormLib/IBInspectorMode.h>
+#import <Foundation/NSArray.h>
+#import <Foundation/NSString.h>
+#import <GNUstepBase/GNUstep.h>
 
 /**
  * IBInspectorMode is an internal class in the InterfaceBuilder framework.
  */
 
 @implementation IBInspectorMode
+@synthesize ordering;
+@synthesize identifier;
+@synthesize object;
+@synthesize localizedLabel;
+@synthesize inspectorClassName;
+
 - (id) initWithIdentifier: (NSString *)ident
-		forObject: (id)obj
-	   localizedLabel: (NSString *)lab
-       inspectorClassName: (NSString *)cn
-		 ordering: (float)ord
+				forObject: (id)obj
+		   localizedLabel: (NSString *)lab
+	   inspectorClassName: (NSString *)cn
+				 ordering: (CGFloat)ord
 {
   if((self = [super init]) != nil)
     {
@@ -58,54 +64,4 @@
   [super dealloc];
 }
 
-- (void) setIdentifier: (NSString *)ident
-{
-  ASSIGN(identifier, ident);
-}
-
-- (NSString *) identifier
-{
-  return identifier;
-}
-
-- (void) setObject: (id)obj
-{
-  // don't retain the object, since we are not the owner.
-  object = obj;
-}
-
-- (id) object
-{
-  return object;
-}
-
-- (void) setLocalizedLabel: (NSString *)lab
-{
-  ASSIGN(localizedLabel, lab);
-}
-
-- (NSString *) localizedLabel
-{
-  return localizedLabel;
-}
-
-- (void) setInspectorClassName: (NSString *)cn
-{
-  ASSIGN(inspectorClassName, cn);
-}
-
-- (NSString *) inspectorClassName
-{
-  return inspectorClassName;
-}
-
-- (void) setOrdering: (float)ord
-{
-  ordering = ord;
-}
-
-- (float) ordering
-{
-  return ordering;
-}
 @end

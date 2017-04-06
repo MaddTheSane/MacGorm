@@ -34,7 +34,7 @@
 #ifndef INCLUDED_GormBrowserAttributesInspector_h
 #define INCLUDED_GormBrowserAttributesInspector_h
 
-#include <GormLib/IBInspector.h>
+#import <GormLib/IBInspector.h>
 
 @class NSButton;
 @class NSForm;

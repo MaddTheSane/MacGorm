@@ -24,14 +24,14 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
 */
 
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
-#include <GormLib/InterfaceBuilder.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+#import <GormLib/InterfaceBuilder.h>
 
-#include <GormCore/GormPrivate.h>
-#include <GormCore/GormViewEditor.h>
-#include <GormCore/NSColorWell+GormExtensions.h>
-#include <GormCore/GormViewSizeInspector.h>
+#import <GormCore/GormPrivate.h>
+#import <GormCore/GormViewEditor.h>
+#import <GormCore/NSColorWell+GormExtensions.h>
+#import <GormCore/GormViewSizeInspector.h>
 
 #include "GormTextViewEditor.h"
 

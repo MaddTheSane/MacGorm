@@ -6,7 +6,7 @@
 #ifndef GORM_SET_NAME_CONTROLLER_H
 #define GORM_SET_NAME_CONTROLLER_H
 
-#include <Foundation/NSObject.h>
+#import <Foundation/NSObject.h>
 
 @class NSButton, NSPanel, NSTextField;
 

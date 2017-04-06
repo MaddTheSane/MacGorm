@@ -24,7 +24,7 @@
 #ifndef	INCLUDED_GormNSMenu_h
 #define	INCLUDED_GormNSMenu_h
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
 
 @interface GormNSMenu : NSMenu
 + (GormNSMenu *) menuWithMenu: (NSMenu *)menu;

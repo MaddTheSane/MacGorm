@@ -25,9 +25,9 @@
 #ifndef INCLUDED_GormGuidelinePref_h
 #define INCLUDED_GormGuidelinePref_h
 
-#include <Foundation/NSObject.h>
-#include <Foundation/NSArray.h>
-#include <AppKit/NSView.h>
+#import <Foundation/NSObject.h>
+#import <Foundation/NSArray.h>
+#import <AppKit/NSView.h>
 
 @class NSWindow;
 

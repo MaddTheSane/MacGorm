@@ -36,13 +36,13 @@
 
 #include "GormColorWellAttributesInspector.h"
 
-#include <GormCore/NSColorWell+GormExtensions.h>
+#import <GormCore/NSColorWell+GormExtensions.h>
 
-#include <Foundation/NSNotification.h>
+#import <Foundation/NSNotification.h>
 
-#include <AppKit/NSButton.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSTextField.h>
+#import <AppKit/NSButton.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSTextField.h>
 
 
 

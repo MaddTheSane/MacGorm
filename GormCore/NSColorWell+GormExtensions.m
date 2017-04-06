@@ -22,9 +22,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/NSView.h>
-#include <AppKit/NSColorPanel.h>
-#include <GNUstepBase/GNUstep.h>
+#import <AppKit/NSView.h>
+#import <AppKit/NSColorPanel.h>
+#import <GNUstepBase/GNUstep.h>
 #include "NSColorWell+GormExtensions.h"
 
 @implementation NSColorWell (GormExtensions)

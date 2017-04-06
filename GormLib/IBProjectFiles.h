@@ -25,7 +25,7 @@
 #ifndef INCLUDED_IBPROJECTFILES_H
 #define INCLUDED_IBPROJECTFILES_H
 
-#include <GormLib/IBProjects.h>
+#import <GormLib/IBProjects.h>
 
 @class NSString;
 
@@ -43,7 +43,7 @@
 /**
  * Returns YES, if the file is localized, NO if it's simply in Resources.
  */
-- (BOOL) isLocalized;
+@property (readonly, getter=isLocalized) BOOL localized;
 
 /**
  * The language 

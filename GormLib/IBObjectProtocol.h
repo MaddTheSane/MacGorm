@@ -25,7 +25,7 @@
 #ifndef INCLUDED_IBOBJECTPROTOCOL_H
 #define INCLUDED_IBOBJECTPROTOCOL_H
 
-#include <GormLib/IBDocuments.h>
+#import <GormLib/IBDocuments.h>
 
 @protocol IBObjectProtocol
 /**

@@ -35,7 +35,7 @@
 #ifndef	INCLUDED_GormTableColumnAttributesInspector_h
 #define	INCLUDED_GormTableColumnAttributesInspector_h
 
-#include <GormLib/IBInspector.h>
+#import <GormLib/IBInspector.h>
 
 @class NSButton;
 @class NSMatrix;

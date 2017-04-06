@@ -22,12 +22,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/AppKit.h>
-#include <Foundation/NSUserDefaults.h>
-#include <GNUStepBase/GNUstep.h>
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
-#include <GormLib/InterfaceBuilder.h>
-#include <GNUstepGUI/GNUstepGUI.h>
+#import <AppKit/AppKit.h>
+#import <Foundation/NSUserDefaults.h>
+#import <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GormLib/InterfaceBuilder.h>
+#import <GNUstepGUI/GNUstepGUI.h>
 
 #include "GormGenericEditor.h"
 #include "GormViewEditor.h"

@@ -32,11 +32,11 @@
 */
 
 #include "GormStepperAttributesInspector.h"
-#include <Foundation/NSNotification.h>
-#include <AppKit/NSButton.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSStepper.h>
-#include <AppKit/NSTextField.h>
+#import <Foundation/NSNotification.h>
+#import <AppKit/NSButton.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSStepper.h>
+#import <AppKit/NSTextField.h>
 
 // Some simple inspectors.
 @interface GormStepperCellAttributesInspector : GormStepperAttributesInspector

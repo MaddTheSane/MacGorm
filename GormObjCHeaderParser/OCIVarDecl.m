@@ -23,12 +23,12 @@
  */
 
 
-#include <Foundation/Foundation.h>
-#include <GormObjCHeaderParser/OCIVar.h>
-#include <GormObjCHeaderParser/OCIVarDecl.h>
-#include <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
-#include <GormObjCHeaderParser/ParserFunctions.h>
-#include <GNUstepBase/GNUstep.h>
+#import <Foundation/Foundation.h>
+#import <GormObjCHeaderParser/OCIVar.h>
+#import <GormObjCHeaderParser/OCIVarDecl.h>
+#import <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
+#import <GormObjCHeaderParser/ParserFunctions.h>
+#import <GNUstepBase/GNUstep.h>
 
 @implementation OCIVarDecl
 

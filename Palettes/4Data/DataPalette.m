@@ -22,21 +22,21 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
 */
 
-#include <Foundation/Foundation.h>
-#include <Foundation/NSFormatter.h>
-#include <Foundation/NSNotification.h>
-#include <Foundation/NSNumberFormatter.h>
-#include <AppKit/NSComboBox.h>
-#include <AppKit/NSScrollView.h>
-#include <AppKit/NSImage.h>
-#include <AppKit/NSImageView.h>
-#include <AppKit/NSTextContainer.h>
-#include <AppKit/NSTextView.h>
-#include <AppKit/NSWindow.h>
-#include <AppKit/NSClipView.h>
-#include <GormLib/IBPalette.h>
-#include <GormLib/IBViewResourceDragging.h>
-#include <GormCore/GormPrivate.h>
+#import <Foundation/Foundation.h>
+#import <Foundation/NSFormatter.h>
+#import <Foundation/NSNotification.h>
+#import <Foundation/NSNumberFormatter.h>
+#import <AppKit/NSComboBox.h>
+#import <AppKit/NSScrollView.h>
+#import <AppKit/NSImage.h>
+#import <AppKit/NSImageView.h>
+#import <AppKit/NSTextContainer.h>
+#import <AppKit/NSTextView.h>
+#import <AppKit/NSWindow.h>
+#import <AppKit/NSClipView.h>
+#import <GormLib/IBPalette.h>
+#import <GormLib/IBViewResourceDragging.h>
+#import <GormCore/GormPrivate.h>
 #import <GNUstepBase/GNUstepBase.h>
 
 /* -----------------------------------------------------------

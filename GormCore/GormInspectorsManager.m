@@ -22,18 +22,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/NSNibConnector.h>
-#include <Foundation/NSException.h>
-#include <GormLib/IBInspector.h>
-#include <GormLib/IBInspectorMode.h>
-#include <GormLib/IBObjectAdditions.h>
-#include <GormLib/IBInspectorManager.h>
-#include <GormLib/IBDocuments.h>
+#import <AppKit/NSNibConnector.h>
+#import <Foundation/NSException.h>
+#import <GormLib/IBInspector.h>
+#import <GormLib/IBInspectorMode.h>
+#import <GormLib/IBObjectAdditions.h>
+#import <GormLib/IBInspectorManager.h>
+#import <GormLib/IBDocuments.h>
 #include "GormPrivate.h"
 #include "GormImage.h"
 #include "GormSound.h"
-#include <GNUstepBase/GNUstep.h>
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 #define NUM_DEFAULT_INSPECTORS 5
 

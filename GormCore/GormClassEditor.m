@@ -23,8 +23,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 #import <AppKit/NSNibConnector.h>
 #import <GNUstepBase/GNUstep.h>
 #import <GNUstepBase/NSDebug+GNUstepBase.h>
@@ -507,137 +507,112 @@ NSImage *browserImage = nil;
 
 - (void) deleteSelection
 {
-  id anitem;
-  NSInteger i = [outlineView selectedRow];
-  NSNotificationCenter	*nc = [NSNotificationCenter defaultCenter];
-  
-  // if no selection, then return.
-  if (i == -1)
-    {
-      return;
-    }
-
-  // get the item, and catch the exception, if there's a problem.
-  if([classesView contentView] == outlineView)
-    {
-      NS_DURING
-	{
-	  anitem = [outlineView itemAtRow: i];
+	id anitem;
+	NSInteger i = [outlineView selectedRow];
+	NSNotificationCenter	*nc = [NSNotificationCenter defaultCenter];
+	
+	// if no selection, then return.
+	if (i == -1) {
+		return;
 	}
-      NS_HANDLER
-	{
-	  anitem = nil;
-	}
-      NS_ENDHANDLER;
-    }
-  else
-    {
-      anitem = [[browserView selectedCell] stringValue];
-    }
-
-  if(anitem == nil)
-    return;
-  
-  if ([anitem isKindOfClass: [GormOutletActionHolder class]])
-    {
-      id itemBeingEdited = [outlineView itemBeingEdited];
-      NSString *name = [anitem getName];
-
-      // if the class being edited is a custom class or a category, 
-      // then allow the deletion...
-      if ([classManager isCustomClass: itemBeingEdited] ||
-	  [classManager isAction: name onCategoryForClassNamed: itemBeingEdited])
-	{
-	  if ([outlineView editType] == Actions)
-	    {
-	      // if this action is an action on the class, not it's superclass
-	      // allow the deletion...
-	      if ([classManager isAction: name
-			       ofClass: itemBeingEdited])
-		{
-		  BOOL removed = [document removeConnectionsWithLabel: name 
-					   forClassNamed: itemBeingEdited
-					   isAction: YES];
-		  if (removed)
-		    {
-		      [classManager removeAction: name
-				    fromClassNamed: itemBeingEdited];
-		      [outlineView removeItemAtRow: i];
-		      [nc postNotificationName: GormDidModifyClassNotification
-			  object: classManager];
-		    }
+	
+	// get the item, and catch the exception, if there's a problem.
+	if([classesView contentView] == outlineView) {
+		@try {
+			anitem = [outlineView itemAtRow: i];
+		} @catch (NSException *localException) {
+			anitem = nil;
 		}
-	    }
-	  else if ([outlineView editType] == Outlets)
-	    {
-	      // if this outlet is an outlet on the class, not it's superclass
-	      // allow the deletion...
-	      if ([classManager isOutlet: name
-			       ofClass: itemBeingEdited])
-		{
-		  BOOL removed = [document removeConnectionsWithLabel: name 
-					   forClassNamed: itemBeingEdited
-					   isAction: NO];
-		  if (removed)
-		    {
-		      [classManager removeOutlet: name
-				    fromClassNamed: itemBeingEdited];
-		      [outlineView removeItemAtRow: i];
-		      [nc postNotificationName: GormDidModifyClassNotification
-			  object: classManager];
-		    }
+	} else {
+		anitem = [[browserView selectedCell] stringValue];
+	}
+	
+	if(anitem == nil)
+		return;
+	
+	if ([anitem isKindOfClass: [GormOutletActionHolder class]]) {
+		id itemBeingEdited = [outlineView itemBeingEdited];
+		NSString *name = [anitem getName];
+		
+		// if the class being edited is a custom class or a category,
+		// then allow the deletion...
+		if ([classManager isCustomClass: itemBeingEdited] ||
+			[classManager isAction: name onCategoryForClassNamed: itemBeingEdited]) {
+			if ([outlineView editType] == Actions) {
+				// if this action is an action on the class, not it's superclass
+				// allow the deletion...
+				if ([classManager isAction: name
+								   ofClass: itemBeingEdited])
+				{
+					BOOL removed = [document removeConnectionsWithLabel: name
+														  forClassNamed: itemBeingEdited
+															   isAction: YES];
+					if (removed) {
+						[classManager removeAction: name
+									fromClassNamed: itemBeingEdited];
+						[outlineView removeItemAtRow: i];
+						[nc postNotificationName: GormDidModifyClassNotification
+										  object: classManager];
+					}
+				}
+			} else if ([outlineView editType] == Outlets) {
+				// if this outlet is an outlet on the class, not it's superclass
+				// allow the deletion...
+				if ([classManager isOutlet: name
+								   ofClass: itemBeingEdited]) {
+					BOOL removed = [document removeConnectionsWithLabel: name
+														  forClassNamed: itemBeingEdited
+															   isAction: NO];
+					if (removed) {
+						[classManager removeOutlet: name
+									fromClassNamed: itemBeingEdited];
+						[outlineView removeItemAtRow: i];
+						[nc postNotificationName: GormDidModifyClassNotification
+										  object: classManager];
+					}
+				}
+			}
 		}
-	    }
-	}
-    }
-  else
-    {
-      NSArray *subclasses = [classManager subClassesOf: anitem];
-      // if the class has no subclasses, then delete.
-      if ([subclasses count] == 0)
-	{
-	  // if the class being edited is a custom class, then allow the deletion...
-	  if ([classManager isCustomClass: anitem])
-	    {
-	      BOOL removed = [document removeConnectionsForClassNamed: anitem];
-	      if (removed)
-		{
-		  [self copySelection];
-		  [document removeAllInstancesOfClass: anitem];
-		  [classManager removeClassNamed: anitem];
-		  [self reloadData];
-		  [nc postNotificationName: GormDidModifyClassNotification
-		      object: classManager];
-		  DESTROY(selectedClass); // don't keep the class we're pointing to.
+	} else {
+		NSArray *subclasses = [classManager subClassesOf: anitem];
+		// if the class has no subclasses, then delete.
+		if ([subclasses count] == 0) {
+			// if the class being edited is a custom class, then allow the deletion...
+			if ([classManager isCustomClass: anitem]) {
+				BOOL removed = [document removeConnectionsForClassNamed: anitem];
+				if (removed) {
+					[self copySelection];
+					[document removeAllInstancesOfClass: anitem];
+					[classManager removeClassNamed: anitem];
+					[self reloadData];
+					[nc postNotificationName: GormDidModifyClassNotification
+									  object: classManager];
+					DESTROY(selectedClass); // don't keep the class we're pointing to.
+				}
+			}
+		} else {
+			NSAlert *alert = [[NSAlert alloc] init];
+			alert.messageText = _(@"Problem removing class");
+			alert.informativeText = [NSString stringWithFormat: _(@"The class %@ has subclasses which must be removed"), anitem];
+			[alert runModal];
+			DESTROY(alert);
+			
 		}
-	    }
 	}
-      else
-	{
-	  NSString *message = [NSString stringWithFormat: 
-	    _(@"The class %@ has subclasses which must be removed"), anitem];
-	  NSRunAlertPanel(_(@"Problem removing class"), 
-			  @"%@",
-			  nil, nil, nil, message);
-	}
-    }    
 }
 
 - (void) copySelection
 {
-  if(selectedClass != nil)
-    {
-      if([selectedClass isEqual: @"FirstResponder"] == NO)
-	{
+  if (selectedClass != nil) {
+      if ([selectedClass isEqual: @"FirstResponder"] == NO) {
 	  NSPasteboard *pb = [NSPasteboard generalPasteboard];
 	  NSMutableDictionary *dict = 
 	    [NSMutableDictionary dictionaryWithObjectsAndKeys: [classManager dictionaryForClassNamed: selectedClass], 
 				 selectedClass, nil];
 	  id classPlist = [[dict description] propertyList];
 	  
-	  if(classPlist != nil)
-	    {
-	      [pb declareTypes: [NSArray arrayWithObject: GormClassPboardType] owner: self];
+	  if (classPlist != nil) {
+	      [pb declareTypes: @[GormClassPboardType] owner: self];
 	      [pb setPropertyList: classPlist forType: GormClassPboardType];
 	    }
 	}
@@ -646,43 +621,41 @@ NSImage *browserImage = nil;
 
 - (void) pasteInSelection
 {
-  if(selectedClass != nil)
-    {
-      if([selectedClass isEqual: @"FirstResponder"] == NO)
-	{
-	  NSPasteboard *pb = [NSPasteboard generalPasteboard];
-	  NSArray *types = [pb types];
-	  
-	  if([types containsObject: GormClassPboardType])
-	    {
-	      id classPlist = [pb propertyListForType: GormClassPboardType];
-	      NSDictionary *classesDict = [NSDictionary dictionaryWithDictionary: classPlist];
-	      id name = nil;
-	      NSEnumerator *en = [classesDict keyEnumerator];
-	      
-	      while((name = [en nextObject]) != nil)
-		{
-		  NSDictionary *classDict = [classesDict objectForKey: name];
-		  NSString *className = [classManager uniqueClassNameFrom: name];
-		  BOOL added = [classManager addClassNamed: className
-					     withSuperClassNamed: selectedClass
-					     withActions: [classDict objectForKey: @"Actions"]
-					     withOutlets: [classDict objectForKey: @"Outlets"]];
-		  if(!added)
-		    {
-		      NSRunAlertPanel(_(@"Problem pasting class"),
-				      @"Addition of %@ with superclass %@ failed.",
-							  nil, nil, nil, className, selectedClass);
-		    }
+	if (selectedClass != nil) {
+		if([selectedClass isEqual: @"FirstResponder"] == NO) {
+			NSPasteboard *pb = [NSPasteboard generalPasteboard];
+			NSArray *types = [pb types];
+			
+			if([types containsObject: GormClassPboardType]) {
+				id classPlist = [pb propertyListForType: GormClassPboardType];
+				NSDictionary *classesDict = [NSDictionary dictionaryWithDictionary: classPlist];
+				id name = nil;
+				NSEnumerator *en = [classesDict keyEnumerator];
+				
+				while((name = [en nextObject]) != nil) {
+					NSDictionary *classDict = [classesDict objectForKey: name];
+					NSString *className = [classManager uniqueClassNameFrom: name];
+					BOOL added = [classManager addClassNamed: className
+										 withSuperClassNamed: selectedClass
+												 withActions: [classDict objectForKey: @"Actions"]
+												 withOutlets: [classDict objectForKey: @"Outlets"]];
+					if(!added) {
+						NSAlert *alert = [[NSAlert alloc] init];
+						alert.messageText = _(@"Problem pasting class");
+						alert.informativeText = [NSString stringWithFormat: @"Addition of %@ with superclass %@ failed.", className, selectedClass];
+						[alert runModal];
+						DESTROY(alert);
+					}
+				}
+			}
+		} else {
+			NSAlert *alert = [[NSAlert alloc] init];
+			alert.messageText = _(@"Problem pasting class");
+			alert.informativeText = _(@"FirstResponder cannot have subclasses.");
+			[alert runModal];
+			DESTROY(alert);
 		}
-	    }
 	}
-      else
-	{
-	  NSRunAlertPanel(_(@"Problem pasting class"),
-			  @"%@", nil, nil, nil, _(@"FirstResponder cannot have subclasses."));
-	}
-    }
 }
 
 
@@ -808,42 +781,36 @@ NSImage *browserImage = nil;
  */
 - (id) createSubclass: (id)sender
 {
-  if (![outlineView isEditing])
-    {
-      NSString *itemSelected = [self selectedClassName];
-      
-      if(itemSelected != nil)
-	{
-	  NSString *newClassName;
-
-	  newClassName = [classManager addClassWithSuperClassName:
-					 itemSelected];
-	  if(newClassName != nil)
-	    {
-	      NSInteger i = 0;
-	      if([classesView contentView] == scrollView)
-		{
-		  [outlineView reloadData];
-		  [outlineView expandItem: itemSelected];
-		  i = [outlineView rowForItem: newClassName]; 
-		  [outlineView selectRow: i byExtendingSelection: NO];
-		  [outlineView scrollRowToVisible: i];
+	if (![outlineView isEditing]) {
+		NSString *itemSelected = [self selectedClassName];
+		
+		if(itemSelected != nil) {
+			NSString *newClassName;
+			
+			newClassName = [classManager addClassWithSuperClassName:
+							itemSelected];
+			if (newClassName != nil) {
+				NSInteger i = 0;
+				if([classesView contentView] == scrollView) {
+					[outlineView reloadData];
+					[outlineView expandItem: itemSelected];
+					i = [outlineView rowForItem: newClassName];
+					[outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:i] byExtendingSelection:NO];
+					[outlineView scrollRowToVisible: i];
+				} else if([classesView contentView] == browserView) {
+					[self selectClass: newClassName editClass: NO];
+				}
+			} else {
+				// inform the user of this error.
+				NSAlert *alert = [[NSAlert alloc] init];
+				alert.messageText = _(@"Cannot instantiate");
+				alert.informativeText = _(@"FirstResponder cannot be instantiated.");
+				[alert runModal];
+				DESTROY(alert);
+			}
 		}
-	      else if([classesView contentView] == browserView)
-		{
-		  [self selectClass: newClassName editClass: NO];
-		}
-	    }
-	  else
-	    {
-	      // inform the user of this error.
-	      NSRunAlertPanel(_(@"Cannot instantiate"), 
-						  @"%@", nil, nil, nil,
-						  _(@"FirstResponder cannot be instantiated."));
-	    }
 	}
-    }
-  return self;
+	return self;
 }
 
 /**
@@ -851,77 +818,64 @@ NSImage *browserImage = nil;
  */
 - (id) instantiateClass: (id)sender
 {
-  NSString *object = [self selectedClassName];
-  GSNibItem *item = nil;
-  
-  if([object isEqualToString: @"FirstResponder"])
-    {
-      return nil;
-    }
-
-  if([classManager canInstantiateClassNamed: object] == NO)
-    {
-      return nil;
-    }
-
-  if([classManager isSuperclass: @"NSView" linkedToClass: object] ||
-     [object isEqual: @"NSView"])
-    {
-      Class cls;
-      NSString *className = object;
-      BOOL isCustom = [classManager isCustomClass: object];
-      id instance;
-      
-      if(isCustom)
-	{
-	  className = [classManager nonCustomSuperClassOf: object];
+	NSString *object = [self selectedClassName];
+	GSNibItem *item = nil;
+	
+	if ([object isEqualToString: @"FirstResponder"]) {
+		return nil;
 	}
-      
-      // instantiate the object or it's substitute...
-      cls = NSClassFromString(className);
-      if([cls respondsToSelector: @selector(allocSubstitute)])
-	{
-	  instance = [cls allocSubstitute];
+	
+	if ([classManager canInstantiateClassNamed: object] == NO) {
+		return nil;
 	}
-      else
-	{
-	  instance = [cls alloc];
+	
+	if ([classManager isSuperclass: @"NSView" linkedToClass: object] ||
+		[object isEqual: @"NSView"]) {
+		Class cls;
+		NSString *className = object;
+		BOOL isCustom = [classManager isCustomClass: object];
+		id instance;
+		
+		if (isCustom) {
+			className = [classManager nonCustomSuperClassOf: object];
+		}
+		
+		// instantiate the object or it's substitute...
+		cls = NSClassFromString(className);
+		if([cls respondsToSelector: @selector(allocSubstitute)]) {
+			instance = [cls allocSubstitute];
+		} else {
+			instance = [cls alloc];
+		}
+		
+		// give it some initial dimensions...
+		if([instance respondsToSelector: @selector(initWithFrame:)]) {
+			instance = [instance initWithFrame: NSMakeRect(10,10,380,280)];
+		} else {
+			instance = [instance init];
+		}
+		
+		// add it to the top level objects...
+		[document setName: nil forObject: instance];
+		[document attachObject: instance toParent: nil];
+		
+		// we want to record if it's custom or not and act appropriately...
+		if (isCustom) {
+			NSString *name = [document nameForObject: instance];
+			[classManager setCustomClass: object
+								 forName: name];
+		}
+		
+		[document changeToViewWithTag: 0];
+		NSLog(@"Instantiate NSView subclass %@",object);
+	} else {
+		item = [[GormObjectProxy alloc] initWithClassName: object];
+		[document setName: nil forObject: item];
+		[document attachObject: item toParent: nil];      
+		[document changeToViewWithTag: 0];
 	}
-      
-      // give it some initial dimensions...
-      if([instance respondsToSelector: @selector(initWithFrame:)])
-	{
-	  instance = [instance initWithFrame: NSMakeRect(10,10,380,280)];
-	}
-      else
-	{
-	  instance = [instance init];
-	}
-      
-      // add it to the top level objects...
-      [document setName: nil forObject: instance];
-      [document attachObject: instance toParent: nil];
-      
-      // we want to record if it's custom or not and act appropriately...
-      if(isCustom)
-	{
-	  NSString *name = [document nameForObject: instance];
-	  [classManager setCustomClass: object
-			forName: name];
-	}
-
-      [document changeToViewWithTag: 0];
-      NSLog(@"Instantiate NSView subclass %@",object);	      
-    }
-  else
-    {
-      item = [[GormObjectProxy alloc] initWithClassName: object];
-      [document setName: nil forObject: item];
-      [document attachObject: item toParent: nil];      
-      [document changeToViewWithTag: 0];
-    }
-  
-  return self;
+	
+	return self;
 }
 
 /**
@@ -938,7 +892,7 @@ NSImage *browserImage = nil;
  */
 - (id) loadClass: (id)sender
 {
-	NSArray	*fileTypes = [NSArray arrayWithObjects: @"h", @"H", nil];
+	NSArray	*fileTypes = @[@"h", @"H"];
 	NSOpenPanel	*oPanel = [NSOpenPanel openPanel];
 	NSInteger		result;
 	
@@ -953,17 +907,22 @@ NSImage *browserImage = nil;
 		@try {
 			if (![classManager parseHeader: filename]) {
 				NSString *file = [filename lastPathComponent];
-				NSRunAlertPanel(_(@"Problem parsing class"),
-								_(@"Unable to parse class in %@"),
-								nil, nil, nil, file);
+				NSAlert *alert = [[NSAlert alloc] init];
+				alert.messageText = _(@"Problem parsing class");
+				alert.informativeText = [NSString stringWithFormat: _(@"Unable to parse class in %@"), file];
+				[alert runModal];
+				DESTROY(alert);
+
 			} else {
 				return self;
 			}
 		} @catch (NSException *localException) {
 			NSString *message = [localException reason];
-			NSRunAlertPanel(_(@"Problem parsing class"),
-							@"%@",
-							nil, nil, nil, message);
+			NSAlert *alert = [[NSAlert alloc] init];
+			alert.messageText = _(@"Problem parsing class");
+			alert.informativeText = message ?: @"";
+			[alert runModal];
+			DESTROY(alert);
 		}
 		
 	}
@@ -979,51 +938,47 @@ NSImage *browserImage = nil;
 	NSSavePanel	*sp;
 	NSString	*className = [self selectedClassName];
 	NSInteger	result;
-
-  sp = [NSSavePanel savePanel];
-  sp.allowedFileTypes = @[@"m"];
-  [sp setTitle: _(@"Save source file as...")];
-  if ([document fileName] == nil) {
-      result = [sp runModalForDirectory: NSHomeDirectory() 
-		   file: [className stringByAppendingPathExtension: @"m"]];
-    }
-  else
-    {
-      result = [sp runModalForDirectory: 
-		     [[document fileName] stringByDeletingLastPathComponent]
-		   file: [className stringByAppendingPathExtension: @"m"]];
-    }
-
-  if (result == NSFileHandlingPanelOKButton)
-    {
-      NSString *sourceName = [[sp URL] path];
-      NSString *headerName;
-
-		sp.allowedFileTypes = @[@"h"];
-      [sp setTitle: _(@"Save header file as...")];
-      result = [sp runModalForDirectory: 
-		     [sourceName stringByDeletingLastPathComponent]
-		   file: 
-		     [[[sourceName lastPathComponent]
-			stringByDeletingPathExtension] 
-		       stringByAppendingString: @".h"]];
-      if (result == NSFileHandlingPanelOKButton)
-	{
-	  headerName = [[sp URL] path];
-	  NSDebugLog(@"Saving %@", className);
-	  if (![classManager makeSourceAndHeaderFilesForClass: className
-			     withName: sourceName
-			     and: headerName])
-	    {
-	      NSRunAlertPanel(_(@"Alert"), 
-			      @"%@",
-			      nil, nil, nil, _(@"Could not create the class's file"));
-	    }
-	  
-	  return self;
+	
+	sp = [NSSavePanel savePanel];
+	sp.allowedFileTypes = @[@"m"];
+	[sp setTitle: _(@"Save source file as...")];
+	if ([document fileURL] == nil) {
+		sp.directoryURL = [NSURL fileURLWithPath: NSHomeDirectory()];
+		sp.nameFieldStringValue = [className stringByAppendingPathExtension: @"m"];
+		result = [sp runModal];
+	} else {
+		sp.directoryURL = document.fileURL.URLByDeletingLastPathComponent;
+		sp.nameFieldStringValue = [className stringByAppendingPathExtension: @"m"];
+		result = [sp runModal];
 	}
-    }
-  return nil;
+	
+	if (result == NSFileHandlingPanelOKButton) {
+		NSURL *sourceURL = [sp URL];
+		NSString *sourceName = [sourceURL path];
+		NSString *headerName;
+		
+		sp.allowedFileTypes = @[@"h"];
+		sp.directoryURL = sourceURL.URLByDeletingLastPathComponent;
+		sp.nameFieldStringValue = [sourceURL.lastPathComponent.stringByDeletingPathExtension stringByAppendingPathExtension:@"h"];
+		[sp setTitle: _(@"Save header file as...")];
+		result = [sp runModal];
+		if (result == NSFileHandlingPanelOKButton) {
+			headerName = [[sp URL] path];
+			NSDebugLog(@"Saving %@", className);
+			if (![classManager makeSourceAndHeaderFilesForClass: className
+													   withName: sourceName
+															and: headerName]) {
+				NSAlert *alert = [[NSAlert alloc] init];
+				alert.messageText = _(@"Alert");
+				alert.informativeText = _(@"Could not create the class's file");
+				[alert runModal];
+				DESTROY(alert);
+			}
+			
+			return self;
+		}
+	}
+	return nil;
 }
 
 - (void)controlTextDidChange:(NSNotification *)aNotification
@@ -1071,104 +1026,92 @@ objectValueForTableColumn: (NSTableColumn *)aTableColumn
       forTableColumn: (NSTableColumn *)aTableColumn
 	      byItem: (id)item
 {
-  GormOutlineView *gov = (GormOutlineView *)anOutlineView;
-
-  // ignore object values which come in as nil...
-  if(anObject == nil)
-    return;
-
-  if ([item isKindOfClass: [GormOutletActionHolder class]])
-    {
-      if (![anObject isEqualToString: @""] && 
-	  ![anObject isEqualToString: [item getName]])
-	{
-	  NSString *name = [item getName];
-
-	  // retain the name and add the action/outlet...
-	  if ([gov editType] == Actions)
-	    {
-	      NSString *formattedAction = formatAction( (NSString *)anObject );
-	      if (![classManager isAction: formattedAction 
-				ofClass: [gov itemBeingEdited]])
-		{
-		  BOOL removed;
-
-		  removed = [document removeConnectionsWithLabel: name
-		    forClassNamed: [gov itemBeingEdited] isAction: YES];
-		  if (removed)
-		    {
-		      [classManager replaceAction: name 
-				    withAction: formattedAction 
-				    forClassNamed: [gov itemBeingEdited]];
-		      [(GormOutletActionHolder *)item setName: formattedAction];
-		    }
+	GormOutlineView *gov = (GormOutlineView *)anOutlineView;
+	
+	// ignore object values which come in as nil...
+	if(anObject == nil)
+		return;
+	
+	if ([item isKindOfClass: [GormOutletActionHolder class]]) {
+		if (![anObject isEqualToString: @""] &&
+			![anObject isEqualToString: [item getName]]) {
+			NSString *name = [item getName];
+			
+			// retain the name and add the action/outlet...
+			if ([gov editType] == Actions) {
+				NSString *formattedAction = formatAction( (NSString *)anObject );
+				if (![classManager isAction: formattedAction
+									ofClass: [gov itemBeingEdited]]) {
+					BOOL removed;
+					
+					removed = [document removeConnectionsWithLabel: name
+													 forClassNamed: [gov itemBeingEdited] isAction: YES];
+					if (removed) {
+						[classManager replaceAction: name
+										 withAction: formattedAction
+									  forClassNamed: [gov itemBeingEdited]];
+						[(GormOutletActionHolder *)item setName: formattedAction];
+					}
+				} else {
+					NSAlert *alert = [[NSAlert alloc] init];
+					alert.messageText = _(@"Problem Adding Action");
+					alert.informativeText = [NSString stringWithFormat: _(@"The class %@ already has an action named %@"), [gov itemBeingEdited], formattedAction];
+					[alert addButtonWithTitle:_(@"Object name")];
+					[alert addButtonWithTitle:_(@"String")];
+					[alert addButtonWithTitle:_(@"Class name")];
+					[alert runModal];
+					DESTROY(alert);
+				}
+			} else if ([gov editType] == Outlets) {
+				NSString *formattedOutlet = formatOutlet( (NSString *)anObject );
+				
+				if (![classManager isOutlet: formattedOutlet
+									ofClass: [gov itemBeingEdited]]) {
+					BOOL removed;
+					
+					removed = [document removeConnectionsWithLabel: name
+													 forClassNamed: [gov itemBeingEdited]
+														  isAction: NO];
+					if (removed) {
+						[classManager replaceOutlet: name
+										 withOutlet: formattedOutlet
+									  forClassNamed: [gov itemBeingEdited]];
+						[(GormOutletActionHolder *)item setName: formattedOutlet];
+					}
+				} else {
+					NSAlert *alert = [[NSAlert alloc] init];
+					alert.messageText = _(@"Problem Adding Outlet");
+					alert.informativeText = [NSString stringWithFormat: _(@"The class %@ already has an outlet named %@"), [gov itemBeingEdited], formattedOutlet];
+					[alert runModal];
+					DESTROY(alert);
+				}
+			}
 		}
-	      else
-		{
-		  NSRunAlertPanel(_(@"Problem Adding Action"),
-				  _(@"The class %@ already has an action named %@"),
-				  nil, nil, nil, [gov itemBeingEdited], formattedAction);
-				  
+	} else {
+		if((![anObject isEqualToString: @""]) &&
+		   (![anObject isEqualToString:item])) {
+			BOOL rename;
+			
+			rename = [document renameConnectionsForClassNamed: item toName: anObject];
+			if (rename) {
+				NSInteger row = 0;
+				
+				[classManager renameClassNamed: item newName: anObject];
+				[gov reloadData];
+				row = [gov rowForItem: anObject];
+				
+				// make sure that item is collapsed...
+				[gov expandItem: anObject];
+				[gov collapseItem: anObject];
+				
+				// scroll to the item..
+				[gov scrollRowToVisible: row];
+				[gov selectRow: row]; 
+			}
 		}
-	    }
-	  else if ([gov editType] == Outlets)
-	    {
-	      NSString *formattedOutlet = formatOutlet( (NSString *)anObject );
-	      
-	      if (![classManager isOutlet: formattedOutlet 
-				  ofClass: [gov itemBeingEdited]])
-		{
-		  BOOL removed;
-
-		  removed = [document removeConnectionsWithLabel: name
-				      forClassNamed: [gov itemBeingEdited] 
-				      isAction: NO];
-		  if (removed)
-		    {
-		      [classManager replaceOutlet: name 
-				    withOutlet: formattedOutlet 
-				    forClassNamed: [gov itemBeingEdited]];
-		      [(GormOutletActionHolder *)item setName: formattedOutlet];
-		    }
-		}
-	      else
-		{
-		  NSRunAlertPanel(_(@"Problem Adding Outlet"),
-				  _(@"The class %@ already has an outlet named %@"),
-				  nil, nil, nil, [gov itemBeingEdited], formattedOutlet);
-				  
-		}
-	    }
 	}
-    }
-  else
-    {
-      if((![anObject isEqualToString: @""]) && 
-	 (![anObject isEqualToString:item]))
-	{
-	  BOOL rename;
-
-	  rename = [document renameConnectionsForClassNamed: item toName: anObject];
-	  if (rename)
-	    {
-	      NSInteger row = 0;
-
-	      [classManager renameClassNamed: item newName: anObject];
-	      [gov reloadData];
-	      row = [gov rowForItem: anObject];
-
-	      // make sure that item is collapsed...
-	      [gov expandItem: anObject];
-	      [gov collapseItem: anObject];
-	      
-	      // scroll to the item..
-	      [gov scrollRowToVisible: row];
-	      [gov selectRow: row]; 
-	    }
-	}
-    }
-
-  [gov setNeedsDisplay: YES];
+	
+	[gov setNeedsDisplay: YES];
 }
 
 - (NSInteger) outlineView: (NSOutlineView *)anOutlineView 

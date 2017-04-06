@@ -26,7 +26,7 @@
 
 /* All Rights reserved */
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
 
 @interface GormSoundView : NSView
 {

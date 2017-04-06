@@ -25,7 +25,7 @@
 #ifndef INCLUDED_GORMVIEWRESOURCEMANAGER_H
 #define INCLUDED_GORMVIEWRESOURCEMANAGER_H
 
-#include <GormLib/IBResourceManager.h>
+#import <GormLib/IBResourceManager.h>
 
 @interface GormResourceManager : IBResourceManager
 @end

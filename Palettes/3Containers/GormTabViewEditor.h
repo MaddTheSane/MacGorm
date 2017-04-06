@@ -24,8 +24,8 @@
 #ifndef	INCLUDED_GormTabViewEditor_h
 #define	INCLUDED_GormTabViewEditor_h
 
-#include <GormCore/GormViewWithSubviewsEditor.h>
-#include <GormCore/GormInternalViewEditor.h>
+#import <GormCore/GormViewWithSubviewsEditor.h>
+#import <GormCore/GormInternalViewEditor.h>
 
 #import <AppKit/NSTabView.h>
 

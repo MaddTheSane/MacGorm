@@ -34,7 +34,7 @@
 #ifndef INCLUDED_GormMenuItemAttributesInspector_h_
 #define INCLUDED_GormMenuItemAttributesInspector_h_
 
-#include <GormLib/IBInspector.h>
+#import <GormLib/IBInspector.h>
 
 @class NSTextField, NSPopUpButton;
 

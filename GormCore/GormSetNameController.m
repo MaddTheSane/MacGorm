@@ -3,12 +3,12 @@
 
 #include "GormSetNameController.h"
 
-#include <AppKit/NSApplication.h>
-#include <AppKit/NSButton.h>
-#include <AppKit/NSTextField.h>
-#include <AppKit/NSPanel.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSPanel.h>
+#import <AppKit/NSApplication.h>
+#import <AppKit/NSButton.h>
+#import <AppKit/NSTextField.h>
+#import <AppKit/NSPanel.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSPanel.h>
 
 @implementation GormSetNameController : NSObject
 - (NSInteger)runAsModal

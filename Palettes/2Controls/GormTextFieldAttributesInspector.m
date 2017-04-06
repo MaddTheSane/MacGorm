@@ -34,15 +34,15 @@
 
 #include "GormTextFieldAttributesInspector.h"
 
-#include <GormCore/NSColorWell+GormExtensions.h>
+#import <GormCore/NSColorWell+GormExtensions.h>
 
-#include <Foundation/NSNotification.h>
+#import <Foundation/NSNotification.h>
 
-#include <AppKit/NSButton.h>
-#include <AppKit/NSForm.h>
-#include <AppKit/NSMatrix.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSTextField.h>
+#import <AppKit/NSButton.h>
+#import <AppKit/NSForm.h>
+#import <AppKit/NSMatrix.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSTextField.h>
 
 
 /*

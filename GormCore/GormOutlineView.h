@@ -29,8 +29,8 @@
 #ifndef INCLUDED_GormOutlineView_h
 #define INCLUDED_GormOutlineView_h
 
-#include <AppKit/NSOutlineView.h>
-#include <Foundation/NSMapTable.h>
+#import <AppKit/NSOutlineView.h>
+#import <Foundation/NSMapTable.h>
 
 @class NSTableColumn;
 @class NSMenuItem;
@@ -93,7 +93,8 @@ typedef enum {None, Outlets, Actions} GSAttributeType;
 {
   NSString *_name;
 }
-- initWithName: (NSString *)name;
+- (instancetype)initWithName: (NSString *)name;
+@property (copy, getter=getName) NSString* name;
 - (NSString *)getName;
 - (void)setName: (NSString *)name;
 @end

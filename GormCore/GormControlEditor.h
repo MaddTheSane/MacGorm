@@ -24,7 +24,7 @@
 #ifndef	INCLUDED_GormControlEditor_h
 #define	INCLUDED_GormControlEditor_h
 
-#include <GormCore/GormViewEditor.h>
+#import <GormCore/GormViewEditor.h>
 
 @interface GormControlEditor : GormViewEditor
 

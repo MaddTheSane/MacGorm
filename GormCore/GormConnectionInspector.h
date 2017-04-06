@@ -27,8 +27,8 @@
 #ifndef INCLUDED_GormConnectionInspector_h
 #define INCLUDED_GormConnectionInspector_h
 
-#include <AppKit/NSNibConnector.h>
-#include <GormLib/IBInspector.h>
+#import <AppKit/NSNibConnector.h>
+#import <GormLib/IBInspector.h>
 
 @class NSBrowser, NSArray, NSMutableArray;
 

@@ -24,7 +24,7 @@
  */
 
 #include "GormGenericEditor.h"
-#include <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/GNUstep.h>
 
 @implementation	GormGenericEditor
 
