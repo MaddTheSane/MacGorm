@@ -21,10 +21,10 @@
  * along with this program; if not, write to the Free Software
  */
 
-#include <Foundation/Foundation.h>
-#include <AppKit/NSDocumentController.h>
-#include <GormCore/GormPlugin.h>
-#include <GNUstepBase/GNUstep.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/NSDocumentController.h>
+#import <GormCore/GormPlugin.h>
+#import <GNUstepBase/GNUstep.h>
 
 @interface NSDocumentController (GormPrivate)
 - (NSArray *) types;

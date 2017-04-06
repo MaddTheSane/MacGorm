@@ -22,9 +22,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/NSObject.h>
-#include <Foundation/NSObjCRuntime.h>
-#include <GormLib/IBObjectAdditions.h>
+#import <Foundation/NSObject.h>
+#import <Foundation/NSObjCRuntime.h>
+#import <GormLib/IBObjectAdditions.h>
 
 // object additions -- object adopts protocol
 @implementation NSObject (_IBObjectAdditions)

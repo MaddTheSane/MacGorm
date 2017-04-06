@@ -25,8 +25,8 @@
 #ifndef INCLUDED_IBEDITORS_H
 #define INCLUDED_IBEDITORS_H
 
-#include <Foundation/NSObject.h>
-#include <GormLib/IBSystem.h>
+#import <Foundation/NSObject.h>
+#import <GormLib/IBSystem.h>
 
 // forward references
 @class NSString;

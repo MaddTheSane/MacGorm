@@ -24,9 +24,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/NSNibConnector.h>
-#include <GormLib/IBInspector.h>
-#include <GNUstepBase/GNUstep.h>
+#import <AppKit/NSNibConnector.h>
+#import <GormLib/IBInspector.h>
+#import <GNUstepBase/GNUstep.h>
 #import <GNUstepBase/NSDebug+GNUstepBase.h>
 #import <AppKit/NSNibOutletConnector.h>
 #import <AppKit/NSNibControlConnector.h>

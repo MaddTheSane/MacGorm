@@ -1,6 +1,6 @@
 /* All Rights reserved */
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
 #include "GormHelpInspector.h"
 #import <GormCore/PrivateCocoaClasses.h>
 

@@ -24,17 +24,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
-#include <GNUstepGUI/GSGormLoading.h>
-#include <GNUstepBase/GNUstepBase.h>
-#include <GormCore/GormWrapperBuilder.h>
-#include <GormCore/GormClassManager.h>
-#include <GormCore/GormFilePrefsManager.h>
-#include <GormCore/GormDocument.h>
-#include <GormCore/GormFilesOwner.h>
-#include <GormCore/GormProtocol.h>
-#include <GormCore/GormPalettesManager.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+#import <GNUstepGUI/GSGormLoading.h>
+#import <GNUstepBase/GNUstepBase.h>
+#import <GormCore/GormWrapperBuilder.h>
+#import <GormCore/GormClassManager.h>
+#import <GormCore/GormFilePrefsManager.h>
+#import <GormCore/GormDocument.h>
+#import <GormCore/GormFilesOwner.h>
+#import <GormCore/GormProtocol.h>
+#import <GormCore/GormPalettesManager.h>
 
 @interface GormDocument (BuilderAdditions)
 - (void) prepareConnections;

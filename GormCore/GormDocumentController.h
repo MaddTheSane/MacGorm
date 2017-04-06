@@ -29,7 +29,7 @@
 #ifndef INCLUDED_GormDocumentController_h
 #define INCLUDED_GormDocumentController_h
 
-#include <AppKit/NSDocumentController.h>
+#import <AppKit/NSDocumentController.h>
 
 typedef NS_ENUM(NSInteger, GormDocumentType) {
   GormApplication = 0,

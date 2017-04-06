@@ -32,14 +32,14 @@
 
 #include "GormNSComboBoxAttributesInspector.h"
 
-#include <AppKit/NSButton.h>
-#include <GormCore/NSColorWell+GormExtensions.h>
-#include <AppKit/NSComboBox.h>
-#include <AppKit/NSForm.h>
-#include <AppKit/NSMatrix.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSTableView.h>
-#include <AppKit/NSTextField.h>
+#import <AppKit/NSButton.h>
+#import <GormCore/NSColorWell+GormExtensions.h>
+#import <AppKit/NSComboBox.h>
+#import <AppKit/NSForm.h>
+#import <AppKit/NSMatrix.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSTableView.h>
+#import <AppKit/NSTextField.h>
 
 
 /*

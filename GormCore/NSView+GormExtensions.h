@@ -25,7 +25,7 @@
 #ifndef INCLUDED_NSView_GormExtensions_h
 #define INCLUDED_NSView_GormExtensions_h
 
-#include <AppKit/NSView.h>
+#import <AppKit/NSView.h>
 
 @class NSArray;
 

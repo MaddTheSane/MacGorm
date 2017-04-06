@@ -26,10 +26,10 @@
 
 /* All Rights reserved */
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
 #include "GormSoundView.h"
-#include <GNUstepBase/GNUstep.h>
-//#include <AppKit/PSOperators.h>
+#import <GNUstepBase/GNUstep.h>
+//#import <AppKit/PSOperators.h>
 
 // add a data method to the NSSound class...
 @interface NSSound (SoundView)

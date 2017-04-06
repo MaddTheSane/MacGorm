@@ -1,11 +1,11 @@
 #include "GormGuidelinePref.h"
-#include <GormCore/GormFunctions.h>
+#import <GormCore/GormFunctions.h>
 
-#include <Foundation/NSUserDefaults.h>
-#include <AppKit/NSWindow.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSColorWell.h>
-#include <AppKit/NSColor.h>
+#import <Foundation/NSUserDefaults.h>
+#import <AppKit/NSWindow.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSColorWell.h>
+#import <AppKit/NSColor.h>
 #import <GNUstepBase/GNUstepBase.h>
 
 @implementation GormGuidelinePref

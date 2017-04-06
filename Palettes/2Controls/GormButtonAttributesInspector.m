@@ -25,9 +25,9 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
 */
 
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
-#include <GormLib/InterfaceBuilder.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+#import <GormLib/InterfaceBuilder.h>
 #import <GNUstepBase/GNUstepBase.h>
 
 #include "GormButtonAttributesInspector.h"
@@ -99,18 +99,18 @@ NSString *rtString = nil;
   NSDebugLog(@"highlight = %d, stateby = %d",
     (int)[cell highlightsBy],(int)[cell showsStateBy]);
   
-  type = NSMomentaryPushButton;
+  type = NSButtonTypeMomentaryPushIn;
   if (highlight == NSChangeBackgroundCellMask)
     {
       if (stateby == NSNoCellMask)
-	type = NSMomentaryLight;
+	type = NSButtonTypeMomentaryLight;
       else 
 	type = NSOnOffButton;
     }
   else if (highlight == (NSPushInCellMask | NSChangeGrayCellMask))
     {
       if (stateby == NSNoCellMask)
-	type = NSMomentaryPushButton;
+	type = NSButtonTypeMomentaryPushIn;
       else
 	type = NSPushOnPushOffButton;
     }
@@ -151,12 +151,12 @@ NSString *rtString = nil;
     }
   else if (sender == keyEquiv)
     {
-      unsigned int tag = [[keyEquiv selectedItem] tag];
+      NSInteger tag = [[keyEquiv selectedItem] tag];
       switch(tag)
 	{
 	case 0: // none
 	  {
-	    [object setKeyEquivalent: nil];
+	    [object setKeyEquivalent: @""];
 	  }
 	  break;
 	case 1: // return
@@ -201,7 +201,7 @@ NSString *rtString = nil;
 	  break;
 	default: // should never happen..
 	  {
-	    [object setKeyEquivalent: nil];
+	    [object setKeyEquivalent: @""];
 	    NSLog(@"This shouldn't happen.");
 	  }
 	  break;
@@ -314,120 +314,92 @@ NSString *rtString = nil;
 
 -(void) revert: (id)sender
 {
-  NSImage *image;
-
-  if(sender != nil)
-    {
-      NSString *key = VSTR([object keyEquivalent]);
-      unsigned int flags = [object keyEquivalentModifierMask];
-      
-      [alignMatrix selectCellWithTag: [object alignment]];
-      [iconMatrix selectCellWithTag: [object imagePosition]];
-      [[keyForm cellAtIndex: 0] setStringValue: key];
-      
-      if([key isEqualToString: @"\r"])
-	{
-	  [keyEquiv selectItemAtIndex: 1];
+	NSImage *image;
+	
+	if (sender != nil) {
+		NSString *key = VSTR([object keyEquivalent]);
+		unsigned int flags = [object keyEquivalentModifierMask];
+		
+		[alignMatrix selectCellWithTag: [object alignment]];
+		[iconMatrix selectCellWithTag: [object imagePosition]];
+		[[keyForm cellAtIndex: 0] setStringValue: key];
+		
+		if([key isEqualToString: @"\r"]) {
+			[keyEquiv selectItemAtIndex: 1];
+		} else if([key isEqualToString: @"\b"]) {
+			[keyEquiv selectItemAtIndex: 2];
+		} else if([key isEqualToString: @"\E"]) {
+			[keyEquiv selectItemAtIndex: 3];
+		} else if([key isEqualToString: @"\t"]) {
+			[keyEquiv selectItemAtIndex: 4];
+		} else if([key isEqualToString: upString]) {
+			[keyEquiv selectItemAtIndex: 5];
+		} else if([key isEqualToString: dnString]) {
+			[keyEquiv selectItemAtIndex: 6];
+		} else if([key isEqualToString: ltString]) {
+			[keyEquiv selectItemAtIndex: 7];
+		} else if([key isEqualToString: rtString]) {
+			[keyEquiv selectItemAtIndex: 8];
+		} else {
+			[keyEquiv selectItem: nil];
+		}
+		
+		[optionMatrix deselectAllCells];
+		if ([object isBordered])
+			[optionMatrix selectCellAtRow: 0 column: 0];
+		if ([object isContinuous])
+			[optionMatrix selectCellAtRow: 1 column: 0];
+		if ([object isEnabled])
+			[optionMatrix selectCellAtRow: 2 column: 0];
+		if ([(NSButton*)object state] == NSOnState)
+			[optionMatrix selectCellAtRow: 3 column: 0];
+		if ([object isTransparent])
+			[optionMatrix selectCellAtRow: 4 column: 0];
+		
+		[[tagForm cellAtIndex: 0] setIntegerValue: [(NSButton *)object tag]];
+		
+		[[titleForm cellAtIndex: 0] setStringValue: VSTR([object title])];
+		[[titleForm cellAtIndex: 1] setStringValue: VSTR([object alternateTitle])];
+		
+		image = [object image];
+		if (image != nil) {
+			[[titleForm cellAtIndex: 2] setStringValue: VSTR([image name])];
+		} else {
+			[[titleForm cellAtIndex: 2] setStringValue: @""];
+		}
+		
+		image = [object alternateImage];
+		if (image != nil) {
+			[[titleForm cellAtIndex: 3] setStringValue: VSTR([image name])];
+		} else {
+			[[titleForm cellAtIndex: 3] setStringValue: @""];
+		}
+		
+		// key modifier mask...
+		[altMod setState: NSOffState];
+		[ctrlMod setState: NSOffState];
+		[shiftMod setState: NSOffState];
+		[cmdMod setState: NSOffState];
+		if (flags & NSEventModifierFlagOption) {
+			[altMod setState: NSOnState];
+		}
+		if (flags & NSEventModifierFlagControl) {
+			[ctrlMod setState: NSOnState];
+		}
+		if (flags & NSEventModifierFlagShift) {
+			[shiftMod setState: NSOnState];
+		}
+		if(flags & NSEventModifierFlagCommand) {
+			[cmdMod setState: NSOnState];
+		}
+		
+		[typeButton selectItemAtIndex:
+		 [typeButton indexOfItemWithTag:
+		  [self buttonTypeForObject: object]]];
+		
+		[bezelButton selectItemAtIndex:
+		 [bezelButton indexOfItemWithTag: [object bezelStyle]]];
 	}
-      else if([key isEqualToString: @"\b"])
-	{
-	  [keyEquiv selectItemAtIndex: 2];
-	}
-      else if([key isEqualToString: @"\E"])
-	{
-	  [keyEquiv selectItemAtIndex: 3];
-	}
-      else if([key isEqualToString: @"\t"])
-	{
-	  [keyEquiv selectItemAtIndex: 4];
-	}
-      else if([key isEqualToString: upString])
-	{
-	  [keyEquiv selectItemAtIndex: 5];
-	}
-      else if([key isEqualToString: dnString])
-	{
-	  [keyEquiv selectItemAtIndex: 6];
-	}
-      else if([key isEqualToString: ltString])
-	{
-	  [keyEquiv selectItemAtIndex: 7];
-	}
-      else if([key isEqualToString: rtString])
-	{
-	  [keyEquiv selectItemAtIndex: 8];
-	}
-      else
-	{
-	  [keyEquiv selectItem: nil];
-	}
-      
-      [optionMatrix deselectAllCells];
-      if ([object isBordered])
-	[optionMatrix selectCellAtRow: 0 column: 0];
-      if ([object isContinuous])
-	[optionMatrix selectCellAtRow: 1 column: 0];
-      if ([object isEnabled])
-	[optionMatrix selectCellAtRow: 2 column: 0];
-      if ([object state] == NSOnState)
-	[optionMatrix selectCellAtRow: 3 column: 0];
-      if ([object isTransparent])
-	[optionMatrix selectCellAtRow: 4 column: 0];
-      
-      [[tagForm cellAtIndex: 0] setIntValue: [(NSButton *)object tag]];
-      
-      [[titleForm cellAtIndex: 0] setStringValue: VSTR([object title])];
-      [[titleForm cellAtIndex: 1] setStringValue: VSTR([object alternateTitle])];
-      
-      image = [object image];
-      if (image != nil)
-	{
-	  [[titleForm cellAtIndex: 2] setStringValue: VSTR([image name])];
-	}
-      else
-	{
-	  [[titleForm cellAtIndex: 2] setStringValue: @""];
-	}
-      
-      image = [object alternateImage];
-      if (image != nil)
-	{
-	  [[titleForm cellAtIndex: 3] setStringValue: VSTR([image name])];
-	}
-      else
-	{
-	  [[titleForm cellAtIndex: 3] setStringValue: @""];
-	}
-      
-      // key modifier mask...
-      [altMod setState: NSOffState];
-      [ctrlMod setState: NSOffState];
-      [shiftMod setState: NSOffState];
-      [cmdMod setState: NSOffState];
-      if(flags & NSEventModifierFlagOption)
-	{
-	  [altMod setState: NSOnState];
-	}
-      if(flags & NSEventModifierFlagControl)
-	{
-	  [ctrlMod setState: NSOnState];
-	}
-      if(flags & NSEventModifierFlagShift)
-	{
-	  [shiftMod setState: NSOnState];
-	}
-      if(flags & NSEventModifierFlagCommand)
-	{
-	  [cmdMod setState: NSOnState];
-	}
-
-      [typeButton selectItemAtIndex: 
-		    [typeButton indexOfItemWithTag: 
-				  [self buttonTypeForObject: object]]];
-
-      [bezelButton selectItemAtIndex:
-		     [bezelButton indexOfItemWithTag: [object bezelStyle]]];
-    }
 }
 
 - (void)controlTextDidChange:(NSNotification *)aNotification

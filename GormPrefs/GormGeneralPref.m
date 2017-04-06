@@ -24,15 +24,15 @@
 
 #include "GormGeneralPref.h"
 
-#include <Foundation/NSUserDefaults.h>
-#include <Foundation/NSNotification.h>
+#import <Foundation/NSUserDefaults.h>
+#import <Foundation/NSNotification.h>
 
-#include <AppKit/NSButtonCell.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSWindow.h>
-#include <AppKit/NSMatrix.h>
+#import <AppKit/NSButtonCell.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSWindow.h>
+#import <AppKit/NSMatrix.h>
 
-#include <GormCore/GormClassEditor.h>
+#import <GormCore/GormClassEditor.h>
 #import <GNUstepBase/GNUstepBase.h>
 
 static NSString *BACKUPFILE=@"BackupFile";

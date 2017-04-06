@@ -26,9 +26,9 @@
 #ifndef INCLUDED_GormGenericEditor_h
 #define INCLUDED_GormGenericEditor_h
 
-#include <GormLib/InterfaceBuilder.h>
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
+#import <GormLib/InterfaceBuilder.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 
 @interface	GormGenericEditor : NSMatrix <IBEditors, IBSelectionOwners>
 {

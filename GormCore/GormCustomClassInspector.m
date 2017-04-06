@@ -26,14 +26,14 @@
 
 /* All Rights reserved */
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
 #include "GormCustomClassInspector.h"
 #include "GormPrivate.h"
 #include "GormClassManager.h"
 #include "GormDocument.h"
 #include "GormPrivate.h"
 #include "GormViewEditor.h"
-#include <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/GNUstep.h>
 #import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 @implementation GormCustomClassInspector

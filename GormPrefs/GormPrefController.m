@@ -6,10 +6,10 @@
 #include "GormPluginsPref.h"
 #include "GormGuidelinePref.h"
 
-#include <AppKit/NSBox.h>
-#include <AppKit/NSPopUpButton.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSWindow.h>
+#import <AppKit/NSBox.h>
+#import <AppKit/NSPopUpButton.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSWindow.h>
 #import <GNUstepBase/GNUstepBase.h>
 
 @implementation GormPrefController

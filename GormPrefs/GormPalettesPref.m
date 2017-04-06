@@ -22,11 +22,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/NSUserDefaults.h>
-#include <AppKit/NSWindow.h>
-#include <AppKit/NSNibLoading.h>
+#import <Foundation/NSUserDefaults.h>
+#import <AppKit/NSWindow.h>
+#import <AppKit/NSNibLoading.h>
 
-#include <GormCore/GormPrivate.h>
+#import <GormCore/GormPrivate.h>
 #include "GormPalettesPref.h"
 #import <GNUstepBase/GNUstepBase.h>
 

@@ -1,7 +1,7 @@
 /* All Rights reserved */
 
-#include <AppKit/AppKit.h>
-#include <GormLib/IBInspector.h>
+#import <AppKit/AppKit.h>
+#import <GormLib/IBInspector.h>
 
 @interface GormNSSplitViewInspector : IBInspector
 {

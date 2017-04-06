@@ -22,11 +22,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/NSString.h>
-#include <AppKit/NSSound.h>
-#include <AppKit/NSImage.h>
-#include <GormLib/IBObjectAdditions.h>
-#include <GNUStepBase/GNUstep.h>
+#import <Foundation/NSString.h>
+#import <AppKit/NSSound.h>
+#import <AppKit/NSImage.h>
+#import <GormLib/IBObjectAdditions.h>
+#import <GNUstepBase/GNUstep.h>
 #include "GormSound.h"
 
 // sound proxy object...

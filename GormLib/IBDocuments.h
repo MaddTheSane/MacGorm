@@ -25,10 +25,10 @@
 #ifndef INCLUDED_IBDOCUMENTS_H
 #define INCLUDED_IBDOCUMENTS_H
 
-#include <Foundation/NSGeometry.h>
-#include <GormLib/IBEditors.h>
-#include <GormLib/IBConnectors.h>
-#include <GormLib/IBSystem.h>
+#import <Foundation/NSGeometry.h>
+#import <GormLib/IBEditors.h>
+#import <GormLib/IBConnectors.h>
+#import <GormLib/IBSystem.h>
 
 IB_EXTERN NSString *IBDidOpenDocumentNotification;
 IB_EXTERN NSString *IBWillSaveDocumentNotification;
@@ -98,15 +98,15 @@ IB_EXTERN NSString *IBWillCloseDocumentNotification;
  * Copies anObject to the pasteboard with the aType.
  */
 - (BOOL) copyObject: (id)anObject
-	       type: (NSString*)aType
-       toPasteboard: (NSPasteboard*)aPasteboard;
+			   type: (NSString*)aType
+	   toPasteboard: (NSPasteboard*)aPasteboard;
 
 /**
  * Copues an array of objects to aPasteboard with aType.
  */
 - (BOOL) copyObjects: (NSArray*)anArray
-		type: (NSString*)aType
-	toPasteboard: (NSPasteboard*)aPasteboard;
+				type: (NSString*)aType
+		toPasteboard: (NSPasteboard*)aPasteboard;
 
 /** 
  * Detaches anObject from the receiver.
@@ -141,8 +141,8 @@ IB_EXTERN NSString *IBWillCloseDocumentNotification;
  * create an instance of the editor.
  */
 - (id<IBEditors>) editorForObject: (id)anObject
-			 inEditor: (id<IBEditors>)anEditor
-			   create: (BOOL)flag;
+						 inEditor: (id<IBEditors>)anEditor
+						   create: (BOOL)flag;
 
 /**
  * Returns the name associated with the object.
@@ -181,8 +181,8 @@ IB_EXTERN NSString *IBWillCloseDocumentNotification;
  * Pastes the given type from the aPasteboard.
  */
 - (NSArray*) pasteType: (NSString*)aType
-	fromPasteboard: (NSPasteboard*)aPasteboard
-		parent: (id)parent;
+		fromPasteboard: (NSPasteboard*)aPasteboard
+				parent: (id)parent;
 
 /** 
  * Remove aConnector from the receiver.

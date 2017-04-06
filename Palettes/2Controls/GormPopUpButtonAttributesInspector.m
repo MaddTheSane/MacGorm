@@ -33,12 +33,12 @@
 
 #include "GormPopUpButtonAttributesInspector.h"
 
-#include <Foundation/Foundation.h>
-#include <AppKit/NSButton.h>
-#include <AppKit/NSForm.h>
-#include <AppKit/NSMatrix.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSPopUpButton.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/NSButton.h>
+#import <AppKit/NSForm.h>
+#import <AppKit/NSMatrix.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSPopUpButton.h>
 
 /*
   IBObjectAdditions category

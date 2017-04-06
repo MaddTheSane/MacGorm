@@ -22,9 +22,9 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
 */
 
-#include <AppKit/AppKit.h>
-#include <GormLib/InterfaceBuilder.h>
-#include <GNUstepGUI/GSGormLoading.h>
+#import <AppKit/AppKit.h>
+#import <GormLib/InterfaceBuilder.h>
+#import <GNUstepGUI/GSGormLoading.h>
 #include "GormNSWindow.h"
 
 // the default style mask we start with.

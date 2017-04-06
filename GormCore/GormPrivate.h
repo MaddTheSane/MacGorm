@@ -26,17 +26,17 @@
 #ifndef INCLUDED_GormPrivate_h
 #define INCLUDED_GormPrivate_h
 
-#include <GormLib/IBApplicationAdditions.h>
-#include <GormLib/IBInspector.h>
-#include <GormLib/IBViewAdditions.h>
-#include <GormCore/GormFilesOwner.h>
-#include <GormCore/GormDocument.h>
-#include <GormCore/GormInspectorsManager.h>
-#include <GormCore/GormClassManager.h>
-#include <GormCore/GormPalettesManager.h>
-#include <GormCore/GormProtocol.h>
-#include <GormCore/GormClassEditor.h>
-#include <GNUstepGUI/GSGormLoading.h>
+#import <GormLib/IBApplicationAdditions.h>
+#import <GormLib/IBInspector.h>
+#import <GormLib/IBViewAdditions.h>
+#import <GormCore/GormFilesOwner.h>
+#import <GormCore/GormDocument.h>
+#import <GormCore/GormInspectorsManager.h>
+#import <GormCore/GormClassManager.h>
+#import <GormCore/GormPalettesManager.h>
+#import <GormCore/GormProtocol.h>
+#import <GormCore/GormClassEditor.h>
+#import <GNUstepGUI/GSGormLoading.h>
 #import <GormCore/PrivateCocoaClasses.h>
 
 extern NSString *GormLinkPboardType;

@@ -25,8 +25,8 @@
 #ifndef	INCLUDED_GormBoxEditor_h
 #define	INCLUDED_GormBoxEditor_h
 
-#include <GormCore/GormViewWithContentViewEditor.h>
-#include <GormCore/GormInternalViewEditor.h>
+#import <GormCore/GormViewWithContentViewEditor.h>
+#import <GormCore/GormInternalViewEditor.h>
 
 @interface GormBoxEditor : GormViewWithSubviewsEditor
 {

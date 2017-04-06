@@ -25,7 +25,8 @@
 #ifndef IBINSPECTORMODE_H
 #define IBINSPECTORMODE_H
 
-#include <Foundation/NSObject.h>
+#import <Foundation/NSObject.h>
+#include <CoreGraphics/CGBase.h>
 
 @class NSString;
 
@@ -34,24 +35,19 @@
   NSString *identifier;
   NSString *localizedLabel;
   NSString *inspectorClassName;
-  id object;
-  float ordering;
+  __unsafe_unretained id object;
+  CGFloat ordering;
 }
 - (id) initWithIdentifier: (NSString *)ident
                 forObject: (id)obj
            localizedLabel: (NSString *)lab
        inspectorClassName: (NSString *)cn
-		 ordering: (float)ord;
-- (void) setIdentifier: (NSString *)ident;
-- (NSString *) identifier;
-- (void) setObject: (id)obj;
-- (id) object;
-- (void) setLocalizedLabel: (NSString *)label;
-- (NSString *) localizedLabel;
-- (void) setInspectorClassName: (NSString *)className;
-- (NSString *) inspectorClassName;
-- (void) setOrdering: (float)ord;
-- (float) ordering;
+				 ordering: (CGFloat)ord;
+@property (copy) NSString *identifier;
+@property (assign) id object;
+@property (copy) NSString *localizedLabel;
+@property (copy) NSString *inspectorClassName;
+@property CGFloat ordering;
 @end
 
 #endif

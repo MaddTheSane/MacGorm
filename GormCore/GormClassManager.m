@@ -28,18 +28,18 @@
 #include "GormDocument.h"
 #include "GormFilesOwner.h"
 #include "GormPalettesManager.h"
-#include <GormLib/IBEditors.h>
-#include <GormLib/IBPalette.h>
-#include <Foundation/NSValue.h>
-#include <Foundation/NSException.h>
+#import <GormLib/IBEditors.h>
+#import <GormLib/IBPalette.h>
+#import <Foundation/NSValue.h>
+#import <Foundation/NSException.h>
 #import <GNUstepBase/NSDebug+GNUstepBase.h>
 #import <GNUstepBase/GSObjCRuntime.h>
 #import <GNUstepBase/GNUstep.h>
 
-#include <GormObjCHeaderParser/OCHeaderParser.h>
-#include <GormObjCHeaderParser/OCClass.h>
-#include <GormObjCHeaderParser/OCMethod.h>
-#include <GormObjCHeaderParser/OCIVar.h>
+#import <GormObjCHeaderParser/OCHeaderParser.h>
+#import <GormObjCHeaderParser/OCClass.h>
+#import <GormObjCHeaderParser/OCMethod.h>
+#import <GormObjCHeaderParser/OCIVar.h>
 
 /**
  * Just a few definitions to start things out.  To increase efficiency,
@@ -1805,8 +1805,8 @@
   // header file comments...
   [headerFile appendString: @"/* All Rights reserved */\n\n"];
   [sourceFile appendString: @"/* All Rights reserved */\n\n"];
-  [headerFile appendString: @"#include <AppKit/AppKit.h>\n\n"];
-  [sourceFile appendString: @"#include <AppKit/AppKit.h>\n"];
+  [headerFile appendString: @"#import <AppKit/AppKit.h>\n\n"];
+  [sourceFile appendString: @"#import <AppKit/AppKit.h>\n"];
   if ([[headerPath stringByDeletingLastPathComponent]
     isEqualToString: [sourcePath stringByDeletingLastPathComponent]])
     {

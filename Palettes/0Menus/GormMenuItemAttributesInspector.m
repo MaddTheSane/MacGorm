@@ -31,8 +31,8 @@
 */
 
 #include "GormMenuItemAttributesInspector.h"
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 #import <GNUstepBase/GNUstepBase.h>
 
 const unichar up[]={NSUpArrowFunctionKey};

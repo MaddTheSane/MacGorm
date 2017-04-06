@@ -35,7 +35,7 @@
 #ifndef	INCLUDED_GormTextFieldAttributesInspector_h
 #define	INCLUDED_GormTextFieldAttributesInspector_h
 
-#include <GormLib/IBInspector.h>
+#import <GormLib/IBInspector.h>
 
 @class NSButton;
 @class NSColorWell;

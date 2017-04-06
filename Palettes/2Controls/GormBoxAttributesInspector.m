@@ -35,17 +35,17 @@
 
 #include "GormBoxAttributesInspector.h"
 
-#include <GormCore/NSColorWell+GormExtensions.h>
+#import <GormCore/NSColorWell+GormExtensions.h>
 
-#include <Foundation/NSNotification.h>
+#import <Foundation/NSNotification.h>
 
-#include <AppKit/NSButton.h>
-#include <AppKit/NSBox.h>
-#include <AppKit/NSForm.h>
-#include <AppKit/NSMatrix.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSSlider.h>
-#include <AppKit/NSTextFieldCell.h>
+#import <AppKit/NSButton.h>
+#import <AppKit/NSBox.h>
+#import <AppKit/NSForm.h>
+#import <AppKit/NSMatrix.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSSlider.h>
+#import <AppKit/NSTextFieldCell.h>
 
 /* This macro makes sure that the string contains a value, even if @"" */
 #define VSTR(str) ({id _str = (id)str; (_str) ? (id)_str : (id)(@"");})

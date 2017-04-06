@@ -21,13 +21,13 @@
     along with this program; if not, write to the Free Software
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
 */
-#include <Foundation/Foundation.h>
-#include <AppKit/NSTableColumn.h>
-#include <AppKit/NSTabView.h>
-#include <AppKit/NSWindow.h>
-#include <AppKit/NSTabViewItem.h>
-#include <AppKit/NSScrollView.h>
-#include <GormLib/InterfaceBuilder.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/NSTableColumn.h>
+#import <AppKit/NSTabView.h>
+#import <AppKit/NSWindow.h>
+#import <AppKit/NSTabViewItem.h>
+#import <AppKit/NSScrollView.h>
+#import <GormLib/InterfaceBuilder.h>
 #include "GormNSBrowser.h"
 #include "GormNSTableView.h"
 #include "GormNSOutlineView.h"

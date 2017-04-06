@@ -25,7 +25,7 @@
 #ifndef GORM_GMODELWRAPPERLOADER
 #define GORM_GMODELWRAPPERLOADER
 
-#include <GormCore/GormWrapperLoader.h>
+#import <GormCore/GormWrapperLoader.h>
 
 @class NSMutableArray, NSString;
 

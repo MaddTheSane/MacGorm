@@ -25,8 +25,8 @@
 #ifndef INCLUDED_IBPLUGIN_H
 #define INCLUDED_IBPLUGIN_H
 
-#include <Foundation/NSObject.h>
-#include <GormLib/IBDocuments.h>
+#import <Foundation/NSObject.h>
+#import <GormLib/IBDocuments.h>
 
 // forward references
 @class NSString;
@@ -39,7 +39,7 @@
 /**
  * Returns the shared instance of the plugin.
  */
-+ (id)sharedInstance;
++ (IBPlugin*)sharedInstance;
 
 // Loading and unloading plugin resources.
 /**
@@ -57,7 +57,7 @@
  * Return the array of custom nib filenames.  You are required to override
  * this method when creating a plugin.
  */
-- (NSArray *) libraryNibNames;
+- (NSArray<NSString*> *) libraryNibNames;
 
 // Configuring the plugin
 /**
@@ -74,7 +74,7 @@
 /**
  * Returns the list of frameworks needed to support the plugin.
  */
-- (NSArray *) requiredFrameworks;
+- (NSArray<NSString*> *) requiredFrameworks;
 
 // Pasteboard notifications...
 /**

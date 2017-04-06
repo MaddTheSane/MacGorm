@@ -22,20 +22,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
-#include <AppKit/NSNibControlConnector.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+#import <AppKit/NSNibControlConnector.h>
 
-#include <GormCore/GormPalettesManager.h>
-#include <GormCore/GormClassManager.h>
-#include <GormCore/GormImage.h>
-#include <GormCore/GormSound.h>
-#include <GormCore/GormPrivate.h>
-#include <GormCore/NSView+GormExtensions.h>
-#include <GormCore/GormFunctions.h>
-#include <GormCore/GormCustomView.h>
-#include <GormCore/GormWindowTemplate.h>
-#include <GormCore/GormNSWindow.h>
+#import <GormCore/GormPalettesManager.h>
+#import <GormCore/GormClassManager.h>
+#import <GormCore/GormImage.h>
+#import <GormCore/GormSound.h>
+#import <GormCore/GormPrivate.h>
+#import <GormCore/NSView+GormExtensions.h>
+#import <GormCore/GormFunctions.h>
+#import <GormCore/GormCustomView.h>
+#import <GormCore/GormWindowTemplate.h>
+#import <GormCore/GormNSWindow.h>
 #import <GNUstepBase/GNUstepBase.h>
 
 #include "GormNibWrapperLoader.h"

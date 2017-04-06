@@ -1,4 +1,4 @@
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
 
 #ifndef	INCLUDED_GormNSPopUpButton_h
 #define	INCLUDED_GormNSPopUpButton_h

@@ -25,8 +25,8 @@
 #ifndef INCLUDED_IBVIEWADDITIONS_H
 #define INCLUDED_IBVIEWADDITIONS_H
 
-#include <GormLib/IBViewProtocol.h>
-#include <AppKit/NSView.h>
+#import <GormLib/IBViewProtocol.h>
+#import <AppKit/NSView.h>
 
 @interface NSView (IBViewAdditions) <IBViewProtocol>
 @end

@@ -23,7 +23,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
 */
 
-#include <GormLib/IBInspector.h>
+#import <GormLib/IBInspector.h>
 
 @interface WindowsPalette: IBPalette
 @end

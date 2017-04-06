@@ -1,6 +1,6 @@
 /* All Rights reserved */
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
 
 @interface GormFontViewController : NSObject
 {

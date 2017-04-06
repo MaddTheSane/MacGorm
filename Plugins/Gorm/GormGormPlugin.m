@@ -21,9 +21,9 @@
  * along with this program; if not, write to the Free Software
  */
 
-#include <GormCore/GormPlugin.h>
-#include <GormCore/GormWrapperLoader.h>
-#include <Foundation/NSArray.h>
+#import <GormCore/GormPlugin.h>
+#import <GormCore/GormWrapperLoader.h>
+#import <Foundation/NSArray.h>
 #include "GormGormWrapperLoader.h"
 
 @interface GormGormPlugin : GormPlugin

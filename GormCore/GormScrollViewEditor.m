@@ -23,13 +23,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/AppKit.h>
-#include <GormLib/IBObjectAdditions.h>
+#import <AppKit/AppKit.h>
+#import <GormLib/IBObjectAdditions.h>
 #include "GormPrivate.h"
 #include "GormBoxEditor.h"
 #include "GormViewKnobs.h"
-#include <GNUstepBase/GNUstep.h>
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 @implementation NSScrollView (IBObjectAdditions)
 - (NSString *) inspectorClassName

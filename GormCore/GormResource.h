@@ -28,10 +28,10 @@
 #ifndef INCLUDED_GormResource_h
 #define INCLUDED_GormResource_h
 
-#include <Foundation/NSObject.h>
-#include <GormLib/IBProjectFiles.h>
-#include <GormLib/IBProjects.h>
-#include <GormLib/IBObjectAdditions.h>
+#import <Foundation/NSObject.h>
+#import <GormLib/IBProjectFiles.h>
+#import <GormLib/IBProjects.h>
+#import <GormLib/IBObjectAdditions.h>
 
 @class NSString, NSData;
 

@@ -27,10 +27,10 @@
 #ifndef INCLUDED_GormTextViewEditor_h
 #define INCLUDED_GormTextViewEditor_h
 
-#include <GormLib/InterfaceBuilder.h>
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
-#include <GormCore/GormViewEditor.h>
+#import <GormLib/InterfaceBuilder.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+#import <GormCore/GormViewEditor.h>
 
 @interface GormTextViewEditor : GormViewEditor
 {

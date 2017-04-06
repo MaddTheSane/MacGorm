@@ -24,10 +24,10 @@
 
 #include "GormNSMenuView.h"
 #include "GormNSMenu.h"
-#include <Foundation/NSEnumerator.h>
-#include <AppKit/NSPopUpButton.h>
-#include <AppKit/NSPopUpButtonCell.h>
-#include <GormLib/InterfaceBuilder.h>
+#import <Foundation/NSEnumerator.h>
+#import <AppKit/NSPopUpButton.h>
+#import <AppKit/NSPopUpButtonCell.h>
+#import <GormLib/InterfaceBuilder.h>
 
 @interface GormNSMenuWindow : NSPanel
 @end

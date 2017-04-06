@@ -24,16 +24,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <GormCore/GormWrapperLoader.h>
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
-#include <GormCore/GormPalettesManager.h>
-#include <GormCore/GormClassManager.h>
-#include <GormCore/GormImage.h>
-#include <GormCore/GormSound.h>
-#include <GormCore/GormPrivate.h>
-#include <GormCore/NSView+GormExtensions.h>
-#include <GormCore/GormFunctions.h>
+#import <GormCore/GormWrapperLoader.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+#import <GormCore/GormPalettesManager.h>
+#import <GormCore/GormClassManager.h>
+#import <GormCore/GormImage.h>
+#import <GormCore/GormSound.h>
+#import <GormCore/GormPrivate.h>
+#import <GormCore/NSView+GormExtensions.h>
+#import <GormCore/GormFunctions.h>
 #import <GNUstepBase/GNUstepBase.h>
 
 @interface GormGormWrapperLoader : GormWrapperLoader

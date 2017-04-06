@@ -22,10 +22,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/NSData.h>
-#include <Foundation/NSObject.h>
-#include <Foundation/NSString.h>
-#include <GNUstepBase/GNUstep.h>
+#import <Foundation/NSData.h>
+#import <Foundation/NSObject.h>
+#import <Foundation/NSString.h>
+#import <GNUstepBase/GNUstep.h>
 #include "GormResource.h"
 
 // resource proxy object...

@@ -25,9 +25,9 @@
 #ifndef INCLUDED_IBAPPLICATIONADDITIONS_H
 #define INCLUDED_IBAPPLICATIONADDITIONS_H
 
-#include <GormLib/IBDocuments.h>
-#include <GormLib/IBEditors.h>
-#include <GormLib/IBSystem.h>
+#import <GormLib/IBDocuments.h>
+#import <GormLib/IBEditors.h>
+#import <GormLib/IBSystem.h>
 
 IB_EXTERN NSString *IBWillBeginTestingInterfaceNotification;
 IB_EXTERN NSString *IBDidBeginTestingInterfaceNotification;

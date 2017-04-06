@@ -23,10 +23,10 @@
  */
 
 
-#include <Foundation/Foundation.h>
-#include <GormObjCHeaderParser/OCMethod.h>
-#include <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
-#include <GNUstepBase/GNUstep.h>
+#import <Foundation/Foundation.h>
+#import <GormObjCHeaderParser/OCMethod.h>
+#import <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
+#import <GNUstepBase/GNUstep.h>
 
 @implementation OCMethod
 @synthesize name;

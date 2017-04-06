@@ -35,7 +35,7 @@
 #ifndef	INCLUDED_GormWindowSizeInspector_h
 #define	INCLUDED_GormWindowSizeInspector_h
 
-#include <GormLib/IBInspector.h>
+#import <GormLib/IBInspector.h>
 
 @class NSButton;
 @class NSForm;

@@ -25,8 +25,8 @@
 #ifndef INCLUDED_IBINSPECTOR_H
 #define INCLUDED_IBINSPECTOR_H
 
-#include <Foundation/NSObject.h>
-#include <GormLib/IBObjectProtocol.h>
+#import <Foundation/NSObject.h>
+#import <GormLib/IBObjectProtocol.h>
 
 #define	IVH	388	/* Standard height of inspector view.	*/
 #define	IVW	272	/* Standard width of inspector view.	*/
@@ -67,7 +67,7 @@
 /**
  * Action to take when user clicks the OK button
  */
-- (void) ok: (id)sender;
+- (IBAction) ok: (id)sender;
 
 /**
  * Inspector supplied button - the inspectors manager will position this
@@ -78,7 +78,7 @@
 /**
  * Action to take when user clicks the revert button
  */
-- (void) revert: (id)sender;
+- (IBAction) revert: (id)sender;
 
 /**
  * Inspector supplied button - the inspectors manager will position this
@@ -100,7 +100,7 @@
 /**
  * Method to mark the inspector as needing saving (ok or revert).
  */
-- (void) touch: (id)sender;
+- (IBAction) touch: (id)sender;
 
 /**
  * If this method returns YES, the manager will partition off a section of

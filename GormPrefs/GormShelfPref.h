@@ -29,8 +29,8 @@
 #ifndef GORMSHELFPREF_H
 #define GORMSHELFPREF_H
 
-#include <AppKit/NSView.h>
-#include <Foundation/NSObject.h>
+#import <AppKit/NSView.h>
+#import <Foundation/NSObject.h>
 
 typedef enum { 
 	leftarrow,

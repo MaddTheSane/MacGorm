@@ -22,9 +22,9 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
 */
 
-#include <Foundation/NSObject.h>
-#include <GormLib/IBApplicationAdditions.h>
-#include <AppKit/NSTableColumn.h>
+#import <Foundation/NSObject.h>
+#import <GormLib/IBApplicationAdditions.h>
+#import <AppKit/NSTableColumn.h>
 #include "GormNSTableView.h"
 
 /* --------------------------------------------------------------- 

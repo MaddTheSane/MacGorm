@@ -25,7 +25,7 @@
 #ifndef INCLUDED_IBOBJECTADDITIONS_H
 #define INCLUDED_IBOBJECTADDITIONS_H
 
-#include <GormLib/IBObjectProtocol.h>
+#import <GormLib/IBObjectProtocol.h>
 
 // object additions -- object adopts protocol
 @interface NSObject (IBObjectAdditions) <IBObjectProtocol>

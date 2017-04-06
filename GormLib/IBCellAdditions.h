@@ -25,8 +25,8 @@
 #ifndef INCLUDED_IBCELLADDITIONS_H
 #define INCLUDED_IBCELLADDITIONS_H
 
-#include <AppKit/NSCell.h>
-#include <GormLib/IBCellProtocol.h>
+#import <AppKit/NSCell.h>
+#import <GormLib/IBCellProtocol.h>
 
 @interface NSCell (IBCellAdditions) <IBCellProtocol>
 @end

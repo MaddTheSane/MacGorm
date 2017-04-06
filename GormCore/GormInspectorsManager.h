@@ -26,9 +26,9 @@
 #ifndef INCLUDED_GormInspectorsManager_h
 #define INCLUDED_GormInspectorsManager_h
 
-#include <Foundation/NSObject.h>
-#include <GormLib/IBInspectorManager.h>
-#include <Foundation/NSGeometry.h>
+#import <Foundation/NSObject.h>
+#import <GormLib/IBInspectorManager.h>
+#import <Foundation/NSGeometry.h>
 
 @class NSPanel;
 @class NSMutableDictionary;

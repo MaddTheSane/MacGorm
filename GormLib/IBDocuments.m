@@ -22,8 +22,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/NSString.h>
-#include <GormLib/IBDocuments.h>
+#import <Foundation/NSString.h>
+#import <GormLib/IBDocuments.h>
 
 NSString *IBDidOpenDocumentNotification = @"IBDidOpenDocumentNotification";
 NSString *IBWillSaveDocumentNotification = @"IBWillSaveDocumentNotification";

@@ -26,8 +26,8 @@
 #ifndef INCLUDED_GormFilesOwner_h
 #define INCLUDED_GormFilesOwner_h
 
-#include <Foundation/NSObject.h>
-#include <GormLib/IBInspector.h>
+#import <Foundation/NSObject.h>
+#import <GormLib/IBInspector.h>
 #import <AppKit/NSBrowser.h>
 
 @class NSMutableArray, NSString;

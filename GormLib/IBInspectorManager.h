@@ -25,8 +25,8 @@
 #ifndef INCLUDED_IBINSPECTORMANAGER_H
 #define INCLUDED_IBINSPECTORMANAGER_H
 
-#include <Foundation/NSObject.h>
-#include <GormLib/IBSystem.h>
+#import <Foundation/NSObject.h>
+#import <GormLib/IBSystem.h>
 
 @class NSString, NSMutableArray;
 
@@ -62,7 +62,7 @@ IB_EXTERN NSString *IBWillInspectWithModeNotification;
  * Position in the inspector list that the "mode inspector"
  * appears.
  */
-- (unsigned int) indexOfModeWithIdentifier: (NSString *)ident;
+- (NSInteger) indexOfModeWithIdentifier: (NSString *)ident;
 @end
 
 #endif

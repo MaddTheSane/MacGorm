@@ -25,10 +25,10 @@
 #ifndef INCLUDED_IBPALETTE_H
 #define INCLUDED_IBPALETTE_H
 
-#include <Foundation/NSMapTable.h>
-#include <Foundation/NSObject.h>
-#include <GormLib/IBDocuments.h>
-#include <GormLib/IBSystem.h>
+#import <Foundation/NSMapTable.h>
+#import <Foundation/NSObject.h>
+#import <GormLib/IBDocuments.h>
+#import <GormLib/IBSystem.h>
 
 // forward references
 @class NSString;
@@ -78,8 +78,8 @@ IB_EXTERN NSString      *GormLinkPboardType;
  * the default type (IBViewPboardType).
  */
 - (void) associateObject: (id)anObject
-		    type: (NSString*)aType
-		    with: (NSView*)aView;
+					type: (NSString*)aType
+					with: (NSView*)aView;
 
 /**
  * Releases all the instance variables apart from the window (which is

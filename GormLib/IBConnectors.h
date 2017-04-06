@@ -25,10 +25,10 @@
 #ifndef INCLUDED_IBCONNECTORS_H
 #define INCLUDED_IBCONNECTORS_H
 
-#include <Foundation/NSObject.h>
-#include <AppKit/NSApplication.h>
-#include <AppKit/NSNibConnector.h>
-#include <GormLib/IBSystem.h>
+#import <Foundation/NSObject.h>
+#import <AppKit/NSApplication.h>
+#import <AppKit/NSNibConnector.h>
+#import <GormLib/IBSystem.h>
 
 // forward declarations
 @class NSString;

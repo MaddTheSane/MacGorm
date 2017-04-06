@@ -1,7 +1,7 @@
 /* All Rights reserved */
 
-#include <AppKit/AppKit.h>
-#include <GormLib/InterfaceBuilder.h>
+#import <AppKit/AppKit.h>
+#import <GormLib/InterfaceBuilder.h>
 
 @interface GormHelpInspector : IBInspector
 {

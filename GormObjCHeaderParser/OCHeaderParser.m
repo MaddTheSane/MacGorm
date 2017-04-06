@@ -23,11 +23,11 @@
  */
 
 
-#include <Foundation/Foundation.h>
-#include <GormObjCHeaderParser/OCHeaderParser.h>
-#include <GormObjCHeaderParser/OCClass.h>
-#include <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
-#include <GNUstepBase/GNUstep.h>
+#import <Foundation/Foundation.h>
+#import <GormObjCHeaderParser/OCHeaderParser.h>
+#import <GormObjCHeaderParser/OCClass.h>
+#import <GormObjCHeaderParser/NSScanner+OCHeaderParser.h>
+#import <GNUstepBase/GNUstep.h>
 
 @implementation OCHeaderParser
 +(void) initialize

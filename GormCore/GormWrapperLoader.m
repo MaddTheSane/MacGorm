@@ -25,15 +25,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/NSFileWrapper.h>
-#include <Foundation/NSString.h>
-#include <GormCore/GormWrapperLoader.h>
-#include <GormCore/GormDocument.h>
-#include <GormCore/GormPrivate.h>
-#include <GormCore/GormSound.h>
-#include <GormCore/GormImage.h>
-#include <GNUstepBase/GNUstep.h>
-#include <GNUstepBase/GSObjCRuntime.h>
+#import <Foundation/NSFileWrapper.h>
+#import <Foundation/NSString.h>
+#import <GormCore/GormWrapperLoader.h>
+#import <GormCore/GormDocument.h>
+#import <GormCore/GormPrivate.h>
+#import <GormCore/GormSound.h>
+#import <GormCore/GormImage.h>
+#import <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/GSObjCRuntime.h>
 
 static NSMutableDictionary *_wrapperLoaderMap = nil;
 static GormWrapperLoaderFactory *_sharedWrapperLoaderFactory = nil;

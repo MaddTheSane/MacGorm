@@ -25,8 +25,8 @@
 #ifndef INCLUDED_IBVIEWPROTOCOL_H
 #define INCLUDED_IBVIEWPROTOCOL_H
 
-#include <GormLib/IBDefines.h>
-#include <Foundation/NSGeometry.h>
+#import <GormLib/IBDefines.h>
+#import <Foundation/NSGeometry.h>
 
 // forward references
 @class NSColor;

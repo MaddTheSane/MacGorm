@@ -26,15 +26,15 @@
 
 /* All Rights reserved */
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
 #include "GormClassInspector.h"
 #include "GormClassManager.h"
 #include "GormDocument.h"
 #include "GormFunctions.h"
 #include "GormPrivate.h"
 #include "GormProtocol.h"
-#include <GormLib/IBApplicationAdditions.h>
-#include <GNUstepBase/GNUstep.h>
+#import <GormLib/IBApplicationAdditions.h>
+#import <GNUstepBase/GNUstep.h>
 #import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 

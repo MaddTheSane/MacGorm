@@ -22,8 +22,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 #import <GormCore/PrivateCocoaClasses.h>
 
 @interface NSWindowTemplate (Private)

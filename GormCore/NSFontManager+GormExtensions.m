@@ -22,10 +22,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/NSObject.h>
-#include <Foundation/NSException.h>
-#include <AppKit/NSApplication.h>
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <Foundation/NSObject.h>
+#import <Foundation/NSException.h>
+#import <AppKit/NSApplication.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 #include "NSFontManager+GormExtensions.h"
 #include "GormDocument.h"
 

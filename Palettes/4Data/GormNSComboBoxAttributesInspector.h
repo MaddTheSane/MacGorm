@@ -33,7 +33,7 @@
 #ifndef INCLUDED_GormNSComboBoxAttributesInspector_h
 #define INCLUDED_GormNSComboBoxAttributesInspector_h
 
-#include <GormLib/IBInspector.h>
+#import <GormLib/IBInspector.h>
 
 @class NSMutableArray;
 @class NSMatrix;

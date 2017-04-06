@@ -27,7 +27,7 @@
 #ifndef INCLUDED_GormDateFormatterAttributesInspector_h
 #define INCLUDED_GormDateFormatterAttributesInspector_h
 
-#include <GormLib/InterfaceBuilder.h>
+#import <GormLib/InterfaceBuilder.h>
 
 @interface GormDateFormatterAttributesInspector : IBInspector
 {

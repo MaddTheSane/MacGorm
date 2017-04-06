@@ -24,7 +24,7 @@
 #ifndef	INCLUDED_GormMatrixEditor_h
 #define	INCLUDED_GormMatrixEditor_h
 
-#include <GormCore/GormViewWithSubviewsEditor.h>
+#import <GormCore/GormViewWithSubviewsEditor.h>
 
 @interface GormMatrixEditor : GormViewWithSubviewsEditor
 {

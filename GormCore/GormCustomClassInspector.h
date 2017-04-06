@@ -27,8 +27,8 @@
 #ifndef	INCLUDED_GormCustomClassInspector_h
 #define	INCLUDED_GormCustomClassInspector_h
 
-#include <AppKit/AppKit.h>
-#include <GormLib/IBInspector.h>
+#import <AppKit/AppKit.h>
+#import <GormLib/IBInspector.h>
 
 @class GormClassManager;
 

@@ -22,13 +22,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/AppKit.h>
-#include <GormCore/GormPrivate.h>
-#include <GormCore/GormViewWithSubviewsEditor.h>
-#include <GormCore/GormFontViewController.h>
-#include <GormCore/GormViewKnobs.h>
-#include <GNUstepBase/GNUstep.h>
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <AppKit/AppKit.h>
+#import <GormCore/GormPrivate.h>
+#import <GormCore/GormViewWithSubviewsEditor.h>
+#import <GormCore/GormFontViewController.h>
+#import <GormCore/GormViewKnobs.h>
+#import <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 @class GormEditorToParent;
 

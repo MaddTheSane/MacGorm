@@ -28,11 +28,11 @@
 
 #import <AppKit/AppKit.h>
 #import <AppKit/NSNibConnector.h>
-#include <Foundation/Foundation.h>
-#include <GNUstepGUI/GSNibContainer.h>
-#include <GNUstepGUI/GSInstantiator.h>
+#import <Foundation/Foundation.h>
+#import <GNUstepGUI/GSNibContainer.h>
+#import <GNUstepGUI/GSInstantiator.h>
 #import <GormCore/PrivateCocoaClasses.h>
-#include <GormLib/InterfaceBuilder.h>
+#import <GormLib/InterfaceBuilder.h>
 
 @class GormClassManager, GormClassEditor, GormObjectProxy, GormFilesOwner, 
   GormFilePrefsManager, GormDocumentWindow;

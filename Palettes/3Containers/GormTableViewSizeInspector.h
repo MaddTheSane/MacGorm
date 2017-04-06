@@ -25,7 +25,7 @@
 #ifndef INCLUDED_GormTableViewSizeInspector_h
 #define INCLUDED_GormTableViewSizeInspector_h
 
-#include <GormCore/GormViewSizeInspector.h>
+#import <GormCore/GormViewSizeInspector.h>
 
 @interface GormTableViewSizeInspector : GormViewSizeInspector
 @end

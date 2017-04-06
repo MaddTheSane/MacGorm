@@ -22,7 +22,7 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <Foundation/Foundation.h>
+#import <Foundation/Foundation.h>
 #include "ParserFunctions.h"
 
 BOOL lookAhead(NSString *stringToScan, NSString *stringToFind)

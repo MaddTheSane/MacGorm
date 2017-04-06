@@ -23,13 +23,13 @@
  */
 
 #include "GormViewWindow.h"
-#include <AppKit/NSWindow.h>
-#include <AppKit/NSView.h>
-#include <AppKit/NSColor.h>
-#include <Foundation/NSNotification.h>
-#include <Foundation/NSException.h>
-#include <GormLib/InterfaceBuilder.h>
-#include <GNUstepBase/GNUstep.h>
+#import <AppKit/NSWindow.h>
+#import <AppKit/NSView.h>
+#import <AppKit/NSColor.h>
+#import <Foundation/NSNotification.h>
+#import <Foundation/NSException.h>
+#import <GormLib/InterfaceBuilder.h>
+#import <GNUstepBase/GNUstep.h>
 #include "GormFunctions.h"
 
 @interface GormViewWindowDelegate : NSObject <NSWindowDelegate>

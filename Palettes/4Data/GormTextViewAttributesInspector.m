@@ -33,13 +33,13 @@
 #include "GormTextViewAttributesInspector.h"
 
 // #warning GNUstep bug ? 
-#include <GormCore/NSColorWell+GormExtensions.h>
+#import <GormCore/NSColorWell+GormExtensions.h>
 
-#include <AppKit/NSButton.h>
-#include <AppKit/NSMatrix.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSScrollView.h>
-#include <AppKit/NSTextView.h>
+#import <AppKit/NSButton.h>
+#import <AppKit/NSMatrix.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSScrollView.h>
+#import <AppKit/NSTextView.h>
 
 @implementation GormTextViewAttributesInspector
 

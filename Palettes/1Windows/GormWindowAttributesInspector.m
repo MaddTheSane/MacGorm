@@ -34,10 +34,10 @@
 
 #include "GormWindowAttributesInspector.h"
 
-#include <GormCore/GormNSWindow.h>
-#include <GormCore/GormDocument.h>
-#include <GormCore/NSColorWell+GormExtensions.h>
-#include <AppKit/NSNibLoading.h>
+#import <GormCore/GormNSWindow.h>
+#import <GormCore/GormDocument.h>
+#import <GormCore/NSColorWell+GormExtensions.h>
+#import <AppKit/NSNibLoading.h>
 
 @implementation GormWindowAttributesInspector
 

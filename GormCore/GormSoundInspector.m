@@ -26,8 +26,8 @@
 
 /* All Rights reserved */
 
-#include <AppKit/AppKit.h>
-#include <GNUstepBase/GNUstep.h>
+#import <AppKit/AppKit.h>
+#import <GNUstepBase/GNUstep.h>
 #include "GormSoundInspector.h"
 #include "GormPrivate.h"
 #include "GormClassManager.h"
@@ -35,7 +35,7 @@
 #include "GormPrivate.h"
 #include "GormSoundView.h"
 #include "GormSound.h"
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 
 @implementation GormSoundInspector

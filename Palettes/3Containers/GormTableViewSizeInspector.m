@@ -22,7 +22,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
 */
 
-#include <AppKit/NSTableView.h>
+#import <AppKit/NSTableView.h>
 #include "GormTableViewSizeInspector.h"
 
 @implementation GormTableViewSizeInspector

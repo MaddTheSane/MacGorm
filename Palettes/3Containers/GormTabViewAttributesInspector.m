@@ -32,17 +32,17 @@
 
 #include "GormTabViewAttributesInspector.h"
 
-#include <Foundation/NSNotification.h>
-#include <AppKit/NSButton.h>
-#include <AppKit/NSForm.h>
-#include <AppKit/NSMatrix.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSStepper.h>
-#include <AppKit/NSTabView.h>
-#include <AppKit/NSTabViewItem.h>
-#include <AppKit/NSTextField.h>
+#import <Foundation/NSNotification.h>
+#import <AppKit/NSButton.h>
+#import <AppKit/NSForm.h>
+#import <AppKit/NSMatrix.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSStepper.h>
+#import <AppKit/NSTabView.h>
+#import <AppKit/NSTabViewItem.h>
+#import <AppKit/NSTextField.h>
 
-#include <GormLib/InterfaceBuilder.h>
+#import <GormLib/InterfaceBuilder.h>
 
 #define ORDERED_PREVIOUS 0
 #define ORDERED_NEXT     1

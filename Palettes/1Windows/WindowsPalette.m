@@ -23,14 +23,14 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
 */
 
-#include <GormLib/IBApplicationAdditions.h>
-#include <GormLib/IBInspector.h>
-#include <GormLib/IBPalette.h>
+#import <GormLib/IBApplicationAdditions.h>
+#import <GormLib/IBInspector.h>
+#import <GormLib/IBPalette.h>
 
-#include <GormCore/GormDocument.h>
-#include <GormCore/NSColorWell+GormExtensions.h>
-#include <GormCore/GormNSPanel.h>
-#include <GormCore/GormNSWindow.h>
+#import <GormCore/GormDocument.h>
+#import <GormCore/NSColorWell+GormExtensions.h>
+#import <GormCore/GormNSPanel.h>
+#import <GormCore/GormNSWindow.h>
 #import <GNUstepBase/GNUstepBase.h>
 
 #include "GormWindowSizeInspector.h"

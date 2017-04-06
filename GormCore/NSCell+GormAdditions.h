@@ -25,7 +25,7 @@
 #ifndef INCLUDED_NSCellGormAdditions_h
 #define INCLUDED_NSCellGormAdditions_h
 
-#include <AppKit/NSCell.h>
+#import <AppKit/NSCell.h>
 
 @class NSText;
 

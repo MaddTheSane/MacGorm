@@ -25,25 +25,25 @@
 #ifndef INCLUDED_INTERFACEBUILDER_H
 #define INCLUDED_INTERFACEBUILDER_H
  
-#include <GormLib/IBApplicationAdditions.h>
-#include <GormLib/IBCellAdditions.h>
-#include <GormLib/IBCellProtocol.h>
-#include <GormLib/IBConnectors.h>
-#include <GormLib/IBDefines.h>
-#include <GormLib/IBDocuments.h>
-#include <GormLib/IBEditors.h>
-#include <GormLib/IBInspector.h>
-#include <GormLib/IBInspectorManager.h>
-#include <GormLib/IBObjectAdditions.h>
-#include <GormLib/IBObjectProtocol.h>
-#include <GormLib/IBPalette.h>
-#include <GormLib/IBPlugin.h>
-#include <GormLib/IBProjects.h>
-#include <GormLib/IBProjectFiles.h>
-#include <GormLib/IBResourceManager.h>
-#include <GormLib/IBSystem.h>
-#include <GormLib/IBViewAdditions.h>
-#include <GormLib/IBViewProtocol.h>
-#include <GormLib/IBViewResourceDragging.h>
+#import <GormLib/IBApplicationAdditions.h>
+#import <GormLib/IBCellAdditions.h>
+#import <GormLib/IBCellProtocol.h>
+#import <GormLib/IBConnectors.h>
+#import <GormLib/IBDefines.h>
+#import <GormLib/IBDocuments.h>
+#import <GormLib/IBEditors.h>
+#import <GormLib/IBInspector.h>
+#import <GormLib/IBInspectorManager.h>
+#import <GormLib/IBObjectAdditions.h>
+#import <GormLib/IBObjectProtocol.h>
+#import <GormLib/IBPalette.h>
+#import <GormLib/IBPlugin.h>
+#import <GormLib/IBProjects.h>
+#import <GormLib/IBProjectFiles.h>
+#import <GormLib/IBResourceManager.h>
+#import <GormLib/IBSystem.h>
+#import <GormLib/IBViewAdditions.h>
+#import <GormLib/IBViewProtocol.h>
+#import <GormLib/IBViewResourceDragging.h>
 
 #endif

@@ -25,20 +25,20 @@
  */
 
 
-#include <GormCore/GormGenericEditor.h>
-#include <GormCore/GormPrivate.h>
-#include <GormCore/GormFontViewController.h>
-#include <GormCore/GormSetNameController.h>
-#include <GormCore/GormFunctions.h>
-#include <GormCore/GormPluginManager.h>
-#include <GormCore/GormDocumentController.h>
-#include <GormCore/GormServer.h>
+#import <GormCore/GormGenericEditor.h>
+#import <GormCore/GormPrivate.h>
+#import <GormCore/GormFontViewController.h>
+#import <GormCore/GormSetNameController.h>
+#import <GormCore/GormFunctions.h>
+#import <GormCore/GormPluginManager.h>
+#import <GormCore/GormDocumentController.h>
+#import <GormCore/GormServer.h>
 
-#include <GNUstepBase/GSObjCRuntime.h>
-#include <GNUstepBase/GNUstep.h>
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
-#include <GNUstepBase/NSString+GNUstepBase.h>
-#include <GormPrefs/GormPrefController.h>
+#import <GNUstepBase/GSObjCRuntime.h>
+#import <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GNUstepBase/NSString+GNUstepBase.h>
+#import <GormPrefs/GormPrefController.h>
 
 #undef GS_LOCALISATION_BUNDLE
 #define GS_LOCALISATION_BUNDLE [NSBundle mainBundle]

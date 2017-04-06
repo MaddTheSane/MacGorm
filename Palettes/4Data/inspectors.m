@@ -24,9 +24,9 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
 */
 
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
-#include <GormLib/InterfaceBuilder.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+#import <GormLib/InterfaceBuilder.h>
 
 @implementation	NSTextView (IBObjectAdditions)
 

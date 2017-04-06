@@ -35,14 +35,14 @@
 #include "GormMenuAttributesInspector.h"
 #include "GormNSMenu.h"
 
-#include <Foundation/NSNotification.h>
+#import <Foundation/NSNotification.h>
 
-#include <GormCore/GormDocument.h>
+#import <GormCore/GormDocument.h>
 
-#include <AppKit/NSButton.h>
-#include <AppKit/NSMatrix.h>
-#include <AppKit/NSNibLoading.h>
-#include <AppKit/NSTextField.h>
+#import <AppKit/NSButton.h>
+#import <AppKit/NSMatrix.h>
+#import <AppKit/NSNibLoading.h>
+#import <AppKit/NSTextField.h>
 
 
 #define WINDOWSMENUTAG         0

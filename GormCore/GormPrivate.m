@@ -27,11 +27,11 @@
 #include "GormFontViewController.h"
 #include "GormSetNameController.h"
 #include "GNUstepBase/GSObjCRuntime.h"
-#include <GNUstepBase/GNUstep.h>
+#import <GNUstepBase/GNUstep.h>
 
 // for templates...
-#include <AppKit/NSControl.h>
-#include <AppKit/NSButton.h>
+#import <AppKit/NSControl.h>
+#import <AppKit/NSButton.h>
 
 NSString *GormToggleGuidelineNotification = @"GormToggleGuidelineNotification";
 NSString *GormDidModifyClassNotification = @"GormDidModifyClassNotification";

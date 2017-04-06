@@ -22,14 +22,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <AppKit/AppKit.h>
+#import <AppKit/AppKit.h>
 #include "GormPrivate.h"
 #include "GormViewWithContentViewEditor.h"
 #include "GormPlacementInfo.h"
 #include "GormSplitViewEditor.h"
 #include "GormViewKnobs.h"
 #include "GormInternalViewEditor.h"
-#include <GNUstepBase/NSDebug+GNUstepBase.h>
+#import <GNUstepBase/NSDebug+GNUstepBase.h>
 
 @interface GormViewEditor (Private)
 - (NSRect) _displayMovingFrameWithHint: (NSRect) frame
