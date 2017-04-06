@@ -142,23 +142,23 @@ NSString *formatVersion(NSInteger version)
 }
 
 // actions...
-- (void) showIncompatibilities: (id)sender
+- (IBAction) listIncompatibilities: (id)sender
 {
   [itable reloadData];
   [iwindow orderFront: self];
   [iwindow center];
 }
 
-- (void) selectTargetVersion: (id)sender
+- (IBAction) selectTargetVersion: (id)sender
 {
-  ASSIGN(targetVersionName, [[sender selectedItem] title]);
+  ASSIGNCOPY(targetVersionName, [[sender selectedItem] title]);
   [self loadProfile: targetVersionName];
   [itable reloadData];
 }
 
-- (void) selectArchiveType: (id)sender
+- (IBAction) selectArchiveType: (id)sender
 {
-  ASSIGN(archiveTypeName, [[sender selectedItem] title]);
+  ASSIGNCOPY(archiveTypeName, [[sender selectedItem] title]);
   NSDebugLog(@"Set Archive type... %@",sender);
 }
 
@@ -199,7 +199,7 @@ NSString *formatVersion(NSInteger version)
   [dict setObject: stringRect forKey: @"IBDocumentLocation"];
   [dict setObject: @"437.0" forKey: @"IBFramework Version"];
   [dict setObject: @"8I127" forKey: @"IBSystem Version"];
-  [dict setObject: [NSNumber numberWithBool: YES] 
+  [dict setObject: @YES
 	forKey: @"IBUsesTextArchiving"]; // for now.
   [dict setObject: openItems forKey: @"IBOpenItems"];
 
@@ -210,7 +210,7 @@ NSString *formatVersion(NSInteger version)
 
 - (int) versionOfClass: (NSString *)className 
 {
-  NSInteger result = -1; 
+  int result = -1;
 
   NSDictionary *clsProfile = [currentProfile objectForKey: className];
   if(clsProfile != nil)

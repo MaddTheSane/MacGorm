@@ -200,7 +200,7 @@
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="showIncompatibilities:" target="ODN-cn-kGN" id="MwN-vA-Zqy"/>
+                                        <action selector="listIncompatibilities:" target="ODN-cn-kGN" id="EcN-eD-pmE"/>
                                     </connections>
                                 </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gp7-g8-te6">

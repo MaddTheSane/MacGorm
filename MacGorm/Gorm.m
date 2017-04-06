@@ -104,7 +104,6 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 		NSNotificationCenter	*ndc = [NSDistributedNotificationCenter defaultCenter];
 		NSBundle				*bundle = [NSBundle mainBundle];
 		NSString				*path;
-		NSConnection			*conn = [NSConnection defaultConnection];
 		
 		linkImage = [[NSImage imageNamed: @"GormLinkImage"] retain];
 		sourceImage = [[NSImage imageNamed: @"GormSourceTag"] retain];
@@ -164,15 +163,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 		/*
 		 * set the delegate.
 		 */
-		[self setDelegate: self];
-		
-		/*
-		 * Start the server
-		 */
-		[conn setRootObject: self];
-		if ([conn registerName: @"GormServer"] == NO) {
-			NSLog(@"Could not register GormServer");
-		}
+		//[self setDelegate: self];
 	}
 	return self;
 }
@@ -930,6 +921,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 
 - (void) awakeFromNib
 {
+	NSConnection			*conn = [NSConnection defaultConnection];
 	/*
 	 * Make sure the palettes/plugins managers exist, so that the
 	 * editors and inspectors provided in the standard palettes
@@ -937,6 +929,14 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 	 */
 	[self palettesManager];
 	[self pluginManager];
+	
+	/*
+	 * Start the server
+	 */
+	[conn setRootObject: self];
+	if ([conn registerName: @"GormServer"] == NO) {
+		NSLog(@"Could not register GormServer");
+	}
 	
 	// set the menu...
 	mainMenu = (NSMenu *)gormMenu;

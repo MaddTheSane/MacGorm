@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Gorm">
             <connections>
+                <outlet property="delegate" destination="-3" id="zdk-SZ-hM2"/>
                 <outlet property="gormMenu" destination="2" id="72"/>
                 <outlet property="guideLineMenuItem" destination="73" id="75"/>
             </connections>

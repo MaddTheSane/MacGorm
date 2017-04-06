@@ -13,7 +13,7 @@
   IBOutlet NSTextField *fileType;
 
   // encoded ivars...
-  NSInteger version;
+  int version;
   NSString *targetVersionName;
   NSString *archiveTypeName;
 
@@ -24,7 +24,7 @@
 /**
  * Show incompatibilities in the panel.
  */
-- (IBAction) showIncompatibilities: (id)sender;
+- (IBAction) listIncompatibilities: (id)sender;
 
 /**
  * Action called when the target version pulldown is selected.
@@ -105,6 +105,7 @@
 - (int) versionOfClass: (NSString *)className;
 
 // file type...
+@property (nonatomic, copy) NSString *fileTypeName;
 /**
  * File type name...
  */
