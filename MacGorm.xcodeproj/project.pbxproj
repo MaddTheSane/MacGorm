@@ -197,6 +197,7 @@
 		554D9A5F1E907BCB00E79BFA /* GNUstepGUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D99441E903B8400E79BFA /* GNUstepGUI.framework */; };
 		554D9A601E907BE700E79BFA /* GormObjCHeaderParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D9A271E9067AE00E79BFA /* GormObjCHeaderParser.framework */; };
 		554D9A631E907BF100E79BFA /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D9A621E907BF100E79BFA /* AppKit.framework */; };
+		556938861E96FCE30023623D /* GormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556938851E96FCE30023623D /* GormController.swift */; };
 		55939C701E95B04400D59B72 /* Gorm.nib in Resources */ = {isa = PBXBuildFile; fileRef = 55939C721E95B04400D59B72 /* Gorm.nib */; };
 		55939C731E95B04A00D59B72 /* GormDummyInspector.nib in Resources */ = {isa = PBXBuildFile; fileRef = 55939C751E95B04A00D59B72 /* GormDummyInspector.nib */; };
 		55939C761E95B05000D59B72 /* GormPalettePanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 55939C781E95B05000D59B72 /* GormPalettePanel.nib */; };
@@ -615,6 +616,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		553367B61E9705B3008FAB56 /* MacGorm-bridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacGorm-bridgingHeader.h"; sourceTree = "<group>"; };
 		554D97F21E9031E700E79BFA /* MacGorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacGorm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		554D97F91E9031E800E79BFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		554D98011E9031E800E79BFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -807,6 +809,7 @@
 		554D9A3F1E9067F600E79BFA /* ParserFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserFunctions.h; sourceTree = "<group>"; };
 		554D9A401E9067F600E79BFA /* ParserFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserFunctions.m; sourceTree = "<group>"; };
 		554D9A621E907BF100E79BFA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		556938851E96FCE30023623D /* GormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GormController.swift; sourceTree = "<group>"; };
 		55939C711E95B04400D59B72 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/Gorm.nib; sourceTree = "<group>"; };
 		55939C741E95B04A00D59B72 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/GormDummyInspector.nib; sourceTree = "<group>"; };
 		55939C771E95B05000D59B72 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/GormPalettePanel.nib; sourceTree = "<group>"; };
@@ -1182,6 +1185,7 @@
 		554D97F41E9031E700E79BFA /* MacGorm */ = {
 			isa = PBXGroup;
 			children = (
+				556938851E96FCE30023623D /* GormController.swift */,
 				554D98011E9031E800E79BFA /* Assets.xcassets */,
 				554D98061E9031E800E79BFA /* Info.plist */,
 				554D97F81E9031E800E79BFA /* Supporting Files */,
@@ -1230,6 +1234,7 @@
 				559D49B01E90D553003E1A48 /* Gorm.m */,
 				554D97F91E9031E800E79BFA /* main.m */,
 				559D48DD1E90C7CD003E1A48 /* InfoPlist.strings */,
+				553367B61E9705B3008FAB56 /* MacGorm-bridgingHeader.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2175,6 +2180,7 @@
 				TargetAttributes = {
 					554D97F11E9031E700E79BFA = {
 						CreatedOnToolsVersion = 8.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					554D98121E90350C00E79BFA = {
@@ -2490,6 +2496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				556938861E96FCE30023623D /* GormController.swift in Sources */,
 				559D49B11E90D553003E1A48 /* Gorm.m in Sources */,
 				554D97FA1E9031E800E79BFA /* main.m in Sources */,
 			);
@@ -3172,6 +3179,8 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -3213,6 +3222,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -3229,6 +3240,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.maddthesane.MacGorm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MacGorm/MacGorm-bridgingHeader.h";
 			};
 			name = Debug;
 		};
@@ -3245,6 +3257,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.maddthesane.MacGorm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MacGorm/MacGorm-bridgingHeader.h";
 			};
 			name = Release;
 		};

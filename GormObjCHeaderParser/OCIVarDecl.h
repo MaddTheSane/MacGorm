@@ -23,11 +23,12 @@
  */
 
 #import <Foundation/NSObject.h>
+#import <Foundation/NSArray.h>
 
 #ifndef INCLUDED_OCIVarDecl_h
 #define INCLUDED_OCIVarDecl_h
 
-@class NSMutableArray, NSString;
+@class NSString;
 @class OCIVar;
 
 @interface OCIVarDecl : NSObject
