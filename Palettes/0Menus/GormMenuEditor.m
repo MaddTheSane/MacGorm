@@ -170,7 +170,7 @@
 	    }
 
 	  [self makeSelectionVisible: NO];
-	  if ([theEvent modifierFlags] & NSShiftKeyMask)
+	  if ([theEvent modifierFlags] & NSEventModifierFlagShift)
 	    {
 	      NSMutableArray	*array;
 
@@ -189,7 +189,7 @@
 	    }
 
 	  [self selectObjects: [NSArray arrayWithObject: item]];
-	  if ([theEvent modifierFlags] & NSControlKeyMask)
+	  if ([theEvent modifierFlags] & NSEventModifierFlagControl)
 	    {
 	      NSPoint	dragPoint = [theEvent locationInWindow];
 	      NSPasteboard	*pb;
@@ -229,8 +229,8 @@
 	      id		cell = [rep menuItemCellForItemAtIndex: pos];
 	      int		newPos;
 
-	      eventMask = NSLeftMouseUpMask | NSLeftMouseDraggedMask
-		| NSMouseMovedMask | NSPeriodicMask;
+	      eventMask = NSEventMaskLeftMouseUp | NSEventTypeLeftMouseDraggedMask
+		| NSEventMaskMouseMoved | NSEventMaskPeriodic;
 	      [[self window] setAcceptsMouseMovedEvents: YES];
 
 	      /*
@@ -252,9 +252,9 @@
 					inMode: NSEventTrackingRunLoopMode
 				       dequeue: YES];
 	      eType = [e type];
-	      while (eType != NSLeftMouseUp)
+	      while (eType != NSEventTypeLeftMouseUp)
 		{
-		  if (eType != NSPeriodic)
+		  if (eType != NSEventTypePeriodic)
 		    {
 		      point = [e locationInWindow];
 		    }
@@ -1048,8 +1048,8 @@ static BOOL done_editing;
 
   /* Do some modal editing */
   [editField selectText: self];
-  eventMask = NSLeftMouseDownMask |  NSLeftMouseUpMask  |
-  NSKeyDownMask  |  NSKeyUpMask  | NSFlagsChangedMask;
+  eventMask = NSEventTypeLeftMouseDownMask |  NSEventMaskLeftMouseUp  |
+  NSEventMaskKeyDown  |  NSEventMaskKeyUp  | NSEventMaskFlagsChanged;
 
   done_editing = NO;
   while (!done_editing)
@@ -1062,7 +1062,7 @@ static BOOL done_editing;
       eType = [e type];
       switch (eType)
 	{
-	case NSLeftMouseDown:
+	case NSEventTypeLeftMouseDown:
 	  {
 	    NSPoint dp =  [self convertPoint: [e locationInWindow]
 				fromView: nil];
@@ -1074,19 +1074,19 @@ static BOOL done_editing;
 	  }
 	  [[editField currentEditor] mouseDown: e];
 	  break;
-	case NSLeftMouseUp:
+	case NSEventTypeLeftMouseUp:
 	  [[editField currentEditor] mouseUp: e];
 	  break;
-	case NSLeftMouseDragged:
+	case NSEventTypeLeftMouseDragged:
 	  [[editField currentEditor] mouseDragged: e];
 	  break;
-	case NSKeyDown:
+	case NSEventTypeKeyDown:
 	  [[editField currentEditor] keyDown: e];
 	  break;
-	case NSKeyUp:
+	case NSEventTypeKeyUp:
 	  [[editField currentEditor] keyUp: e];
 	  break;
-	case NSFlagsChanged:
+	case NSEventTypeFlagsChanged:
 	  [[editField currentEditor] flagsChanged: e];
 	  break;
 	default:

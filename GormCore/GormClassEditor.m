@@ -185,6 +185,7 @@ NSImage *browserImage = nil;
 	}
       else
 	{
+		RELEASE(self);
 	  return nil;
 	}
     }
@@ -998,7 +999,7 @@ NSImage *browserImage = nil;
       NSString *sourceName = [[sp URL] path];
       NSString *headerName;
 
-      [sp setRequiredFileType: @"h"];
+		sp.allowedFileTypes = @[@"h"];
       [sp setTitle: _(@"Save header file as...")];
       result = [sp runModalForDirectory: 
 		     [sourceName stringByDeletingLastPathComponent]

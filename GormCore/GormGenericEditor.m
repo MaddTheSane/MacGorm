@@ -76,7 +76,7 @@
 
 - (void) mouseDown: (NSEvent*)theEvent
 {
-  if ([theEvent modifierFlags] & NSControlKeyMask)
+  if ([theEvent modifierFlags] & NSEventModifierFlagControl)
     {
       NSPoint	loc = [theEvent locationInWindow];
       NSInteger	r = 0, c = 0;

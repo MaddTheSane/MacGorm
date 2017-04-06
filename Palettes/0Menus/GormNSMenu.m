@@ -64,7 +64,7 @@
   NSEventType   type;
 
   type = [theEvent type];
-  if (type == NSLeftMouseDown)
+  if (type == NSEventTypeLeftMouseDown)
     {
       [self makeMainWindow];
       [self makeKeyWindow];
@@ -163,7 +163,7 @@
 {
   NSPanel *win = [[GormNSMenuWindow alloc] 
 		   initWithContentRect: NSZeroRect
-		   styleMask: NSBorderlessWindowMask
+		   styleMask: NSWindowStyleMaskBorderless
 		   backing: NSBackingStoreBuffered
 		   defer: YES];
  

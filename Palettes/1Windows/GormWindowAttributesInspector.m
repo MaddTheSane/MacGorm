@@ -79,22 +79,22 @@
 	    ( sender == closeButton ) ||
 	    ( sender == resizeBarButton ) )
     {
-      unsigned int newStyleMask = [object _styleMask];
+      NSWindowStyleMask newStyleMask = [object _styleMask];
 
       if ( [miniaturizeButton state] == NSOnState ) 
-	newStyleMask |= NSMiniaturizableWindowMask;
+	newStyleMask |= NSWindowStyleMaskMiniaturizable;
       else 
-	newStyleMask &= ~NSMiniaturizableWindowMask;
+	newStyleMask &= ~NSWindowStyleMaskMiniaturizable;
 
       if ( [closeButton state] == NSOnState ) 
-	newStyleMask |= NSClosableWindowMask;
+	newStyleMask |= NSWindowStyleMaskClosable;
       else
-	newStyleMask &= ~NSClosableWindowMask;
+	newStyleMask &= ~NSWindowStyleMaskClosable;
 
       if ( [resizeBarButton state] == NSOnState ) 
-	newStyleMask |= NSResizableWindowMask;
+	newStyleMask |= NSWindowStyleMaskResizable;
       else
-	newStyleMask &= ~NSResizableWindowMask;
+	newStyleMask &= ~NSWindowStyleMaskResizable;
 
       [object _setStyleMask: newStyleMask];            
 
@@ -204,9 +204,9 @@
 
   /* Controls / Masks */
   [miniaturizeButton setState: ([object _styleMask] 
-				& NSMiniaturizableWindowMask)];
-  [closeButton setState:([object _styleMask] & NSClosableWindowMask)];
-  [resizeBarButton setState:([object _styleMask] & NSResizableWindowMask)];
+				& NSWindowStyleMaskMiniaturizable)];
+  [closeButton setState:([object _styleMask] & NSWindowStyleMaskClosable)];
+  [resizeBarButton setState:([object _styleMask] & NSWindowStyleMaskResizable)];
 
   /* Options */
   [releaseButton setState:[object _isReleasedWhenClosed]];

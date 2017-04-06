@@ -139,7 +139,7 @@ static BOOL done_editing;
 - (void) editTitleWithEvent: (NSEvent *)theEvent
 {
   NSInteger row, col;
-  unsigned eventMask;
+  NSEventMask eventMask;
   id edit_view;
   BOOL isForm;
   NSRect                 frame;
@@ -191,8 +191,8 @@ static BOOL done_editing;
 
   /* Do some modal editing */
   [editField selectText: self];
-  eventMask = NSLeftMouseDownMask |  NSLeftMouseUpMask  |
-  NSKeyDownMask  |  NSKeyUpMask  | NSFlagsChangedMask;
+  eventMask = NSEventMaskLeftMouseDown |  NSEventMaskLeftMouseUp  |
+  NSEventMaskKeyDown  |  NSEventMaskKeyUp  | NSEventMaskFlagsChanged;
 
   done_editing = NO;
   while (!done_editing)
@@ -206,7 +206,7 @@ static BOOL done_editing;
       eType = [e type];
       switch (eType)
 	{
-	case NSLeftMouseDown:
+	case NSEventTypeLeftMouseDown:
 	  {
 	    NSPoint dp =  [edit_view convertPoint: [e locationInWindow]
 				fromView: nil];
@@ -218,19 +218,19 @@ static BOOL done_editing;
 	  }
 	  [[editField currentEditor] mouseDown: e];
 	  break;
-	case NSLeftMouseUp:
+	case NSEventTypeLeftMouseUp:
 	  [[editField currentEditor] mouseUp: e];
 	  break;
-	case NSLeftMouseDragged:
+	case NSEventTypeLeftMouseDragged:
 	  [[editField currentEditor] mouseDragged: e];
 	  break;
-	case NSKeyDown:
+	case NSEventTypeKeyDown:
 	  [[editField currentEditor] keyDown: e];
 	  break;
-	case NSKeyUp:
+	case NSEventTypeKeyUp:
 	  [[editField currentEditor] keyUp: e];
 	  break;
-	case NSFlagsChanged:
+	case NSEventTypeFlagsChanged:
 	  [[editField currentEditor] flagsChanged: e];
 	  break;
 	default:
@@ -567,7 +567,7 @@ static BOOL done_editing;
 {
   frame = gpi->lastFrame;
 
-  if ([theEvent modifierFlags] & (NSControlKeyMask | NSShiftKeyMask))
+  if ([theEvent modifierFlags] & (NSEventModifierFlagControl | NSEventModifierFlagShift))
     {
       NSInteger rows = [_EO numberOfRows];
       NSInteger cols = [_EO numberOfColumns];
@@ -637,7 +637,7 @@ static BOOL done_editing;
 	}
       [_EO setFrame: frame];
     }
-  else if ([theEvent modifierFlags] & NSControlKeyMask)
+  else if ([theEvent modifierFlags] & NSEventModifierFlagControl)
     {
       NSInteger width;
       NSInteger height;

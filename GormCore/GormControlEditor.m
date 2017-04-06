@@ -536,10 +536,10 @@
 			andEvent: (NSEvent *)theEvent
 		andPlacementInfo: (GormPlacementInfo*) gpi
 {
-  if ([theEvent modifierFlags] & NSAlternateKeyMask)
+  if ([theEvent modifierFlags] & NSEventModifierFlagOption)
     [self _altDisplayFrame: frame
 	  withPlacementInfo: gpi];
-  else if ([theEvent modifierFlags] & NSShiftKeyMask)
+  else if ([theEvent modifierFlags] & NSEventModifierFlagShift)
     [self _displayFrame: frame
 	  withPlacementInfo: gpi];
   else
@@ -552,7 +552,7 @@
       andPlacementInfo: (GormPlacementInfo*)gpi
 {
   frame = gpi->lastFrame;
-  if ([theEvent modifierFlags] & NSAlternateKeyMask)
+  if ([theEvent modifierFlags] & NSEventModifierFlagOption)
     {
       NSSize cellSize = [self frame].size;
       id editor;
@@ -593,7 +593,7 @@
 
       RELEASE(self);
     }
-  else if ([theEvent modifierFlags] & NSShiftKeyMask)
+  else if ([theEvent modifierFlags] & NSEventModifierFlagShift)
     {
       [self setFrame: frame];
     }

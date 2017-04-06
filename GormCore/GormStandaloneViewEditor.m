@@ -201,19 +201,19 @@ static NSImage *horizontalImage;
     else // editorView == self
       {
 	NSEvent *e;
-	unsigned eventMask;
+	NSEventMask eventMask;
 	NSDate *future = [NSDate distantFuture];
 	NSRect oldRect = NSZeroRect;
 	NSPoint p, oldp;
 	NSRect r = NSZeroRect;
-	float x, y, w, h;
+	CGFloat x, y, w, h;
 	
 	oldp = [self convertPoint: [theEvent locationInWindow] fromView: nil];
 
-	eventMask = NSLeftMouseUpMask | NSLeftMouseDraggedMask;
+	eventMask = NSEventMaskLeftMouseUp | NSEventMaskLeftMouseDragged;
 
 	
-	if (!([theEvent modifierFlags] & NSShiftKeyMask))
+	if (!([theEvent modifierFlags] & NSEventModifierFlagShift))
 	  [self selectObjects: [NSMutableArray array]];
 	[[self window] disableFlushWindow];
 	[self setNeedsDisplay: YES];
@@ -226,7 +226,7 @@ static NSImage *horizontalImage;
 		   inMode: NSEventTrackingRunLoopMode
 		   dequeue: YES];
 	[self lockFocus];
-	while ([e type] != NSLeftMouseUp)
+	while ([e type] != NSEventTypeLeftMouseUp)
 	  {
 	    p = [self convertPoint: [e locationInWindow] fromView: nil];
 	    
@@ -244,20 +244,20 @@ static NSImage *horizontalImage;
 		[verticalImage 
 		  compositeToPoint: NSMakePoint(NSMinX(oldRect), NSMinY(oldRect))
 		  fromRect: NSMakeRect(0.0, 0.0, 1.0, oldRect.size.height)
-		  operation: NSCompositeCopy];
+		  operation: NSCompositingOperationCopy];
 		[verticalImage
 		  compositeToPoint: NSMakePoint(NSMaxX(oldRect)-1, NSMinY(oldRect))
 		  fromRect: NSMakeRect(1.0, 0.0, 1.0, oldRect.size.height)
-		  operation: NSCompositeCopy];
+		  operation: NSCompositingOperationCopy];
 		
 		[horizontalImage 
 		  compositeToPoint: NSMakePoint(NSMinX(oldRect), NSMinY(oldRect))
 		  fromRect: NSMakeRect(0.0, 0.0, oldRect.size.width, 1.0)
-		  operation: NSCompositeCopy];
+		  operation: NSCompositingOperationCopy];
 		[horizontalImage
 		  compositeToPoint: NSMakePoint(NSMinX(oldRect), NSMaxY(oldRect)-1)
 		  fromRect: NSMakeRect(0.0, 1.0, oldRect.size.width, 1.0)
-		  operation: NSCompositeCopy];
+		  operation: NSCompositingOperationCopy];
 	      }
 
 	    {
@@ -309,20 +309,20 @@ static NSImage *horizontalImage;
 	    [verticalImage 
 	      compositeToPoint: NSMakePoint(NSMinX(r), NSMinY(r))
 	      fromRect: NSMakeRect(0.0, 0.0, 1.0, r.size.height)
-	      operation: NSCompositeCopy];
+	      operation: NSCompositingOperationCopy];
 	    [verticalImage
 	      compositeToPoint: NSMakePoint(NSMaxX(r)-1, NSMinY(r))
 	      fromRect: NSMakeRect(1.0, 0.0, 1.0, r.size.height)
-	      operation: NSCompositeCopy];
+	      operation: NSCompositingOperationCopy];
 	    
 	    [horizontalImage 
 	      compositeToPoint: NSMakePoint(NSMinX(r), NSMinY(r))
 	      fromRect: NSMakeRect(0.0, 0.0, r.size.width, 1.0)
-	      operation: NSCompositeCopy];
+	      operation: NSCompositingOperationCopy];
 	    [horizontalImage
 	      compositeToPoint: NSMakePoint(NSMinX(r), NSMaxY(r)-1)
 	      fromRect: NSMakeRect(0.0, 1.0, r.size.width, 1.0)
-	      operation: NSCompositeCopy];
+	      operation: NSCompositingOperationCopy];
 	  }
 
 
@@ -332,7 +332,7 @@ static NSImage *horizontalImage;
 	  NSView *subview;
 
 
-	  if ([theEvent modifierFlags] & NSShiftKeyMask)
+	  if ([theEvent modifierFlags] & NSEventModifierFlagShift)
 	    array = [NSMutableArray arrayWithArray: selection];
 	  else
 	    array = [NSMutableArray arrayWithCapacity: 8];

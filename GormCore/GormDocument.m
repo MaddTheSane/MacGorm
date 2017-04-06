@@ -1149,6 +1149,7 @@ static NSImage  *fileImage = nil;
   [archiver encodeClassName: @"GormCustomView" 
 	    intoClassName: @"GSCustomView"];
   [archiver encodeRootObject: anArray];
+	RELEASE(archiver);
 
   // reactivate
   for (id<IBEditors> obj in editorSet) {
@@ -1752,6 +1753,7 @@ static void _real_close(GormDocument *self,
 	  Class cls = [aNotification object];
 	  id mgr = [(IBResourceManager *)[cls alloc] initWithDocument: self];
 	  [resourceManagers addObject: mgr];
+		RELEASE(mgr);
   	  [IBResourceManager registerForAllPboardTypes:window
 	  			inDocument:self];
 	}
