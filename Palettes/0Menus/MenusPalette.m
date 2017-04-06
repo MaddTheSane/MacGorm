@@ -80,7 +80,7 @@
 
   originalWindow = [[NSWindow alloc] initWithContentRect: 
 				       NSMakeRect(0, 0, 272, 192)
-				       styleMask: NSBorderlessWindowMask 
+				       styleMask: NSWindowStyleMaskBorderless 
 					 backing: NSBackingStoreRetained
 					   defer: NO];
   contents = [originalWindow contentView];
@@ -107,7 +107,7 @@
 
   b = [[NSButton alloc] initWithFrame: NSMakeRect(30, 160, 100, 20)];
   [b setImage: [NSImage imageNamed: @"common_3DArrowRight"]];
-  [b setAlignment: NSLeftTextAlignment];
+  [b setAlignment: NSTextAlignmentLeft];
   [b setImagePosition: NSImageRight];
   [b setTitle: @" Info"];
   [contents addSubview: b];
@@ -150,7 +150,7 @@
 
   b = [[NSButton alloc] initWithFrame: NSMakeRect(145, 160, 100, 20)];
   [b setImage: [NSImage imageNamed: @"common_3DArrowRight"]];
-  [b setAlignment: NSLeftTextAlignment];
+  [b setAlignment: NSTextAlignmentLeft];
   [b setImagePosition: NSImageRight];
   [b setTitle: @" Font"];
   [contents addSubview: b];
@@ -207,7 +207,7 @@
 
   b = [[NSButton alloc] initWithFrame: NSMakeRect(30, 140, 100, 20)];
   [b setImage: [NSImage imageNamed: @"common_3DArrowRight"]];
-  [b setAlignment: NSLeftTextAlignment];
+  [b setAlignment: NSTextAlignmentLeft];
   [b setImagePosition: NSImageRight];
   [b setTitle: @" Document"];
   [contents addSubview: b];
@@ -249,7 +249,7 @@
 
   b = [[NSButton alloc] initWithFrame: NSMakeRect(145, 140, 100, 20)];
   [b setImage: [NSImage imageNamed: @"common_3DArrowRight"]];
-  [b setAlignment: NSLeftTextAlignment];
+  [b setAlignment: NSTextAlignmentLeft];
   [b setImagePosition: NSImageRight];
   [b setTitle: @" Text"];
   [contents addSubview: b];
@@ -291,7 +291,7 @@
 
   b = [[NSButton alloc] initWithFrame: NSMakeRect(30, 120, 100, 20)];
   [b setImage: [NSImage imageNamed: @"common_3DArrowRight"]];
-  [b setAlignment: NSLeftTextAlignment];
+  [b setAlignment: NSTextAlignmentLeft];
   [b setImagePosition: NSImageRight];
   [b setTitle: @" Edit"];
   [contents addSubview: b];
@@ -334,7 +334,7 @@
 
   b = [[NSButton alloc] initWithFrame: NSMakeRect(145, 120, 100, 20)];
   [b setImage: [NSImage imageNamed: @"common_3DArrowRight"]];
-  [b setAlignment: NSLeftTextAlignment];
+  [b setAlignment: NSTextAlignmentLeft];
   [b setImagePosition: NSImageRight];
   [b setTitle: @" Find"];
   [contents addSubview: b];
@@ -419,7 +419,7 @@
 
   b = [[NSButton alloc] initWithFrame: NSMakeRect(30, 100, 100, 20)];
   [b setImage: [NSImage imageNamed: @"common_3DArrowRight"]];
-  [b setAlignment: NSLeftTextAlignment];
+  [b setAlignment: NSTextAlignmentLeft];
   [b setImagePosition: NSImageRight];
   [b setTitle: @" Format"];
   [contents addSubview: b];
@@ -439,7 +439,7 @@
 			  keyEquivalent: @""];
 
   b = [[NSButton alloc] initWithFrame: NSMakeRect(145, 100, 100, 20)];
-  [b setAlignment: NSLeftTextAlignment];
+  [b setAlignment: NSTextAlignmentLeft];
   [b setTitle: @" Colors..."];
   [contents addSubview: b];
   [self associateObject: i
@@ -470,7 +470,7 @@
 
   b = [[NSButton alloc] initWithFrame: NSMakeRect(30, 80, 100, 20)];
   [b setImage: [NSImage imageNamed: @"common_3DArrowRight"]];
-  [b setAlignment: NSLeftTextAlignment];
+  [b setAlignment: NSTextAlignmentLeft];
   [b setImagePosition: NSImageRight];
   [b setTitle: @" Windows"];
   [contents addSubview: b];
@@ -490,7 +490,7 @@
 			  keyEquivalent: @""];
 
   b = [[NSButton alloc] initWithFrame: NSMakeRect(145, 80, 100, 20)];
-  [b setAlignment: NSLeftTextAlignment];
+  [b setAlignment: NSTextAlignmentLeft];
   [b setTitle: @" Item"];
   [contents addSubview: b];
   [self associateObject: i
@@ -512,7 +512,7 @@
 
   b = [[NSButton alloc] initWithFrame: NSMakeRect(30, 60, 100, 20)];
   [b setImage: [NSImage imageNamed: @"common_3DArrowRight"]];
-  [b setAlignment: NSLeftTextAlignment];
+  [b setAlignment: NSTextAlignmentLeft];
   [b setImagePosition: NSImageRight];
   [b setTitle: @" Services"];
   [contents addSubview: b];
@@ -539,7 +539,7 @@
 
   b = [[NSButton alloc] initWithFrame: NSMakeRect(145, 60, 100, 20)];
   [b setImage: [NSImage imageNamed: @"common_3DArrowRight"]];
-  [b setAlignment: NSLeftTextAlignment];
+  [b setAlignment: NSTextAlignmentLeft];
   [b setImagePosition: NSImageRight];
   [b setTitle: @" Submenu"];
   [contents addSubview: b];

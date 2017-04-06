@@ -313,8 +313,8 @@
 	{
 	  NSFileManager *mgr = [NSFileManager defaultManager];
 	  NSString *path = [selected path];
-	  BOOL removed = [mgr removeFileAtPath: path
-			      handler: nil];
+	  BOOL removed = [mgr removeItemAtPath: path
+			      error: NULL];
 	  if(!removed)
 	    {
 	      NSString *msg = [NSString stringWithFormat: @"Could not delete file %@", path];

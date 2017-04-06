@@ -110,9 +110,9 @@
       character = [characters characterAtIndex: 0];
     }
 
-  if (([theEvent modifierFlags] & NSShiftKeyMask) == NSShiftKeyMask)
+  if (([theEvent modifierFlags] & NSEventModifierFlagShift) == NSEventModifierFlagShift)
     {
-      if (([theEvent modifierFlags] & NSAlternateKeyMask) == NSAlternateKeyMask)
+      if (([theEvent modifierFlags] & NSEventModifierFlagOption) == NSEventModifierFlagOption)
 	{
 	  moveBy = 10.0;
 	}
@@ -142,7 +142,7 @@
     }
   else
     {
-      if (([theEvent modifierFlags] & NSAlternateKeyMask) == NSAlternateKeyMask)
+      if (([theEvent modifierFlags] & NSEventModifierFlagOption) == NSEventModifierFlagOption)
 	{
 	  moveBy = 10.0;
 	}

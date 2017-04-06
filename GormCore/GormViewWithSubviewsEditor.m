@@ -547,7 +547,7 @@
 				   fromView: nil];
   NSDate	*future = [NSDate distantFuture];
   BOOL		acceptsMouseMoved;
-  unsigned	eventMask;
+  NSEventType	eventMask;
   NSEvent	*e;
   NSEventType	eType;
   NSRect	r = [view frame];
@@ -560,8 +560,8 @@
   NSView        *superview;
   GormPlacementInfo *gpi;
 
-  eventMask = NSLeftMouseUpMask | NSLeftMouseDraggedMask
-    | NSMouseMovedMask | NSPeriodicMask;
+  eventMask = NSEventMaskLeftMouseUp | NSEventMaskLeftMouseDragged
+    | NSEventMaskMouseMoved | NSEventMaskPeriodic;
   
   // Save window state info.
   acceptsMouseMoved = [[self window] acceptsMouseMovedEvents];
@@ -669,9 +669,9 @@
       gpi = nil;
     }
 
-  while (eType != NSLeftMouseUp)
+  while (eType != NSEventTypeLeftMouseUp)
     {
-      if (eType != NSPeriodic)
+      if (eType != NSEventTypePeriodic)
 	{
 	  point = [superview convertPoint: [e locationInWindow]
 			     fromView: nil];
@@ -854,7 +854,7 @@
   NSView	*subview;
   BOOL		acceptsMouseMoved;
   BOOL		dragStarted = NO;
-  unsigned	eventMask;
+  NSEventMask	eventMask;
   NSEvent	*e;
   NSEventType	eType;
   NSRect	r;
@@ -870,8 +870,8 @@
   BOOL shouldUpdateSelection = YES;
   BOOL mouseDidMove = NO;
 
-  eventMask = NSLeftMouseUpMask | NSLeftMouseDraggedMask
-    | NSMouseMovedMask | NSPeriodicMask;
+  eventMask = NSEventMaskLeftMouseUp | NSEventMaskLeftMouseDragged
+    | NSEventMaskMouseMoved | NSEventMaskPeriodic;
   
   // Save window state info.
   acceptsMouseMoved = [[self window] acceptsMouseMovedEvents];
@@ -882,7 +882,7 @@
       return;
     }
 
-  if ([theEvent modifierFlags] & NSShiftKeyMask)
+  if ([theEvent modifierFlags] & NSEventModifierFlagShift)
     {
       if ([selection containsObject: view])
 	{
@@ -978,9 +978,9 @@
 
   {
 
-    while ((eType != NSLeftMouseUp) && !mouseDidMove)
+    while ((eType != NSEventTypeLeftMouseUp) && !mouseDidMove)
       {
-	if (eType != NSPeriodic)
+	if (eType != NSEventTypePeriodic)
 	  {
 	    point = [superview convertPoint: [e locationInWindow]
 			       fromView: nil];
@@ -995,9 +995,9 @@
       }
   }
 
-  while (eType != NSLeftMouseUp)
+  while (eType != NSEventTypeLeftMouseUp)
     {
-      if (eType != NSPeriodic)
+      if (eType != NSEventTypePeriodic)
 	{
 	  point = [superview convertPoint: [e locationInWindow]
 			     fromView: nil];

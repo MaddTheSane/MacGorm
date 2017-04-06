@@ -308,7 +308,8 @@ static NSImage	*dragImage = nil;
   NSWindowStyleMask	 style = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskResizable;
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   NSArray        *userPalettes = [defaults arrayForKey: USER_PALETTES];
-  
+	
+	if (self = [super init]) {
   panel = [[GormPalettePanel alloc] initWithContentRect: contentRect
 				     styleMask: style
 				       backing: NSBackingStoreRetained
@@ -392,7 +393,8 @@ static NSImage	*dragImage = nil;
 	 selector: @selector(handleNotification:)
 	     name: IBWillEndTestingInterfaceNotification
 	   object: nil];
-
+	}
+	
   return self;
 }
 

@@ -186,7 +186,7 @@
 	  [tf setBordered: YES];
 	  [tf setEditable: YES];
 	  [tf setBezeled: NO];
-	  [tf setAlignment: NSCenterTextAlignment];
+	  [tf setAlignment: NSTextAlignmentCenter];
 	  [tf setFrame: frame];
 	  [self addSubview: tf];
 	  [tf setStringValue: [_EO title]];

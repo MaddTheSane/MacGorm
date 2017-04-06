@@ -129,19 +129,19 @@ const unichar rt[]={NSRightArrowFunctionKey};
   [ctrlBtn setState: NSOffState];
   [shiftBtn setState: NSOffState];
   [cmdBtn setState: NSOffState];
-  if(flags & NSAlternateKeyMask)
+  if(flags & NSEventModifierFlagOption)
     {
       [altBtn setState: NSOnState];
     }
-  if(flags & NSControlKeyMask)
+  if(flags & NSEventModifierFlagControl)
     {
       [ctrlBtn setState: NSOnState];
     }
-  if(flags & NSShiftKeyMask)
+  if(flags & NSEventModifierFlagShift)
     {
       [shiftBtn setState: NSOnState];
     }
-  if(flags & NSCommandKeyMask)
+  if(flags & NSEventModifierFlagCommand)
     {
       [cmdBtn setState: NSOnState];
     }  
@@ -224,12 +224,12 @@ const unichar rt[]={NSRightArrowFunctionKey};
       if([altBtn state] == NSOnState)
 	{
 	  [object setKeyEquivalentModifierMask: 
-		    [object keyEquivalentModifierMask] | NSAlternateKeyMask];
+		    [object keyEquivalentModifierMask] | NSEventModifierFlagOption];
 	}
       else
 	{
 	  [object setKeyEquivalentModifierMask: 
-		    [object keyEquivalentModifierMask] & ~NSAlternateKeyMask];
+		    [object keyEquivalentModifierMask] & ~NSEventModifierFlagOption];
 	}
       [[object menu] itemChanged: object];
     }
@@ -238,12 +238,12 @@ const unichar rt[]={NSRightArrowFunctionKey};
       if([ctrlBtn state] == NSOnState)
 	{
 	  [object setKeyEquivalentModifierMask: 
-		    [object keyEquivalentModifierMask] | NSControlKeyMask];
+		    [object keyEquivalentModifierMask] | NSEventModifierFlagControl];
 	}
       else
 	{
 	  [object setKeyEquivalentModifierMask: 
-		    [object keyEquivalentModifierMask] & ~NSControlKeyMask];
+		    [object keyEquivalentModifierMask] & ~NSEventModifierFlagControl];
 	}
       [[object menu] itemChanged: object];
     }
@@ -252,12 +252,12 @@ const unichar rt[]={NSRightArrowFunctionKey};
       if([shiftBtn state] == NSOnState)
 	{
 	  [object setKeyEquivalentModifierMask: 
-		    [object keyEquivalentModifierMask] | NSShiftKeyMask];
+		    [object keyEquivalentModifierMask] | NSEventModifierFlagShift];
 	}
       else
 	{
 	  [object setKeyEquivalentModifierMask: 
-		    [object keyEquivalentModifierMask] & ~NSShiftKeyMask];
+		    [object keyEquivalentModifierMask] & ~NSEventModifierFlagShift];
 	}
       [[object menu] itemChanged: object];
     }
@@ -266,12 +266,12 @@ const unichar rt[]={NSRightArrowFunctionKey};
       if([cmdBtn state] == NSOnState)
 	{
 	  [object setKeyEquivalentModifierMask: 
-		    [object keyEquivalentModifierMask] | NSCommandKeyMask];
+		    [object keyEquivalentModifierMask] | NSEventModifierFlagCommand];
 	}
       else
 	{
 	  [object setKeyEquivalentModifierMask: 
-		    [object keyEquivalentModifierMask] & ~NSCommandKeyMask];
+		    [object keyEquivalentModifierMask] & ~NSEventModifierFlagCommand];
 	}
       [[object menu] itemChanged: object];
     }

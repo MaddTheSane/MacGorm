@@ -58,7 +58,7 @@
 
   originalWindow = [[NSWindow alloc] initWithContentRect: 
 				       NSMakeRect(0, 0, 272, 192)
-				       styleMask: NSBorderlessWindowMask 
+				       styleMask: NSWindowStyleMaskBorderless 
 					 backing: NSBackingStoreRetained
 					   defer: NO];
   contents = [originalWindow contentView];

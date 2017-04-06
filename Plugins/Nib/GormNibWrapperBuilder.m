@@ -202,7 +202,7 @@
 					 originalClassName: superClass];
     }
 
-  return template;
+  return [template autorelease];
 }
 @end
 

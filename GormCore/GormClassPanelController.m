@@ -33,22 +33,20 @@
 
 - (id) initWithTitle: (NSString *)title classList: (NSArray *)classes
 {
-  self = [super init];
-  if(self != nil)
-    {
-      if ( ![NSBundle loadNibNamed:@"GormClassPanel" owner:self] )
-	{
-	  NSLog(@"Can not load bundle GormClassPanel");
-	  return nil;
+	self = [super init];
+	if(self != nil) {
+		if (![NSBundle loadNibNamed:@"GormClassPanel" owner:self]) {
+			NSLog(@"Can not load bundle GormClassPanel");
+			return nil;
+		}
+		
+		ASSIGN(allClasses, [classes mutableCopy]);
+		[allClasses removeObject: @"FirstResponder"];
+		[panel setTitle: title];
+		[classBrowser loadColumnZero];
 	}
-    }
-
-  ASSIGN(allClasses, [classes mutableCopy]);
-  [allClasses removeObject: @"FirstResponder"];
-  [panel setTitle: title];
-  [classBrowser loadColumnZero];
-
-  return self;
+	
+	return self;
 }
 
 - (NSString *)runModal

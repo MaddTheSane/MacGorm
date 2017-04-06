@@ -268,44 +268,44 @@ NSString *rtString = nil;
     {
       if([altMod state] == NSOnState)
 	{
-	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] | NSAlternateKeyMask];
+	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] | NSEventModifierFlagOption];
 	}
       else
 	{
-	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] & ~NSAlternateKeyMask];
+	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] & ~NSEventModifierFlagOption];
 	}
     }
   else if (sender == ctrlMod)
     {
       if([ctrlMod state] == NSOnState)
 	{
-	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] | NSControlKeyMask];
+	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] | NSEventModifierFlagControl];
 	}
       else
 	{
-	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] & ~NSControlKeyMask];
+	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] & ~NSEventModifierFlagControl];
 	}
     }
   else if (sender == shiftMod)
     {
       if([shiftMod state] == NSOnState)
 	{
-	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] | NSShiftKeyMask];
+	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] | NSEventModifierFlagShift];
 	}
       else
 	{
-	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] & ~NSShiftKeyMask];
+	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] & ~NSEventModifierFlagShift];
 	}
     }
   else if (sender == cmdMod)
     {
       if([cmdMod state] == NSOnState)
 	{
-	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] | NSCommandKeyMask];
+	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] | NSEventModifierFlagCommand];
 	}
       else
 	{
-	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] & ~NSCommandKeyMask];
+	  [object setKeyEquivalentModifierMask: [object keyEquivalentModifierMask] & ~NSEventModifierFlagCommand];
 	}
     }
 
@@ -404,19 +404,19 @@ NSString *rtString = nil;
       [ctrlMod setState: NSOffState];
       [shiftMod setState: NSOffState];
       [cmdMod setState: NSOffState];
-      if(flags & NSAlternateKeyMask)
+      if(flags & NSEventModifierFlagOption)
 	{
 	  [altMod setState: NSOnState];
 	}
-      if(flags & NSControlKeyMask)
+      if(flags & NSEventModifierFlagControl)
 	{
 	  [ctrlMod setState: NSOnState];
 	}
-      if(flags & NSShiftKeyMask)
+      if(flags & NSEventModifierFlagShift)
 	{
 	  [shiftMod setState: NSOnState];
 	}
-      if(flags & NSCommandKeyMask)
+      if(flags & NSEventModifierFlagCommand)
 	{
 	  [cmdMod setState: NSOnState];
 	}
