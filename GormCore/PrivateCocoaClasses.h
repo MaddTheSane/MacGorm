@@ -75,8 +75,8 @@
 - (id)userInterfaceItemIdentifier;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
-@property struct CGSize maxFullScreenContentSize;
-@property struct CGSize minFullScreenContentSize;
+@property NSSize maxFullScreenContentSize;
+@property NSSize minFullScreenContentSize;
 - (void)encodeWithCoder:(id)arg1;
 - (id)nibInstantiate;
 - (BOOL)isRestorable;
@@ -233,16 +233,14 @@
 	id extension;
 }
 
-+ (void)initialize;
-- (void)setClassName:(id)arg1;
-- (id)className;
+- (void)setClassName:(NSString *)arg1;
+- (NSString *)className;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)nibInstantiateWithObjectInstantiator:(id)arg1;
 - (BOOL)_descendantIsConstrainedByConstraint:(id)arg1;
 - (void)_setAsClipViewDocumentViewIfNeeded;
-- (void)dealloc;
-- (id)initWithFrame:(struct CGRect)arg1;
+- (id)initWithFrame:(NSRect)arg1;
 
 @end
 
@@ -256,11 +254,10 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)awakeAfterUsingCoder:(id)arg1;
 - (id)createRealObject;
-- (void)setClassName:(id)arg1;
-- (id)className;
-- (void)dealloc;
-- (id)initWithFrame:(struct CGRect)arg1;
-- (id)initWithView:(id)arg1 className:(id)arg2;
+- (void)setClassName:(NSString *)arg1;
+- (NSString *)className;
+- (id)initWithFrame:(NSRect)arg1;
+- (id)initWithView:(id)arg1 className:(NSString *)arg2;
 
 @end
 
@@ -273,8 +270,8 @@
 + (void)initialize;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (void)setClassName:(id)arg1;
-- (id)className;
+- (void)setClassName:(NSString *)arg1;
+- (NSString *)className;
 - (void)setTemplate:(id)arg1;
 - (id)template;
 - (void)dealloc;
@@ -296,10 +293,10 @@
 - (void)instantiateWithObjectInstantiator:(id)arg1;
 - (void)establishConnection;
 - (void)replaceObject:(id)arg1 withObject:(id)arg2;
-- (void)setMarker:(id)arg1;
-- (id)marker;
-- (void)setFile:(id)arg1;
-- (id)file;
+- (void)setMarker:(NSString *)arg1;
+- (NSString *)marker;
+- (void)setFile:(NSString *)arg1;
+- (NSString *)file;
 - (void)setLabel:(id)arg1;
 - (id)label;
 - (void)setDestination:(id)arg1;
@@ -385,3 +382,16 @@
 
 @end
 
+@interface NSCustomObject : NSObject <NSCoding>
+{
+	NSString *className;
+	id object;
+	id extension;
+}
+
+- (void)setClassName:(NSString *)arg1;
+- (NSString *)className;
+- (void)setObject:(id)arg1;
+- (id)init;
+
+@end

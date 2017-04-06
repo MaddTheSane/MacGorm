@@ -637,7 +637,6 @@ static NSImage	*dragImage = nil;
 - (void) setCurrentPalette: (id)anObj
 {
 	NSView	*wv;
-	NSEnumerator	*enumerator;
 	
 	if (current >= 0) {
 		/*
@@ -645,8 +644,7 @@ static NSImage	*dragImage = nil;
 		 * window they originally came from.
 		 */
 		wv = [[[palettes objectAtIndex: current] originalWindow] contentView];
-		enumerator = [[dragView subviews] objectEnumerator];
-		for (NSView *sv in [dragView subviews]) {
+		for (NSView *sv in [NSArray arrayWithArray:[dragView subviews]]) {
 			RETAIN(sv);
 			[sv removeFromSuperview];
 			[wv addSubview: sv];
@@ -671,8 +669,7 @@ static NSImage	*dragImage = nil;
 		wv = [[palette originalWindow] contentView];
 		if (wv)
 			[dragView setFrameSize: [wv frame].size];
-		enumerator = [[wv subviews] objectEnumerator];
-		for (NSView *sv in wv.subviews) {
+		for (NSView *sv in [NSArray arrayWithArray:wv.subviews]) {
 			RETAIN(sv);
 			[sv removeFromSuperview];
 			[dragView addSubview: sv];

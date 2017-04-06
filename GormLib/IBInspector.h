@@ -42,9 +42,9 @@
 @interface IBInspector : NSObject
 {
   id		object;
-  NSWindow	*window;
-  NSButton	*okButton;
-  NSButton	*revertButton;
+  IBOutlet NSWindow	*window;
+  IBOutlet NSButton	*okButton;
+  IBOutlet NSButton	*revertButton;
 }
 
 /**

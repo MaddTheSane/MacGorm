@@ -59,11 +59,11 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
   BOOL				isConnecting;
   BOOL				isTesting;
   id             	testContainer;
-  id				gormMenu;
+  IBOutlet id		gormMenu;
   NSMenu			*mainMenu; // saves the main menu...
   NSMenu			*servicesMenu; // saves the services menu...
-  NSMenu			*classMenu; // so we can set it for the class view
-  NSMenuItem		*guideLineMenuItem;
+  IBOutlet NSMenu			*classMenu; // so we can set it for the class view
+  IBOutlet NSMenuItem		*guideLineMenuItem;
   NSDictionary		*menuLocations;
   NSImage			*linkImage;
   NSImage			*sourceImage;
@@ -88,18 +88,6 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 @implementation Gorm
 @synthesize testingInterface = isTesting;
 @synthesize connecting = isConnecting;
-
-+ (void)initialize
-{
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		NSURL *aURL = [[NSBundle mainBundle] URLForResource:@"Defaults" withExtension:@"plist"];
-		NSDictionary *ourDict = [[NSDictionary alloc] initWithContentsOfURL:aURL];
-		[[NSUserDefaults standardUserDefaults] registerDefaults:ourDict];
-		
-		RELEASE(ourDict);
-	});
-}
 
 - (id<IBDocuments>) activeDocument
 {
@@ -167,22 +155,11 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 		/*
 		 * load the interface...
 		 */
-		@try {
-		if (![NSBundle loadNibNamed: @"Gorm" owner: self]) {
-			NSLog(@"Failed to load interface");
-			exit(-1);
-		}
-		} @catch (NSException *e) {
-			
-		}
+		//if (![[NSBundle mainBundle] loadNibNamed: @"Gorm" owner: self topLevelObjects:nil]) {
+		//	NSLog(@"Failed to load interface");
+		//	exit(-1);
+		//}
 		
-		/*
-		 * Make sure the palettes/plugins managers exist, so that the
-		 * editors and inspectors provided in the standard palettes
-		 * are available.
-		 */
-		[self palettesManager];
-		[self pluginManager];
 		
 		/*
 		 * set the delegate.
@@ -199,7 +176,6 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 	}
 	return self;
 }
-
 
 - (void) dealloc
 {
@@ -425,7 +401,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 }
 
 /** Info Menu Actions */
-- (void) preferencesPanel: (id) sender
+- (IBAction) preferencesPanel: (id) sender
 {
 	if (!preferencesController) {
 		preferencesController =  [[GormPrefController alloc] init];
@@ -435,37 +411,37 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 }
 
 /** Document Menu Actions */
-- (void) close: (id)sender
+- (IBAction) close: (id)sender
 {
 	GormDocument  *document = (GormDocument *)[self activeDocument];
-	if ([document canCloseDocument]) {
+	//if ([document canCloseDocument]) {
 		[document close];
-	}
+	//}
 }
 
-- (void) debug: (id) sender
+- (IBAction) debug: (id) sender
 {
 	[[self activeDocument] performSelector: @selector(printAllEditors)];
 }
 
-- (void) loadSound: (id) sender
+- (IBAction) loadSound: (id) sender
 {
 	[(GormDocument *)[self activeDocument] openSound: sender];
 }
 
-- (void) loadImage: (id) sender
+- (IBAction) loadImage: (id) sender
 {
 	[(GormDocument *)[self activeDocument] openImage: sender];
 }
 
-- (void) arrangeInFront: (id)sender
+- (IBAction) arrangeInFront: (id)sender
 {
 	if ([self isTestingInterface] == NO) {
 		[super arrangeInFront: sender];
 	}
 }
 
-- (void) testInterface: (id)sender
+- (IBAction) testInterface: (id)sender
 {
 	if (isTesting == YES) {
 		return;
@@ -621,7 +597,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 
 /** Edit Menu Actions */
 
-- (void) copy: (id)sender
+- (IBAction) copy: (id)sender
 {
 	if ([[selectionOwner selection] count] == 0
 		|| [selectionOwner respondsToSelector: @selector(copySelection)] == NO)
@@ -635,7 +611,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 }
 
 
-- (void) cut: (id)sender
+- (IBAction) cut: (id)sender
 {
 	if ([[selectionOwner selection] count] == 0
 		|| [selectionOwner respondsToSelector: @selector(copySelection)] == NO
@@ -651,7 +627,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 	[(id<IBSelectionOwners,IBEditors>)selectionOwner deleteSelection];
 }
 
-- (void) paste: (id)sender
+- (IBAction) paste: (id)sender
 {
 	if ([selectionOwner respondsToSelector: @selector(pasteInSelection)] == NO)
 		return;
@@ -664,7 +640,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 }
 
 
-- (void) delete: (id)sender
+- (IBAction) delete: (id)sender
 {
 	if ([[selectionOwner selection] count] == 0
 		|| [selectionOwner respondsToSelector: @selector(deleteSelection)] == NO)
@@ -677,7 +653,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 	[(id<IBSelectionOwners,IBEditors>)selectionOwner deleteSelection];
 }
 
-- (void) selectAll: (id)sender
+- (IBAction) selectAll: (id)sender
 {
 	if ([[selectionOwner selection] count] == 0
 		|| [selectionOwner respondsToSelector: @selector(deleteSelection)] == NO)
@@ -697,7 +673,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 }
 */
 
-- (void) setName: (id)sender
+- (IBAction) setName: (id)sender
 {
 	GormSetNameController *panel;
 	NSInteger		returnPanel;
@@ -721,7 +697,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 	}
 }
 
-- (void) guideline: (id) sender
+- (IBAction) guideline: (id) sender
 {
   [[NSNotificationCenter defaultCenter] postNotificationName: GormToggleGuidelineNotification
  					object:nil];
@@ -735,7 +711,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 }
 
 
-- (void) orderFrontFontPanel: (id) sender
+- (IBAction) orderFrontFontPanel: (id) sender
 {
 	NSFontPanel *fontPanel = [NSFontPanel sharedFontPanel];
 	GormFontViewController *gfvc =
@@ -746,7 +722,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 
 /** Grouping */
 
-- (void) groupSelectionInSplitView: (id)sender
+- (IBAction) groupSelectionInSplitView: (id)sender
 {
 	if ([[selectionOwner selection] count] < 2
 		|| [selectionOwner respondsToSelector: @selector(groupSelectionInSplitView)] == NO) {
@@ -756,7 +732,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 	[(GormGenericEditor *)selectionOwner groupSelectionInSplitView];
 }
 
-- (void) groupSelectionInBox: (id)sender
+- (IBAction) groupSelectionInBox: (id)sender
 {
 	if ([selectionOwner respondsToSelector: @selector(groupSelectionInBox)] == NO) {
 		return;
@@ -764,7 +740,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 	[(GormGenericEditor *)selectionOwner groupSelectionInBox];
 }
 
-- (void) groupSelectionInView: (id)sender
+- (IBAction) groupSelectionInView: (id)sender
 {
 	if ([selectionOwner respondsToSelector: @selector(groupSelectionInView)] == NO) {
 		return;
@@ -772,7 +748,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 	[(GormGenericEditor *)selectionOwner groupSelectionInView];
 }
 
-- (void) groupSelectionInScrollView: (id)sender
+- (IBAction) groupSelectionInScrollView: (id)sender
 {
 	if ([selectionOwner respondsToSelector: @selector(groupSelectionInScrollView)] == NO) {
 		return;
@@ -780,7 +756,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 	[(GormGenericEditor *)selectionOwner groupSelectionInScrollView];
 }
 
-- (void) ungroup: (id)sender
+- (IBAction) ungroup: (id)sender
 {
 	// NSLog(@"ungroup: selectionOwner %@", selectionOwner);
 	if ([selectionOwner respondsToSelector: @selector(ungroup)] == NO)
@@ -790,58 +766,58 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 
 /** Classes actions */
 
-- (void) createSubclass: (id)sender
+- (IBAction) createSubclass: (id)sender
 {
 	[(GormDocument *)[self activeDocument] createSubclass: sender];
 }
 
-- (void) loadClass: (id)sender
+- (IBAction) loadClass: (id)sender
 {
 	// Call the current document and create the class
 	// descibed by the header
 	[(GormDocument *)[self activeDocument] loadClass: sender];
 }
 
-- (void) createClassFiles: (id)sender
+- (IBAction) createClassFiles: (id)sender
 {
 	[(GormDocument *)[self activeDocument] createClassFiles: sender];
 }
 
-- (void) instantiateClass: (id)sender
+- (IBAction) instantiateClass: (id)sender
 {
 	[(GormDocument *)[self activeDocument] instantiateClass: sender];
 }
 
-- (void) addAttributeToClass: (id)sender
+- (IBAction) addAttributeToClass: (id)sender
 {
 	[(GormDocument *)[self activeDocument] addAttributeToClass: sender];
 }
 
-- (void) remove: (id)sender
+- (IBAction) remove: (id)sender
 {
 	[(GormDocument *)[self activeDocument] remove: sender];
 }
 
 /** Palettes Actions... */
 
-- (void) inspector: (id) sender
+- (IBAction) inspector: (id) sender
 {
 	[[[self inspectorsManager] panel] makeKeyAndOrderFront: self];
 }
 
-- (void) palettes: (id) sender
+- (IBAction) palettes: (id) sender
 {
 	[[[self palettesManager] panel] makeKeyAndOrderFront: self];
 }
 
-- (void) loadPalette: (id) sender
+- (IBAction) loadPalette: (id) sender
 {
 	[[self palettesManager] openPalette: sender];
 }
 
 /** Testing methods... */
 
-- (void) deferredEndTesting: (id) sender
+- (IBAction) deferredEndTesting: (id) sender
 {
 	[[NSRunLoop currentRunLoop]
 	 performSelector: @selector(endTesting:)
@@ -954,6 +930,14 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 
 - (void) awakeFromNib
 {
+	/*
+	 * Make sure the palettes/plugins managers exist, so that the
+	 * editors and inspectors provided in the standard palettes
+	 * are available.
+	 */
+	[self palettesManager];
+	[self pluginManager];
+	
 	// set the menu...
 	mainMenu = (NSMenu *)gormMenu;
 	//for cascadePoint
@@ -1249,7 +1233,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 	return unique;
 }
 
-- (void) print: (id) sender
+- (IBAction) print: (id) sender
 {
 	[[self keyWindow] print: sender];
 }

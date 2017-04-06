@@ -24,7 +24,7 @@
 
 #include <AppKit/NSWindow.h>
 #include <AppKit/NSNibConnector.h>
-#include <AppKit/NSFileWrapper.h>
+#include <Foundation/NSFileWrapper.h>
 #include <GNUstepBase/GNUstepBase.h>
 #include <GNUstepGUI/GMArchiver.h>
 #include <GNUstepGUI/IMLoading.h>
@@ -93,10 +93,10 @@ static BOOL gormFileOwnerDecoded;
   while ((win = [enumerator nextObject]) != nil)
     {
       /* Fix up window frames */
-      if ([win styleMask] == NSBorderlessWindowMask)
+      if ([win styleMask] == NSWindowStyleMaskBorderless)
 	{
 	  NSLog(@"Fixing borderless window %@", win);
-	  [win gmSetStyleMask: NSTitledWindowMask];
+	  [win gmSetStyleMask: NSWindowStyleMaskTitled];
 	}
 
       /* Fix up the background color */

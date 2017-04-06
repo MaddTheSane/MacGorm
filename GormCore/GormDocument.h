@@ -60,47 +60,51 @@
 
 @interface GormDocument : NSDocument <IBDocuments, GSNibContainer, NSCoding, NSToolbarDelegate>
 {
-  GormClassManager      *classManager;
-  GormFilesOwner	*filesOwner;
-  GormFirstResponder	*firstResponder;
-  GormObjectProxy       *fontManager;
-  NSMapTable		*objToName;
-  GormDocumentWindow	*window;
-  IBOutlet NSBox                 *selectionBox;
-  NSScrollView		*scrollView;
-  NSScrollView          *classesScrollView;
-  NSScrollView          *soundsScrollView;
-  NSScrollView          *imagesScrollView;
-  id                    classesView;
-  id			objectsView;
-  id			soundsView;
-  id			imagesView;
-  BOOL			isActive;
-  BOOL                  isDocumentOpen;
-  NSMenu		*savedMenu;
-  NSMenuItem		*quitItem;		/* Replaced during test-mode */
-  NSMutableArray	*savedEditors;
-  NSMutableArray	*hidden;
-  NSMutableArray        *openEditors;
-  NSToolbar             *toolbar;
-  id                    lastEditor;
-  BOOL                  isOlderArchive;
-  IBOutlet id                    filePrefsView;
-  IBOutlet GormFilePrefsManager  *filePrefsManager;
-  IBOutlet NSWindow              *filePrefsWindow;
-  NSMutableArray        *resourceManagers;
-  NSData                *infoData;   /* data.info contents */
-  NSMutableArray        *images;     /* temporary storage for images. */             
-  NSMutableArray        *sounds;     /* temporary storage for sounds. */
-  NSFileWrapper         *scmWrapper;
-
-  // container data structures
-  NSMutableDictionary   *nameTable;
-  NSMutableArray        *connections;
-  NSMutableSet          *topLevelObjects;
-  NSMutableSet          *visibleWindows;
-  NSMutableSet          *deferredWindows;
+	GormClassManager      *classManager;
+	GormFilesOwner	*filesOwner;
+	GormFirstResponder	*firstResponder;
+	GormObjectProxy       *fontManager;
+	NSMapTable		*objToName;
+	GormDocumentWindow	*window;
+	IBOutlet GormDocumentWindow	*window1;
+	IBOutlet NSBox				*selectionBox;
+	NSScrollView		*scrollView;
+	NSScrollView		*classesScrollView;
+	NSScrollView		*soundsScrollView;
+	NSScrollView		*imagesScrollView;
+	id				classesView;
+	id				objectsView;
+	id				soundsView;
+	id				imagesView;
+	BOOL			isActive;
+	BOOL			isDocumentOpen;
+	NSMenu			*savedMenu;
+	NSMenuItem		*quitItem;		/* Replaced during test-mode */
+	NSMutableArray	*savedEditors;
+	NSMutableArray	*hidden;
+	NSMutableArray	*openEditors;
+	__unsafe_unretained NSToolbar		*toolbar;
+	id				lastEditor;
+	BOOL			isOlderArchive;
+	IBOutlet id                    filePrefsView;
+	IBOutlet GormFilePrefsManager  *filePrefsManager;
+	IBOutlet NSWindow              *filePrefsWindow;
+	NSMutableArray        *resourceManagers;
+	NSData                *infoData;   /* data.info contents */
+	NSMutableArray        *images;     /* temporary storage for images. */
+	NSMutableArray        *sounds;     /* temporary storage for sounds. */
+	NSFileWrapper         *scmWrapper;
+	
+	// container data structures
+	NSMutableDictionary   *nameTable;
+	NSMutableArray        *connections;
+	NSMutableSet          *topLevelObjects;
+	NSMutableSet          *visibleWindows;
+	NSMutableSet          *deferredWindows;
 }
+
+- (void)setWindow:(NSWindow *)window2;
+
 
 /* Handle notifications */
 

@@ -155,15 +155,18 @@ static NSImage	*soundsImage = nil;
 static NSImage	*classesImage = nil;
 static NSImage  *fileImage = nil;
 
+- (void)setWindow:(NSWindow *)window2
+{
+	window = (GormDocumentWindow *)window2;
+	[super setWindow:window2];
+}
+
 /**
  * Initialize the class.
  */ 
 + (void) initialize
 {
 	if (self == [GormDocument class]) {
-		NSBundle	*bundle;
-		NSString	*path;
-		
 		objectsImage = [[NSImage imageNamed:@"GormObject"] retain];
 		imagesImage = [[NSImage imageNamed:@"GormImage"] retain];
 		soundsImage = [[NSImage imageNamed:@"GormSound"] retain];
@@ -309,13 +312,13 @@ static NSImage  *fileImage = nil;
   id                    o = nil;
 
   // get the window and cache it...
-  window = (GormDocumentWindow *)self.windowForSheet;//(GormDocumentWindow *)[self _docWindow];
+  //window = _window;//(GormDocumentWindow *)[self _docWindow];
   [IBResourceManager registerForAllPboardTypes:window
 	  			inDocument:self];
   [window setDocument: self];
   
   // set up the toolbar...
-  toolbar = [(NSToolbar *)[NSToolbar alloc] initWithIdentifier: @"GormToolbar"];
+  toolbar = [[NSToolbar alloc] initWithIdentifier: @"GormToolbar"];
   [toolbar setAllowsUserCustomization: NO];
   // [toolbar setSizeMode: NSToolbarSizeModeSmall];
   [toolbar setDelegate: self];
