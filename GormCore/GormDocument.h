@@ -30,6 +30,7 @@
 #import <AppKit/NSNibConnector.h>
 #import <Foundation/Foundation.h>
 #import <GNUstepGUI/GSNibContainer.h>
+#import <GNUstepGUI/GSNibLoading.h>
 #import <GNUstepGUI/GSInstantiator.h>
 #import <GormCore/PrivateCocoaClasses.h>
 #import <GormLib/InterfaceBuilder.h>
