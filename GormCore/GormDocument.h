@@ -221,7 +221,10 @@
 - (void) exportStrings: (id)sender;
 
 /* Managing classes */
-- (GormClassManager*) classManager;
+/**
+ * The class manager.
+ */
+@property (readonly, retain) GormClassManager *classManager;
 - (id) createSubclass: (id)sender;
 - (id) instantiateClass: (id)sender;
 - (id) createClassFiles: (id)sender;
@@ -373,12 +376,12 @@
 /**
  * File's Owner
  */
-- (GormFilesOwner *) filesOwner;
+@property (readonly, retain) GormFilesOwner *filesOwner;
 
 /**
  * File preferences.
  */
-- (GormFilePrefsManager *) filePrefsManager;
+@property (readonly, retain) GormFilePrefsManager *filePrefsManager;
 
 /**
  * Windows visible at launch...
