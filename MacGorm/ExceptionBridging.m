@@ -20,3 +20,11 @@ void tryCatchBlock(dispatch_block_t aTry, void(^catchBlock)(NSException*))
 	}
 }
 
+void registerNameWithRootObject(NSString *aname, id aRootObject)
+{
+	static NSConnection *connection;
+	connection = [NSConnection new];
+	[connection registerName:aname];
+	[connection setRootObject:aRootObject];
+}
+

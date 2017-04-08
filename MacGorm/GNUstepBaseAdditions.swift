@@ -9,7 +9,9 @@
 import Foundation
 import GNUstepBase.NSDebug_GNUstepBase
 
-
+private var defaultDebugLevel: String {
+	return "dflt"
+}
 
 ///`NSDebugLLog()` is the basic debug logging macro used to display
 ///log messages using `NSLog()`, if debug logging was enabled at compile
@@ -73,7 +75,7 @@ func NSDebugLLog(level: String, _ format: String, args: CVarArg...) {
 ///
 /// - parameter format: The `NSString`-like format to print to console.
 func NSDebugLog(_ format: String, args: CVarArg...) {
-	NSDebugLLog(level: "dflt", format, args: args)
+	NSDebugLLog(level: defaultDebugLevel, format, args: args)
 }
 
 /// This function is like `NSDebugLLog()` but includes the name and location
@@ -99,55 +101,63 @@ func NSDebugFLLog(level: String, file: String = #file, line: Int32 = #line, func
 ///
 /// - parameter format: The `NSString`-like format to print to console.
 func NSDebugFLog(file: String = #file, line: Int32 = #line, function: String = #function, _ format: String, args: CVarArg...) {
-	NSDebugFLLog(level: "dflt", file: file, line: line, function: function, format, args: args)
+	NSDebugFLLog(level: defaultDebugLevel, file: file, line: line, function: function, format, args: args)
 }
 
-/*
-/**
-* This macro is like NSDebugLLog() but includes the name and location
-* of the <em>method</em> in which the macro is used as part of the log output.
-*/
-func NSDebugMLLog(file: String = #file, line: Int32 = #line, function: Selector = #function, _ level: String, _ format: String, args: [CVarArg]) {
-	if GSDebugSet("dflt") {
+/// `NSWarnLog()` is the basic debug logging macro used to display
+/// warning messages using `NSLog()`, if warn logging was not disabled at compile
+/// time and the disabling logging level was not set at runtime.
+///
+/// Warning messages which can be enabled/disabled by defining GSWARN
+/// when compiling.
+///
+/// You can also disable these messages at runtime by supplying a
+/// '--GNU-Debug=NoWarn' argument to the program, or by adding 'NoWarn'
+/// to the user default array named 'GNU-Debug'.
+///
+/// These logging macros are intended to be used when the software detects
+/// something that it not necessarily fatal or illegal, but looks like it
+/// might be a programming error.  eg. attempting to remove 'nil' from an
+/// NSArray, which the Spec/documentation does not prohibit, but which a
+/// well written program should not be attempting (since an NSArray object
+/// cannot contain a 'nil').
+///
+/// NB. The 'warn=yes' option is understood by the GNUstep make package
+/// to mean that GSWARN should be defined, and the 'warn=no' means that
+/// GSWARN should be undefined.  Default is to define it.
+///
+/// To embed debug logging in your code you use the `NSWarnLog()` macro.
+///
+/// As a convenience, there are two more logging macros you can use -
+/// `NSWarnFLog()`.
+/// These are specifically for use in either functions or methods and
+/// prepend information about the file, line and either function or
+/// class/method in which the message was generated.
+func NSWarnLog(_ format: String, args: CVarArg...) {
+	if !GSDebugSet("NoWarn") {
+		withVaList(args, { (val) -> Void in
+			NSLogv(format, val)
+		})
+	}
+}
+
+
+/// This function is like `NSWarnLog()` but includes the name and location of the
+/// *function* in which the macro is used as part of the log output.
+func NSWarnFLog(file: String = #file, line: Int32 = #line, function: String = #function, _ format: String, args: CVarArg...) {
+	if !GSDebugSet("NoWarn") {
 		let a = withVaList(args, { (lists) -> String in
 			return NSString(format: format, arguments: lists) as String
+			//return String(format: format, arguments: lists)
 		})
-		let s = GSDebugMethodMsg(nil, function, file, line, a) ?? "<nil>"
+		let s = GSDebugFunctionMsg(function, file, line, a) ?? "<nil>"
 		NSLog("%@", s)
 	}
 }
 
-/**
-* This macro is a shorthand for NSDebugMLLog() using then default debug
-* level ... 'dflt'
-*/
-#define NSDebugMLog(format, args...) \
-do { if (GSDebugSet(@"dflt") == YES) { \
-NSString *s = GSDebugMethodMsg( \
-self, _cmd, __FILE__, __LINE__, \
-[NSString stringWithFormat: format, ##args]); \
-NSLog(@"%@", s); }} while (0)
-*/
-
-/*
-/**
-* This macro saves the name and location of the function in
-* which the macro is used, along with a short string msg as
-* the tag associated with a recorded object.
-*/
-func NSDebugFRLog(_ object: Any, msg: String, file: String = #file, line: Int32 = #line, function: String = #function) {
-	let tag = GSDebugFunctionMsg(function, file, line, msg)!
-	GSDebugAllocationTagRecordedObject(object, tag)
+func ALog(line: Int32 = #line, function: String = #function, _ format: String, args: CVarArg...) {
+	let format2 = "\(function) [Line \(line)] " + format
+	withVaList(args, { (val) -> Void in
+		NSLogv(format2, val)
+	})
 }
-
-/**
-* This macro saves the name and location of the method in
-* which the macro is used, along with a short string msg as
-* the tag associated with a recorded object.
-*/
-#define NSDebugMRLog(object, msg) \
-do { \
-NSString *tag = GSDebugMethodMsg( \
-self, _cmd, __FILE__, __LINE__, msg); \
-GSDebugAllocationTagRecordedObject(object, tag); } while (0)
-*/

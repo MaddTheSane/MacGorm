@@ -29,30 +29,41 @@
 #import <Foundation/NSObject.h>
 #import <AppKit/NSWindowController.h>
 
+@class NSBox;
+@class NSPopUpButton;
+@class NSWindow;
+
+@class GormGeneralPref;
+@class GormHeadersPref;
+@class GormShelfPref;
+@class GormPalettesPref;
+@class GormPluginsPref;
+@class GormGuidelinePref;
+
 @interface GormPrefController : NSObject
 {
-  id panel;
-  id popup;
-  id prefBox;
+  IBOutlet NSWindow *panel;
+  IBOutlet NSPopUpButton *popup;
+  IBOutlet NSBox *prefBox;
 
-  id _generalView;
-  id _headersView;
-  id _shelfView;
+  GormGeneralPref *_generalView;
+  GormHeadersPref *_headersView;
+  GormShelfPref *_shelfView;
   id _colorsView;
-  id _palettesView;
-  id _pluginsView;
-  id _guidelineView;
+  GormPalettesPref *_palettesView;
+  GormPluginsPref *_pluginsView;
+  GormGuidelinePref *_guidelineView;
 }
 
 /**
  * Called when the popup is used to select a pref panel.
  */
-- (void) popupAction: (id)sender;
+- (IBAction) popupAction: (id)sender;
 
 /**
  * Return the preferences panel.
  */
-- (id) panel;
+- (NSWindow*) panel;
 @end
 
 #endif

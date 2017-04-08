@@ -88,6 +88,7 @@ NSString * const GormParseClassNotification = @"GormParseClassNotification";
 @implementation Gorm
 @synthesize testingInterface = isTesting;
 @synthesize connecting = isConnecting;
+@synthesize classMenu;
 
 - (id<IBDocuments>) activeDocument
 {

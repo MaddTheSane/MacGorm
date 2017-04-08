@@ -102,7 +102,7 @@ NSUInteger numberStepperValue;
     }
   else if (sender == drawsBackgroundSwitch)
     {
-      [object setDrawsBackground: ([sender state] == NSOnState)];
+      [object setDrawsBackground: ([(NSButton*)sender state] == NSOnState)];
     }
   /* options */
   else if (sender == cellPositionSwitch)
