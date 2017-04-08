@@ -44,7 +44,7 @@ IB_EXTERN NSString *IBWillCloseDocumentNotification;
 /**
  * Returns an array containing all connections for the receiver.
  */
-- (NSArray*) allConnectors;
+- (NSArray<id<IBConnectors>>*) allConnectors;
 
 /**
  * Attaches an object to the document and makes the association
@@ -62,26 +62,26 @@ IB_EXTERN NSString *IBWillCloseDocumentNotification;
  * Returns an autoreleased array containing all connections for
  * the given destination.
  */ 
-- (NSArray*) connectorsForDestination: (id)destination;
+- (NSArray<id<IBConnectors>>*) connectorsForDestination: (id)destination;
 
 /** 
  * Returns an autoreleased array containing all connectors of
  * the given class for the destination. 
  */
-- (NSArray*) connectorsForDestination: (id)destination
-			      ofClass: (Class)aConnectorClass;
+- (NSArray<id<IBConnectors>>*) connectorsForDestination: (id)destination
+												ofClass: (Class)aConnectorClass;
 /**
  * Returns an autoreleased array containing all connections for
  * the given source.
  */
-- (NSArray*) connectorsForSource: (id)source;
+- (NSArray<id<IBConnectors>>*) connectorsForSource: (id)source;
 
 /**
  * Returns an autoreleased array containing all connectors of the
  * given class for the source.
  */
-- (NSArray*) connectorsForSource: (id)source
-			 ofClass: (Class)aConnectorClass;
+- (NSArray<id<IBConnectors>>*) connectorsForSource: (id)source
+										   ofClass: (Class)aConnectorClass;
 
 /**
  * Returns YES, if the receiver contains anObject.
@@ -134,7 +134,7 @@ IB_EXTERN NSString *IBWillCloseDocumentNotification;
  * for the given object.
  */
 - (id<IBEditors>) editorForObject: (id)anObject
-			   create: (BOOL)flag;
+						   create: (BOOL)flag;
 
 /**
  * Returns the associated subeditor for anObject, if flag is YES, it will

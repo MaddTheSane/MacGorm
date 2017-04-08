@@ -38,7 +38,7 @@ extension IB {
 }
 #endif
 
-class GormSwiftController: NSObject, NSApplicationDelegate, IB, Gorm {
+class GormController: NSObject, NSApplicationDelegate, IB, GormProtocol {
 	private(set) var isTestingInterface: Bool = false
 	private(set) var isConnecting: Bool = false
 	private(set) var selectionOwner: IBSelectionOwners! = nil
@@ -113,16 +113,15 @@ class GormSwiftController: NSObject, NSApplicationDelegate, IB, Gorm {
 		
 	}
 	
-	lazy var palettesManager: GormPalettesManager! = {
+	private(set) lazy var palettesManager: GormPalettesManager! = {
 		return GormPalettesManager()
 	}()
 	
-	lazy var inspectorsManager: GormInspectorsManager! = {
-		
+	private(set) lazy var inspectorsManager: GormInspectorsManager! = {
 		return GormInspectorsManager()
 	}()
 	
-	lazy var pluginManager: GormPluginManager = {
+	private(set) lazy var pluginManager: GormPluginManager = {
 		return GormPluginManager()
 	}()
 	

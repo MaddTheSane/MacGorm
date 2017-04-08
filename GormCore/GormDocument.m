@@ -148,6 +148,9 @@
 
 
 @implementation GormDocument
+@synthesize scmWrapper;
+@synthesize olderArchive = isOlderArchive;
+@synthesize documentOpen = isDocumentOpen;
 
 static NSImage	*objectsImage = nil;
 static NSImage	*imagesImage = nil;
@@ -356,7 +359,7 @@ static NSImage  *fileImage = nil;
   objectsView = [[GormObjectEditor alloc] initWithObject: nil
 					  inDocument: self];
   [objectsView setFrame: mainRect];
-  [(NSView*)objectsView setAutoresizingMask:
+  [objectsView setAutoresizingMask:
 		 NSViewHeightSizable|NSViewWidthSizable];
   [scrollView setDocumentView: objectsView];
   RELEASE(objectsView); 
@@ -389,13 +392,13 @@ static NSImage  *fileImage = nil;
   soundsView = [[GormSoundEditor alloc] initWithObject: nil
 					inDocument: self];
   [soundsView setFrame: mainRect];
-  [(NSView*)soundsView setAutoresizingMask: NSViewHeightSizable|NSViewWidthSizable];
+  [soundsView setAutoresizingMask: NSViewHeightSizable|NSViewWidthSizable];
   [soundsScrollView setDocumentView: soundsView];
   RELEASE(soundsView);
   
   /* classes view */
   mainRect.origin = NSMakePoint(0,0);
-  classesView = [(GormClassEditor *)[GormClassEditor alloc] initWithDocument: self];
+  classesView = [[GormClassEditor alloc] initWithDocument: self];
   // [classesView setFrame: mainRect];
   
   /*
@@ -1394,7 +1397,7 @@ static NSImage  *fileImage = nil;
  */
 - (NSString*) documentPath
 {
-  return [self fileName];
+  return [[self fileURL] path];
 }
 
 /**
@@ -2782,22 +2785,20 @@ static void _real_close(GormDocument *self,
  */
 - (void) createResourceManagers
 {
-  NSArray *resourceClasses = [IBResourceManager registeredResourceManagerClassesForFramework: nil];
-  NSEnumerator *en = [resourceClasses objectEnumerator];
-  Class cls = nil;
-  
-  if(resourceManagers != nil)
-    {
-      // refresh...
-      DESTROY(resourceManagers);
-    }
-  
-  resourceManagers = [[NSMutableArray alloc] init];
-  while((cls = [en nextObject]) != nil)
-    {
-      id mgr = AUTORELEASE([(IBResourceManager *)[cls alloc] initWithDocument: self]);
-      [resourceManagers addObject: mgr];
-    }
+	NSArray *resourceClasses = [IBResourceManager registeredResourceManagerClassesForFramework: nil];
+	NSEnumerator *en = [resourceClasses objectEnumerator];
+	Class cls = nil;
+	
+	if (resourceManagers != nil) {
+		// refresh...
+		DESTROY(resourceManagers);
+	}
+	
+	resourceManagers = [[NSMutableArray alloc] init];
+	for (cls in en) {
+		IBResourceManager *mgr = AUTORELEASE([(IBResourceManager *)[cls alloc] initWithDocument: self]);
+		[resourceManagers addObject: mgr];
+	}
 }
 
 /**
@@ -2805,7 +2806,7 @@ static void _real_close(GormDocument *self,
  */
 - (NSArray *) resourceManagers
 {
-  return resourceManagers;
+	return resourceManagers;
 }
 
 /**
@@ -2833,22 +2834,20 @@ static void _real_close(GormDocument *self,
  */
 - (NSArray *) allManagedPboardTypes
 {
-  NSMutableArray *allTypes = [[NSMutableArray alloc] initWithObjects: NSFilenamesPboardType,
-						     GormLinkPboardType, 
-						     nil];
-  NSArray *mgrs = [self resourceManagers];
-  NSEnumerator *en = [mgrs objectEnumerator];
-  IBResourceManager *mgr = nil;
-  
-  AUTORELEASE(allTypes);
-
-  while((mgr = [en nextObject]) != nil)
-    {
-      NSArray *pbTypes = [mgr resourcePasteboardTypes];
-      [allTypes addObjectsFromArray: pbTypes]; 
-    }
-  
-  return allTypes;
+	NSMutableArray *allTypes = [[NSMutableArray alloc] initWithObjects: NSFilenamesPboardType,
+								GormLinkPboardType,
+								nil];
+	NSArray *mgrs = [self resourceManagers];
+	NSEnumerator *en = [mgrs objectEnumerator];
+	
+	AUTORELEASE(allTypes);
+	
+	for (IBResourceManager *mgr in en) {
+		NSArray *pbTypes = [mgr resourcePasteboardTypes];
+		[allTypes addObjectsFromArray: pbTypes];
+	}
+	
+	return allTypes;
 }
 
 /**
@@ -2856,53 +2855,40 @@ static void _real_close(GormDocument *self,
  */
 - (NSMutableArray *) _collectAllObjects
 {
-  NSMutableArray *allObjects = [NSMutableArray arrayWithArray: [topLevelObjects allObjects]];
-  NSEnumerator *en = [topLevelObjects objectEnumerator];
-  NSMutableArray *removeObjects = [NSMutableArray array];
-  id obj = nil;
-  
-  // collect all subviews/menus/etc.
-  while((obj = [en nextObject]) != nil)
-    {
-      if([obj isKindOfClass: [NSWindow class]])
-	{
-	  NSMutableArray *views = [NSMutableArray array];
-	  NSEnumerator *ven = [views objectEnumerator];
-	  id vobj = nil;
-	  
-	  subviewsForView([(NSWindow *)obj contentView], views);
-	  [allObjects addObjectsFromArray: views];
-	  
-	  while((vobj = [ven nextObject]))
-	    {
-	      if([vobj isKindOfClass: [GormCustomView class]])
-		{
-		  [removeObjects addObject: vobj];
+	NSMutableArray *allObjects = [NSMutableArray arrayWithArray: [topLevelObjects allObjects]];
+	NSMutableArray *removeObjects = [NSMutableArray array];
+	id obj = nil;
+	
+	// collect all subviews/menus/etc.
+	for (obj in topLevelObjects) {
+		if ([obj isKindOfClass: [NSWindow class]]) {
+			NSMutableArray *views = [NSMutableArray array];
+			NSEnumerator *ven = [views objectEnumerator];
+			id vobj = nil;
+			
+			subviewsForView([(NSWindow *)obj contentView], views);
+			[allObjects addObjectsFromArray: views];
+			
+			for (vobj in ven) {
+				if([vobj isKindOfClass: [GormCustomView class]]) {
+					[removeObjects addObject: vobj];
+				} else if([vobj isKindOfClass: [NSMatrix class]]) {
+					[allObjects addObjectsFromArray: [vobj cells]];
+				} else if([vobj isKindOfClass: [NSPopUpButton class]]) {
+					[allObjects addObjectsFromArray: [vobj itemArray]];
+				} else if([vobj isKindOfClass: [NSTabView class]]) {
+					[allObjects addObjectsFromArray: [vobj tabViewItems]];
+				}
+			}
+		} else if ([obj isKindOfClass: [NSMenu class]]) {
+			[allObjects addObjectsFromArray: findAll(obj)];
 		}
-	      else if([vobj isKindOfClass: [NSMatrix class]])
-		{
-		  [allObjects addObjectsFromArray: [vobj cells]];
-		}
-	      else if([vobj isKindOfClass: [NSPopUpButton class]])
-		{
-		  [allObjects addObjectsFromArray: [vobj itemArray]];
-		}
-	      else if([vobj isKindOfClass: [NSTabView class]])
-		{
-		  [allObjects addObjectsFromArray: [vobj tabViewItems]];
-		}
-	    }
 	}
-      else if([obj isKindOfClass: [NSMenu class]])
-	{
-	  [allObjects addObjectsFromArray: findAll(obj)];
-	}
-    }
-
-  // take out objects which shouldn't be considered.
-  [allObjects removeObjectsInArray: removeObjects];
-
-  return allObjects;
+	
+	// take out objects which shouldn't be considered.
+	[allObjects removeObjectsInArray: removeObjects];
+	
+	return allObjects;
 }
 
 /**
@@ -2912,77 +2898,65 @@ static void _real_close(GormDocument *self,
  */
 - (void) translate: (id)sender
 {
-  NSArray	*fileTypes = [NSArray arrayWithObjects: @"strings", nil];
-  NSOpenPanel	*oPanel = [NSOpenPanel openPanel];
-  NSInteger		result;
-
-  [oPanel setAllowsMultipleSelection: NO];
-  [oPanel setCanChooseFiles: YES];
-  [oPanel setCanChooseDirectories: NO];
+	NSArray	*fileTypes = [NSArray arrayWithObjects: @"strings", nil];
+	NSOpenPanel	*oPanel = [NSOpenPanel openPanel];
+	NSInteger		result;
+	
+	[oPanel setAllowsMultipleSelection: NO];
+	[oPanel setCanChooseFiles: YES];
+	[oPanel setCanChooseDirectories: NO];
 	oPanel.allowedFileTypes = fileTypes;
-  result = [oPanel runModal];
-  if (result == NSFileHandlingPanelOKButton)
-    {
-      NSMutableArray *allObjects = [self _collectAllObjects];
-      NSString *filename = [[oPanel URL] path];
-      NSDictionary *dictionary = [[NSString stringWithContentsOfFile: filename usedEncoding:NULL error:NULL] propertyListFromStringsFileFormat];
-
-      // change to translated values.
-      for(id obj in allObjects) {
-	  NSString *translation = nil; 
-
-	  if([obj respondsToSelector: @selector(setTitle:)] &&
-	     [obj respondsToSelector: @selector(title)])
-	    {
-	      translation = [dictionary objectForKey: [obj title]];
-	      if(translation != nil)
-		{
-		  [obj setTitle: translation];
+	result = [oPanel runModal];
+	if (result == NSFileHandlingPanelOKButton) {
+		NSMutableArray *allObjects = [self _collectAllObjects];
+		NSString *filename = [[oPanel URL] path];
+		NSDictionary *dictionary = [[NSString stringWithContentsOfFile: filename usedEncoding:NULL error:NULL] propertyListFromStringsFileFormat];
+		
+		// change to translated values.
+		for (id obj in allObjects) {
+			NSString *translation = nil;
+			
+			if ([obj respondsToSelector: @selector(setTitle:)] &&
+				[obj respondsToSelector: @selector(title)]) {
+				translation = [dictionary objectForKey: [obj title]];
+				if (translation != nil) {
+					[obj setTitle: translation];
+				}
+			} else if ([obj respondsToSelector: @selector(setStringValue:)] &&
+					   [obj respondsToSelector: @selector(stringValue)]) {
+				translation = [dictionary objectForKey: [obj stringValue]];
+				if (translation != nil) {
+					[obj setStringValue: translation];
+				}
+			} else if ([obj respondsToSelector: @selector(setLabel:)] &&
+					   [obj respondsToSelector: @selector(label)]) {
+				translation = [dictionary objectForKey: [obj label]];
+				if (translation != nil) {
+					[obj setLabel: translation];
+				}
+			}
+			
+			if (translation != nil) {
+				if ([obj isKindOfClass: [NSView class]]) {
+					[obj setNeedsDisplay: YES];
+				}
+				
+				[self touch];
+			}
+			
+			// redisplay/flush, if the object is a window.
+			if ([obj isKindOfClass: [NSWindow class]]) {
+				NSWindow *w = (NSWindow *)obj;
+				[w setViewsNeedDisplay: YES];
+				[w disableFlushWindow];
+				[[w contentView] setNeedsDisplay: YES];
+				[[w contentView] displayIfNeeded];
+				[w enableFlushWindow];
+				[w flushWindowIfNeeded];
+			}
+			
 		}
-	    }
-	  else if([obj respondsToSelector: @selector(setStringValue:)] &&
-		  [obj respondsToSelector: @selector(stringValue)])
-	    {
-	      translation = [dictionary objectForKey: [obj stringValue]];
-	      if(translation != nil)
-		{
-		  [obj setStringValue: translation];
-		}
-	    }
-	  else if([obj respondsToSelector: @selector(setLabel:)] &&
-		  [obj respondsToSelector: @selector(label)])
-	    {
-	      translation = [dictionary objectForKey: [obj label]];
-	      if(translation != nil)
-		{
-		  [obj setLabel: translation];
-		}
-	    }
-
-	  if(translation != nil)
-	    {
-	      if([obj isKindOfClass: [NSView class]])
-		{
-		  [obj setNeedsDisplay: YES];
-		}
-
-	      [self touch]; 
-	    }
-	  
-	  // redisplay/flush, if the object is a window.
-	  if([obj isKindOfClass: [NSWindow class]])
-	    {
-	      NSWindow *w = (NSWindow *)obj;
-	      [w setViewsNeedDisplay: YES];
-	      [w disableFlushWindow];
-	      [[w contentView] setNeedsDisplay: YES];
-	      [[w contentView] displayIfNeeded];
-	      [w enableFlushWindow];
-	      [w flushWindowIfNeeded];
-	    }
-
 	}
-    } 
 }
 
 /**
@@ -2992,55 +2966,47 @@ static void _real_close(GormDocument *self,
  */ 
 - (void) exportStrings: (id)sender
 {
-  NSSavePanel	*sp = [NSSavePanel savePanel];
-  NSInteger		result;
-
+	NSSavePanel	*sp = [NSSavePanel savePanel];
+	NSInteger		result;
+	
 	sp.allowedFileTypes = @[@"strings"];
-  [sp setTitle: _(@"Save strings file as...")];
+	[sp setTitle: _(@"Save strings file as...")];
 	sp.directoryURL = [NSURL fileURLWithPath: NSHomeDirectory()];
-  result = [sp runModal];
-  if (result == NSFileHandlingPanelOKButton)
-    {
-      NSMutableArray *allObjects = [self _collectAllObjects];
-      NSString *filename = [[sp URL] path];
-      NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-      NSEnumerator *en = [allObjects objectEnumerator];
-      id obj = nil;
-      BOOL touched = NO;
-
-      // change to translated values.
-      while((obj = [en nextObject]) != nil)
-	{
-	  NSString *string = nil;
-	  if([obj respondsToSelector: @selector(setTitle:)] &&
-	     [obj respondsToSelector: @selector(title)])
-	    {
-	      string = [obj title];
-	    }
-	  else if([obj respondsToSelector: @selector(setStringValue:)] &&
-		  [obj respondsToSelector: @selector(stringValue)])
-	    {
-	      string = [obj stringValue];
-	    }
-	  else if([obj respondsToSelector: @selector(setLabel:)] &&
-		  [obj respondsToSelector: @selector(label)])
-	    {
-	      string = [obj label];
-	    }
-
-	  if(string != nil)
-	    {
-	      [dictionary setObject: string forKey: string];
-	      touched = YES;
-	    }
+	result = [sp runModal];
+	if (result == NSFileHandlingPanelOKButton) {
+		NSMutableArray *allObjects = [self _collectAllObjects];
+		NSString *filename = [[sp URL] path];
+		NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+		NSEnumerator *en = [allObjects objectEnumerator];
+		id obj = nil;
+		BOOL touched = NO;
+		
+		// change to translated values.
+		while((obj = [en nextObject]) != nil)
+		{
+			NSString *string = nil;
+			if([obj respondsToSelector: @selector(setTitle:)] &&
+			   [obj respondsToSelector: @selector(title)]) {
+				string = [obj title];
+			} else if([obj respondsToSelector: @selector(setStringValue:)] &&
+					[obj respondsToSelector: @selector(stringValue)]) {
+				string = [obj stringValue];
+			} else if([obj respondsToSelector: @selector(setLabel:)] &&
+					[obj respondsToSelector: @selector(label)]) {
+				string = [obj label];
+			}
+			
+			if (string != nil) {
+				[dictionary setObject: string forKey: string];
+				touched = YES;
+			}
+		}
+		
+		if (touched) {
+			NSString *stringToWrite = [dictionary descriptionInStringsFileFormat];
+			[stringToWrite writeToFile: filename atomically: YES encoding: NSUTF8StringEncoding error: NULL];
+		}
 	}
-
-      if(touched)
-	{
-	  NSString *stringToWrite = [dictionary descriptionInStringsFileFormat];
-	  [stringToWrite writeToFile: filename atomically: YES encoding: NSUTF8StringEncoding error: NULL];
-	}
-    } 
 }
 
 /**
@@ -3048,29 +3014,23 @@ static void _real_close(GormDocument *self,
  */
 - (void) arrangeSelectedObjects: (id)sender
 {
-  NSArray *selection =  [[(id<IB>)NSApp selectionOwner] selection];
-  NSInteger tag = [sender tag];
-
-  for (id v in selection)
-    {
-      if([v isKindOfClass: [NSView class]])
-	{
-	  id editor = [self editorForObject: v create: NO];
-	  if([editor respondsToSelector: @selector(superview)])
-	    {
-	      id superview = [editor superview];
-	      if(tag == 0) // bring to front...
-		{ 
-		  [superview moveViewToFront: editor];
+	NSArray *selection =  [[(id<IB>)NSApp selectionOwner] selection];
+	NSInteger tag = [sender tag];
+	
+	for (id v in selection) {
+		if ([v isKindOfClass: [NSView class]]) {
+			id editor = [self editorForObject: v create: NO];
+			if([editor respondsToSelector: @selector(superview)]) {
+				id superview = [editor superview];
+				if (tag == 0) {// bring to front...
+					[superview moveViewToFront: editor];
+				} else if (tag == 1) { // send to back
+					[superview moveViewToBack: editor];
+				}
+				[superview setNeedsDisplay: YES];
+			}
 		}
-	      else if(tag == 1) // send to back
-		{
-		  [superview moveViewToBack: editor];
-		}
-	      [superview setNeedsDisplay: YES];
-	    }
 	}
-    }
 }
 
 /**
@@ -3078,58 +3038,44 @@ static void _real_close(GormDocument *self,
  */
 - (void) alignSelectedObjects: (id)sender
 {
-  NSArray *selection =  [[(id<IB>)NSApp selectionOwner] selection];
-  NSInteger tag = [sender tag];
-  id prev = nil;
-
-  // Mark the document modified.
-  [self touch];
-
-  // Iterate over all in the selection and align them...
-  for (id v in selection)
-    {
-      if([v isKindOfClass: [NSView class]])
-	{
-	  id editor = [self editorForObject: v create: NO];
-	  if(prev != nil)
-	    {
-	      NSRect r = [prev frame];
-	      NSRect e = [editor frame];
-	      if(tag == 0) // center vertically
-		{
-		  float center = (r.origin.x + (r.size.width / 2));
-		  e.origin.x = (center - (e.size.width / 2));
-		}
-	      else if(tag == 1) // center horizontally
-		{
-		  float center = (r.origin.y + (r.size.height / 2));		  
-		  e.origin.y = (center - (e.size.height / 2));  
-		}
-	      else if(tag == 2) // align left
-		{
-		  e.origin.x = r.origin.x;
-		}	      
-	      else if(tag == 3) // align right
-		{
-		  float right = (r.origin.x + r.size.width);
-		  e.origin.x = (right - e.size.width);
-		}	      
-	      else if(tag == 4) // align top
-		{
-		  float top = (r.origin.y + r.size.height);
-		  e.origin.y = (top - e.size.height);
-		}
-	      else if(tag == 5) // align bottom
-		{
-		  e.origin.y = r.origin.y;
-		}
-
-	      [editor setFrame: e];
-	      [[editor superview] setNeedsDisplay: YES];
-	    }
-	  prev = editor;
-	} 
-    }	      
+	NSArray *selection =  [[(id<IB>)NSApp selectionOwner] selection];
+	NSInteger tag = [sender tag];
+	id prev = nil;
+	
+	// Mark the document modified.
+	[self touch];
+	
+	// Iterate over all in the selection and align them...
+	for (id v in selection) {
+		if ([v isKindOfClass: [NSView class]]) {
+			id editor = [self editorForObject: v create: NO];
+			if(prev != nil) {
+				NSRect r = [prev frame];
+				NSRect e = [editor frame];
+				if (tag == 0) { // center vertically
+					CGFloat center = (r.origin.x + (r.size.width / 2));
+					e.origin.x = (center - (e.size.width / 2));
+				} else if (tag == 1) {// center horizontally
+					CGFloat center = (r.origin.y + (r.size.height / 2));
+					e.origin.y = (center - (e.size.height / 2));
+				} else if (tag == 2) { // align left
+					e.origin.x = r.origin.x;
+				} else if (tag == 3) { // align right
+					CGFloat right = (r.origin.x + r.size.width);
+					e.origin.x = (right - e.size.width);
+				} else if (tag == 4) {// align top
+					CGFloat top = (r.origin.y + r.size.height);
+					e.origin.y = (top - e.size.height);
+				} else if (tag == 5) {// align bottom
+					e.origin.y = r.origin.y;
+				}
+				
+				[editor setFrame: e];
+				[[editor superview] setNeedsDisplay: YES];
+			}
+			prev = editor;
+		} 
+	}
 }
 
 /**
@@ -3137,7 +3083,7 @@ static void _real_close(GormDocument *self,
  */
 - (NSString *) windowNibName
 {
-  return @"GormDocument";
+	return @"GormDocument";
 }
 
 /**
@@ -3145,15 +3091,14 @@ static void _real_close(GormDocument *self,
  */
 - (NSFileWrapper *)fileWrapperRepresentationOfType: (NSString *)type
 {
-  id<GormWrapperBuilder> builder = [[GormWrapperBuilderFactory sharedWrapperBuilderFactory]
-				     wrapperBuilderForType: type];
-  NSFileWrapper *result = nil;
+	id<GormWrapperBuilder> builder = [[GormWrapperBuilderFactory sharedWrapperBuilderFactory]
+									  wrapperBuilderForType: type];
+	NSFileWrapper *result = nil;
 
-  /*
-   * Warn the user, if we are about to upgrade the package.
-   */
-  if(isOlderArchive && [filePrefsManager isLatest])
-    {
+	/*
+	 * Warn the user, if we are about to upgrade the package.
+	 */
+	if (isOlderArchive && [filePrefsManager isLatest]) {
 		NSInteger retval;
 		NSAlert *alert = [[NSAlert alloc] init];
 		alert.messageText = _(@"Compatibility Warning");
@@ -3164,39 +3109,35 @@ static void _real_close(GormDocument *self,
 		[alert addButtonWithTitle:_(@"Don't Save")];
 		retval = [alert runModal];
 		DESTROY(alert);
-      if (retval != NSAlertFirstButtonReturn)
-	{
-	  return nil;
+		if (retval != NSAlertFirstButtonReturn) {
+			return nil;
+		} else {
+			// we're saving anyway... set to new value.
+			isOlderArchive = NO;
+		}
 	}
-      else
-	{
-	  // we're saving anyway... set to new value.
-	  isOlderArchive = NO;
+
+	/*
+	 * Notify the world that we are saving...
+	 */
+	[[NSNotificationCenter defaultCenter]
+	 postNotificationName: IBWillSaveDocumentNotification
+	 object: self];
+	
+	// build the archive...
+	[self deactivateEditors];
+	result = [builder buildFileWrapperWithDocument: self];
+	[self reactivateEditors];
+	if (result) {
+		/*
+		 * This is the last thing we should do...
+		 */
+		[[NSNotificationCenter defaultCenter]
+		 postNotificationName: IBDidSaveDocumentNotification
+		 object: self];
 	}
-    }
-
-  /*
-   * Notify the world that we are saving...
-   */
-  [[NSNotificationCenter defaultCenter]
-    postNotificationName: IBWillSaveDocumentNotification
-    object: self];
-
-  // build the archive...
-  [self deactivateEditors];
-  result = [builder buildFileWrapperWithDocument: self];
-  [self reactivateEditors];
-  if(result)
-    {
-      /*
-       * This is the last thing we should do...
-       */
-      [[NSNotificationCenter defaultCenter]
-	postNotificationName: IBDidSaveDocumentNotification
-	object: self];
-    }
-  
-  return result;
+	
+	return result;
 }
 
 
@@ -3206,19 +3147,18 @@ static void _real_close(GormDocument *self,
 				   wrapperLoaderForType: type];
   BOOL result = [loader loadFileWrapper: wrapper withDocument: self];
 
-  if(result)
-    {
-      // this is the last thing we should do...
-      [[NSNotificationCenter defaultCenter]
-	postNotificationName: IBDidOpenDocumentNotification
-	object: self];
-
-      // make sure that the newly loaded document does not 
-      // mark itself as modified.
-      [self updateChangeCount: NSChangeCleared];
-    }
-  
-  return result;
+	if (result) {
+		// this is the last thing we should do...
+		[[NSNotificationCenter defaultCenter]
+		 postNotificationName: IBDidOpenDocumentNotification
+		 object: self];
+		
+		// make sure that the newly loaded document does not
+		// mark itself as modified.
+		[self updateChangeCount: NSChangeCleared];
+	}
+	
+	return result;
 }
 
 - (BOOL) keepBackupFile
@@ -3229,14 +3169,11 @@ static void _real_close(GormDocument *self,
 
 - (NSString *)displayName
 {
-  if ([self fileURL] != nil)
-    {
-      return [[self fileURL] lastPathComponent];
-    }
-  else
-    {
-      return [super displayName];
-    }
+	if ([self fileURL] != nil) {
+		return [[self fileURL] lastPathComponent];
+	} else {
+		return [super displayName];
+	}
 }
 
 /**
@@ -3277,16 +3214,6 @@ static void _real_close(GormDocument *self,
 - (NSSet *) deferredWindows
 {
   return deferredWindows;
-}
-
-- (NSFileWrapper *) scmWrapper
-{
-  return scmWrapper;
-}
-
-- (void) setSCMWrapper: (NSFileWrapper *)wrapper
-{
-  ASSIGN(scmWrapper, wrapper);
 }
 
 /**
@@ -3337,16 +3264,6 @@ static void _real_close(GormDocument *self,
   return filePrefsManager;
 }
 
-- (void) setDocumentOpen: (BOOL) flag
-{
-  isDocumentOpen = flag;
-}
-
-- (BOOL) isDocumentOpen
-{
-  return isDocumentOpen;
-}
-
 - (void) setInfoData: (NSData *)data
 {
   ASSIGN(infoData, data);
@@ -3355,16 +3272,6 @@ static void _real_close(GormDocument *self,
 - (NSData *) infoData
 {
   return infoData;
-}
-
-- (void) setOlderArchive: (BOOL)flag
-{
-  isOlderArchive = flag;
-}
-
-- (BOOL) isOlderArchive
-{
-  return isOlderArchive;
 }
 
 - (void) encodeWithCoder: (NSCoder *)coder
@@ -3378,10 +3285,10 @@ static void _real_close(GormDocument *self,
 - (id) initWithCoder: (NSCoder *)coder
 {
 	if (self = [super init]) {
-  ASSIGN(topLevelObjects, [coder decodeObject]);
-  ASSIGN(nameTable, [coder decodeObject]);
-  ASSIGN(visibleWindows, [coder decodeObject]);
-  ASSIGN(connections, [coder decodeObject]);
+		ASSIGN(topLevelObjects, [coder decodeObject]);
+		ASSIGN(nameTable, [coder decodeObject]);
+		ASSIGN(visibleWindows, [coder decodeObject]);
+		ASSIGN(connections, [coder decodeObject]);
 	}
 
   return self;
