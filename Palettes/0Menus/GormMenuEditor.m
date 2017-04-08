@@ -1024,7 +1024,7 @@ static BOOL done_editing;
    edit it */
 - (NSEvent *) editTextField: view withEvent: (NSEvent *)theEvent
 {
-  unsigned eventMask;
+  NSEventMask eventMask;
   BOOL wasEditable;
   BOOL didDrawBackground;
   NSTextField *editField;

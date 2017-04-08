@@ -47,7 +47,7 @@
 
 - (id)          tableView: (NSTableView *)tv
 objectValueForTableColumn: (NSTableColumn *)tc
-	              row: (NSInteger)rowIndex
+					row: (NSInteger)rowIndex
 {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   NSArray *list = [defaults objectForKey: @"UserPlugins"];
@@ -118,7 +118,7 @@ objectValueForTableColumn: (NSTableColumn *)tc
 
 - (BOOL)    tableView: (NSTableView *)tableView
 shouldEditTableColumn: (NSTableColumn *)aTableColumn
-		  row: (NSInteger)rowIndex
+				  row: (NSInteger)rowIndex
 {
   BOOL result = NO;
   return result;

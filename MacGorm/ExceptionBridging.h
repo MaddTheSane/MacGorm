@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 void tryCatchBlock(NS_NOESCAPE dispatch_block_t aTry, void(NS_NOESCAPE^ __nullable catchBlock)(NSException*)) NS_SWIFT_NAME(exceptionBlock(try:catch:));
 
+void registerNameWithRootObject(NSString *aname, NSObject *aRootObject) NS_SWIFT_NAME(register(name:rootObject:));
+
+
 NS_ASSUME_NONNULL_END
 
 #endif /* ExceptionBridging_h */

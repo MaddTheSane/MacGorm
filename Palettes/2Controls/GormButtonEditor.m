@@ -338,7 +338,7 @@ static NSRect oldFrame;
   NSRect                 frame;
   NSNotificationCenter  *nc = [NSNotificationCenter defaultCenter];
   NSDate		*future = [NSDate distantFuture];
-  NSEvent *e;
+  NSEvent *e = nil;
       
   editField = view;
   frame = [editField frame];
