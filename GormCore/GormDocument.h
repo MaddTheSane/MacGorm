@@ -351,7 +351,7 @@
 /**
  * Save the SCM directory.
  */
-@property (retain) NSFileWrapper *scmWrapper;
+@property (retain, setter=setSCMWrapper:) NSFileWrapper *scmWrapper;
 
 /**
  * Images

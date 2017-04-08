@@ -211,7 +211,7 @@ NSArray *systemImagesList()
 	NSEnumerator *en = [contents objectEnumerator];
 	NSMutableArray *result = [NSMutableArray array];
 	id obj;
-	NSArray *fileTypes = [NSImage imageFileTypes];
+	NSArray *fileTypes = [NSImage imageTypes];
 	
 	while((obj = [en nextObject]) != nil) {
 		if([fileTypes containsObject: [obj pathExtension]]) {
@@ -231,7 +231,7 @@ NSArray *systemSoundsList()
 	NSEnumerator *en = [contents objectEnumerator];
 	NSMutableArray *result = [NSMutableArray array];
 	id obj;
-	NSArray *fileTypes = [NSSound soundUnfilteredFileTypes];
+	NSArray *fileTypes = [NSSound soundUnfilteredTypes];
 	
 	while((obj = [en nextObject]) != nil) {
 		if([fileTypes containsObject: [obj pathExtension]]) {

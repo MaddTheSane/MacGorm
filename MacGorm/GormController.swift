@@ -161,7 +161,7 @@ class GormController: NSObject, NSApplicationDelegate, IB, GormProtocol {
 		return GormClassManager()
 	}()
 	
-	func classManager() -> GormClassManager! {
+	var classManager: GormClassManager! {
 		if let activeDoc = activeDocument() as? GormDocument {
 			return activeDoc.classManager
 		}

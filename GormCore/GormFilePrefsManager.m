@@ -67,13 +67,13 @@ NSString *formatVersion(NSInteger version)
 // initializers...
 - (id) init
 {
-  if((self = [super init]) != nil)
-    {
-      NSBundle *bundle = [NSBundle mainBundle];
-      NSString *path = [bundle pathForResource: @"VersionProfiles" ofType: @"plist"];
-      versionProfiles = RETAIN([[NSString stringWithContentsOfFile: path] propertyList]);
-    }
-  return self;
+	if (self = [super init]) {
+		NSBundle *bundle = [NSBundle mainBundle];
+		NSString *path = [bundle pathForResource: @"VersionProfiles" ofType: @"plist"];
+		NSData *data = [NSData dataWithContentsOfFile:path];
+		versionProfiles = RETAIN([NSPropertyListSerialization propertyListWithData:data options:NSPropertyListImmutable format:NULL error:NULL]);
+	}
+	return self;
 }
 
 - (void) dealloc
@@ -203,12 +203,14 @@ NSString *formatVersion(NSInteger version)
 	forKey: @"IBUsesTextArchiving"]; // for now.
   [dict setObject: openItems forKey: @"IBOpenItems"];
 
-  return [NSPropertyListSerialization dataFromPropertyList: dict 
-				      format: NSPropertyListXMLFormat_v1_0
-				      errorDescription: NULL];
+  return [NSPropertyListSerialization
+		  dataWithPropertyList: dict
+		  format: NSPropertyListXMLFormat_v1_0
+		  options: 0
+		  error: NULL];
 }
 
-- (int) versionOfClass: (NSString *)className 
+- (int) versionOfClass: (NSString *)className
 {
   int result = -1;
 

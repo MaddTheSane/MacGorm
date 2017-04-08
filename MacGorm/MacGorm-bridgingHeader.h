@@ -6,8 +6,4 @@
 //  Copyright © 2017 C.W. Betts. All rights reserved.
 //
 
-#ifndef MacGorm_bridgingHeader_h
-#define MacGorm_bridgingHeader_h
-
-
-#endif /* MacGorm_bridgingHeader_h */
+#import "ExceptionBridging.h"

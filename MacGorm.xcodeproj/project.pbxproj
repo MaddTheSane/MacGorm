@@ -221,6 +221,7 @@
 		559D49DC1E90D609003E1A48 /* GormPrefController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559D49CE1E90D609003E1A48 /* GormPrefController.m */; };
 		559D49DD1E90D609003E1A48 /* GormShelfPref.h in Headers */ = {isa = PBXBuildFile; fileRef = 559D49CF1E90D609003E1A48 /* GormShelfPref.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		559D49DE1E90D609003E1A48 /* GormShelfPref.m in Sources */ = {isa = PBXBuildFile; fileRef = 559D49D01E90D609003E1A48 /* GormShelfPref.m */; };
+		55A8A4B71E98CF73006959EF /* ExceptionBridging.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8A4B61E98CF73006959EF /* ExceptionBridging.m */; };
 		55A8D5E11E977C9D00C42FB2 /* GNUstepBaseAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A8D5E01E977C9D00C42FB2 /* GNUstepBaseAdditions.swift */; };
 		55B17E511E98C25C00396A6C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55B17E531E98C25C00396A6C /* Localizable.strings */; };
 		55B719511E917BCA0006E8EB /* ClassInformation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55B7194F1E917BCA0006E8EB /* ClassInformation.plist */; };
@@ -835,6 +836,8 @@
 		559D49CE1E90D609003E1A48 /* GormPrefController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormPrefController.m; sourceTree = "<group>"; };
 		559D49CF1E90D609003E1A48 /* GormShelfPref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormShelfPref.h; sourceTree = "<group>"; };
 		559D49D01E90D609003E1A48 /* GormShelfPref.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormShelfPref.m; sourceTree = "<group>"; };
+		55A8A4B31E98CF48006959EF /* ExceptionBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExceptionBridging.h; sourceTree = "<group>"; };
+		55A8A4B61E98CF73006959EF /* ExceptionBridging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionBridging.m; sourceTree = "<group>"; };
 		55A8D5E01E977C9D00C42FB2 /* GNUstepBaseAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GNUstepBaseAdditions.swift; sourceTree = "<group>"; };
 		55B17E521E98C25C00396A6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B7194F1E917BCA0006E8EB /* ClassInformation.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = ClassInformation.plist; sourceTree = "<group>"; };
@@ -1191,6 +1194,8 @@
 			children = (
 				556938851E96FCE30023623D /* GormController.swift */,
 				55A8D5E01E977C9D00C42FB2 /* GNUstepBaseAdditions.swift */,
+				55A8A4B31E98CF48006959EF /* ExceptionBridging.h */,
+				55A8A4B61E98CF73006959EF /* ExceptionBridging.m */,
 				554D98011E9031E800E79BFA /* Assets.xcassets */,
 				554D98061E9031E800E79BFA /* Info.plist */,
 				554D97F81E9031E800E79BFA /* Supporting Files */,
@@ -2505,6 +2510,7 @@
 			files = (
 				556938861E96FCE30023623D /* GormController.swift in Sources */,
 				55A8D5E11E977C9D00C42FB2 /* GNUstepBaseAdditions.swift in Sources */,
+				55A8A4B71E98CF73006959EF /* ExceptionBridging.m in Sources */,
 				559D49B11E90D553003E1A48 /* Gorm.m in Sources */,
 				554D97FA1E9031E800E79BFA /* main.m in Sources */,
 			);

@@ -32,138 +32,123 @@
 #import <GormCore/GormPrivate.h>
 #import <GormCore/GormSound.h>
 #import <GormCore/GormImage.h>
+#import <GNUstepBase/NSObject+GNUstepBase.h>
 #import <GNUstepBase/GNUstep.h>
 #import <GNUstepBase/GSObjCRuntime.h>
 
-static NSMutableDictionary *_wrapperLoaderMap = nil;
+static NSMutableDictionary<NSString*,Class> *_wrapperLoaderMap = nil;
 static GormWrapperLoaderFactory *_sharedWrapperLoaderFactory = nil;
 
 @implementation GormWrapperLoader
 + (NSString *) fileType
 {
-  [self subclassResponsibility: _cmd];
-  return nil;
+	[self subclassResponsibility: _cmd];
+	return nil;
 }
 
 - (void) saveSCMDirectory: (NSDictionary *) fileWrappers
 {
-  [document setSCMWrapper: [fileWrappers objectForKey: @".svn"]];
-  if([document scmWrapper] == nil)
-    {
-      [document setSCMWrapper: [fileWrappers objectForKey: @"CVS"]];
-    }
+	[document setSCMWrapper: [fileWrappers objectForKey: @".svn"]];
+	if ([document scmWrapper] == nil) {
+		[document setSCMWrapper: [fileWrappers objectForKey: @"CVS"]];
+	}
 }
 
 - (BOOL) loadFileWrapper: (NSFileWrapper *)wrapper withDocument: (GormDocument *)doc
 {
-  NS_DURING
-    {
-      NSMutableArray *images = [NSMutableArray array];
-      NSMutableArray *sounds = [NSMutableArray array];
-
-      document = doc; // don't retain...
-      if ([wrapper isDirectory])
-	{
-	  NSDictionary *fileWrappers = nil;
-	  NSString *key = nil;
-	  NSArray *imageFileTypes = [NSImage imageFileTypes];
-	  NSArray *soundFileTypes = [NSSound soundUnfilteredFileTypes];
-	  NSEnumerator *enumerator = nil;
-	  
-	  key = nil;
-	  fileWrappers = [wrapper fileWrappers];
-	  
-	  [self saveSCMDirectory: fileWrappers];
-	  
-	  enumerator = [fileWrappers keyEnumerator];
-	  while((key = [enumerator nextObject]) != nil)
-	    {
-	      NSFileWrapper *fw = [fileWrappers objectForKey: key];
-
-	      //
-	      // Images with .info can be loaded, but we have a file
-	      // called data.info which is metadata for Gorm.  Don't load it.
-	      //
-	      if ( [key isEqualToString: @"data.info"] == YES )
-		{
-		  continue;
+	@try {
+		NSMutableArray *images = [NSMutableArray array];
+		NSMutableArray *sounds = [NSMutableArray array];
+		
+		document = doc; // don't retain...
+		if ([wrapper isDirectory]) {
+			NSDictionary *fileWrappers = nil;
+			NSString *key = nil;
+			NSArray *imageFileTypes = [NSImage imageTypes];
+			NSArray *soundFileTypes = [NSSound soundUnfilteredTypes];
+			NSEnumerator *enumerator = nil;
+			
+			key = nil;
+			fileWrappers = [wrapper fileWrappers];
+			
+			[self saveSCMDirectory: fileWrappers];
+			
+			enumerator = [fileWrappers keyEnumerator];
+			while ((key = [enumerator nextObject]) != nil) {
+				NSFileWrapper *fw = [fileWrappers objectForKey: key];
+				
+				//
+				// Images with .info can be loaded, but we have a file
+				// called data.info which is metadata for Gorm.  Don't load it.
+				//
+				if ( [key isEqualToString: @"data.info"] == YES ) {
+					continue;
+				}
+				
+				if ([fw isRegularFile]) {
+					NSData *fileData = [fw regularFileContents];
+					if ([imageFileTypes containsObject: [key pathExtension]]) {
+						[images addObject: [GormImage imageForData: fileData
+													  withFileName: key
+														 inWrapper: YES]];
+					} else if ([soundFileTypes containsObject: [key pathExtension]]) {
+						[sounds addObject: [GormSound soundForData: fileData
+													  withFileName: key
+														 inWrapper: YES]];
+					}
+				}
+			}
 		}
-	      
-	      if([fw isRegularFile])
-		{
-		  NSData *fileData = [fw regularFileContents];
-		  if ([imageFileTypes containsObject: [key pathExtension]])
-		    {
-		      [images addObject: [GormImage imageForData: fileData 
-						    withFileName: key 
-						    inWrapper: YES]];
-		    }
-		  else if ([soundFileTypes containsObject: [key pathExtension]])
-		    {
-		      [sounds addObject: [GormSound soundForData: fileData 
-						    withFileName: key 
-						    inWrapper: YES]];
-		    }
-		}
-	    }
+		
+		// fill in the images and sounds arrays...
+		[document setSounds: sounds];
+		[document setImages: images];
+	} @catch (NSException *localException) {
+		return NO;
 	}
-
-      // fill in the images and sounds arrays...
-      [document setSounds: sounds];
-      [document setImages: images];
-    }
-  NS_HANDLER
-    {
-      return NO;
-    }
-  NS_ENDHANDLER;
-
-  return YES;
+	
+	return YES;
 }
 @end
 
-@implementation GormWrapperLoaderFactory 
+@implementation GormWrapperLoaderFactory
 + (void) initialize
 {
-  NSArray *classes = GSObjCAllSubclassesOfClass([GormWrapperLoader class]);
-  NSEnumerator *en = [classes objectEnumerator];
-  Class cls = nil;
-  
-  while((cls = [en nextObject]) != nil)
-    {
-      [self registerWrapperLoaderClass: cls];
-    }
+	NSArray *classes = GSObjCAllSubclassesOfClass([GormWrapperLoader class]);
+	NSEnumerator *en = [classes objectEnumerator];
+	Class cls = nil;
+	
+	while ((cls = [en nextObject]) != nil) {
+		[self registerWrapperLoaderClass: cls];
+	}
 }
 
 + (void) registerWrapperLoaderClass: (Class)aClass
 {
-  if(_wrapperLoaderMap == nil)
-    {
-      _wrapperLoaderMap = [[NSMutableDictionary alloc] initWithCapacity: 5];
-    }
-
-  [_wrapperLoaderMap setObject: aClass forKey: (NSString *)[aClass fileType]];
+	if (_wrapperLoaderMap == nil) {
+		_wrapperLoaderMap = [[NSMutableDictionary alloc] initWithCapacity: 5];
+	}
+	
+	[_wrapperLoaderMap setObject: aClass forKey: (NSString *)[aClass fileType]];
 }
 
 + (GormWrapperLoaderFactory *) sharedWrapperLoaderFactory
 {
-  if(_sharedWrapperLoaderFactory == nil)
-    {
-      _sharedWrapperLoaderFactory = [[self alloc] init];
-    }
-  return _sharedWrapperLoaderFactory;
+	if (_sharedWrapperLoaderFactory == nil) {
+		_sharedWrapperLoaderFactory = [[self alloc] init];
+	}
+	
+	return _sharedWrapperLoaderFactory;
 }
 
 - (id) init
 {
-  if((self = [super init]) != nil)
-    {
-      if(_sharedWrapperLoaderFactory == nil)
-	{
-	  _sharedWrapperLoaderFactory = self;
+	if (self = [super init]) {
+		if(_sharedWrapperLoaderFactory == nil) {
+			_sharedWrapperLoaderFactory = self;
+		}
 	}
-    }
-  return self;
+	return self;
 }
 
 - (id<GormWrapperLoader>) wrapperLoaderForType: (NSString *) type
