@@ -107,10 +107,10 @@ NSImage *browserImage = nil;
 	  // set up the outline view...
 	  [outlineView setDataSource: self];
 	  [outlineView setDelegate: self];
-	  
-	  [outlineView setAutoresizesAllColumnsToFit: YES];
+		
+	  [outlineView setColumnAutoresizingStyle:NSTableViewSequentialColumnAutoresizingStyle];
 	  [outlineView setAllowsColumnResizing: NO];
-	  [outlineView setDrawsGrid: NO];
+	  [outlineView setGridStyleMask:NSTableViewGridNone];
 	  [outlineView setIndentationMarkerFollowsCell: YES];
 	  [outlineView setAutoresizesOutlineColumn: YES];
 	  [outlineView setIndentationPerLevel: 10];
@@ -120,10 +120,10 @@ NSImage *browserImage = nil;
 	  [outlineView setBackgroundColor: color];
 	  
 	  // add the table columns...
-	  tableColumn = [(NSTableColumn *)[NSTableColumn alloc] initWithIdentifier: @"classes"];
+	  tableColumn = [[NSTableColumn alloc] initWithIdentifier: @"classes"];
 	  [[tableColumn headerCell] setStringValue: _(@"Classes")];
 	  [tableColumn setMinWidth: 190];
-	  [tableColumn setResizable: YES];
+	  [tableColumn setResizingMask:(NSTableColumnUserResizingMask | NSTableColumnAutoresizingMask)];
 	  [tableColumn setEditable: YES];
 	  [outlineView addTableColumn: tableColumn];     
 	  [outlineView setOutlineTableColumn: tableColumn];
@@ -132,7 +132,7 @@ NSImage *browserImage = nil;
 	  tableColumn = [(NSTableColumn *)[NSTableColumn alloc] initWithIdentifier: @"outlets"];
 	  [[tableColumn headerCell] setStringValue: _(@"Outlet")];
 	  [tableColumn setWidth: 50]; 
-	  [tableColumn setResizable: NO];
+      [tableColumn setResizingMask:NSTableColumnNoResizing];
 	  [tableColumn setEditable: NO];
 	  [outlineView addTableColumn: tableColumn];
 	  [outlineView setOutletColumn: tableColumn];
@@ -141,7 +141,7 @@ NSImage *browserImage = nil;
 	  tableColumn = [(NSTableColumn *)[NSTableColumn alloc] initWithIdentifier: @"actions"];
 	  [[tableColumn headerCell] setStringValue: _(@"Action")];
 	  [tableColumn setWidth: 50]; 
-	  [tableColumn setResizable: NO];
+      [tableColumn setResizingMask:NSTableColumnNoResizing];
 	  [tableColumn setEditable: NO];
 	  [outlineView addTableColumn: tableColumn];
 	  [outlineView setActionColumn: tableColumn];
@@ -338,7 +338,7 @@ NSImage *browserImage = nil;
 	  row = [outlineView rowForItem: className];
 	  if (row != -1) 
 	    {
-	      [outlineView selectRow: row byExtendingSelection: NO];
+	      [outlineView selectRowIndexes: [NSIndexSet indexSetWithIndex:row] byExtendingSelection: NO];
 	      [outlineView scrollRowToVisible: row];
 	    }
 	  

@@ -58,7 +58,7 @@ static NSMapTable *docMap = 0;
 
 - (NSArray *) fileTypes
 {
-  return [NSImage imageFileTypes];
+  return [NSImage imageTypes];
 }
 
 - (NSArray *)pbTypes

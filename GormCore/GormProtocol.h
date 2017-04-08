@@ -59,7 +59,7 @@ NS_SWIFT_NAME(GormProtocol)
 @property (readonly, retain) GormPluginManager *pluginManager;
 
 // testing the interface
-- (void) testInterface: (id)sender;
+- (IBAction) testInterface: (id)sender;
 - (id) endTesting: (id)sender;
 
 // sound & images
@@ -73,7 +73,7 @@ NS_SWIFT_NAME(GormProtocol)
 - (IBAction) ungroup: (id)sender;
 
 // added for classes support
-- (GormClassManager*) classManager;
+@property (readonly, retain) GormClassManager *classManager;
 @property (assign) IBOutlet NSMenu *classMenu;
 
 // utility
