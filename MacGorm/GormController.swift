@@ -7,8 +7,27 @@
 //
 
 import Cocoa
-import GormCore
+
+
+import GormCore.GormGenericEditor
+import GormCore.GormPrivate
+import GormCore.GormFontViewController
+import GormCore.GormSetNameController
+import GormCore.GormFunctions
+import GormCore.GormPluginManager
+import GormCore.GormDocumentController
+import GormCore.GormServer
+
+import GNUstepBase.GSObjCRuntime
+import GNUstepBase.GNUstep
+import GNUstepBase.NSDebug_GNUstepBase
+import GNUstepBase.NSString_GNUstepBase
+import GormPrefs.GormPrefController
+
+
 import GNUstepBase
+import GNUstepGUI
+import GormCore
 import GormPrefs
 
 #if false
