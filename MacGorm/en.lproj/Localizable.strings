@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  MacGorm
+
+  Created by C.W. Betts on 4/8/17.
+  Copyright © 2017 C.W. Betts. All rights reserved.
+*/
+
+"Saving will update this gorm to the latest version \nwhich may not be compatible with some previous versions \nof GNUstep." = "Saving will update this gorm to the latest version which may not be compatible with some previous versions of GNUstep.";
+"Don't Save" = "Don’t Save";

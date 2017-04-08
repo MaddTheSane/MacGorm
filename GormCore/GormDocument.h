@@ -37,6 +37,10 @@
 
 @class GormClassManager, GormClassEditor, GormObjectProxy, GormFilesOwner, 
   GormFilePrefsManager, GormDocumentWindow;
+@class GormSoundEditor;
+@class GormGenericEditor;
+@class GormImageEditor;
+@class GormObjectEditor;
 
 /*
  * Trivial classes for connections from objects to their editors, and from
@@ -59,24 +63,25 @@
 }
 @end
 
+
 @interface GormDocument : NSDocument <IBDocuments, GSNibContainer, NSCoding, NSToolbarDelegate>
 {
-	GormClassManager      *classManager;
-	GormFilesOwner	*filesOwner;
-	GormFirstResponder	*firstResponder;
-	GormObjectProxy       *fontManager;
-	NSMapTable		*objToName;
-	GormDocumentWindow	*window;
+	GormClassManager		*classManager;
+	GormFilesOwner			*filesOwner;
+	GormFirstResponder		*firstResponder;
+	GormObjectProxy			*fontManager;
+	NSMapTable				*objToName;
+	GormDocumentWindow		*window;
 	IBOutlet GormDocumentWindow	*window1;
 	IBOutlet NSBox				*selectionBox;
 	NSScrollView		*scrollView;
 	NSScrollView		*classesScrollView;
 	NSScrollView		*soundsScrollView;
 	NSScrollView		*imagesScrollView;
-	id				classesView;
-	id				objectsView;
-	id				soundsView;
-	id				imagesView;
+	GormClassEditor		*classesView;
+	GormObjectEditor	*objectsView;
+	GormSoundEditor		*soundsView;
+	GormImageEditor		*imagesView;
 	BOOL			isActive;
 	BOOL			isDocumentOpen;
 	NSMenu			*savedMenu;
@@ -85,12 +90,12 @@
 	NSMutableArray	*hidden;
 	NSMutableArray	*openEditors;
 	__unsafe_unretained NSToolbar		*toolbar;
-	id				lastEditor;
+	id<IBEditors>	lastEditor;
 	BOOL			isOlderArchive;
 	IBOutlet id                    filePrefsView;
 	IBOutlet GormFilePrefsManager  *filePrefsManager;
 	IBOutlet NSWindow              *filePrefsWindow;
-	NSMutableArray        *resourceManagers;
+	NSMutableArray<IBResourceManager*>        *resourceManagers;
 	NSData                *infoData;   /* data.info contents */
 	NSMutableArray        *images;     /* temporary storage for images. */
 	NSMutableArray        *sounds;     /* temporary storage for sounds. */
@@ -179,7 +184,7 @@
 /**
  * The list of all resource managers.
  */
-- (NSArray *) resourceManagers;
+@property (readonly, retain) NSArray<IBResourceManager*> *resourceManagers;
 
 /**
  * Get the resource manager which handles the content on pboard.
@@ -209,7 +214,7 @@
 /**
  * Returns all pasteboard types registered for with the IBResourceManager.
  */
-- (NSArray *) allManagedPboardTypes;
+- (NSArray<NSString*> *) allManagedPboardTypes;
 
 /* Language translation */
 - (void) translate: (id)sender;
@@ -343,12 +348,7 @@
 /**
  * Save the SCM directory.
  */
-- (void) setSCMWrapper: (NSFileWrapper *) wrapper;
-
-/**
- * Save the SCM directory.
- */
-- (NSFileWrapper *) scmWrapper;
+@property (retain) NSFileWrapper *scmWrapper;
 
 /**
  * Images
@@ -400,6 +400,8 @@
  */
 - (BOOL) isDocumentOpen;
 
+@property (getter=isDocumentOpen) BOOL documentOpen;
+
 /**
  * Set the file info for this document.
  */
@@ -409,6 +411,8 @@
  * return the file info.
  */
 - (NSData *) infoData;
+
+@property (getter=isOlderArchive) BOOL olderArchive;
 
 /**
  * Set the "older archive" flag.

@@ -29,6 +29,7 @@
 
 @class GormClassManager, GormPalettesManager, GormInspectorsManager, NSString, NSMenu, GormPluginManager;
 
+NS_SWIFT_NAME(GormProtocol)
 @protocol Gorm
 // Connections
 - (id) connectSource;

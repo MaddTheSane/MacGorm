@@ -222,6 +222,7 @@
 		559D49DD1E90D609003E1A48 /* GormShelfPref.h in Headers */ = {isa = PBXBuildFile; fileRef = 559D49CF1E90D609003E1A48 /* GormShelfPref.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		559D49DE1E90D609003E1A48 /* GormShelfPref.m in Sources */ = {isa = PBXBuildFile; fileRef = 559D49D01E90D609003E1A48 /* GormShelfPref.m */; };
 		55A8D5E11E977C9D00C42FB2 /* GNUstepBaseAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A8D5E01E977C9D00C42FB2 /* GNUstepBaseAdditions.swift */; };
+		55B17E511E98C25C00396A6C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55B17E531E98C25C00396A6C /* Localizable.strings */; };
 		55B719511E917BCA0006E8EB /* ClassInformation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55B7194F1E917BCA0006E8EB /* ClassInformation.plist */; };
 		55B719521E917BCA0006E8EB /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55B719501E917BCA0006E8EB /* Defaults.plist */; };
 		55C006FD1E908E550039F09B /* GormOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D985E1E90352F00E79BFA /* GormOutlineView.m */; };
@@ -835,6 +836,7 @@
 		559D49CF1E90D609003E1A48 /* GormShelfPref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GormShelfPref.h; sourceTree = "<group>"; };
 		559D49D01E90D609003E1A48 /* GormShelfPref.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormShelfPref.m; sourceTree = "<group>"; };
 		55A8D5E01E977C9D00C42FB2 /* GNUstepBaseAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GNUstepBaseAdditions.swift; sourceTree = "<group>"; };
+		55B17E521E98C25C00396A6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B7194F1E917BCA0006E8EB /* ClassInformation.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = ClassInformation.plist; sourceTree = "<group>"; };
 		55B719501E917BCA0006E8EB /* Defaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Defaults.plist; sourceTree = "<group>"; };
 		55C007021E90A1A40039F09B /* GModel.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GModel.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1238,6 +1240,7 @@
 				554D97F91E9031E800E79BFA /* main.m */,
 				559D48DD1E90C7CD003E1A48 /* InfoPlist.strings */,
 				553367B61E9705B3008FAB56 /* MacGorm-bridgingHeader.h */,
+				55B17E531E98C25C00396A6C /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2352,6 +2355,7 @@
 				55B719511E917BCA0006E8EB /* ClassInformation.plist in Resources */,
 				55C7ECE91E91CA7D001CE0C5 /* GormPrefPlugins.gorm in Resources */,
 				55C7ECC21E91CA35001CE0C5 /* GormHelpInspector.gorm in Resources */,
+				55B17E511E98C25C00396A6C /* Localizable.strings in Resources */,
 				55C7ECF81E91CA99001CE0C5 /* GormViewSizeInspector.gorm in Resources */,
 				55C7ECDA1E91CA61001CE0C5 /* GormPreferences.gorm in Resources */,
 			);
@@ -2909,6 +2913,14 @@
 				559D48DC1E90C7CD003E1A48 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		55B17E531E98C25C00396A6C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55B17E521E98C25C00396A6C /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		55C7ECA91E91C9FD001CE0C5 /* Gorm.gorm */ = {
