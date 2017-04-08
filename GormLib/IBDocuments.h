@@ -97,14 +97,14 @@ IB_EXTERN NSString *IBWillCloseDocumentNotification;
 /** 
  * Copies anObject to the pasteboard with the aType.
  */
-- (BOOL) copyObject: (id)anObject
+- (BOOL) copyObject: (id<IBEditors>)anObject
 			   type: (NSString*)aType
 	   toPasteboard: (NSPasteboard*)aPasteboard;
 
 /**
  * Copues an array of objects to aPasteboard with aType.
  */
-- (BOOL) copyObjects: (NSArray*)anArray
+- (BOOL) copyObjects: (NSArray<id<IBEditors>>*)anArray
 				type: (NSString*)aType
 		toPasteboard: (NSPasteboard*)aPasteboard;
 
