@@ -39,13 +39,13 @@
 #import <GNUstepGUI/GSGormLoading.h>
 #import <GormCore/PrivateCocoaClasses.h>
 
-extern NSString *GormLinkPboardType;
-extern NSString *GormToggleGuidelineNotification;
-extern NSString *GormDidModifyClassNotification;
-extern NSString *GormDidAddClassNotification;
-extern NSString *GormDidDeleteClassNotification;
-extern NSString *GormWillDetachObjectFromDocumentNotification;
-extern NSString *GormResizeCellNotification;
+extern NSPasteboardType const GormLinkPboardType;
+extern NSNotificationName const GormToggleGuidelineNotification;
+extern NSNotificationName const GormDidModifyClassNotification;
+extern NSNotificationName const GormDidAddClassNotification;
+extern NSNotificationName const GormDidDeleteClassNotification;
+extern NSNotificationName const GormWillDetachObjectFromDocumentNotification;
+extern NSNotificationName const GormResizeCellNotification;
 
 @class	GormDocument;
 @class	GormInspectorsManager;

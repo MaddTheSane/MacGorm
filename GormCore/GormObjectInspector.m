@@ -149,7 +149,7 @@ selectCellWithString: (NSString*)title
 			(*imp)(object, set, v);
 		} else {
 			id	v = [value stringValue];
-			IMP	imp = [object methodForSelector: set];
+			void	(*imp)(id,SEL,id) = (void (*)(id,SEL,id))[object methodForSelector: set];
 			
 			if (isString == YES) {
 				(*imp)(object, set, v);
@@ -354,7 +354,7 @@ selectCellWithString: (NSString*)title
 			[value setStringValue: [NSString stringWithFormat: @"%g", v]];
 		} else {
 			id	v;
-			IMP	imp = [object methodForSelector: get];
+			id (*imp)(id,SEL) = (id (*)(id,SEL))[object methodForSelector: get];
 			
 			v = (*imp)(object, get);
 			if (v != nil && [v isKindOfClass: [NSString class]] == YES) {

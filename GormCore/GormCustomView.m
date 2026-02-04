@@ -156,10 +156,10 @@
     }
   else
     {
-      unsigned int _autoresizingMask = self.autoresizingMask;
+      unsigned int _autoresizingMask = (unsigned int)self.autoresizingMask;
       [aCoder encodeObject: [self stringValue]];
-      [aCoder encodeRect: _frame];
-      [aCoder encodeValueOfObjCType: @encode(unsigned int) 
+      [aCoder encodeRect: self.frame];
+      [aCoder encodeValueOfObjCType: @encode(unsigned int)
 	      at: &_autoresizingMask];
     }
 }

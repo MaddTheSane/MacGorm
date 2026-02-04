@@ -93,11 +93,11 @@
  */
 - (void) unsetInitialFirstResponder
 {
-  if(_firstResponder == _initialFirstResponder)
+  if(self.firstResponder == self.initialFirstResponder)
     {
-      _firstResponder = nil;
+//      self.firstResponder = nil;
     }
-  _initialFirstResponder = nil;
+  self.initialFirstResponder = nil;
 }
 @end
 

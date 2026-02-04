@@ -41,22 +41,22 @@
  * window into another window in Gorm (or, in the case of IBWindowPboardType
  * onto the desktop).
  */
-IB_EXTERN NSString	*IBCellPboardType;
-IB_EXTERN NSString	*IBMenuPboardType;
-IB_EXTERN NSString	*IBMenuCellPboardType;
-IB_EXTERN NSString	*IBObjectPboardType;
-IB_EXTERN NSString	*IBViewPboardType;
-IB_EXTERN NSString	*IBWindowPboardType;
-IB_EXTERN NSString	*IBFormatterPboardType;
+IB_EXTERN NSString	*const IBCellPboardType;
+IB_EXTERN NSString	*const IBMenuPboardType;
+IB_EXTERN NSString	*const IBMenuCellPboardType;
+IB_EXTERN NSString	*const IBObjectPboardType;
+IB_EXTERN NSString	*const IBViewPboardType;
+IB_EXTERN NSString	*const IBWindowPboardType;
+IB_EXTERN NSString	*const IBFormatterPboardType;
 
 /*
  * Pasteboard types used for DnD from images or sounds tab
  * to views or inspector's textfield onto the desktop).
  * NOTE: These are specific to Gorm... 
  */
-IB_EXTERN NSString	*GormImagePboardType;
-IB_EXTERN NSString	*GormSoundPboardType;
-IB_EXTERN NSString      *GormLinkPboardType;
+IB_EXTERN NSString	*const GormImagePboardType;
+IB_EXTERN NSString	*const GormSoundPboardType;
+IB_EXTERN NSString      *const GormLinkPboardType;
 
 @interface IBPalette : NSObject
 {

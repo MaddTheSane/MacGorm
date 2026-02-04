@@ -1200,7 +1200,7 @@ static BOOL currently_displaying = NO;
     {
       *rect = [_editedObject convertRect:[_editedObject visibleRect]
 			     toView: nil];
-      return _window;
+      return self.window;
     }
 }
 

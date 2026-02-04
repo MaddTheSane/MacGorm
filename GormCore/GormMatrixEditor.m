@@ -308,8 +308,8 @@ static BOOL done_editing;
       }
     if (onKnob == YES)
       {
-	if (_nextResponder)
-	  return [_nextResponder mouseDown: theEvent];
+	if (self.nextResponder)
+	  return [self.nextResponder mouseDown: theEvent];
 	else
 	  return [self noResponderFor: @selector(mouseDown:)];
       }

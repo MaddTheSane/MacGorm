@@ -27,18 +27,18 @@
 #import <AppKit/AppKit.h>
 #import <GNUstepBase/GNUstep.h>
 
-NSString	*IBCellPboardType = @"IBCellPboardType";
-NSString	*IBMenuPboardType = @"IBMenuPboardType";
-NSString	*IBMenuCellPboardType = @"IBMenuCellPboardType";
-NSString	*IBObjectPboardType = @"IBObjectPboardType";
-NSString	*IBViewPboardType = @"IBViewPboardType";
-NSString	*IBWindowPboardType = @"IBWindowPboardType";
-NSString	*IBFormatterPboardType = @"IBFormatterPboardType";
+NSString	*const IBCellPboardType = @"IBCellPboardType";
+NSString	*const IBMenuPboardType = @"IBMenuPboardType";
+NSString	*const IBMenuCellPboardType = @"IBMenuCellPboardType";
+NSString	*const IBObjectPboardType = @"IBObjectPboardType";
+NSString	*const IBViewPboardType = @"IBViewPboardType";
+NSString	*const IBWindowPboardType = @"IBWindowPboardType";
+NSString	*const IBFormatterPboardType = @"IBFormatterPboardType";
 
 // Gorm specific paste board types..
-NSString        *GormImagePboardType = @"GormImagePboardType";
-NSString        *GormSoundPboardType = @"GormSoundPboardType";
-NSString        *GormLinkPboardType = @"GormLinkPboardType";
+NSString        *const GormImagePboardType = @"GormImagePboardType";
+NSString        *const GormSoundPboardType = @"GormSoundPboardType";
+NSString        *const GormLinkPboardType = @"GormLinkPboardType";
 
 @implementation	IBPalette
 

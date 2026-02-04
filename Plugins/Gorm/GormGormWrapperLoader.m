@@ -46,13 +46,13 @@
 @end
 
 @interface NSWindow (Level)
-- (int) windowLevel;
+- (NSWindowLevel) windowLevel;
 @end;
 
 @implementation NSWindow (Level)
-- (int) windowLevel
+- (NSWindowLevel) windowLevel
 {
-  return _level;
+  return self.level;
 }
 @end;
 

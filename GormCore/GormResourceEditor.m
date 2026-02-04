@@ -214,10 +214,10 @@
     {
       if ([_cells[row][column] isEnabled])
 	{
-	  if ((self.mode == NSRadioModeMatrix) && _selectedCell != nil)
+	  if ((self.mode == NSRadioModeMatrix) && self.selectedCell != nil)
 	    {
-	      [_selectedCell setState: NSOffState];
-	      [self drawCellAtRow: _selectedRow column: _selectedCol];
+	      [self.selectedCell setState: NSOffState];
+	      [self drawCellAtRow: self.selectedRow column: self.selectedColumn];
           [self deselectSelectedCell];
 	      //_selectedCells[_selectedRow][_selectedCol] = NO;
 	      _selectedCell = nil;
@@ -225,7 +225,7 @@
 	    }
 	  [_cells[row][column] setState: NSOnState];
 	  [self drawCellAtRow: row column: column];
-	  [_window flushWindow];
+	  [self.window flushWindow];
       [self selectCellAtRow:row column:column];
 	  //_selectedCells[row][column] = YES;
 	  _selectedCell = _cells[row][column];

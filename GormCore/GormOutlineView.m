@@ -167,11 +167,11 @@ static NSColor *darkGreyBlueColor = nil;
 - (BOOL) _isOutletOrActionOfItemBeingEdited: (NSString *)name
 {
   NSArray *array = nil;
-  array = [_dataSource outlineView: self
+  array = [self.dataSource outlineView: self
 		       actionsForItem: _itemBeingEdited];
   if ([array containsObject: name])
     return YES;
-  array = [_dataSource outlineView: self outletsForItem: _itemBeingEdited];
+  array = [self.dataSource outlineView: self outletsForItem: _itemBeingEdited];
   if ([array containsObject: name])
     return YES;
   return NO;
@@ -324,7 +324,7 @@ static NSColor *darkGreyBlueColor = nil;
   NSInteger i;
   CGFloat x_pos;
 
-  if (_dataSource == nil)
+  if (self.dataSource == nil)
     {
       return;
     }
@@ -370,9 +370,9 @@ static NSColor *darkGreyBlueColor = nil;
 	  id value = nil, valueforcell = nil;
 	  BOOL isOutletAction = NO;
 
-	  tb = [_tableColumns objectAtIndex: i];
+	  tb = [self.tableColumns objectAtIndex: i];
 	  cell = [tb dataCellForRow: rowIndex];
-	  value = [_dataSource outlineView: self
+	  value = [self.dataSource outlineView: self
 			       objectValueForTableColumn: tb
 			       byItem: item];
 
@@ -387,10 +387,10 @@ static NSColor *darkGreyBlueColor = nil;
 	      isOutletAction = NO;
 	    }
 
-	  if ([_delegate respondsToSelector: @selector(outlineView:willDisplayCell:forTableColumn:item:)])
+	  if ([self.delegate respondsToSelector: @selector(outlineView:willDisplayCell:forTableColumn:item:)])
 	    {
-	      [_delegate outlineView: self   
-			 willDisplayCell: cell 
+	      [self.delegate outlineView: self
+			 willDisplayCell: cell
 			 forTableColumn: tb   
 			 item: item];
 	    }
@@ -512,7 +512,7 @@ static NSColor *darkGreyBlueColor = nil;
   isActionOrOutlet
     = [_clickedItem isKindOfClass: [GormOutletActionHolder class]];
 
-  tb = [_tableColumns objectAtIndex: self.clickedColumn];
+  tb = [self.tableColumns objectAtIndex: self.clickedColumn];
   if (tb == _actionColumn)
     {
       image = action;

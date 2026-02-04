@@ -33,12 +33,12 @@
 #import <AppKit/NSControl.h>
 #import <AppKit/NSButton.h>
 
-NSString *GormToggleGuidelineNotification = @"GormToggleGuidelineNotification";
-NSString *GormDidModifyClassNotification = @"GormDidModifyClassNotification";
-NSString *GormDidAddClassNotification = @"GormDidAddClassNotification";
-NSString *GormDidDeleteClassNotification = @"GormDidDeleteClassNotification";
-NSString *GormWillDetachObjectFromDocumentNotification = @"GormWillDetachObjectFromDocumentNotification";
-NSString *GormResizeCellNotification = @"GormResizeCellNotification";
+NSString *const GormToggleGuidelineNotification = @"GormToggleGuidelineNotification";
+NSString *const GormDidModifyClassNotification = @"GormDidModifyClassNotification";
+NSString *const GormDidAddClassNotification = @"GormDidAddClassNotification";
+NSString *const GormDidDeleteClassNotification = @"GormDidDeleteClassNotification";
+NSString *const GormWillDetachObjectFromDocumentNotification = @"GormWillDetachObjectFromDocumentNotification";
+NSString *const GormResizeCellNotification = @"GormResizeCellNotification";
 
 // Private, and soon to be deprecated, notification string...
 NSString *GSInternalNibItemAddedNotification = @"_GSInternalNibItemAddedNotification";
