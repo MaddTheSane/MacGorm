@@ -27,6 +27,7 @@
 
 #import <Foundation/NSObject.h>
 #import <Foundation/NSArray.h>
+#import <AppKit/NSPasteboard.h>
 #import <GormLib/IBProjects.h>
 #import <GormLib/IBProjectFiles.h>
 #import <GormLib/IBDocuments.h>
@@ -37,7 +38,7 @@
  * Notification sent when a resource manager class is added to /removed from 
  * the registry.
  */
-IB_EXTERN NSString *IBResourceManagerRegistryDidChangeNotification;
+IB_EXTERN NSNotificationName const IBResourceManagerRegistryDidChangeNotification;
 
 /** 
  * Enumerated type to allow specification of where the resource
@@ -65,7 +66,7 @@ enum IBResourceLocation {
  * Register the given class as a resource manager for the frameworks in the array.
  */ 
 + (void) registerResourceManagerClass: (Class)managerClass 
-                        forFrameworks: (NSArray *)frameworks;
+                        forFrameworks: (NSArray<NSString*> *)frameworks;
 
 /**
  * Return an array of classes for the given framework.
@@ -114,6 +115,11 @@ enum IBResourceLocation {
 - (BOOL) isReadOnly;
 
 /**
+ * Returns YES, if this resource manager is non-modifiable.
+ */
+@property (readonly, getter=isReadOnly) BOOL readOnly;
+
+/**
  * Called by an external application when the a file
  * is added.
  */
@@ -134,12 +140,12 @@ enum IBResourceLocation {
 /**
  * Returns a list of resource file types this manager can accept.
  */
-- (NSArray *) resourceFileTypes;
+- (NSArray<NSString*> *) resourceFileTypes;
 
 /**
  * Returns a list of pasteboard types this manager can accept.
  */
-- (NSArray *) resourcePasteboardTypes;
+- (NSArray<NSPasteboardType> *) resourcePasteboardTypes;
 
 /**
  * Returns the associated resources for the objects.

@@ -26,6 +26,7 @@
 #define INCLUDED_IBEDITORS_H
 
 #import <Foundation/NSObject.h>
+#import <Foundation/NSNotification.h>
 #import <GormLib/IBSystem.h>
 
 // forward references
@@ -37,10 +38,10 @@
 /*
  * Notification for editing and inspecting the objects etc.
  */
-IB_EXTERN NSString *IBAttributesChangedNotification;
-IB_EXTERN NSString *IBInspectorDidModifyObjectNotification;
-IB_EXTERN NSString *IBSelectionChangedNotification;
-IB_EXTERN NSString *IBClassNameChangedNotification;
+IB_EXTERN NSNotificationName const IBAttributesChangedNotification;
+IB_EXTERN NSNotificationName const IBInspectorDidModifyObjectNotification;
+IB_EXTERN NSNotificationName const IBSelectionChangedNotification;
+IB_EXTERN NSNotificationName const IBClassNameChangedNotification;
 
 /**
  * The IBSelectionOwners protocol defines the methods that a selection owner
@@ -100,7 +101,7 @@ IB_EXTERN NSString *IBClassNameChangedNotification;
 /**
  * Initializes the editor with object for the specified document.
  */
-- (id) initWithObject: (id)anObject inDocument: (id<IBDocuments>)aDocument;
+- (instancetype) initWithObject: (id)anObject inDocument: (id<IBDocuments>)aDocument;
 
 /**
  * Close an editor - this destroys the editor.  In this method the editor

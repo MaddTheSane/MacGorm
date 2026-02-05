@@ -26,14 +26,15 @@
 #define INCLUDED_IBDOCUMENTS_H
 
 #import <Foundation/NSGeometry.h>
+#import <Foundation/NSNotification.h>
 #import <GormLib/IBEditors.h>
 #import <GormLib/IBConnectors.h>
 #import <GormLib/IBSystem.h>
 
-IB_EXTERN NSString *IBDidOpenDocumentNotification;
-IB_EXTERN NSString *IBWillSaveDocumentNotification;
-IB_EXTERN NSString *IBDidSaveDocumentNotification;
-IB_EXTERN NSString *IBWillCloseDocumentNotification;
+IB_EXTERN NSNotificationName const IBDidOpenDocumentNotification;
+IB_EXTERN NSNotificationName const IBWillSaveDocumentNotification;
+IB_EXTERN NSNotificationName const IBDidSaveDocumentNotification;
+IB_EXTERN NSNotificationName const IBWillCloseDocumentNotification;
 
 @protocol IBDocuments <NSObject>
 /**

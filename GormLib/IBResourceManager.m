@@ -35,7 +35,7 @@
 #import <Foundation/NSString.h>
 #import <AppKit/NSPasteboard.h>
 
-NSString *IBResourceManagerRegistryDidChangeNotification = @"IBResourceManagerRegistryDidChangeNotification";
+NSString *const IBResourceManagerRegistryDidChangeNotification = @"IBResourceManagerRegistryDidChangeNotification";
 
 static NSMapTable *_resourceManagers = NULL;
 

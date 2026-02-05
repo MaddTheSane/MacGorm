@@ -26,6 +26,7 @@
 #define INCLUDED_GormProtocol_h
 
 #import <Foundation/NSObject.h>
+#import <AppKit/AppKit.h>
 
 @class GormClassManager, GormPalettesManager, GormInspectorsManager, NSString, NSMenu, GormPluginManager;
 

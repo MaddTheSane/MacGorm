@@ -8,7 +8,7 @@
 
 #import "ExceptionBridging.h"
 
-void tryCatchBlock(dispatch_block_t aTry, void(^catchBlock)(NSException*))
+void tryCatchBlock(dispatch_block_t aTry, void(^catchBlock)(NSException*), dispatch_block_t aFinal)
 {
 	@try {
 		aTry();
@@ -16,6 +16,11 @@ void tryCatchBlock(dispatch_block_t aTry, void(^catchBlock)(NSException*))
 	@catch (NSException *exception) {
 		if (catchBlock) {
 			catchBlock(exception);
+		}
+	}
+	@finally {
+		if (aFinal) {
+			aFinal();
 		}
 	}
 }

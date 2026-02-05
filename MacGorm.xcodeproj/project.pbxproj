@@ -624,7 +624,7 @@
 		554D97F91E9031E800E79BFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		554D98011E9031E800E79BFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		554D98061E9031E800E79BFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		554D980C1E90329E00E79BFA /* VersionProfiles.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = VersionProfiles.plist; sourceTree = "<group>"; };
+		554D980C1E90329E00E79BFA /* VersionProfiles.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = VersionProfiles.plist; path = ../Resources/VersionProfiles.plist; sourceTree = "<group>"; };
 		554D98131E90350C00E79BFA /* GormCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GormCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		554D98151E90350C00E79BFA /* GormCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GormCore.h; sourceTree = "<group>"; };
 		554D98161E90350C00E79BFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -840,8 +840,8 @@
 		55A8A4B61E98CF73006959EF /* ExceptionBridging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionBridging.m; sourceTree = "<group>"; };
 		55A8D5E01E977C9D00C42FB2 /* GNUstepBaseAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GNUstepBaseAdditions.swift; sourceTree = "<group>"; };
 		55B17E521E98C25C00396A6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		55B7194F1E917BCA0006E8EB /* ClassInformation.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = ClassInformation.plist; sourceTree = "<group>"; };
-		55B719501E917BCA0006E8EB /* Defaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Defaults.plist; sourceTree = "<group>"; };
+		55B7194F1E917BCA0006E8EB /* ClassInformation.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = ClassInformation.plist; path = ../Resources/ClassInformation.plist; sourceTree = "<group>"; };
+		55B719501E917BCA0006E8EB /* Defaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Defaults.plist; path = ../Resources/Defaults.plist; sourceTree = "<group>"; };
 		55C007021E90A1A40039F09B /* GModel.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GModel.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C007041E90A1A40039F09B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55C007081E90A1B90039F09B /* GormGModelPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GormGModelPlugin.m; sourceTree = "<group>"; };
@@ -1206,18 +1206,20 @@
 		554D97F81E9031E800E79BFA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				55939C721E95B04400D59B72 /* Gorm.nib */,
-				55939C751E95B04A00D59B72 /* GormDummyInspector.nib */,
-				55939C781E95B05000D59B72 /* GormPalettePanel.nib */,
-				55939C7B1E95B05700D59B72 /* GormDocument.xib */,
+				55B7194F1E917BCA0006E8EB /* ClassInformation.plist */,
+				55B719501E917BCA0006E8EB /* Defaults.plist */,
 				55C7ECA91E91C9FD001CE0C5 /* Gorm.gorm */,
+				559D49B01E90D553003E1A48 /* Gorm.m */,
+				55939C721E95B04400D59B72 /* Gorm.nib */,
 				55C7ECAC1E91CA04001CE0C5 /* GormClassEditor.gorm */,
 				55C7ECAF1E91CA0A001CE0C5 /* GormClassInspector.gorm */,
 				55C7ECB21E91CA10001CE0C5 /* GormClassPanel.gorm */,
 				55C7ECB51E91CA17001CE0C5 /* GormConnectionInspector.gorm */,
 				55C7ECB81E91CA1E001CE0C5 /* GormCustomClassInspector.gorm */,
 				55C7ECBB1E91CA23001CE0C5 /* GormDocument.gorm */,
+				55939C7B1E95B05700D59B72 /* GormDocument.xib */,
 				55C7ECBE1E91CA29001CE0C5 /* GormDummyInspector.gorm */,
+				55939C751E95B04A00D59B72 /* GormDummyInspector.nib */,
 				55C7ECC11E91CA2F001CE0C5 /* GormFontView.gorm */,
 				55C7ECC41E91CA35001CE0C5 /* GormHelpInspector.gorm */,
 				55C7ECC71E91CA3C001CE0C5 /* GormImageInspector.gorm */,
@@ -1226,6 +1228,7 @@
 				55C7ECD01E91CA4D001CE0C5 /* GormNSSplitViewInspector.gorm */,
 				55C7ECD31E91CA52001CE0C5 /* GormObjectInspector.gorm */,
 				55C7ECD61E91CA57001CE0C5 /* GormPalettePanel.gorm */,
+				55939C781E95B05000D59B72 /* GormPalettePanel.nib */,
 				55C7ECD91E91CA5C001CE0C5 /* GormPrefColors.gorm */,
 				55C7ECDC1E91CA61001CE0C5 /* GormPreferences.gorm */,
 				55C7ECDF1E91CA67001CE0C5 /* GormPrefGeneral.gorm */,
@@ -1238,14 +1241,11 @@
 				55C7ECF41E91CA8E001CE0C5 /* GormShelfPref.gorm */,
 				55C7ECF71E91CA93001CE0C5 /* GormSoundInspector.gorm */,
 				55C7ECFA1E91CA99001CE0C5 /* GormViewSizeInspector.gorm */,
-				55B7194F1E917BCA0006E8EB /* ClassInformation.plist */,
-				55B719501E917BCA0006E8EB /* Defaults.plist */,
-				554D980C1E90329E00E79BFA /* VersionProfiles.plist */,
-				559D49B01E90D553003E1A48 /* Gorm.m */,
-				554D97F91E9031E800E79BFA /* main.m */,
 				559D48DD1E90C7CD003E1A48 /* InfoPlist.strings */,
-				553367B61E9705B3008FAB56 /* MacGorm-bridgingHeader.h */,
 				55B17E531E98C25C00396A6C /* Localizable.strings */,
+				553367B61E9705B3008FAB56 /* MacGorm-bridgingHeader.h */,
+				554D97F91E9031E800E79BFA /* main.m */,
+				554D980C1E90329E00E79BFA /* VersionProfiles.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -3260,6 +3260,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MacGorm/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.maddthesane.MacGorm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3277,6 +3278,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MacGorm/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.maddthesane.MacGorm;
 				PRODUCT_NAME = "$(TARGET_NAME)";

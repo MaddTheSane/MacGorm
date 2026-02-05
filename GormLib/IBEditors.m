@@ -24,11 +24,11 @@
 
 #import <Foundation/NSString.h>
 
-NSString *IBAttributesChangedNotification
+NSString *const IBAttributesChangedNotification
   = @"IBAttributesChangedNotification";
-NSString *IBInspectorDidModifyObjectNotification
+NSString *const IBInspectorDidModifyObjectNotification
   = @"IBInspectorDidModifyObjectNotification";
-NSString *IBSelectionChangedNotification
+NSString *const IBSelectionChangedNotification
   = @"IBSelectionChangedNotification";
-NSString *IBClassNameChangedNotification
+NSString *const IBClassNameChangedNotification
   = @"IBClassNameChangedNotification";

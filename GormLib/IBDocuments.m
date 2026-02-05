@@ -25,7 +25,7 @@
 #import <Foundation/NSString.h>
 #import <GormLib/IBDocuments.h>
 
-NSString *IBDidOpenDocumentNotification = @"IBDidOpenDocumentNotification";
-NSString *IBWillSaveDocumentNotification = @"IBWillSaveDocumentNotification";
-NSString *IBDidSaveDocumentNotification = @"IBDidSaveDocumentNotification";
-NSString *IBWillCloseDocumentNotification = @"IBWillCloseDocumentNotification";
+NSString *const IBDidOpenDocumentNotification = @"IBDidOpenDocumentNotification";
+NSString *const IBWillSaveDocumentNotification = @"IBWillSaveDocumentNotification";
+NSString *const IBDidSaveDocumentNotification = @"IBDidSaveDocumentNotification";
+NSString *const IBWillCloseDocumentNotification = @"IBWillCloseDocumentNotification";

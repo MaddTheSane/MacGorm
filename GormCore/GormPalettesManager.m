@@ -99,7 +99,7 @@ static NSImage	*dragImage = nil;
 - (void) dealloc
 {
   DESTROY(dragPb);
-  [super dealloc];
+  DEALLOC;
 }
 
 /*
@@ -271,7 +271,7 @@ static NSImage	*dragImage = nil;
   RELEASE(importedImages);
   RELEASE(importedSounds);
   RELEASE(substituteClasses);
-  [super dealloc];
+  DEALLOC;
 }
 
 - (void) handleNotification: (NSNotification*)aNotification
@@ -563,7 +563,7 @@ static NSImage	*dragImage = nil;
 
   // Resize the window appropriately so that we don't have issues
   // with scrolling.
-  if([window styleMask] & NSWindowStyleMaskBorderless)
+  if([window styleMask] == NSWindowStyleMaskBorderless)
     {
       [window setFrame: NSMakeRect(0,0,272,160) display: NO];
     }

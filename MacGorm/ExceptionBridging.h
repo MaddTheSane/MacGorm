@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-void tryCatchBlock(NS_NOESCAPE dispatch_block_t aTry, void(NS_NOESCAPE^ __nullable catchBlock)(NSException*)) NS_SWIFT_NAME(exceptionBlock(try:catch:));
+void tryCatchBlock(NS_NOESCAPE dispatch_block_t aTry, void(NS_NOESCAPE^ __nullable catchBlock)(NSException*), NS_NOESCAPE dispatch_block_t __nullable aFinal) NS_SWIFT_NAME(exceptionBlock(try:catch:finally:));
 
 void registerNameWithRootObject(NSString *aname, NSObject *aRootObject) NS_SWIFT_NAME(register(name:rootObject:));
 
